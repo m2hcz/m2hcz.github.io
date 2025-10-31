@@ -98,14 +98,130 @@
       color:var(--text-primary);
       line-height:1.68;
       -webkit-font-smoothing:antialiased;
+      position:relative;
+      overflow-x:hidden;
     }
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
-    .page{display:flex;flex-direction:column;min-height:100vh}
+    .bg-orbits{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+    .float-block,
+    .bg-detail{
+      position:absolute;
+      opacity:0.7;
+      border-radius:18px;
+      mix-blend-mode:normal;
+      will-change:transform;
+    }
+    .float-block{
+      background:linear-gradient(135deg, rgba(22,32,46,0.82), rgba(10,12,18,0.6));
+      border:1px solid rgba(0,0,0,0.45);
+      box-shadow:0 12px 40px rgba(0,0,0,0.45);
+    }
+    .float-block::after{
+      content:"";
+      position:absolute;
+      inset:24%;
+      border-radius:12px;
+      background:rgba(0,0,0,0.55);
+      box-shadow:inset 0 0 18px rgba(0,0,0,0.35);
+    }
+    .block-1{
+      top:12%;
+      left:8%;
+      width:140px;
+      height:140px;
+      animation:drift-slow 18s ease-in-out infinite;
+    }
+    .block-2{
+      top:68%;
+      left:14%;
+      width:90px;
+      height:90px;
+      animation:drift-medium 22s ease-in-out infinite;
+      animation-delay:-4s;
+    }
+    .block-3{
+      top:22%;
+      right:12%;
+      width:110px;
+      height:110px;
+      animation:drift-slow 24s ease-in-out infinite;
+      animation-delay:-8s;
+    }
+    .block-4{
+      bottom:10%;
+      right:18%;
+      width:160px;
+      height:160px;
+      animation:drift-medium 26s ease-in-out infinite;
+    }
+    .block-5{
+      top:48%;
+      right:42%;
+      width:75px;
+      height:75px;
+      animation:drift-fast 16s ease-in-out infinite;
+      animation-delay:-6s;
+    }
+
+    .bg-detail{
+      width:2px;
+      height:160px;
+      background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.7) 45%, rgba(0,0,0,0));
+      border-radius:999px;
+    }
+    .detail-1{
+      top:28%;
+      left:26%;
+      animation:detail-sway 20s ease-in-out infinite;
+    }
+    .detail-2{
+      bottom:18%;
+      right:32%;
+      height:190px;
+      animation:detail-sway 24s ease-in-out infinite;
+      animation-delay:-5s;
+    }
+
+    @keyframes drift-slow{
+      0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(0.95);}
+      50%{transform:translate3d(26px,-34px,0) rotate(6deg) scale(1.03);}
+    }
+    @keyframes drift-medium{
+      0%,100%{transform:translate3d(0,0,0) rotate(-2deg) scale(0.92);}
+      50%{transform:translate3d(-32px,28px,0) rotate(4deg) scale(1.04);}
+    }
+    @keyframes drift-fast{
+      0%,100%{transform:translate3d(0,0,0) rotate(0deg);}
+      50%{transform:translate3d(18px,-26px,0) rotate(-8deg);}
+    }
+    @keyframes detail-sway{
+      0%,100%{transform:translateX(0) rotate(0deg);}
+      50%{transform:translateX(12px) rotate(2deg);}
+    }
+
+    .page{display:flex;flex-direction:column;min-height:100vh;position:relative;z-index:1}
     main{flex:1;display:flex;flex-direction:column;gap:6rem;padding-bottom:6rem}
 
     .container{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+
+    .fade-in-up{opacity:0;transform:translateY(28px)}
+    @keyframes fadeInUp{
+      0%{opacity:0;transform:translateY(28px)}
+      65%{opacity:1;transform:translateY(-4px)}
+      100%{opacity:1;transform:translateY(0)}
+    }
+    .page-loaded .fade-in-up{
+      animation:fadeInUp 0.9s var(--transition) forwards;
+      animation-delay:var(--delay,0s);
+    }
 
     /* NAV */
     .navbar{
@@ -272,7 +388,20 @@
       display:inline-flex;
       align-items:center;
       gap:0.45rem;
+      opacity:0;
+      transform:translateY(12px);
     }
+    @keyframes tagRise{
+      0%{opacity:0;transform:translateY(12px) scale(0.97);}
+      100%{opacity:1;transform:translateY(0) scale(1);}
+    }
+    .page-loaded .hero-tag{
+      animation:tagRise 0.55s var(--transition) forwards;
+    }
+    .page-loaded .hero-tag:nth-child(1){animation-delay:0.48s;}
+    .page-loaded .hero-tag:nth-child(2){animation-delay:0.56s;}
+    .page-loaded .hero-tag:nth-child(3){animation-delay:0.64s;}
+    .page-loaded .hero-tag:nth-child(4){animation-delay:0.72s;}
     .hero-tag svg{width:14px;height:14px;fill:var(--accent)}
 
     .hero-actions{
@@ -876,17 +1005,27 @@
 </head>
 
 <body>
+  <div class="bg-orbits" aria-hidden="true">
+    <span class="float-block block-1"></span>
+    <span class="float-block block-2"></span>
+    <span class="float-block block-3"></span>
+    <span class="float-block block-4"></span>
+    <span class="float-block block-5"></span>
+    <span class="bg-detail detail-1"></span>
+    <span class="bg-detail detail-2"></span>
+  </div>
+
   <div class="page" id="top">
-    <nav class="navbar">
+    <nav class="navbar fade-in-up" style="--delay:0.05s;">
       <div class="nav-inner">
         <div class="brand">
           <img src="pfp.svg" alt="Portrait of m2hcs" class="pfp" loading="eager" decoding="async" />
           <div>
             <h1>m2hcs</h1>
-            <div class="pill-badge">24 y/o · Senior Backend Dev · 8+ years</div>
+            <div class="pill-badge fade-in-up" style="--delay:0.2s;">24 y/o · Senior Backend Dev · 8+ years</div>
           </div>
         </div>
-        <div class="nav-links">
+        <div class="nav-links fade-in-up" style="--delay:0.25s;">
           <a class="nav-link" href="#about">About</a>
           <a class="nav-link" href="#skills">Expertise</a>
           <a class="nav-link" href="#works">Works</a>
@@ -903,21 +1042,21 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="availability">Available for collaborations & offensive engagements</div>
-            <h2 class="hero-title">
+            <div class="availability fade-in-up" style="--delay:0.18s;">Available for collaborations & offensive engagements</div>
+            <h2 class="hero-title fade-in-up" style="--delay:0.28s;">
               Offensive security meets tasteful product. <br />
               <span>Senior Backend · 8+ years</span>, focused on fixing broken systems.
             </h2>
-            <p class="hero-lead">
+            <p class="hero-lead fade-in-up" style="--delay:0.36s;">
               Senior Offensive Security Engineer, Security Analyst, and programmer with 8+ years of experience.
             </p>
-            <div class="hero-tags">
+            <div class="hero-tags fade-in-up" style="--delay:0.44s;">
               <span class="hero-tag">⚔ Offensive Security</span>
               <span class="hero-tag">🛡 AppSec & Threat Modeling</span>
               <span class="hero-tag">⚙ Go · Python · Node</span>
               <span class="hero-tag">🎨 Systems Design</span>
             </div>
-            <div class="hero-actions">
+            <div class="hero-actions fade-in-up" style="--delay:0.58s;">
               <a class="btn-primary" href="#contact">Start a project →</a>
               <button class="btn-ghost" id="copyHero" type="button">
                 $ ssh m2hcs@internet && echo "hi"
@@ -925,7 +1064,7 @@
             </div>
           </div>
 
-          <aside class="hero-card">
+          <aside class="hero-card fade-in-up" style="--delay:0.4s;">
             <div class="hero-card-head">
               <div>
                 <h2>Security-first engineering</h2>
@@ -1071,7 +1210,7 @@ $ stack
             </ul>
           </article>
           <article class="service-card">
-            <div class="service-icon">🐧</div>
+            <div a class="service-icon">🐧</div>
             <h3>Linux-first</h3>
             <p>Dotfiles, scripts, reproducible environments, and a strong CLI culture.</p>
             <ul class="service-list">
@@ -1229,7 +1368,7 @@ $ stack
           <div class="contact-card">
             <h3>Let's talk</h3>
             <p>Security consulting, pentests, mission-critical backend, or internal tooling design.</p>
-            <a href="mailto:hi@m2hcs.dev">hi@m2hcs.dev</a>
+            <a href="mailto:hi@m2hcs.dev">m2hczs@proton.me</a>
             <button class="btn-ghost" id="copyEmail" type="button">
               Copy email
             </button>
@@ -1239,7 +1378,6 @@ $ stack
             <div class="contact-links">
               <a href="https://github.com/m2hcz" target="_blank" rel="noopener noreferrer">🐙 github.com/m2hcz</a>
               <a href="https://x.com/inf0secc" target="_blank" rel="noopener noreferrer">𝕏 x.com/inf0secc</a>
-              <a href="https://m2hcs.dev" target="_blank" rel="noopener noreferrer">🔗 m2hcs.dev</a>
             </div>
           </div>
         </div>
@@ -1257,6 +1395,10 @@ $ stack
   </div>
 
   <script defer>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.body.classList.add('page-loaded');
+    });
+
     // Year update
     const yearEl = document.getElementById('year');
     if(yearEl) yearEl.textContent = new Date().getFullYear();
@@ -1352,6 +1494,7 @@ $ stack
     <style>
       html{scroll-behavior:smooth}
       .reveal{opacity:1;transform:none}
+      .hero-tag{opacity:1;transform:none}
     </style>
   </noscript>
 </body>
