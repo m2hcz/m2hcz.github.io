@@ -4,26 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>m2hcs — Offensive Security, Backend & Design</title>
-  <meta name="description" content="m2hcs — Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer. Linux, security, programming, and everything tech." />
+  <meta name="description" content="m2hcs — Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer. Linux, security, programming, and everything about tech." />
   <link rel="canonical" href="https://m2hcs.com/" />
 
-  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="m2hcs — Offensive Security, Backend & Design" />
   <meta property="og:description" content="Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://m2hcs.com/" />
   <meta property="og:image" content="https://m2hcs.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="m2hcs — Offensive Security, Backend & Design" />
-  <meta name="twitter:description" content="Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer." />
-  <meta name="twitter:image" content="https://m2hcs.com/og.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Early theme apply -->
   <script>
     (function(){
       try{
@@ -37,6 +31,7 @@
   </script>
 
   <style>
+    /* ESTILOS RESTAURADOS DO ARQUIVO ORIGINAL (a.txt) */
     :root{
       --bg: #050608;
       --bg-alt: #0c1015;
@@ -61,9 +56,9 @@
       --radius-md: 16px;
       --radius-sm: 10px;
       --blur: backdrop-filter: blur(26px);
-      --max-width: 1120px;
-      --font-heading: "Sora", "Manrope", system-ui, sans-serif;
-      --font-body: "Manrope", system-ui, sans-serif;
+      --max-width: 1180px;
+      --font-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       --transition: cubic-bezier(.4,.08,.2,1);
     }
@@ -88,275 +83,122 @@
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{min-height:100%}
     html{scroll-behavior:smooth}
+    
     body{
       margin:0;
       font-family:var(--font-body);
-      background:
-        radial-gradient(circle at top, rgba(78,130,255,0.25) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(255,122,69,0.15) 0%, transparent 40%),
-        var(--bg);
+      background-color: var(--bg);
       color:var(--text-primary);
-      line-height:1.6;
+      line-height:1.68;
       -webkit-font-smoothing:antialiased;
-      position:relative;
-      overflow-x:hidden;
+      overflow-x: hidden;
     }
+
+    /* BACKGROUND FLOATING BLOCKS ANIMATION */
+    .bg-anim {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        overflow: hidden;
+        z-index: -1;
+        pointer-events: none;
+    }
+    .bg-anim li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px; height: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255,255,255,0.05);
+        bottom: -150px;
+        animation: floatUp 25s linear infinite;
+        border-radius: 4px;
+    }
+    .light .bg-anim li {
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Specific Blocks Positioning */
+    .bg-anim li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+    .bg-anim li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+    .bg-anim li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+    .bg-anim li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+    .bg-anim li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+    .bg-anim li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+    .bg-anim li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+    .bg-anim li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+    .bg-anim li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+    .bg-anim li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 0.5; }
+        100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+    }
+
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
-    .bg-orbits{
-      position:fixed;
-      inset:0;
-      overflow:hidden;
-      pointer-events:none;
-      z-index:0;
-    }
-    .float-block,
-    .bg-detail{
-      position:absolute;
-      opacity:0.7;
-      border-radius:18px;
-      mix-blend-mode:normal;
-      will-change:transform;
-    }
-    .float-block{
-      background:linear-gradient(135deg, rgba(22,32,46,0.82), rgba(10,12,18,0.6));
-      border:1px solid rgba(0,0,0,0.45);
-      box-shadow:0 12px 40px rgba(0,0,0,0.45);
-      animation-timing-function:ease-in-out;
-      animation-iteration-count:infinite;
-    }
-    .float-block::after{
-      content:"";
-      position:absolute;
-      inset:24%;
-      border-radius:12px;
-      background:rgba(0,0,0,0.55);
-      box-shadow:inset 0 0 18px rgba(0,0,0,0.35);
-    }
-    .block-1{
-      top:10%;
-      left:8%;
-      width:140px;
-      height:140px;
-      animation:rainFallSlow 28s ease-in-out infinite;
-    }
-    .block-2{
-      top:62%;
-      left:12%;
-      width:90px;
-      height:90px;
-      animation:rainFallMedium 32s ease-in-out infinite;
-      animation-delay:-6s;
-    }
-    .block-3{
-      top:18%;
-      right:10%;
-      width:110px;
-      height:110px;
-      animation:rainFallFast 24s ease-in-out infinite;
-      animation-delay:-10s;
-    }
-    .block-4{
-      bottom:12%;
-      right:16%;
-      width:160px;
-      height:160px;
-      animation:rainFallMedium 30s ease-in-out infinite;
-    }
-    .block-5{
-      top:46%;
-      right:40%;
-      width:75px;
-      height:75px;
-      animation:rainFallFast 22s ease-in-out infinite;
-      animation-delay:-8s;
-    }
-
-    .bg-detail{
-      width:2px;
-      height:160px;
-      background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.7) 45%, rgba(0,0,0,0));
-      border-radius:999px;
-      animation:rainLine 26s ease-in-out infinite;
-    }
-    .detail-1{
-      top:24%;
-      left:24%;
-    }
-    .detail-2{
-      bottom:14%;
-      right:30%;
-      height:190px;
-      animation-duration:30s;
-      animation-delay:-5s;
-    }
-
-    @keyframes rainFallSlow{
-      0%{transform:translate3d(-12px,-26vh,0) scale(0.9);}
-      55%{transform:translate3d(10px,18vh,0) scale(1.04);}
-      100%{transform:translate3d(-12px,-26vh,0) scale(0.9);}
-    }
-    @keyframes rainFallMedium{
-      0%{transform:translate3d(14px,-24vh,0) scale(0.88);}
-      60%{transform:translate3d(-14px,16vh,0) scale(1.05);}
-      100%{transform:translate3d(14px,-24vh,0) scale(0.88);}
-    }
-    @keyframes rainFallFast{
-      0%{transform:translate3d(0,-22vh,0) scale(0.86);}
-      58%{transform:translate3d(0,14vh,0) scale(1.03);}
-      100%{transform:translate3d(0,-22vh,0) scale(0.86);}
-    }
-    @keyframes rainLine{
-      0%{transform:translateY(-30vh);}
-      60%{transform:translateY(22vh);}
-      100%{transform:translateY(-30vh);}
-    }
-
-    .page{display:flex;flex-direction:column;min-height:100vh;position:relative;z-index:1}
-    main{flex:1;display:flex;flex-direction:column;gap:4.5rem;padding-bottom:4.5rem}
+    .page{display:flex;flex-direction:column;min-height:100vh}
+    main{flex:1;display:flex;flex-direction:column;gap:6rem;padding-bottom:6rem}
 
     .container{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
 
-    .fade-in-up{opacity:0;transform:translateY(28px)}
-    @keyframes fadeInUp{
-      0%{opacity:0;transform:translateY(28px)}
-      65%{opacity:1;transform:translateY(-4px)}
-      100%{opacity:1;transform:translateY(0)}
-    }
-    .page-loaded .fade-in-up{
-      animation:fadeInUp 0.9s var(--transition) forwards;
-      animation-delay:var(--delay,0s);
-    }
-
     /* NAV */
     .navbar{
-      position:sticky;
-      top:0;
-      z-index:100;
+      position:sticky;top:0;z-index:100;
       background:linear-gradient(180deg, rgba(5,6,8,0.92) 0%, rgba(5,6,8,0.55) 95%);
-      box-shadow:0 1px 0 rgba(255,255,255,0.05);
-      backdrop-filter:blur(22px);
+      box-shadow:0 1px 0 rgba(255,255,255,0.05);backdrop-filter:blur(22px);
     }
     .nav-inner{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:1.05rem 1.5rem;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1.25rem;
+      max-width:var(--max-width);margin:0 auto;padding:1.1rem 1.5rem;
+      display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:0.8rem;
-    }
+    .brand{display:flex;align-items:center;gap:0.9rem;}
     .brand .pfp{
-      width:42px;height:42px;
-      border-radius:50%;
-      border:1px solid var(--border-strong);
-      background:linear-gradient(135deg,#10161f,#1e2836);
-      box-shadow:0 12px 24px rgba(0,0,0,0.4);
+      width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);
+      background:linear-gradient(135deg,#10161f,#1e2836);box-shadow:0 12px 24px rgba(0,0,0,0.4);
+      transition: transform 0.3s var(--transition);
     }
-    .brand h1{
-      font-size:1.18rem;
-      font-family:var(--font-heading);
-      letter-spacing:0.03em;
-      font-weight:600;
-    }
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:0.55rem;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      font-size:0.94rem;
-    }
+    .brand:hover .pfp{transform: scale(1.1) rotate(5deg);}
+
+    .brand h1{font-size:1.2rem;font-family:var(--font-heading);letter-spacing:0.04em;}
+    .nav-links{display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;justify-content:flex-end;}
     .nav-link{
-      padding:0.35rem 0.85rem;
-      border-radius:var(--radius-sm);
-      color:var(--text-secondary);
-      transition:background 0.25s var(--transition), color 0.25s var(--transition), transform 0.25s var(--transition);
+      padding:0.35rem 0.9rem;border-radius:var(--radius-sm);font-size:0.95rem;
+      color:var(--text-secondary);transition:background 0.25s var(--transition), color 0.25s var(--transition), transform 0.25s var(--transition);
     }
-    .nav-link:hover,
-    .nav-link:focus-visible{
-      background:var(--accent-soft);
-      color:var(--accent);
-      transform:translateY(-2px);
-    }
+    .nav-link:hover, .nav-link:focus-visible{background:var(--accent-soft);color:var(--accent);transform:translateY(-2px);}
+    
     .pill-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:0.4rem;
-      padding:0.32rem 0.7rem;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.14);
-      font-size:0.78rem;
-      letter-spacing:0.03em;
-      color:var(--text-muted);
-      background:rgba(255,255,255,0.02);
+      display:inline-flex;align-items:center;gap:0.45rem;padding:0.35rem 0.75rem;
+      border-radius:999px;border:1px solid rgba(255,255,255,0.14);font-size:0.78rem;
+      letter-spacing:0.02em;color:var(--text-muted);background:rgba(255,255,255,0.02);
       box-shadow:0 6px 20px rgba(0,0,0,0.28);
     }
     .theme-toggle{
-      width:40px;height:40px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,0.03);
-      color:var(--text-secondary);
-      cursor:pointer;
-      font-size:1.05rem;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      width:40px;height:40px;border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);color:var(--text-secondary);cursor:pointer;
+      font-size:1.05rem;display:inline-flex;align-items:center;justify-content:center;
       transition:all 0.25s var(--transition);
     }
     .theme-toggle:hover{color:var(--accent);border-color:var(--accent-soft);transform:translateY(-1px)}
 
-    @media(max-width:720px){
-      .nav-links{
-        gap:0.3rem;
-      }
-      .nav-link{
-        padding:0.28rem 0.6rem;
-        font-size:0.88rem;
-      }
-    }
-
     /* HERO */
-    header.hero{
-      padding:5rem 0 3.5rem;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.4fr 1fr;
-      gap:2.2rem;
-      align-items:center;
-    }
-    .hero-copy{
-      display:flex;
-      flex-direction:column;
-      gap:1.3rem;
-    }
+    header.hero{padding:6rem 0 4rem;}
+    .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2.8rem;align-items:center;}
+    .hero-copy{display:flex;flex-direction:column;gap:1.6rem;}
+    
     .availability{
-      align-self:flex-start;
-      padding:0.42rem 0.8rem;
-      border-radius:var(--radius-sm);
-      background:rgba(78,130,255,0.1);
-      border:1px solid rgba(78,130,255,0.35);
-      color:var(--accent);
-      font-weight:600;
-      letter-spacing:0.03em;
-      display:flex;
-      align-items:center;
-      gap:0.5rem;
-      text-transform:uppercase;
-      font-size:0.76rem;
+      align-self:flex-start;padding:0.45rem 0.85rem;border-radius:var(--radius-sm);
+      background:rgba(78,130,255,0.1);border:1px solid rgba(78,130,255,0.35);
+      color:var(--accent);font-weight:600;letter-spacing:0.02em;display:flex;
+      align-items:center;gap:0.5rem;text-transform:uppercase;font-size:0.78rem;
+      animation: fadeInDown 0.8s var(--transition);
     }
     .availability::before{
-      content:"●";
-      font-size:0.65rem;
-      color:#53f0a9;
+      content:"●";font-size:0.65rem;color:#53f0a9;
       animation:pulse 2.4s infinite;
     }
     @keyframes pulse{
@@ -364,678 +206,307 @@
       50%{opacity:0.4;transform:scale(0.65)}
     }
     .hero-title{
-      font-family:var(--font-heading);
-      font-size:2.8rem;
-      line-height:1.1;
-      letter-spacing:-0.02em;
+      font-family:var(--font-heading);font-size:2.9rem;line-height:1.12;letter-spacing:-0.015em;
+      animation: fadeInUp 0.8s var(--transition) 0.1s backwards;
     }
-    .hero-title span{
-      background:var(--accent-gradient);
-      -webkit-background-clip:text;
-      color:transparent;
-    }
+    .hero-title span{background:var(--accent-gradient);-webkit-background-clip:text;color:transparent;}
     .hero-lead{
-      font-size:1.04rem;
-      color:var(--text-secondary);
-      max-width:46ch;
+      font-size:1.08rem;color:var(--text-secondary);max-width:46ch;
+      animation: fadeInUp 0.8s var(--transition) 0.2s backwards;
     }
     .hero-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.45rem;
+      display:flex;flex-wrap:wrap;gap:0.55rem;
+      animation: fadeInUp 0.8s var(--transition) 0.3s backwards;
     }
     .hero-tag{
-      padding:0.4rem 0.8rem;
-      border-radius:var(--radius-sm);
-      border:1px solid rgba(255,255,255,0.06);
-      background:rgba(18,23,31,0.72);
-      color:var(--text-secondary);
-      font-size:0.8rem;
-      letter-spacing:0.01em;
-      display:inline-flex;
-      align-items:center;
-      gap:0.45rem;
-      opacity:0;
-      transform:translateY(12px);
+      padding:0.45rem 0.85rem;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.06);
+      background:rgba(18,23,31,0.72);color:var(--text-secondary);font-size:0.82rem;
+      letter-spacing:0.01em;display:inline-flex;align-items:center;gap:0.45rem;
+      transition: transform 0.2s var(--transition), border-color 0.2s;
     }
-    @keyframes tagRise{
-      0%{opacity:0;transform:translateY(12px) scale(0.97);}
-      100%{opacity:1;transform:translateY(0) scale(1);}
-    }
-    .page-loaded .hero-tag{
-      animation:tagRise 0.55s var(--transition) forwards;
-    }
-    .page-loaded .hero-tag:nth-child(1){animation-delay:0.48s;}
-    .page-loaded .hero-tag:nth-child(2){animation-delay:0.56s;}
-    .page-loaded .hero-tag:nth-child(3){animation-delay:0.64s;}
-    .page-loaded .hero-tag:nth-child(4){animation-delay:0.72s;}
-    .hero-tag svg{width:14px;height:14px;fill:var(--accent)}
+    .hero-tag:hover{transform:translateY(-2px); border-color:var(--accent);}
 
     .hero-actions{
-      display:flex;
-      align-items:center;
-      gap:0.9rem;
-      flex-wrap:wrap;
+      display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+      animation: fadeInUp 0.8s var(--transition) 0.4s backwards;
     }
     .btn-primary{
-      background:var(--accent-gradient);
-      color:#050608;
-      padding:0.82rem 1.55rem;
-      border-radius:var(--radius-md);
-      font-weight:600;
-      border:none;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:0.6rem;
-      box-shadow:var(--shadow);
+      background:var(--accent-gradient);color:#050608;padding:0.85rem 1.6rem;
+      border-radius:var(--radius-md);font-weight:600;border:none;cursor:pointer;
+      display:inline-flex;align-items:center;gap:0.6rem;box-shadow:var(--shadow);
       transition:transform 0.22s var(--transition), box-shadow 0.22s var(--transition);
     }
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 26px 60px rgba(78,130,255,0.35)}
     .btn-ghost{
-      border-radius:var(--radius-md);
-      padding:0.75rem 1.2rem;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,0.02);
-      font-family:var(--font-mono);
-      font-size:0.84rem;
-      color:var(--text-secondary);
-      display:flex;
-      align-items:center;
-      gap:0.6rem;
-      cursor:pointer;
+      border-radius:var(--radius-md);padding:0.8rem 1.25rem;border:1px solid var(--border);
+      background:rgba(255,255,255,0.02);font-family:var(--font-mono);font-size:0.85rem;
+      color:var(--text-secondary);display:flex;align-items:center;gap:0.6rem;cursor:pointer;
       transition:all 0.22s var(--transition);
     }
     .btn-ghost:hover{color:var(--accent);border-color:var(--accent-soft);transform:translateY(-2px)}
 
     .hero-card{
-      background:var(--surface-glass);
-      border:1px solid var(--border);
-      border-radius:var(--radius-xl);
-      padding:2rem;
-      box-shadow:var(--shadow-soft);
-      position:relative;
-      overflow:hidden;
+      background:var(--surface-glass);border:1px solid var(--border);border-radius:var(--radius-xl);
+      padding:2.2rem;box-shadow:var(--shadow-soft);position:relative;overflow:hidden;
+      animation: floatIn 1s var(--transition) 0.5s backwards;
     }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
     .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:-160px -30px auto -30px;
-      height:220px;
+      content:"";position:absolute;inset:-160px -30px auto -30px;height:220px;
       background:radial-gradient(circle at top, rgba(78,130,255,0.35), transparent 60%);
-      opacity:0.6;
-      pointer-events:none;
+      opacity:0.6;pointer-events:none;
     }
-    .hero-card-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:1rem;
-      margin-bottom:1.4rem;
-    }
-    .hero-card h2{
-      font-size:1.48rem;
-      font-family:var(--font-heading);
-      letter-spacing:0.01em;
-    }
-    .hero-card p{
-      color:var(--text-secondary);
-      font-size:0.96rem;
-    }
+    .hero-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;}
+    .hero-card h2{font-size:1.5rem;font-family:var(--font-heading);letter-spacing:0.01em;}
+    .hero-card p{color:var(--text-secondary);font-size:0.98rem;}
     .hero-card .badge{
-      padding:0.48rem 0.75rem;
-      border-radius:var(--radius-sm);
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.06);
-      font-family:var(--font-mono);
-      font-size:0.76rem;
-      letter-spacing:0.04em;
-      color:var(--text-muted);
+      padding:0.5rem 0.8rem;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.06);font-family:var(--font-mono);font-size:0.78rem;
+      letter-spacing:0.04em;color:var(--text-muted);
     }
-    .hero-stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.1rem;
-      margin-top:1.4rem;
-    }
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.6rem;}
     .stat{
-      padding:0.95rem;
-      border-radius:var(--radius-md);
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(7,9,13,0.6);
+      padding:1rem;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08);
+      background:rgba(7,9,13,0.6);transition: transform 0.3s var(--transition);
     }
-    .stat h3{
-      font-size:1.5rem;
-      font-family:var(--font-heading);
-      font-weight:600;
-    }
-    .stat p{
-      font-size:0.8rem;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      color:var(--text-muted);
-      margin-top:0.2rem;
-    }
+    .stat:hover{transform: translateY(-3px); border-color: var(--accent-soft);}
+    .stat h3{font-size:1.55rem;font-family:var(--font-heading);}
+    .stat p{font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-top:0.25rem;}
 
-    @media(max-width:1024px){
-      .hero-grid{grid-template-columns:1fr}
-      .hero-card{max-width:460px;margin:0 auto}
-      header.hero{padding-top:4.6rem}
-    }
-    @media(max-width:640px){
-      .hero-title{font-size:2.35rem}
-      .hero-stats{grid-template-columns:repeat(2,1fr)}
-      .hero-card{padding:1.7rem}
-      .btn-ghost{width:100%;justify-content:center}
-    }
-    @media(max-width:420px){
-      .hero-stats{grid-template-columns:1fr}
-    }
-
-    /* SECTION GENERIC */
-    section{
-      display:flex;
-      flex-direction:column;
-      gap:2rem;
-    }
-    .section-heading{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:1.2rem;
-    }
-    .section-heading h2{
-      font-family:var(--font-heading);
-      font-size:1.95rem;
-      letter-spacing:-0.01em;
-    }
-    .section-heading p{
-      color:var(--text-secondary);
-      max-width:440px;
-      font-size:0.98rem;
-    }
+    /* SECTIONS */
+    section{display:flex;flex-direction:column;gap:2.4rem;}
+    .section-heading{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+    .section-heading h2{font-family:var(--font-heading);font-size:2rem;letter-spacing:-0.01em;}
+    .section-heading p{color:var(--text-secondary);max-width:460px;font-size:1rem;}
 
     /* TUI */
     .tui{
-      border-radius:var(--radius-xl);
-      background:var(--surface);
-      border:1px solid var(--border);
-      box-shadow:var(--shadow-soft);
-      overflow:hidden;
+      border-radius:var(--radius-xl);background:var(--surface);border:1px solid var(--border);
+      box-shadow:var(--shadow-soft);overflow:hidden;
+      transition: transform 0.3s var(--transition), box-shadow 0.3s;
     }
+    .tui:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
     .tui-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:1rem 1.4rem;
+      display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;
       border-bottom:1px solid rgba(255,255,255,0.04);
       background:linear-gradient(135deg, rgba(78,130,255,0.08), rgba(18,19,25,0.85));
     }
-    .tui-dots{display:flex;gap:0.5rem}
-    .tui-dot{
-      width:13px;height:13px;
-      border-radius:50%;
-      position:relative;
-      overflow:hidden;
-    }
+    .tui-dots{display:flex;gap:0.55rem}
+    .tui-dot{width:14px;height:14px;border-radius:50%;position:relative;overflow:hidden;}
     .tui-dot.red{background:#ff605c}
     .tui-dot.yellow{background:#ffbd44}
     .tui-dot.green{background:#27c93f}
-    .tui-dot::after{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:rgba(255,255,255,0.18);
-      filter:blur(10px);
-    }
-    .tui-tabs{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.35rem;
-      padding:0.95rem 1.4rem 0.6rem;
-      border-bottom:1px solid rgba(255,255,255,0.04);
-      position:relative;
-    }
+    .tui-dot::after{content:"";position:absolute;inset:-40%;background:rgba(255,255,255,0.18);filter:blur(10px);}
+    
+    .tui-tabs{display:flex;flex-wrap:wrap;gap:0.4rem;padding:1rem 1.5rem 0.6rem;border-bottom:1px solid rgba(255,255,255,0.04);position:relative;}
     .tui-tab{
-      border-radius:var(--radius-sm);
-      padding:0.5rem 0.85rem;
-      border:1px solid transparent;
-      background:transparent;
-      color:var(--text-secondary);
-      font-family:var(--font-mono);
-      font-size:0.8rem;
-      cursor:pointer;
-      transition:all 0.25s var(--transition);
+      border-radius:var(--radius-sm);padding:0.55rem 0.9rem;border:1px solid transparent;
+      background:transparent;color:var(--text-secondary);font-family:var(--font-mono);
+      font-size:0.82rem;cursor:pointer;transition:all 0.25s var(--transition);
     }
     .tui-tab:hover{color:var(--accent)}
-    .tui-tab.active{
-      border-color:rgba(78,130,255,0.4);
-      background:rgba(78,130,255,0.1);
-      color:var(--accent);
-    }
-    .tui-panel{
-      padding:1.6rem;
-      display:none;
-    }
-    .tui-panel.active{display:block}
+    .tui-tab.active{border-color:rgba(78,130,255,0.4);background:rgba(78,130,255,0.1);color:var(--accent);}
+    
+    .tui-panel{padding:1.8rem;display:none;}
+    .tui-panel.active{display:block;}
     .tui-panel pre{
-      margin:0;
-      font-family:var(--font-mono);
-      font-size:0.9rem;
-      color:var(--text-secondary);
-      white-space:pre-wrap;
-      line-height:1.58;
-      background:rgba(0,0,0,0.18);
-      border-radius:var(--radius-md);
-      padding:1.3rem;
-      border:1px solid rgba(255,255,255,0.05);
-      position:relative;
+      margin:0;font-family:var(--font-mono);font-size:0.92rem;color:var(--text-secondary);
+      white-space:pre-wrap;line-height:1.6;background:rgba(0,0,0,0.18);border-radius:var(--radius-md);
+      padding:1.4rem;border:1px solid rgba(255,255,255,0.05);position:relative;
     }
+    /* Typewriter cursor */
+    .typewriter-text::after { content: "▋"; color: var(--accent); animation: blink 1s step-end infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
     /* WHAT I DO */
-    .service-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.25rem;
-    }
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
     .service-card{
-      background:var(--surface);
-      border-radius:var(--radius-lg);
-      padding:1.55rem;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow-soft);
-      position:relative;
-      overflow:hidden;
+      background:var(--surface);border-radius:var(--radius-lg);padding:1.65rem;
+      border:1px solid var(--border);box-shadow:var(--shadow-soft);position:relative;overflow:hidden;
       transition:transform 0.25s var(--transition), border-color 0.25s var(--transition);
     }
     .service-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(78,130,255,0.14), transparent);
-      opacity:0;
-      transition:opacity 0.25s var(--transition);
+      content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(78,130,255,0.14), transparent);
+      opacity:0;transition:opacity 0.25s var(--transition);
     }
-    .service-card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(78,130,255,0.35);
-    }
+    .service-card:hover{transform:translateY(-6px);border-color:rgba(78,130,255,0.35);}
     .service-card:hover::before{opacity:1}
-    .service-card h3{
-      font-size:1.12rem;
-      margin-top:0.7rem;
-      font-family:var(--font-heading);
-      font-weight:600;
-    }
-    .service-card p{
-      color:var(--text-secondary);
-      margin-top:0.45rem;
-      font-size:0.93rem;
-    }
+    .service-card h3{font-size:1.15rem;margin-top:0.8rem;font-family:var(--font-heading);}
+    .service-card p{color:var(--text-secondary);margin-top:0.55rem;}
     .service-icon{
-      width:42px;height:42px;
-      border-radius:12px;
-      background:rgba(78,130,255,0.18);
-      display:grid;
-      place-items:center;
-      font-size:1.15rem;
+      width:44px;height:44px;border-radius:12px;background:rgba(78,130,255,0.18);
+      display:grid;place-items:center;font-size:1.2rem; transition: transform 0.3s var(--transition);
     }
-    .service-list{
-      margin-top:0.85rem;
-      list-style:none;
-      color:var(--text-muted);
-      display:flex;
-      flex-direction:column;
-      gap:0.3rem;
-      font-size:0.9rem;
-    }
-
-    @media(max-width:960px){
-      .service-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:640px){
-      .service-grid{grid-template-columns:1fr}
-    }
+    .service-card:hover .service-icon { transform: rotate(-10deg) scale(1.1); }
+    .service-list{margin-top:1rem;list-style:none;color:var(--text-muted);display:flex;flex-direction:column;gap:0.35rem;font-size:0.92rem;}
 
     /* WORKS */
-    .works-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.2rem;
-    }
+    .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
     .work-card{
-      position:relative;
-      border-radius:var(--radius-lg);
-      padding:1.6rem;
-      border:1px solid transparent;
-      background:
-        linear-gradient(var(--surface) 0 0) padding-box,
-        var(--accent-gradient) border-box;
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      gap:0.85rem;
-      min-height:250px;
+      position:relative;border-radius:var(--radius-lg);padding:1.8rem;border:1px solid transparent;
+      background: linear-gradient(var(--surface) 0 0) padding-box, var(--accent-gradient) border-box;
+      box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:1rem;min-height:260px;
+      transition: transform 0.3s var(--transition);
     }
-    .work-card h3{
-      font-size:1.16rem;
-      font-family:var(--font-heading);
-      letter-spacing:-0.01em;
-    }
-    .work-desc{
-      color:var(--text-secondary);
-      font-size:0.94rem;
-      flex:1;
-    }
-    .work-meta{
-      display:flex;
-      gap:0.5rem;
-      flex-wrap:wrap;
-    }
+    .work-card:hover { transform: translateY(-6px); }
+    .work-card h3{font-size:1.2rem;font-family:var(--font-heading);letter-spacing:-0.01em;}
+    .work-desc{color:var(--text-secondary);font-size:0.96rem;flex:1;}
+    .work-meta{display:flex;gap:0.55rem;flex-wrap:wrap;}
     .meta-pill{
-      padding:0.38rem 0.7rem;
-      border-radius:999px;
-      font-size:0.74rem;
-      letter-spacing:0.04em;
-      text-transform:uppercase;
-      background:rgba(5,6,8,0.74);
-      color:var(--accent);
+      padding:0.4rem 0.75rem;border-radius:999px;font-size:0.75rem;letter-spacing:0.04em;
+      text-transform:uppercase;background:rgba(5,6,8,0.74);color:var(--accent);
       border:1px solid rgba(78,130,255,0.35);
     }
-    .work-footer{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:0.83rem;
-    }
+    .work-footer{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;}
     .work-footer a{
-      color:var(--accent);
-      font-family:var(--font-mono);
-      display:inline-flex;
-      align-items:center;
-      gap:0.35rem;
-      transition:transform 0.2s var(--transition);
+      color:var(--accent);font-family:var(--font-mono);display:inline-flex;align-items:center;
+      gap:0.35rem;transition:transform 0.2s var(--transition);
     }
     .work-footer a:hover{transform:translateX(3px)}
 
-    @media(max-width:1024px){
-      .works-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:680px){
-      .works-grid{grid-template-columns:1fr}
-    }
-
     /* METHODS */
-    .method-grid{
-      display:grid;
-      grid-template-columns:1.05fr 0.95fr;
-      gap:1.3rem;
-    }
+    .method-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:1.6rem;}
     .method-card{
-      background:var(--surface-2);
-      border-radius:var(--radius-xl);
-      border:1px solid var(--border);
-      padding:1.85rem;
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      gap:1.1rem;
+      background:var(--surface-2);border-radius:var(--radius-xl);border:1px solid var(--border);
+      padding:2rem;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:1.2rem;
     }
-    .method-card ol{
-      list-style:none;
-      counter-reset:step;
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-    }
-    .method-card li{
-      position:relative;
-      padding-left:2.6rem;
-      color:var(--text-secondary);
-    }
+    .method-card ol{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:1.1rem;}
+    .method-card li{position:relative;padding-left:2.8rem;color:var(--text-secondary);}
     .method-card li::before{
-      counter-increment:step;
-      content:counter(step);
-      position:absolute;
-      left:0;
-      top:-0.2rem;
-      width:2.1rem;
-      height:2.1rem;
-      display:grid;
-      place-items:center;
-      border-radius:12px;
-      font-family:var(--font-heading);
-      font-weight:600;
-      background:rgba(78,130,255,0.16);
-      border:1px solid rgba(78,130,255,0.3);
-      color:var(--accent);
+      counter-increment:step;content:counter(step);position:absolute;left:0;top:-0.2rem;
+      width:2.2rem;height:2.2rem;display:grid;place-items:center;border-radius:12px;
+      font-family:var(--font-heading);font-weight:600;background:rgba(78,130,255,0.16);
+      border:1px solid rgba(78,130,255,0.3);color:var(--accent);
+      transition: transform 0.2s ease;
     }
-    .method-side{
-      display:flex;
-      flex-direction:column;
-      gap:0.9rem;
-    }
+    .method-card li:hover::before { transform: scale(1.1); }
+    .method-side{display:flex;flex-direction:column;gap:1rem;}
     .method-side .quote{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(5,6,8,0.72);
-      padding:1.6rem;
-      font-style:italic;
-      color:var(--text-secondary);
-      position:relative;
-      overflow:hidden;
+      border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.08);
+      background:rgba(5,6,8,0.72);padding:1.8rem;font-style:italic;color:var(--text-secondary);
+      position:relative;overflow:hidden;
     }
-    .method-side .quote::before{
-      content:"”";
-      font-size:3.4rem;
-      position:absolute;
-      top:-0.8rem;
-      right:1rem;
-      color:rgba(78,130,255,0.25);
-    }
-    .method-side .quick-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.45rem;
-    }
+    .method-side .quote::before{content:"”";font-size:3.8rem;position:absolute;top:-0.8rem;right:1rem;color:rgba(78,130,255,0.25);}
+    .method-side .quick-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
     .quick-tag{
-      padding:0.33rem 0.7rem;
-      border-radius:var(--radius-sm);
-      border:1px solid rgba(255,255,255,0.1);
-      font-size:0.78rem;
-      letter-spacing:0.03em;
-      text-transform:uppercase;
-      color:var(--text-muted);
-    }
-
-    @media(max-width:960px){
-      .method-grid{grid-template-columns:1fr}
+      padding:0.35rem 0.75rem;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.1);
+      font-size:0.8rem;letter-spacing:0.03em;text-transform:uppercase;color:var(--text-muted);
     }
 
     /* EXPERIENCE */
     .timeline{
-      display:flex;
-      flex-direction:column;
-      gap:1.2rem;
-      position:relative;
-      padding-left:1.3rem;
-      border-left:1px solid rgba(255,255,255,0.1);
+      display:flex;flex-direction:column;gap:1.4rem;position:relative;
+      padding-left:1.5rem;border-left:1px solid rgba(255,255,255,0.1);
     }
-    .timeline-item{
-      display:flex;
-      flex-direction:column;
-      gap:0.35rem;
-      position:relative;
-      padding-left:0.5rem;
-    }
+    .timeline-item{display:flex;flex-direction:column;gap:0.4rem;position:relative;padding-left:0.6rem;}
     .timeline-item::before{
-      content:"";
-      position:absolute;
-      left:-1.45rem;
-      top:0.35rem;
-      width:11px;height:11px;
-      border-radius:50%;
-      background:var(--accent-gradient);
+      content:"";position:absolute;left:-1.5rem;top:0.4rem;width:12px;height:12px;
+      border-radius:50%;background:var(--accent-gradient);
       box-shadow:0 12px 30px rgba(78,130,255,0.35);
     }
-    .timeline-item h3{
-      font-family:var(--font-heading);
-      font-size:1.12rem;
-      letter-spacing:-0.01em;
-    }
-    .timeline-item span{
-      font-size:0.88rem;
-      color:var(--text-muted);
-      font-family:var(--font-mono);
-      letter-spacing:0.03em;
-    }
-    .timeline-item p{
-      color:var(--text-secondary);
-      font-size:0.93rem;
-    }
+    .timeline-item h3{font-family:var(--font-heading);font-size:1.15rem;letter-spacing:-0.01em;}
+    .timeline-item span{font-size:0.9rem;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.03em;}
+    .timeline-item p{color:var(--text-secondary);font-size:0.95rem;}
 
     /* CONTACT */
-    .contact-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.2rem;
-    }
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
     .contact-card{
-      background:var(--surface);
-      border-radius:var(--radius-lg);
-      padding:1.7rem;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      gap:0.9rem;
+      background:var(--surface);border-radius:var(--radius-lg);padding:1.8rem;
+      border:1px solid var(--border);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:1rem;
+      transition: transform 0.3s var(--transition);
     }
-    .contact-card a{
-      color:var(--accent);
-      font-weight:600;
-      letter-spacing:0.01em;
-    }
-    .contact-links{
-      display:flex;
-      flex-direction:column;
-      gap:0.6rem;
-    }
+    .contact-card:hover { transform: translateY(-4px); }
+    .contact-card a.email-link{color:var(--accent);font-weight:600;letter-spacing:0.01em; font-size: 1.1rem;}
+    .contact-links{display:flex;flex-direction:column;gap:0.75rem;}
     .contact-links a{
-      display:flex;
-      align-items:center;
-      gap:0.5rem;
-      color:var(--text-secondary);
-      font-family:var(--font-mono);
-      font-size:0.86rem;
+      display:flex;align-items:center;gap:0.55rem;color:var(--text-secondary);
+      font-family:var(--font-mono);font-size:0.88rem;
       transition:color 0.2s var(--transition), transform 0.2s var(--transition);
     }
-    .contact-links a:hover{
-      color:var(--accent);
-      transform:translateX(3px);
-    }
-
-    @media(max-width:780px){
-      .contact-grid{grid-template-columns:1fr}
-    }
+    .contact-links a:hover{color:var(--accent);transform:translateX(3px);}
 
     /* FRIENDS */
-    .friends-wrap{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.55rem;
-    }
+    .friends-wrap{display:flex;flex-wrap:wrap;gap:0.65rem;}
     .friend{
-      padding:0.42rem 0.8rem;
-      border-radius:var(--radius-sm);
-      background:rgba(78,130,255,0.1);
-      border:1px solid rgba(78,130,255,0.3);
-      color:var(--accent);
-      font-family:var(--font-mono);
-      font-size:0.8rem;
-      transition:transform 0.2s var(--transition), background 0.2s var(--transition);
+      padding:0.45rem 0.85rem;border-radius:var(--radius-sm);background:rgba(78,130,255,0.1);
+      border:1px solid rgba(78,130,255,0.3);color:var(--accent);font-family:var(--font-mono);
+      font-size:0.82rem;transition:transform 0.2s var(--transition), background 0.2s var(--transition);
     }
-    .friend:hover{
-      transform:translateY(-2px);
-      background:rgba(78,130,255,0.18);
-    }
+    .friend:hover{transform:translateY(-2px);background:rgba(78,130,255,0.18);}
 
     /* FOOTER */
-    footer{
-      margin-top:3.6rem;
-      padding:2.6rem 0 1.9rem;
-      border-top:1px solid rgba(255,255,255,0.05);
-      background:rgba(5,6,8,0.88);
-    }
-    footer .container{
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-      align-items:center;
-      text-align:center;
-      color:var(--text-muted);
-      font-size:0.86rem;
-    }
-    footer .socials{
-      display:flex;
-      gap:0.7rem;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
+    footer{margin-top:4rem;padding:3rem 0 2rem;border-top:1px solid rgba(255,255,255,0.05);background:rgba(5,6,8,0.88);}
+    footer .container{display:flex;flex-direction:column;gap:1.2rem;align-items:center;text-align:center;color:var(--text-muted);font-size:0.88rem;}
+    footer .socials{display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;}
     footer .pill{
-      padding:0.42rem 0.85rem;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.04);
-      color:var(--text-secondary);
-      display:inline-flex;
-      align-items:center;
-      gap:0.38rem;
-      transition:transform 0.2s var(--transition), color 0.2s var(--transition);
+      padding:0.45rem 0.9rem;border-radius:999px;border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.04);color:var(--text-secondary);display:inline-flex;
+      align-items:center;gap:0.4rem;transition:transform 0.2s var(--transition), color 0.2s var(--transition);
     }
-    footer .pill:hover{
-      color:var(--accent);
-      transform:translateY(-2px);
+    footer .pill:hover{color:var(--accent);transform:translateY(-2px);}
+
+    /* REVEAL & STAGGER ANIMATIONS */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s var(--transition), transform 0.8s var(--transition);}
+    .reveal.in-view{opacity:1;transform:translateY(0);}
+
+    .reveal.in-view .service-card,
+    .reveal.in-view .work-card { animation: cardPop 0.6s var(--transition) backwards; }
+    @keyframes cardPop { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    /* Stagger delays */
+    .reveal.in-view .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .reveal.in-view .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .reveal.in-view .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .reveal.in-view .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .reveal.in-view .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .reveal.in-view .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-card{max-width:480px;margin:0 auto}
+      header.hero{padding-top:5rem}
+      .works-grid{grid-template-columns:repeat(2,1fr)}
     }
-
-    /* REVEAL */
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s var(--transition), transform 0.7s var(--transition)}
-    .reveal.in-view{opacity:1;transform:translateY(0)}
-
-    /* REDUCE MOTION */
-    @media(prefers-reduced-motion: reduce){
-      *, *::before, *::after{
-        animation-duration:0.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:0.01ms !important;
-        scroll-behavior:auto !important;
-      }
+    @media(max-width:720px){
+      .nav-links{gap:0.35rem;}
+      .nav-link{padding:0.3rem 0.65rem;font-size:0.9rem;}
+    }
+    @media(max-width:640px){
+      .hero-title{font-size:2.25rem}
+      .hero-stats{grid-template-columns:repeat(2,1fr)}
+      .hero-card{padding:1.8rem}
+      .btn-ghost{width:100%;justify-content:center}
+      .service-grid{grid-template-columns:1fr}
+      .works-grid{grid-template-columns:1fr}
+      .method-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 
 <body>
-  <div class="bg-orbits" aria-hidden="true">
-    <span class="float-block block-1"></span>
-    <span class="float-block block-2"></span>
-    <span class="float-block block-3"></span>
-    <span class="float-block block-4"></span>
-    <span class="float-block block-5"></span>
-    <span class="bg-detail detail-1"></span>
-    <span class="bg-detail detail-2"></span>
-  </div>
+  <ul class="bg-anim">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
+  </ul>
 
   <div class="page" id="top">
-    <nav class="navbar fade-in-up" style="--delay:0.05s;">
+    <nav class="navbar">
       <div class="nav-inner">
         <div class="brand">
           <img src="pfp.svg" alt="Portrait of m2hcs" class="pfp" loading="eager" decoding="async" />
           <div>
             <h1>m2hcs</h1>
-            <div class="pill-badge fade-in-up" style="--delay:0.2s;">24 y/o · Senior Backend Dev · 8+ years</div>
+            <div class="pill-badge">24 y/o · Senior Backend dev há 8 anos</div>
           </div>
         </div>
-        <div class="nav-links fade-in-up" style="--delay:0.25s.;">
+        <div class="nav-links">
           <a class="nav-link" href="#about">About</a>
           <a class="nav-link" href="#skills">Expertise</a>
           <a class="nav-link" href="#works">Works</a>
@@ -1052,33 +523,33 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="availability fade-in-up" style="--delay:0.18s;">Available for collaborations & offensive engagements</div>
-            <h2 class="hero-title fade-in-up" style="--delay:0.28s;">
+            <div class="availability">Disponível para colaborações & offensive gigs</div>
+            <h2 class="hero-title">
               Offensive security meets tasteful product. <br />
-              <span>Senior Backend · 8+ years</span>, focused on fixing broken systems.
+              <span>Backend sênior há 8 anos</span>, focado em quebrar e fortalecer sistemas críticos.
             </h2>
-            <p class="hero-lead fade-in-up" style="--delay:0.36s;">
-              Senior Offensive Security Engineer, Security Analyst, and programmer with 8+ years of experience.
+            <p class="hero-lead">
+              Senior Offensive Security Engineer, Security Analyst e programador backend sênior com 8+ anos construindo APIs de alta performance. Quebro superfícies frágeis, endureço pipelines e traduzo problemas complexos em UX direta.
             </p>
-            <div class="hero-tags fade-in-up" style="--delay:0.44s;">
+            <div class="hero-tags">
               <span class="hero-tag">⚔ Offensive Security</span>
               <span class="hero-tag">🛡 AppSec & Threat Modeling</span>
               <span class="hero-tag">⚙ Go · Python · Node</span>
               <span class="hero-tag">🎨 Systems Design</span>
             </div>
-            <div class="hero-actions fade-in-up" style="--delay:0.58s.;">
+            <div class="hero-actions">
               <a class="btn-primary" href="#contact">Start a project →</a>
               <button class="btn-ghost" id="copyHero" type="button">
-                $ ssh m2hcs@internet && echo "hi"
+                <span class="mono">$ ssh m2hcs@internet && echo "hi"</span>
               </button>
             </div>
           </div>
 
-          <aside class="hero-card fade-in-up" style="--delay:0.4s;">
+          <aside class="hero-card">
             <div class="hero-card-head">
               <div>
                 <h2>Security-first engineering</h2>
-                <p>Linux-first workflows, offensive mindset, pragmatic design.</p>
+                <p>Linux-first workflows, offensive mindset, design pragmático.</p>
               </div>
               <span class="badge">Made on Arch</span>
             </div>
@@ -1086,7 +557,7 @@
             <div class="hero-stats">
               <div class="stat">
                 <h3>8+</h3>
-                <p>Years in backend</p>
+                <p>Anos dev backend</p>
               </div>
               <div class="stat">
                 <h3>50+</h3>
@@ -1105,8 +576,8 @@
     <main>
       <section class="container reveal" id="skills">
         <div class="section-heading">
-          <h2>Expertise & Core Stack</h2>
-          <p>Offensive security and high-performance backend engineering.</p>
+          <h2>Expertise & Stack principal</h2>
+          <p>Offensive security e engenharia backend de alta performance, com design o suficiente para materializar ferramentas de forma clara.</p>
         </div>
 
         <div class="tui">
@@ -1124,47 +595,9 @@
             <button class="tui-tab" data-tab="tab-xp" role="tab" aria-selected="false">experience.sh</button>
             <button class="tui-tab" data-tab="tab-stack" role="tab" aria-selected="false">stack.sh</button>
           </div>
-          <div class="tui-panel active" id="tab-about" role="tabpanel">
-            <pre>
-$ whoami
-> m2hcs (24) — Offensive Security Engineer · Security Analyst · Senior Backend (8+ years) · UI/UX Designer
-
-$ mission
-> build secure systems, break unsafe ones, design-focused toolchains.
-
-$ focus
-> offensive ops · secure SDLC · distributed backends · thoughtful interfaces.
-            </pre>
-          </div>
-          <div class="tui-panel" id="tab-skills" role="tabpanel">
-            <pre>
-$ skills --core
-> Offensive: red/purple teaming, web/app/cloud pentesting, threat emulation
-> AppSec: threat modeling, supply chain, IaC hardening, SAST/DAST strategy
-> Backend: Go, Python, Node/TS, low-latency APIs, deep observability
-> Front/product: design systems, Figma, meaningful micro-interactions
-            </pre>
-          </div>
-          <div class="tui-panel" id="tab-xp" role="tabpanel">
-            <pre>
-$ experience --summary
-> 8+ years building resilient backends (Go, Python, Node) with an offensive DNA
-> Leadership in hardening, IAM, and security pipelines
-> Tooling for red/blue/purple squads — automation for recon and fuzzing
-
-$ highlights
-> rewarded bug bounties · secure infrastructure-as-code · incident response playbooks
-            </pre>
-          </div>
-          <div class="tui-panel" id="tab-stack" role="tabpanel">
-            <pre>
-$ stack
-> Languages: Go, Python, Rust, C/C++, TypeScript/JavaScript
-> Sec: a Linux shell, a web browser, and Burp Suite
-> Cloud/DevOps: Linux, Docker, K8s, Terraform, GitHub Actions, Grafana
-> Data: Postgres, Redis, ClickHouse, Kafka, Timescale
-> UI: Figma, shadcn, design tokens, CSS architecture
-            </pre>
+          
+          <div class="tui-panel active" id="tab-display" role="tabpanel">
+             <pre class="typewriter-text"></pre>
           </div>
         </div>
 
@@ -1172,7 +605,7 @@ $ stack
           <article class="service-card">
             <div class="service-icon">🛡️</div>
             <h3>Offensive Security Ops</h3>
-            <p>Business-oriented pentests with actionable reports, red teaming, adversary simulation.</p>
+            <p>Pentests orientados a negócio com relatórios acionáveis, red teaming, adversary simulation.</p>
             <ul class="service-list">
               <li>• Recon & exploitation pipelines</li>
               <li>• Cloud/web/mobile assessments</li>
@@ -1182,17 +615,17 @@ $ stack
           <article class="service-card">
             <div class="service-icon">🔍</div>
             <h3>AppSec & Secure SDLC</h3>
-            <p>Pragmatic threat modeling, CI/CD security, risk-based code reviews.</p>
+            <p>Threat modeling pragmática, segurança em CI/CD, revisão de código orientada a risco.</p>
             <ul class="service-list">
               <li>• SAST/DAST orchestration</li>
               <li>• IaC hardening & policy-as-code</li>
-              <li>• Technical incident playbooks</li>
+              <li>• Incident playbooks técnicos</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-icon">⚙️</div>
             <h3>Backend Engineering</h3>
-            <p>Resilient, distributed APIs with observability and performance from day one.</p>
+            <p>APIs resilientes e distribuídas, com observabilidade e performance desde o MVP.</p>
             <ul class="service-list">
               <li>• Go, Python, Node/TS</li>
               <li>• Systems design & SLOs</li>
@@ -1202,9 +635,9 @@ $ stack
           <article class="service-card">
             <div class="service-icon">🎨</div>
             <h3>Product & UI Systems</h3>
-            <p>Minimalist interfaces, design tokens, and intentional micro-interactions.</p>
+            <p>Interfaces minimalistas, design tokens e microinterações intencionais.</p>
             <ul class="service-list">
-              <li>• Design system living docs</li>
+              <li>• Design systems living docs</li>
               <li>• Dev tooling UX</li>
               <li>• Figma → prod handoff</li>
             </ul>
@@ -1212,17 +645,17 @@ $ stack
           <article class="service-card">
             <div class="service-icon">🧪</div>
             <h3>Security Tooling</h3>
-            <p>Automation for recon, fuzzing, detection, and meaningful blue/red bridging dashboards.</p>
+            <p>Automation in recon, fuzzing, detection, and blue/red bridging with useful dashboards.</p>
             <ul class="service-list">
               <li>• CLI & TUI builders</li>
-              <li>• Data pipelines for security</li>
+              <li>• Data pipelines for sec</li>
               <li>• Custom agents & hooks</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-icon">🐧</div>
             <h3>Linux-first</h3>
-            <p>Dotfiles, scripts, reproducible environments, and a strong CLI culture.</p>
+            <p>Dotfiles, scripts, reproducible environments, and strong CLI culture.</p>
             <ul class="service-list">
               <li>• Shell-first workflows</li>
               <li>• Infra spin-up automation</li>
@@ -1234,8 +667,8 @@ $ stack
 
       <section class="container reveal" id="works">
         <div class="section-heading">
-          <h2>Works & flagship tooling</h2>
-          <p>Original tools focused on automating offensive security, reconnaissance, and surface discovery.</p>
+          <h2>Works & Flagship Tooling</h2>
+          <p>Authorial tools focused on offensive security automation, reconnaissance, and surface discovery.</p>
         </div>
 
         <div class="works-grid">
@@ -1243,7 +676,8 @@ $ stack
             <div class="meta-pill">Recon · SQLi</div>
             <h3>sqli-automaticly-scanner</h3>
             <p class="work-desc">
-              Automated SQLi scanner with intelligent fingerprinting, custom chains, and instant reporting. Generates contextual payloads and target statistics.
+              Automated SQLi scanner with intelligent fingerprinting, custom chains, and instant reporting.
+              Generates contextual payloads and target statistics.
             </p>
             <div class="work-meta">
               <span class="meta-pill">Go</span>
@@ -1251,7 +685,7 @@ $ stack
               <span class="meta-pill">CI-ready</span>
             </div>
             <div class="work-footer">
-              <span>Detection + exploitation</span>
+              <span>Detection + Exploitation</span>
               <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener noreferrer">
                 GitHub ↗
               </a>
@@ -1262,7 +696,8 @@ $ stack
             <div class="meta-pill">Discovery</div>
             <h3>ParamHunter-Pro</h3>
             <p class="work-desc">
-              Next-gen parameter hunter: collects, classifies, and prioritizes hidden inputs for WebSec attacks. Supports dynamic wordlists and temporal diffs.
+              Next-gen parameter hunter: collects, classifies, and prioritizes hidden inputs for WebSec attacks.
+              Supports dynamic wordlists and temporal diffs.
             </p>
             <div class="work-meta">
               <span class="meta-pill">Python</span>
@@ -1270,7 +705,7 @@ $ stack
               <span class="meta-pill">OSINT</span>
             </div>
             <div class="work-footer">
-              <span>Recon + enumeration</span>
+              <span>Recon + Enumeration</span>
               <a href="https://github.com/m2hcz/ParamHunter-Pro" target="_blank" rel="noopener noreferrer">
                 GitHub ↗
               </a>
@@ -1281,7 +716,8 @@ $ stack
             <div class="meta-pill">Automation</div>
             <h3>reconmapper v2.0</h3>
             <p class="work-desc">
-              End-to-end recon pipeline: integrates APIs, maps surfaces, and generates navigable graphs of the attack surface. Export to Neo4j, JSON, and dashboards.
+              Complete recon pipeline: integrates APIs, maps surfaces, and generates navigable attack surface graphs.
+              Exports to Neo4j, JSON, and dashboards.
             </p>
             <div class="work-meta">
               <span class="meta-pill">TypeScript</span>
@@ -1289,7 +725,7 @@ $ stack
               <span class="meta-pill">Graph viz</span>
             </div>
             <div class="work-footer">
-              <span>Surface intelligence</span>
+              <span>Surface Intelligence</span>
               <a href="https://github.com/m2hcz/reconmapper-v2.0/" target="_blank" rel="noopener noreferrer">
                 GitHub ↗
               </a>
@@ -1300,31 +736,31 @@ $ stack
 
       <section class="container reveal" id="method">
         <div class="section-heading">
-          <h2>Delivery Method</h2>
-          <p>An adaptable process for offensive squads or product teams, with clear checkpoints and direct communication.</p>
+          <h2>Method of Delivery</h2>
+          <p>Adaptable process for offensive squads or product teams, with clear checkpoints and direct communication.</p>
         </div>
 
         <div class="method-grid">
           <div class="method-card">
             <h3>Pipeline</h3>
             <ol>
-              <li><strong>Discovery & alignment</strong> — understand surface, goals, and constraints.</li>
-              <li><strong>Defensive/offensive blueprint</strong> — threat modeling + automation plan.</li>
-              <li><strong>Technical execution</strong> — pentest, backend, design; always instrumented.</li>
-              <li><strong>Reporting & handoff</strong> — insights, metrics, and ready-to-ship resources.</li>
+              <li><strong>Discovery & Alignment</strong> — understanding surface, goals, and constraints.</li>
+              <li><strong>Blueprint Defense/Offense</strong> — threat modeling + automation plan.</li>
+              <li><strong>Technical Execution</strong> — pentest, backend, design; always instrumented.</li>
+              <li><strong>Reporting & Handoff</strong> — insights, metrics, and team-ready resources.</li>
             </ol>
           </div>
 
           <div class="method-side">
             <div class="quote">
-              “If it can't be reproduced in a script, I refactor until it can. Efficient security must be treated like a product.”
+              “If it can't be reproduced in a script, I refactor until it can. Efficient security needs to be treatable as a product.”
             </div>
             <div class="quick-tags">
               <span class="quick-tag">Async-friendly</span>
-              <span class="quick-tag">Living docs</span>
-              <span class="quick-tag">Reproducible infra</span>
+              <span class="quick-tag">Living Docs</span>
+              <span class="quick-tag">Reproducible Infra</span>
               <span class="quick-tag">Dashboards</span>
-              <span class="quick-tag">Design tokens</span>
+              <span class="quick-tag">Design Tokens</span>
             </div>
           </div>
         </div>
@@ -1332,33 +768,33 @@ $ stack
 
       <section class="container reveal" id="experience">
         <div class="section-heading">
-          <h2>Experience & impact</h2>
+          <h2>Experience & Impact</h2>
           <p>Combining backend engineering and offensive security to reduce MTTR, mitigate risks, and accelerate releases.</p>
         </div>
 
         <div class="timeline">
           <div class="timeline-item">
             <h3>Senior Backend & Security Lead</h3>
-            <span>2017 — present</span>
-            <p>Building distributed services with Go/Python, grounded in observability, SLOs, and IaC. Leading hardening and threat modeling for the core product.</p>
+            <span>2017 — Present</span>
+            <p>Building distributed services with Go/Python, grounded in observability, SLOs, and IaC. Leading hardening and threat modeling in core products.</p>
           </div>
           <div class="timeline-item">
             <h3>Offensive Security Engineer</h3>
-            <span>2018 — present</span>
-            <p>Red team engagements, cloud/web/mobile pentests, and tooling for recon, fuzzing, and dev-oriented exploitation.</p>
+            <span>2018 — Present</span>
+            <p>Red team engagements, cloud/web/mobile pentests, and creating developer-oriented tooling for recon, fuzzing, and exploitation.</p>
           </div>
           <div class="timeline-item">
             <h3>Technical UI/UX Designer</h3>
-            <span>2020 — present</span>
-            <p>Lean design systems for internal tools, with micro-interactions and direct handoff to engineering.</p>
+            <span>2020 — Present</span>
+            <p>Lean design systems for internal tools, with micro-interactions and direct handoff to dev.</p>
           </div>
         </div>
       </section>
 
       <section class="container reveal" id="friends">
         <div class="section-heading">
-          <h2>Friends & collaborators</h2>
-          <p>Brilliant folks who add to experiments, tooling, and improbable discussions.</p>
+          <h2>Friends & Collabs</h2>
+          <p>Brilliant minds contributing to experiments, tooling, and unlikely discussions.</p>
         </div>
         <div class="friends-wrap">
           <a class="friend" href="https://zvyz.live/" target="_blank" rel="noopener noreferrer">@zv_yz</a>
@@ -1371,23 +807,24 @@ $ stack
       <section class="container reveal" id="contact">
         <div class="section-heading">
           <h2>Contact</h2>
-          <p>Want to plan a pentest, a resilient backend, or a finely crafted technical product?</p>
+          <p>Let's architect a pentest, a resilient backend, or a fine-tuned technical product.</p>
         </div>
 
         <div class="contact-grid">
           <div class="contact-card">
             <h3>Let's talk</h3>
-            <p>Security consulting, pentests, mission-critical backend, or internal tooling design.</p>
-            <a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a>
+            <p>Security consulting, pentests, critical backend work, or internal tool design.</p>
+            <a href="mailto:hi@m2hcs.dev" class="email-link">hi@m2hcs.dev</a>
             <button class="btn-ghost" id="copyEmail" type="button">
               Copy email
             </button>
           </div>
           <div class="contact-card">
-            <h3>Social & presence</h3>
+            <h3>Social & Presence</h3>
             <div class="contact-links">
               <a href="https://github.com/m2hcz" target="_blank" rel="noopener noreferrer">🐙 github.com/m2hcz</a>
               <a href="https://x.com/inf0secc" target="_blank" rel="noopener noreferrer">𝕏 x.com/inf0secc</a>
+              <a href="https://m2hcs.dev" target="_blank" rel="noopener noreferrer">🔗 m2hcs.dev</a>
             </div>
           </div>
         </div>
@@ -1405,10 +842,6 @@ $ stack
   </div>
 
   <script defer>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.body.classList.add('page-loaded');
-    });
-
     // Year update
     const yearEl = document.getElementById('year');
     if(yearEl) yearEl.textContent = new Date().getFullYear();
@@ -1436,9 +869,9 @@ $ stack
         try{
           await navigator.clipboard.writeText(text);
           heroBtn.classList.add('copied');
-          heroBtn.textContent = '[copied ✔]';
+          heroBtn.innerHTML = '<span style="color:var(--accent)">[copied ✔]</span>';
           setTimeout(()=>{
-            heroBtn.textContent = text;
+            heroBtn.innerHTML = '<span class="mono">' + text + '</span>';
             heroBtn.classList.remove('copied');
           }, 1400);
         }catch(e){}
@@ -1454,40 +887,65 @@ $ stack
           await navigator.clipboard.writeText(email);
           copyEmail.textContent = 'Copied ✔';
           copyEmail.disabled = true;
+          copyEmail.style.borderColor = 'var(--accent)';
+          copyEmail.style.color = 'var(--accent)';
           setTimeout(()=>{
             copyEmail.textContent = 'Copy email';
             copyEmail.disabled = false;
+            copyEmail.style.borderColor = '';
+            copyEmail.style.color = '';
           }, 1200);
         }catch(e){}
       });
     }
 
-    // Tabs
-    const tabs = document.querySelectorAll('.tui-tab');
-    const panels = document.querySelectorAll('.tui-panel');
-    function activateTab(btn){
-      tabs.forEach(tab=>{
-        tab.classList.toggle('active', tab === btn);
-        tab.setAttribute('aria-selected', tab === btn);
-      });
-      panels.forEach(panel=>{
-        panel.classList.toggle('active', panel.id === btn.dataset.tab);
-      });
+    // TUI Typewriter Logic (COM TEUS TEXTOS EM PORTUGUÊS)
+    const tuiContent = {
+      'tab-about': `$ whoami\n> m2hcs (24) — Offensive Security Engineer · Security Analyst · Backend sênior há 8 anos · UI/UX Designer\n\n$ mission\n> build secure systems, break unsafe ones, design focused toolchains.\n\n$ focus\n> offensive ops · secure SDLC · distributed backends · thoughtful interfaces.`,
+      'tab-skills': `$ skills --core\n> Offensive: red/purple teaming, web/app/cloud pentesting, threat emulation\n> AppSec: threat modeling, supply-chain, IaC hardening, SAST/DAST estratégia\n> Backend: Go, Python, Node/TS, APIs de baixa latência, observabilidade profunda\n> Front/product: design systems, Figma, microinterações que importam`,
+      'tab-xp': `$ experience --summary\n> 8+ anos codando backends resilientes (Go, Python, Node) com DNA ofensivo\n> Lideranças em hardening, IAM, pipelines de segurança\n> Tooling para squads red/blue/purple — automação de recon e fuzzing\n\n$ highlights\n> bug bounties recompensados · infra-as-code segura · playbooks de resposta`,
+      'tab-stack': `$ stack\n> Languages: Go, Python, TypeScript/Node, Bash, Rust (learning)\n> Sec: Burp, Nmap, ffuf, nuclei, YARA, Suricata, OSINT automations\n> Cloud/DevOps: Linux, Docker, K8s, Terraform, GitHub Actions, Grafana\n> Data: Postgres, Redis, ClickHouse, Kafka, Timescale\n> UI: Figma, shadcn, design tokens, CSS architecture`
+    };
+    
+    const displayEl = document.querySelector('.typewriter-text');
+    let typeInterval;
+
+    function typeWriter(text, element) {
+      clearInterval(typeInterval);
+      element.textContent = '';
+      let i = 0;
+      const speed = 10; // typing speed
+      
+      typeInterval = setInterval(() => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, speed);
     }
-    tabs.forEach(tab=>{
-      tab.addEventListener('click', ()=>activateTab(tab));
-      tab.addEventListener('keydown', (e)=>{
-        if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
-          const arr = Array.from(tabs);
-          const idx = arr.indexOf(tab);
-          const next = e.key === 'ArrowRight' ? arr[(idx+1) % arr.length] : arr[(idx-1+arr.length)%arr.length];
-          next.focus();
-          activateTab(next);
+
+    // Initialize first tab
+    typeWriter(tuiContent['tab-about'], displayEl);
+    
+    // Tabs Event Listeners
+    const tabs = document.querySelectorAll('.tui-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        // Update active tab classes
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Get content and type it
+        const contentKey = tab.getAttribute('data-tab');
+        if(tuiContent[contentKey]) {
+          typeWriter(tuiContent[contentKey], displayEl);
         }
       });
     });
 
-    // Reveal on scroll
+    // Reveal on scroll with Stagger
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -1496,16 +954,8 @@ $ stack
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
     revealEls.forEach(el=>observer.observe(el));
   </script>
-
-  <noscript>
-    <style>
-      html{scroll-behavior:smooth}
-      .reveal{opacity:1;transform:none}
-      .hero-tag{opacity:1;transform:none}
-    </style>
-  </noscript>
 </body>
 </html>
