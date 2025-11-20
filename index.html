@@ -3,28 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>m2hcs — Offensive Security & Engineering</title>
-  <meta name="description" content="m2hcs — Senior Offensive Security Engineer & Backend Developer. Breaking and building critical systems." />
-  
+  <title>m2hcs — Offensive Security, Backend & Design</title>
+  <meta name="description" content="m2hcs — Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer. Linux, security, programming, and everything about tech." />
+  <link rel="canonical" href="https://m2hcs.com/" />
+
+  <meta property="og:title" content="m2hcs — Offensive Security, Backend & Design" />
+  <meta property="og:description" content="Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://m2hcs.com/" />
+  <meta property="og:image" content="https://m2hcs.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <script>
-    /* Prevent Flash of Unstyled Content (FOUC) */
+    /* Anti-FOUC & Theme Loader */
     (function(){
-      try{
+      try {
         const saved = localStorage.getItem('theme');
         const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
         if(saved === 'light' || (!saved && prefersLight)){ document.documentElement.classList.add('light'); }
         document.documentElement.classList.remove('no-js');
-      }catch(e){}
+      } catch(e){}
     })();
   </script>
 
   <style>
     :root {
-      /* --- DARK THEME (Default - Cyber Nature) --- */
+      /* --- DARK THEME (Cyber/Hacker Green) --- */
       --bg: #050505;
       --bg-grid-line: rgba(0, 255, 157, 0.04);
       
@@ -36,11 +44,12 @@
       --text-secondary: #94a3b8;
       --text-muted: #52525b;
       
-      /* Neon Green Accents */
+      /* Neon Green Aesthetic */
       --accent: #00ff9d;
       --accent-glow: rgba(0, 255, 157, 0.4);
       --accent-dim: rgba(0, 255, 157, 0.1);
-      
+      --accent-gradient: linear-gradient(135deg, #00ff9d 0%, #00b8ff 100%); /* Slight cyan tint */
+
       /* Typography & Layout */
       --font-heading: "Space Grotesk", sans-serif;
       --font-body: "Inter", sans-serif;
@@ -49,37 +58,34 @@
       --radius: 16px;
       --nav-height: 76px;
 
-      /* --- ANIMATION PHYSICS --- */
-      /* Custom Bezier for that "Elastic/Premium" feel */
+      /* --- ANIMATION PHYSICS (Smooth Curves) --- */
       --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
-      
-      --duration-fast: 0.3s;
-      --duration-normal: 0.6s;
-      --duration-slow: 1.0s;
+      --transition: 0.3s var(--ease-smooth);
     }
 
-    /* --- LIGHT THEME (White Shell) --- */
+    /* --- LIGHT THEME (White Shell Linux) --- */
     .light {
-      --bg: #f2f4f6;
-      --bg-grid-line: rgba(0, 0, 0, 0.03);
+      --bg: #f3f4f6; /* Clean Shell Background */
+      --bg-grid-line: rgba(0, 0, 0, 0.04);
       
       --surface: rgba(255, 255, 255, 0.85);
       --surface-border: rgba(0, 0, 0, 0.08);
       --surface-hover: rgba(0, 0, 0, 0.02);
       
-      --text-primary: #18181b;
-      --text-secondary: #52525b;
-      --text-muted: #a1a1aa;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
       
-      /* Darker Green for contrast on white */
-      --accent: #009963;
-      --accent-glow: rgba(0, 153, 99, 0.25);
-      --accent-dim: rgba(0, 153, 99, 0.08);
+      /* Darker Green for readability on white */
+      --accent: #059669;
+      --accent-glow: rgba(5, 150, 105, 0.2);
+      --accent-dim: rgba(5, 150, 105, 0.1);
+      --accent-gradient: linear-gradient(135deg, #059669 0%, #0284c7 100%);
     }
 
-    /* --- RESET & BASE --- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* RESET & BASE */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; height: 100%; }
     
     body {
@@ -89,12 +95,12 @@
       line-height: 1.65;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth);
+      transition: background-color 0.5s, color 0.5s;
     }
 
     ::selection { background: var(--accent); color: var(--bg); }
 
-    /* --- BACKGROUND GRID ANIMATION --- */
+    /* --- BACKGROUND GRID ANIMATION (New) --- */
     .cyber-perspective {
       position: fixed; inset: 0; z-index: -1;
       pointer-events: none; overflow: hidden;
@@ -109,7 +115,7 @@
         linear-gradient(90deg, var(--bg-grid-line) 1px, transparent 1px);
       background-size: 50px 50px;
       transform: perspective(500px) rotateX(60deg);
-      animation: gridMove 30s linear infinite;
+      animation: gridMove 40s linear infinite;
     }
     
     @keyframes gridMove { 
@@ -118,7 +124,7 @@
     }
     @keyframes fadeIn { to { opacity: 1; }}
 
-    /* --- UTILITIES --- */
+    /* --- UTILS --- */
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
     .mono { font-family: var(--font-mono); }
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
@@ -141,18 +147,20 @@
     .pfp {
       width: 42px; height: 42px; border-radius: 50%;
       border: 2px solid var(--surface-border);
+      background: #111;
       transition: transform 0.3s var(--ease-elastic);
     }
     .brand:hover .pfp { border-color: var(--accent); transform: scale(1.1) rotate(5deg); }
     
     .brand-text h1 { font-size: 1.2rem; font-family: var(--font-heading); font-weight: 700; line-height: 1; }
     .brand-pill { 
-      font-size: 0.75rem; color: var(--accent); font-family: var(--font-mono); 
+      font-size: 0.7rem; color: var(--accent); font-family: var(--font-mono); 
       background: var(--accent-dim); padding: 2px 8px; border-radius: 4px; 
+      border: 1px solid rgba(0, 255, 157, 0.2);
     }
 
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-link { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; position: relative; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-link { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; position: relative; transition: color 0.2s; }
     .nav-link:hover { color: var(--accent); }
     .nav-link::after {
       content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
@@ -187,35 +195,37 @@
       display: inline-flex; align-items: center; gap: 0.6rem;
       padding: 0.5rem 1rem; border-radius: 100px;
       background: var(--accent-dim); border: 1px solid rgba(0, 255, 157, 0.2);
-      color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem;
-      margin-bottom: 2rem;
+      color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem;
+      margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
     .hero-title-wrap { display: block; margin-bottom: 1.5rem; }
     .hero-title { 
-      font-size: 3.5rem; line-height: 1.1; font-family: var(--font-heading); 
+      font-size: 3.2rem; line-height: 1.1; font-family: var(--font-heading); 
       letter-spacing: -0.02em; color: var(--text-primary);
     }
-    .hero-title span { color: var(--accent); }
+    .hero-title span { 
+      background: var(--accent-gradient); -webkit-background-clip: text; color: transparent;
+    }
     
-    .hero-lead { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 550px; }
+    .hero-lead { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 550px; }
 
-    .tags-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .tags-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .tech-tag {
-      font-size: 0.85rem; padding: 0.4rem 0.8rem; border-radius: 8px;
+      font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px;
       background: var(--surface); border: 1px solid var(--surface-border);
       color: var(--text-secondary); font-family: var(--font-mono);
       transition: all 0.3s var(--ease-smooth);
     }
     .tech-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    .btn-row { display: flex; gap: 1rem; }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 1.8rem; border-radius: 10px; font-weight: 600; cursor: pointer;
-      font-family: var(--font-body); font-size: 1rem; transition: all 0.3s var(--ease-smooth);
+      padding: 0.85rem 1.6rem; border-radius: 10px; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.95rem; transition: all 0.3s var(--ease-smooth);
     }
     .btn-primary {
       background: var(--accent); color: #050505; border: 1px solid var(--accent);
@@ -225,14 +235,14 @@
     
     .btn-ghost {
       background: transparent; border: 1px solid var(--surface-border); color: var(--text-secondary);
-      font-family: var(--font-mono); font-size: 0.9rem;
+      font-family: var(--font-mono); font-size: 0.85rem;
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-3px); }
 
     /* Hero Card Float Animation */
     .hero-card {
       background: var(--surface); border: 1px solid var(--surface-border);
-      backdrop-filter: blur(12px); border-radius: var(--radius); padding: 2.5rem;
+      backdrop-filter: blur(12px); border-radius: var(--radius); padding: 2.2rem;
       position: relative; overflow: hidden;
       opacity: 0; /* Start invisible */
       transition: border-color 0.3s;
@@ -242,10 +252,18 @@
         popIn 1s var(--ease-elastic) forwards 0.8s,
         float 6s ease-in-out infinite 2s;
     }
-    
+    .hero-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+    .badge-arch { font-family: var(--font-mono); font-size: 0.7rem; padding: 4px 8px; background: var(--surface-border); border-radius: 4px; color: var(--text-muted); }
+
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
-    .stat-item h3 { font-size: 2rem; color: var(--text-primary); font-family: var(--font-heading); margin-bottom: 0.2rem; }
-    .stat-item p { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+    .stat-item {
+        background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+        transition: 0.3s;
+    }
+    .light .stat-item { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.05); }
+    .stat-item:hover { transform: translateY(-3px); border-color: var(--accent-dim); }
+    .stat-item h3 { font-size: 1.6rem; color: var(--text-primary); font-family: var(--font-heading); margin-bottom: 0.2rem; }
+    .stat-item p { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
 
     /* --- KEYFRAMES --- */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -277,16 +295,14 @@
     .dot { width: 12px; height: 12px; border-radius: 50%; }
     .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
 
-    .tui-tabs { display: flex; gap: 1.5rem; }
+    .tui-tabs { display: flex; gap: 1rem; overflow-x: auto; }
     .tui-tab { 
       font-family: var(--font-mono); font-size: 0.85rem; color: #666; cursor: pointer; 
-      transition: color 0.2s; position: relative;
+      transition: color 0.2s; position: relative; padding: 4px 8px; border-radius: 4px;
     }
     .tui-tab:hover { color: var(--accent); }
-    .tui-tab.active { color: var(--accent); font-weight: 600; }
-    .tui-tab.active::after { 
-      content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1px; background: var(--accent); 
-    }
+    .tui-tab.active { color: var(--accent); background: rgba(255,255,255,0.05); }
+    .light .tui-tab.active { background: rgba(0,0,0,0.05); }
 
     .tui-body { padding: 2rem; font-family: var(--font-mono); font-size: 0.95rem; min-height: 240px; color: #d4d4d4; }
     .light .tui-body { color: #333; }
@@ -311,14 +327,21 @@
     .card {
       background: var(--surface); border: 1px solid var(--surface-border);
       border-radius: var(--radius); padding: 2rem;
-      display: flex; flex-direction: column; gap: 1rem;
+      display: flex; flex-direction: column; gap: 1rem; position: relative;
       opacity: 0; transform: translateY(40px); /* Prepare for animation */
       transition: transform 0.4s var(--ease-elastic), border-color 0.3s, box-shadow 0.3s;
+      overflow: hidden;
     }
+    /* Glow Effect on Hover */
+    .card::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+        opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+    }
+    .card:hover::before { opacity: 1; }
     
-    /* Staggered Entry Logic via CSS Variables would be complex, using nth-child for simplicity in JS later */
+    /* Staggered Entry Logic via JS class later */
     .reveal-grid.active .card { animation: fadeInUp 0.8s var(--ease-elastic) forwards; }
-    /* Delays for wave effect */
     .reveal-grid.active .card:nth-child(1) { animation-delay: 0.1s; }
     .reveal-grid.active .card:nth-child(2) { animation-delay: 0.2s; }
     .reveal-grid.active .card:nth-child(3) { animation-delay: 0.3s; }
@@ -332,31 +355,29 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
     
+    .card-content { z-index: 1; display: flex; flex-direction: column; height: 100%; }
     .card-icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
-    .card h3 { font-size: 1.3rem; font-family: var(--font-heading); color: var(--text-primary); }
+    .card h3 { font-size: 1.3rem; font-family: var(--font-heading); color: var(--text-primary); margin-bottom: 0.5rem; }
     .card p { color: var(--text-secondary); font-size: 0.95rem; flex: 1; }
     .card-list { margin-top: 1rem; list-style: none; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem; }
     .card-list li::before { content: "» "; color: var(--accent); margin-right: 5px; }
 
-    /* --- WORK CARD SPECIALS --- */
-    .work-header { display: flex; justify-content: space-between; align-items: flex-start; }
-    .work-num { font-family: var(--font-mono); color: var(--accent); opacity: 0.6; }
+    /* --- WORKS & EXPERIENCE --- */
+    .work-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
     .pill-container { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto; }
     .pill { 
-      font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; 
+      font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; 
       background: rgba(255,255,255,0.05); color: var(--text-muted); 
       border: 1px solid transparent; transition: 0.3s;
     }
     .card:hover .pill { border-color: var(--accent-dim); color: var(--accent); }
-    .link-arrow { margin-top: 1.5rem; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
-    .link-arrow:hover { gap: 10px; } /* Slide arrow effect */
+    .link-arrow { margin-top: 1.5rem; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem;}
 
-    /* --- METHOD & TIMELINE --- */
+    /* Method */
     .method-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; }
     .method-list { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 2rem; }
     .method-item { position: relative; padding-left: 4rem; opacity: 0; transform: translateX(-20px); transition: 0.5s; }
     .method-grid.active .method-item { opacity: 1; transform: translateX(0); }
-    /* Manual staggering for method */
     .method-grid.active .method-item:nth-child(1) { transition-delay: 0.1s; }
     .method-grid.active .method-item:nth-child(2) { transition-delay: 0.2s; }
     .method-grid.active .method-item:nth-child(3) { transition-delay: 0.3s; }
@@ -369,7 +390,8 @@
       background: var(--accent-dim); width: 50px; height: 50px; 
       display: grid; place-items: center; border-radius: 12px;
     }
-    
+
+    /* Experience Timeline */
     .timeline { border-left: 2px solid var(--surface-border); margin-left: 10px; padding-left: 30px; position: relative; }
     .timeline::after {
       content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 0%; 
@@ -385,9 +407,9 @@
     }
     .time-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; display: block; }
 
-    /* --- CONTACT --- */
+    /* Contact */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .email-display { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin: 1.5rem 0; display: block; }
+    .email-display { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 1.5rem 0; display: block; }
     .email-display:hover { color: var(--accent); }
     
     .friends-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
@@ -398,16 +420,17 @@
     }
     .friend-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: scale(1.05); }
 
-    /* --- FOOTER --- */
+    /* Footer */
     footer { border-top: 1px solid var(--surface-border); padding: 4rem 0; text-align: center; margin-top: 6rem; }
     .socials { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .socials a:hover { color: var(--accent); }
 
     @media(max-width: 800px) {
       .hero-grid, .method-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 8rem; text-align: center; }
       .hero-lead { margin: 0 auto 2rem; }
       .btn-row, .tags-row { justify-content: center; }
-      .nav-links { display: none; }
+      .nav-links { display: none; } /* Simplified for code block */
       .hero-title { font-size: 2.5rem; }
     }
   </style>
@@ -422,10 +445,9 @@
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand">
-        <img src="https://ui-avatars.com/api/?name=m2hcs&background=00ff9d&color=050505&bold=true" alt="m2hcs" class="pfp" />
-        <div class="brand-text">
+        <img src="pfp.svg" alt="m2hcs" class="pfp" onerror="this.style.display='none'"/> <div class="brand-text">
           <h1>m2hcs</h1>
-          <span class="brand-pill">SecOps Engineer</span>
+          <div class="brand-pill">24 y/o · Senior Backend (8y+)</div>
         </div>
       </div>
       
@@ -434,9 +456,10 @@
         <a href="#skills" class="nav-link">Expertise</a>
         <a href="#works" class="nav-link">Works</a>
         <a href="#method" class="nav-link">Method</a>
-        <a href="#xp" class="nav-link">Experience</a>
+        <a href="#experience" class="nav-link">Experience</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☀</button>
+        <a href="#friends" class="nav-link">Friends</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☾</button>
       </div>
     </div>
   </nav>
@@ -444,22 +467,23 @@
   <main>
     <section class="hero container" id="about">
       <div class="hero-grid">
-        <div class="hero-content active"> <div class="status-badge"><span class="status-dot"></span> Available for collaborations & offensive gigs</div>
+        <div class="hero-content active">
+          <div class="status-badge"><span class="status-dot"></span> Disponível para colaborações & offensive gigs</div>
           
           <div class="hero-title-wrap">
-            <h1 class="hero-title">
-              Offensive security meets<br>tasteful product. <br>
-              <span>Senior Backend Dev (8y+)</span>.
-            </h1>
+            <h2 class="hero-title">
+              Offensive security meets tasteful product. <br>
+              <span>Backend sênior há 8 anos</span>, focado em quebrar e fortalecer sistemas críticos.
+            </h2>
           </div>
           
           <p class="hero-lead">
-            Senior Offensive Security Engineer, Security Analyst, and Backend Developer building high-performance APIs. I break fragile surfaces, harden pipelines, and translate complex problems into direct UX.
+            Senior Offensive Security Engineer, Security Analyst e programador backend sênior com 8+ anos construindo APIs de alta performance. Quebro superfícies frágeis, endureço pipelines e traduzo problemas complexos em UX direta.
           </p>
           
           <div class="tags-row">
             <span class="tech-tag">⚔ Offensive Security</span>
-            <span class="tech-tag">🛡 AppSec & Threat Model</span>
+            <span class="tech-tag">🛡 AppSec & Threat Modeling</span>
             <span class="tech-tag">⚙ Go · Python · Node</span>
             <span class="tech-tag">🎨 Systems Design</span>
           </div>
@@ -467,26 +491,28 @@
           <div class="btn-row">
             <a href="#contact" class="btn btn-primary">Start a project →</a>
             <button class="btn btn-ghost" onclick="copySSH(this)">
-              <span class="mono">$ ssh m2hcs@internet</span>
+              <span class="mono">$ ssh m2hcs@internet && echo "hi"</span>
             </button>
           </div>
         </div>
 
         <div class="hero-card active">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; align-items: center;">
-            <strong style="font-size: 1.1rem;">Security-first engineering</strong>
-            <span class="mono" style="color:var(--accent); font-size: 0.8rem;">[ARCH_LINUX]</span>
+          <div class="hero-card-head">
+            <div>
+              <strong style="font-size: 1.2rem; font-family: var(--font-heading);">Security-first engineering</strong>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Linux-first workflows, offensive mindset.</p>
+            </div>
+            <span class="badge-arch">Made on Arch</span>
           </div>
-          <p style="color: var(--text-secondary);">Linux-first workflows, offensive mindset, pragmatic design.</p>
           
           <div class="stats-grid">
             <div class="stat-item">
               <h3>8+</h3>
-              <p>Years Backend</p>
+              <p>Anos Dev Backend</p>
             </div>
             <div class="stat-item">
               <h3>50+</h3>
-              <p>Pentest Ops</p>
+              <p>Pentests Ops</p>
             </div>
             <div class="stat-item">
               <h3>∞</h3>
@@ -506,20 +532,20 @@
             <div class="dot green"></div>
           </div>
           <div class="tui-tabs">
-            <span class="tui-tab active" onclick="runCmd('cat about.md', this)">about.md</span>
-            <span class="tui-tab" onclick="runCmd('ls -la skills/', this)">skills</span>
-            <span class="tui-tab" onclick="runCmd('./run_xp.sh', this)">experience</span>
-            <span class="tui-tab" onclick="runCmd('grep stack system.log', this)">stack</span>
+            <span class="tui-tab active" onclick="runCmd('cat about.sh', this)">about.sh</span>
+            <span class="tui-tab" onclick="runCmd('ls -la skills/', this)">skills.sh</span>
+            <span class="tui-tab" onclick="runCmd('./experience.sh', this)">experience.sh</span>
+            <span class="tui-tab" onclick="runCmd('grep stack system.log', this)">stack.sh</span>
           </div>
         </div>
         <div class="tui-body">
           <div class="cmd-line">
-            <span class="prompt">root@m2hcs:~#</span>
-            <span class="command" id="tui-cmd">cat about.md</span>
+            <span class="prompt">m2hcs@arch:~#</span>
+            <span class="command" id="tui-cmd">cat about.sh</span>
           </div>
           <div class="output" id="tui-out">Loading...</div>
           <div class="cmd-line" style="margin-top: 1.5rem;">
-            <span class="prompt">root@m2hcs:~#</span>
+            <span class="prompt">m2hcs@arch:~#</span>
             <span class="cursor"></span>
           </div>
         </div>
@@ -528,125 +554,139 @@
 
     <section class="container section" id="skills">
       <div class="section-head reveal">
-        <h2 class="section-title">Expertise & Main Stack</h2>
-        <p class="section-desc">Offensive security and high-performance backend engineering, with enough design skills to make tools clear and usable.</p>
+        <h2 class="section-title">Expertise & Stack principal</h2>
+        <p class="section-desc">Offensive security e engenharia backend de alta performance, com design o suficiente para materializar ferramentas de forma clara.</p>
       </div>
       
-      <div class="grid-3 reveal-grid">
+      <div class="grid-3 reveal-grid" id="grid-services">
         <article class="card">
-          <div class="card-icon">🛡️</div>
-          <h3>Offensive Security Ops</h3>
-          <p>Business-oriented pentests with actionable reports.</p>
-          <ul class="card-list">
-            <li>Recon & exploitation pipelines</li>
-            <li>Cloud/web/mobile assessments</li>
-            <li>Breach & attack simulation</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">🛡️</div>
+            <h3>Offensive Security Ops</h3>
+            <p>Pentests orientados a negócio com relatórios acionáveis, red teaming, adversary simulation.</p>
+            <ul class="card-list">
+              <li>Recon & exploitation pipelines</li>
+              <li>Cloud/web/mobile assessments</li>
+              <li>Breach & attack simulation</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card">
-          <div class="card-icon">🔍</div>
-          <h3>AppSec & Secure SDLC</h3>
-          <p>Pragmatic threat modeling and CI/CD security.</p>
-          <ul class="card-list">
-            <li>SAST/DAST orchestration</li>
-            <li>IaC hardening & policy-as-code</li>
-            <li>Technical incident playbooks</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">🔍</div>
+            <h3>AppSec & Secure SDLC</h3>
+            <p>Threat modeling pragmática, segurança em CI/CD, revisão de código orientada a risco.</p>
+            <ul class="card-list">
+              <li>SAST/DAST orchestration</li>
+              <li>IaC hardening & policy-as-code</li>
+              <li>Incident playbooks técnicos</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card">
-          <div class="card-icon">⚙️</div>
-          <h3>Backend Engineering</h3>
-          <p>Resilient and distributed APIs with observability.</p>
-          <ul class="card-list">
-            <li>Go, Python, Node/TS</li>
-            <li>Systems design & SLOs</li>
-            <li>Observability & tracing</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">⚙️</div>
+            <h3>Backend Engineering</h3>
+            <p>APIs resilientes e distribuídas, com observabilidade e performance desde o MVP.</p>
+            <ul class="card-list">
+              <li>Go, Python, Node/TS</li>
+              <li>Systems design & SLOs</li>
+              <li>Observability & tracing</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card">
-          <div class="card-icon">🎨</div>
-          <h3>Product & UI Systems</h3>
-          <p>Minimalist interfaces and micro-interactions.</p>
-          <ul class="card-list">
-            <li>Design systems living docs</li>
-            <li>Dev tooling UX</li>
-            <li>Figma → prod handoff</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">🎨</div>
+            <h3>Product & UI Systems</h3>
+            <p>Interfaces minimalistas, design tokens e microinterações intencionais.</p>
+            <ul class="card-list">
+              <li>Design systems living docs</li>
+              <li>Dev tooling UX</li>
+              <li>Figma → prod handoff</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card">
-          <div class="card-icon">🧪</div>
-          <h3>Security Tooling</h3>
-          <p>Automation in recon, fuzzing, and blue/red bridging.</p>
-          <ul class="card-list">
-            <li>CLI & TUI builders</li>
-            <li>Data pipelines for sec</li>
-            <li>Custom agents & hooks</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">🧪</div>
+            <h3>Security Tooling</h3>
+            <p>Automation in recon, fuzzing, detection, and blue/red bridging with useful dashboards.</p>
+            <ul class="card-list">
+              <li>CLI & TUI builders</li>
+              <li>Data pipelines for sec</li>
+              <li>Custom agents & hooks</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card">
-          <div class="card-icon">🐧</div>
-          <h3>Linux-first</h3>
-          <p>Dotfiles, scripts, reproducible environments.</p>
-          <ul class="card-list">
-            <li>Shell-first workflows</li>
-            <li>Infra spin-up automation</li>
-            <li>Shareable knowledge bases</li>
-          </ul>
+          <div class="card-content">
+            <div class="card-icon">🐧</div>
+            <h3>Linux-first</h3>
+            <p>Dotfiles, scripts, reproducible environments, and strong CLI culture.</p>
+            <ul class="card-list">
+              <li>Shell-first workflows</li>
+              <li>Infra spin-up automation</li>
+              <li>Shareable knowledge bases</li>
+            </ul>
+          </div>
         </article>
       </div>
     </section>
 
     <section class="container section" id="works">
       <div class="section-head reveal">
-        <h2 class="section-title">Selected Operations</h2>
-        <p class="section-desc">Recent projects, tools, and contributions.</p>
+        <h2 class="section-title">Works</h2>
+        <p class="section-desc">Projetos selecionados.</p>
       </div>
       <div class="grid-3 reveal-grid">
         
         <div class="card">
-          <div class="work-header">
-            <h3>Project Alpha</h3>
-            <span class="work-num">// 01</span>
+          <div class="card-content">
+            <div class="work-header">
+              <h3>Project Alpha</h3>
+            </div>
+            <p>Architecture & Pentest Lead para fintech.</p>
+            <div class="pill-container">
+              <span class="pill">GO</span>
+              <span class="pill">AWS</span>
+              <span class="pill">SECURITY</span>
+            </div>
+            <a href="#" class="link-arrow">View Case →</a>
           </div>
-          <p>Architecture & Pentest Lead for a major Fintech.</p>
-          <div class="pill-container">
-            <span class="pill">GO</span>
-            <span class="pill">AWS</span>
-            <span class="pill">SECURITY</span>
-          </div>
-          <a href="#" class="link-arrow">View Case →</a>
         </div>
 
         <div class="card">
-          <div class="work-header">
-            <h3>VulnScanner CLI</h3>
-            <span class="work-num">// 02</span>
+          <div class="card-content">
+            <div class="work-header">
+              <h3>VulnScanner CLI</h3>
+            </div>
+            <p>Ferramenta open-source para scan rápido de vulnerabilidades.</p>
+            <div class="pill-container">
+              <span class="pill">PYTHON</span>
+              <span class="pill">CLI</span>
+            </div>
+            <a href="#" class="link-arrow">View Repo →</a>
           </div>
-          <p>Open-source tool for rapid vulnerability scanning.</p>
-          <div class="pill-container">
-            <span class="pill">PYTHON</span>
-            <span class="pill">CLI</span>
-            <span class="pill">RUST</span>
-          </div>
-          <a href="#" class="link-arrow">View Repo →</a>
         </div>
 
         <div class="card">
-          <div class="work-header">
-            <h3>Dashboard UI</h3>
-            <span class="work-num">// 03</span>
+          <div class="card-content">
+            <div class="work-header">
+              <h3>Dashboard UI</h3>
+            </div>
+            <p>Design system completo para plataforma de monitoramento.</p>
+            <div class="pill-container">
+              <span class="pill">FIGMA</span>
+              <span class="pill">REACT</span>
+            </div>
+            <a href="#" class="link-arrow">View Case →</a>
           </div>
-          <p>Complete design system for a monitoring platform.</p>
-          <div class="pill-container">
-            <span class="pill">FIGMA</span>
-            <span class="pill">REACT</span>
-          </div>
-          <a href="#" class="link-arrow">View Case →</a>
         </div>
 
       </div>
@@ -654,54 +694,54 @@
 
     <section class="container section" id="method">
       <div class="section-head reveal">
-        <h2 class="section-title">The Method</h2>
-        <p class="section-desc">How I approach complex problems.</p>
+        <h2 class="section-title">Method</h2>
+        <p class="section-desc">Como abordo problemas complexos.</p>
       </div>
       <div class="method-grid reveal">
-        <div class="card" style="border:none; background:transparent; padding:0;">
+        <div class="method-card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
           <ol class="method-list">
             <li class="method-item">
-              <strong>Deep Reconnaissance:</strong> Understanding the business logic before attacking the technology.
+              <strong>Reconhecimento Profundo:</strong> Entender o negócio antes de atacar a tecnologia.
             </li>
             <li class="method-item">
-              <strong>Custom Automation:</strong> Building specific tools for the target, not relying solely on generic scanners.
+              <strong>Automação Customizada:</strong> Criar ferramentas específicas para o alvo, não depender só de scanners.
             </li>
             <li class="method-item">
-              <strong>Real Impact:</strong> Translating technical vulnerabilities into clear financial/operational risk.
+              <strong>Impacto Real:</strong> Traduzir vulnerabilidades técnicas em risco financeiro/operacional claro.
             </li>
             <li class="method-item">
-              <strong>Collaborative Fixes:</strong> Working with devs to fix the root cause, not just the symptom.
+              <strong>Correção Colaborativa:</strong> Trabalhar com os devs para corrigir a raiz do problema, não apenas o sintoma.
             </li>
           </ol>
         </div>
         <div class="card" style="justify-content:center; text-align:center; border-color: var(--accent-dim);">
           <p style="font-size: 1.1rem; font-style: italic; color: var(--text-primary);">
-            "Offensive security without business context is just noise. The goal is to strengthen, not just break."
+            "Offensive security sem contexto de negócio é apenas barulho. O objetivo é fortalecer, não apenas quebrar."
           </p>
         </div>
       </div>
     </section>
 
-    <section class="container section" id="xp">
+    <section class="container section" id="experience">
       <div class="section-head reveal">
-        <h2 class="section-title">Experience Timeline</h2>
+        <h2 class="section-title">Experience</h2>
       </div>
       <div class="card reveal">
         <div class="timeline">
           <div class="timeline-item">
             <span class="time-date">2022 - Present</span>
             <h3>Senior Offensive Security Engineer</h3>
-            <p>Technical leadership in Red Team operations, security automation development, and critical infrastructure hardening.</p>
+            <p>Liderança técnica em Red Team operations, desenvolvimento de automação de segurança e hardening de infraestrutura crítica.</p>
           </div>
           <div class="timeline-item">
             <span class="time-date">2019 - 2022</span>
             <h3>Senior Backend Developer</h3>
-            <p>Microservices architecture in Go and Node.js. Focus on scalability and security by design (Shift Left).</p>
+            <p>Arquitetura de microsserviços em Go e Node.js. Foco em escalabilidade e segurança desde o design (Shift Left).</p>
           </div>
           <div class="timeline-item">
             <span class="time-date">2016 - 2019</span>
             <h3>Security Analyst & Dev</h3>
-            <p>Career start focusing on web vulnerability analysis and fullstack development.</p>
+            <p>Início da carreira focando em análise de vulnerabilidades web e desenvolvimento fullstack.</p>
           </div>
         </div>
       </div>
@@ -711,7 +751,7 @@
       <div class="contact-grid">
         <div class="card">
           <h3>Contact</h3>
-          <p>Let's build (or break) something together.</p>
+          <p>Vamos construir (ou quebrar) algo juntos.</p>
           <a href="mailto:hello@m2hcs.com" class="email-display">hello@m2hcs.com</a>
           <div class="socials" style="justify-content: flex-start;">
             <a href="#" class="nav-link">Github</a>
@@ -720,9 +760,9 @@
           </div>
         </div>
 
-        <div class="card">
-          <h3>Friends & Resources</h3>
-          <p>Amazing people and projects.</p>
+        <div class="card" id="friends">
+          <h3>Friends</h3>
+          <p>Pessoas e projetos incríveis.</p>
           <div class="friends-list">
             <a href="#" class="friend-tag">friend1.com</a>
             <a href="#" class="friend-tag">sec-buddy.io</a>
@@ -771,10 +811,10 @@
 
     // --- 3. TUI (TERMINAL) LOGIC ---
     const tuiData = {
-      'about.md': `Name: m2hcs\nRole: Senior Security Engineer & Backend Dev\nExp: 8+ Years\n\n"I don't just build software; I understand how to break it, which makes me the best person to secure it."`,
-      'skills': `drwxr-xr-x  m2hcs  languages\n-rwxr--r--  m2hcs  golang (Expert)\n-rwxr--r--  m2hcs  python (Advanced)\n-rwxr--r--  m2hcs  javascript (Fullstack)\n\ndrwxr-xr-x  m2hcs  security\n-rwxr--r--  m2hcs  pentesting\n-rwxr--r--  m2hcs  appsec`,
-      'experience': `[2022-NOW] Senior Offensive Security Eng\n[2019-2022] Senior Backend Dev\n[2016-2019] Security Analyst`,
-      'stack': `Host: Arch Linux\nShell: Zsh + Tmux\nEditor: Neovim\nC2: Custom Go Implants`
+      'about.sh': `Name: m2hcs\nRole: Senior Security Engineer & Backend Dev\nExp: 8+ Years\n\n"I don't just build software; I understand how to break it, which makes me the best person to secure it."`,
+      'skills.sh': `drwxr-xr-x  m2hcs  languages\n-rwxr--r--  m2hcs  golang (Expert)\n-rwxr--r--  m2hcs  python (Advanced)\n-rwxr--r--  m2hcs  javascript (Fullstack)\n\ndrwxr-xr-x  m2hcs  security\n-rwxr--r--  m2hcs  pentesting\n-rwxr--r--  m2hcs  appsec`,
+      'experience.sh': `[2022-NOW] Senior Offensive Security Eng\n[2019-2022] Senior Backend Dev\n[2016-2019] Security Analyst`,
+      'stack.sh': `Host: Arch Linux\nShell: Zsh + Tmux\nEditor: Neovim\nC2: Custom Go Implants`
     };
 
     let typeInterval;
@@ -800,10 +840,10 @@
         } else {
           // Execute Output
           setTimeout(() => {
-            let key = 'about.md';
-            if(cmd.includes('skills')) key = 'skills';
-            if(cmd.includes('xp')) key = 'experience';
-            if(cmd.includes('stack')) key = 'stack';
+            let key = 'about.sh';
+            if(cmd.includes('skills')) key = 'skills.sh';
+            if(cmd.includes('experience')) key = 'experience.sh';
+            if(cmd.includes('stack')) key = 'stack.sh';
             
             let txt = tuiData[key];
             let j = 0;
@@ -811,7 +851,6 @@
               if (j < txt.length) {
                 outEl.textContent += txt.charAt(j);
                 j++;
-                // Faster typing for output
                 typeInterval = setTimeout(typeOutput, 5);
               }
             }
@@ -823,26 +862,36 @@
     }
     
     // Initial Run
-    window.onload = () => runCmd('cat about.md', document.querySelector('.tui-tab'));
+    window.onload = () => runCmd('cat about.sh', document.querySelector('.tui-tab'));
 
-    // --- 4. SCROLL OBSERVER (STAGGERED ANIMATIONS) ---
-    // This adds the 'active' class to elements when they scroll into view
+    // --- 4. MOUSE HOVER GLOW EFFECT ---
+    const cardsContainer = document.getElementById('grid-services');
+    if(cardsContainer){
+        cardsContainer.onmousemove = e => {
+        for(const card of document.getElementsByClassName('card')) {
+            const rect = card.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+        };
+    }
+
+    // --- 5. SCROLL OBSERVER (STAGGERED ANIMATIONS) ---
     const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          // Optional: Stop observing once active
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Target elements to animate
     document.querySelectorAll('.hero-content, .hero-card, .tui-section, .section-head, .reveal, .reveal-grid, .method-grid').forEach(el => {
       observer.observe(el);
     });
   </script>
 </body>
-</html>[
+</html>
