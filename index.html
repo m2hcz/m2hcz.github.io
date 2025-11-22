@@ -4,16 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>m2hcs — Offensive Security, Backend & Design</title>
-  <meta name="description" content="m2hcs — Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer. Linux, security, programming, and everything about tech." />
+  <meta name="description" content="m2hcs — Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer. 2025 Portfolio." />
   <link rel="canonical" href="https://m2hcs.com/" />
 
   <meta property="og:title" content="m2hcs — Offensive Security, Backend & Design" />
-  <meta property="og:description" content="Senior Offensive Security Engineer, Security Analyst, Senior Backend Developer (8+ years), and UI/UX Designer." />
+  <meta property="og:description" content="Senior Offensive Security Engineer & Backend Developer. GitHub: m2hcz | X: @inf0secc" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://m2hcs.com/" />
-  <meta property="og:image" content="https://m2hcs.com/og.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -48,7 +45,7 @@
       --accent: #00ff9d;
       --accent-glow: rgba(0, 255, 157, 0.4);
       --accent-dim: rgba(0, 255, 157, 0.1);
-      --accent-gradient: linear-gradient(135deg, #00ff9d 0%, #00b8ff 100%); /* Slight cyan tint */
+      --accent-gradient: linear-gradient(135deg, #00ff9d 0%, #00b8ff 100%);
 
       /* Typography & Layout */
       --font-heading: "Space Grotesk", sans-serif;
@@ -58,15 +55,15 @@
       --radius: 16px;
       --nav-height: 76px;
 
-      /* --- ANIMATION PHYSICS (Smooth Curves) --- */
+      /* --- ANIMATION PHYSICS --- */
       --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
       --transition: 0.3s var(--ease-smooth);
     }
 
-    /* --- LIGHT THEME (White Shell Linux) --- */
+    /* --- LIGHT THEME --- */
     .light {
-      --bg: #f3f4f6; /* Clean Shell Background */
+      --bg: #f3f4f6;
       --bg-grid-line: rgba(0, 0, 0, 0.04);
       
       --surface: rgba(255, 255, 255, 0.85);
@@ -77,7 +74,6 @@
       --text-secondary: #4b5563;
       --text-muted: #9ca3af;
       
-      /* Darker Green for readability on white */
       --accent: #059669;
       --accent-glow: rgba(5, 150, 105, 0.2);
       --accent-dim: rgba(5, 150, 105, 0.1);
@@ -100,7 +96,7 @@
 
     ::selection { background: var(--accent); color: var(--bg); }
 
-    /* --- BACKGROUND GRID ANIMATION (New) --- */
+    /* --- BACKGROUND GRID --- */
     .cyber-perspective {
       position: fixed; inset: 0; z-index: -1;
       pointer-events: none; overflow: hidden;
@@ -135,7 +131,8 @@
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
       z-index: 100;
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      background: rgba(var(--bg), 0.75);
+      background: rgba(var(--bg), 0.75); /* fallback */
+      background: color-mix(in srgb, var(--bg), transparent 25%);
       border-bottom: 1px solid var(--surface-border);
       animation: slideDown 0.8s var(--ease-elastic) forwards;
     }
@@ -149,6 +146,7 @@
       border: 2px solid var(--surface-border);
       background: #111;
       transition: transform 0.3s var(--ease-elastic);
+      object-fit: cover;
     }
     .brand:hover .pfp { border-color: var(--accent); transform: scale(1.1) rotate(5deg); }
     
@@ -183,7 +181,6 @@
     .hero { padding-top: calc(var(--nav-height) + 6rem); padding-bottom: 6rem; }
     .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: center; }
 
-    /* Staggered Animations for Hero */
     .hero-content > * { opacity: 0; transform: translateY(20px); }
     .hero-content.active .status-badge { animation: popIn 0.6s var(--ease-elastic) forwards 0.1s; }
     .hero-content.active .hero-title-wrap { animation: textReveal 1s var(--ease-smooth) forwards 0.3s; }
@@ -244,7 +241,7 @@
       background: var(--surface); border: 1px solid var(--surface-border);
       backdrop-filter: blur(12px); border-radius: var(--radius); padding: 2.2rem;
       position: relative; overflow: hidden;
-      opacity: 0; /* Start invisible */
+      opacity: 0;
       transition: border-color 0.3s;
     }
     .hero-card.active {
@@ -332,7 +329,6 @@
       transition: transform 0.4s var(--ease-elastic), border-color 0.3s, box-shadow 0.3s;
       overflow: hidden;
     }
-    /* Glow Effect on Hover */
     .card::before {
         content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
@@ -340,14 +336,11 @@
     }
     .card:hover::before { opacity: 1; }
     
-    /* Staggered Entry Logic via JS class later */
     .reveal-grid.active .card { animation: fadeInUp 0.8s var(--ease-elastic) forwards; }
     .reveal-grid.active .card:nth-child(1) { animation-delay: 0.1s; }
     .reveal-grid.active .card:nth-child(2) { animation-delay: 0.2s; }
     .reveal-grid.active .card:nth-child(3) { animation-delay: 0.3s; }
     .reveal-grid.active .card:nth-child(4) { animation-delay: 0.4s; }
-    .reveal-grid.active .card:nth-child(5) { animation-delay: 0.5s; }
-    .reveal-grid.active .card:nth-child(6) { animation-delay: 0.6s; }
 
     .card:hover { 
       transform: translateY(-8px) !important; 
@@ -390,9 +383,11 @@
       background: var(--accent-dim); width: 50px; height: 50px; 
       display: grid; place-items: center; border-radius: 12px;
     }
+    .method-item h3 { font-size: 1.3rem; font-family: var(--font-heading); margin-bottom: 0.5rem; }
+    .method-item p { color: var(--text-secondary); font-size: 0.95rem; }
 
     /* Experience Timeline */
-    .timeline { border-left: 2px solid var(--surface-border); margin-left: 10px; padding-left: 30px; position: relative; }
+    .timeline { border-left: 2px solid var(--surface-border); margin-left: 10px; padding-left: 30px; position: relative; margin-top: 1rem; }
     .timeline::after {
       content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 0%; 
       background: var(--accent); transition: height 1.5s ease-out;
@@ -406,13 +401,15 @@
       box-shadow: 0 0 10px var(--accent-glow);
     }
     .time-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; display: block; }
+    .time-role { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .time-company { color: var(--text-muted); font-size: 0.9rem; }
 
     /* Contact */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .email-display { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 1.5rem 0; display: block; }
     .email-display:hover { color: var(--accent); }
     
-    .friends-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .friends-list { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
     .friend-tag {
       padding: 0.5rem 1rem; border: 1px solid var(--surface-border); border-radius: 100px;
       font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);
@@ -423,14 +420,15 @@
     /* Footer */
     footer { border-top: 1px solid var(--surface-border); padding: 4rem 0; text-align: center; margin-top: 6rem; }
     .socials { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
-    .socials a:hover { color: var(--accent); }
+    .socials a { color: var(--text-secondary); font-size: 1.1rem; transition: 0.2s; }
+    .socials a:hover { color: var(--accent); transform: translateY(-3px); display: inline-block; }
 
     @media(max-width: 800px) {
       .hero-grid, .method-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 8rem; text-align: center; }
       .hero-lead { margin: 0 auto 2rem; }
       .btn-row, .tags-row { justify-content: center; }
-      .nav-links { display: none; } /* Simplified for code block */
+      .nav-links { display: none; }
       .hero-title { font-size: 2.5rem; }
     }
   </style>
@@ -444,21 +442,21 @@
 
   <nav class="navbar">
     <div class="container nav-inner">
-      <div class="brand">
-        <img src="pfp.svg" alt="m2hcs" class="pfp" onerror="this.style.display='none'"/> <div class="brand-text">
+      <div class="brand" onclick="window.scrollTo(0,0)">
+        <img src="https://github.com/m2hcz.png" alt="m2hcs" class="pfp"/>
+        <div class="brand-text">
           <h1>m2hcs</h1>
-          <div class="brand-pill">24 y/o · Senior Backend (8y+)</div>
+          <div class="brand-pill">Offensive Security</div>
         </div>
       </div>
       
       <div class="nav-links">
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Expertise</a>
-        <a href="#works" class="nav-link">Works</a>
+        <a href="#works" class="nav-link">Projects</a>
         <a href="#method" class="nav-link">Method</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="#friends" class="nav-link">Friends</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☾</button>
       </div>
     </div>
@@ -468,17 +466,17 @@
     <section class="hero container" id="about">
       <div class="hero-grid">
         <div class="hero-content active">
-          <div class="status-badge"><span class="status-dot"></span> Disponível para colaborações & offensive gigs</div>
+          <div class="status-badge"><span class="status-dot"></span> Disponível para colaborações & gigs</div>
           
           <div class="hero-title-wrap">
             <h2 class="hero-title">
               Offensive security meets tasteful product. <br>
-              <span>Backend sênior há 8 anos</span>, focado em quebrar e fortalecer sistemas críticos.
+              <span>Backend sênior & Sec Eng.</span>
             </h2>
           </div>
           
           <p class="hero-lead">
-            Senior Offensive Security Engineer, Security Analyst e programador backend sênior com 8+ anos construindo APIs de alta performance. Quebro superfícies frágeis, endureço pipelines e traduzo problemas complexos em UX direta.
+            Senior Offensive Security Engineer, Security Analyst e programador backend sênior (8+ anos) construindo APIs de alta performance. Quebro superfícies frágeis, endureço pipelines e traduzo problemas complexos em soluções diretas.
           </p>
           
           <div class="tags-row">
@@ -489,10 +487,10 @@
           </div>
 
           <div class="btn-row">
-            <a href="#contact" class="btn btn-primary">Start a project →</a>
-            <button class="btn btn-ghost" onclick="copySSH(this)">
-              <span class="mono">$ ssh m2hcs@internet && echo "hi"</span>
-            </button>
+            <a href="#works" class="btn btn-primary">View Code →</a>
+            <a href="https://github.com/m2hcz" target="_blank" class="btn btn-ghost">
+              <span class="mono">github.com/m2hcz</span>
+            </a>
           </div>
         </div>
 
@@ -502,13 +500,13 @@
               <strong style="font-size: 1.2rem; font-family: var(--font-heading);">Security-first engineering</strong>
               <p style="font-size: 0.9rem; color: var(--text-secondary);">Linux-first workflows, offensive mindset.</p>
             </div>
-            <span class="badge-arch">Made on Arch</span>
+            <span class="badge-arch">2025 Edition</span>
           </div>
           
           <div class="stats-grid">
             <div class="stat-item">
               <h3>8+</h3>
-              <p>Anos Dev Backend</p>
+              <p>Anos Backend</p>
             </div>
             <div class="stat-item">
               <h3>50+</h3>
@@ -516,7 +514,7 @@
             </div>
             <div class="stat-item">
               <h3>∞</h3>
-              <p>Automation</p>
+              <p>Automations</p>
             </div>
           </div>
         </div>
@@ -533,9 +531,8 @@
           </div>
           <div class="tui-tabs">
             <span class="tui-tab active" onclick="runCmd('cat about.sh', this)">about.sh</span>
-            <span class="tui-tab" onclick="runCmd('ls -la skills/', this)">skills.sh</span>
-            <span class="tui-tab" onclick="runCmd('./experience.sh', this)">experience.sh</span>
-            <span class="tui-tab" onclick="runCmd('grep stack system.log', this)">stack.sh</span>
+            <span class="tui-tab" onclick="runCmd('ls -la projects/', this)">projects.sh</span>
+            <span class="tui-tab" onclick="runCmd('./socials.sh', this)">contact.sh</span>
           </div>
         </div>
         <div class="tui-body">
@@ -554,11 +551,11 @@
 
     <section class="container section" id="skills">
       <div class="section-head reveal">
-        <h2 class="section-title">Expertise & Stack principal</h2>
+        <h2 class="section-title">Expertise & Stack</h2>
         <p class="section-desc">Offensive security e engenharia backend de alta performance, com design o suficiente para materializar ferramentas de forma clara.</p>
       </div>
       
-      <div class="grid-3 reveal-grid" id="grid-services">
+      <div class="grid-3 reveal-grid">
         <article class="card">
           <div class="card-content">
             <div class="card-icon">🛡️</div>
@@ -568,19 +565,6 @@
               <li>Recon & exploitation pipelines</li>
               <li>Cloud/web/mobile assessments</li>
               <li>Breach & attack simulation</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-content">
-            <div class="card-icon">🔍</div>
-            <h3>AppSec & Secure SDLC</h3>
-            <p>Threat modeling pragmática, segurança em CI/CD, revisão de código orientada a risco.</p>
-            <ul class="card-list">
-              <li>SAST/DAST orchestration</li>
-              <li>IaC hardening & policy-as-code</li>
-              <li>Incident playbooks técnicos</li>
             </ul>
           </div>
         </article>
@@ -600,39 +584,13 @@
 
         <article class="card">
           <div class="card-content">
-            <div class="card-icon">🎨</div>
-            <h3>Product & UI Systems</h3>
-            <p>Interfaces minimalistas, design tokens e microinterações intencionais.</p>
-            <ul class="card-list">
-              <li>Design systems living docs</li>
-              <li>Dev tooling UX</li>
-              <li>Figma → prod handoff</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-content">
             <div class="card-icon">🧪</div>
             <h3>Security Tooling</h3>
-            <p>Automation in recon, fuzzing, detection, and blue/red bridging with useful dashboards.</p>
+            <p>Automação em recon, fuzzing, detecção e ferramentas personalizadas para CTF/Bug Bounty.</p>
             <ul class="card-list">
               <li>CLI & TUI builders</li>
               <li>Data pipelines for sec</li>
-              <li>Custom agents & hooks</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-content">
-            <div class="card-icon">🐧</div>
-            <h3>Linux-first</h3>
-            <p>Dotfiles, scripts, reproducible environments, and strong CLI culture.</p>
-            <ul class="card-list">
-              <li>Shell-first workflows</li>
-              <li>Infra spin-up automation</li>
-              <li>Shareable knowledge bases</li>
+              <li>Custom scanners</li>
             </ul>
           </div>
         </article>
@@ -641,53 +599,70 @@
 
     <section class="container section" id="works">
       <div class="section-head reveal">
-        <h2 class="section-title">Works</h2>
-        <p class="section-desc">Projetos selecionados.</p>
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="section-desc">Open source contributions & PoCs. Explore mais no <a href="https://github.com/m2hcz" class="mono" style="color:var(--accent)">GitHub</a>.</p>
       </div>
       <div class="grid-3 reveal-grid">
         
         <div class="card">
           <div class="card-content">
             <div class="work-header">
-              <h3>Project Alpha</h3>
+              <h3>Next.js Middleware PoC</h3>
             </div>
-            <p>Architecture & Pentest Lead para fintech.</p>
+            <p>Proof of Concept para implementações de segurança e controle de rota via Middleware no Next.js.</p>
             <div class="pill-container">
-              <span class="pill">GO</span>
-              <span class="pill">AWS</span>
+              <span class="pill">NEXT.JS</span>
               <span class="pill">SECURITY</span>
+              <span class="pill">POC</span>
             </div>
-            <a href="#" class="link-arrow">View Case →</a>
+            <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="link-arrow">View Repo →</a>
           </div>
         </div>
 
         <div class="card">
           <div class="card-content">
             <div class="work-header">
-              <h3>VulnScanner CLI</h3>
+              <h3>SQLi Auto Scanner</h3>
             </div>
-            <p>Ferramenta open-source para scan rápido de vulnerabilidades.</p>
+            <p>Scanner automatizado para detecção de vulnerabilidades de SQL Injection com foco em velocidade.</p>
             <div class="pill-container">
               <span class="pill">PYTHON</span>
-              <span class="pill">CLI</span>
+              <span class="pill">OFFENSIVE</span>
+              <span class="pill">AUTOMATION</span>
             </div>
-            <a href="#" class="link-arrow">View Repo →</a>
+            <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="link-arrow">View Repo →</a>
           </div>
         </div>
 
         <div class="card">
           <div class="card-content">
             <div class="work-header">
-              <h3>Dashboard UI</h3>
+              <h3>ParamHunter Pro</h3>
             </div>
-            <p>Design system completo para plataforma de monitoramento.</p>
+            <p>Ferramenta avançada de descoberta de parâmetros ocultos para melhorar o reconhecimento em Bug Bounties.</p>
             <div class="pill-container">
-              <span class="pill">FIGMA</span>
-              <span class="pill">REACT</span>
+              <span class="pill">GO/PYTHON</span>
+              <span class="pill">RECON</span>
+              <span class="pill">BUG BOUNTY</span>
             </div>
-            <a href="#" class="link-arrow">View Case →</a>
+            <a href="https://github.com/m2hcz/ParamHunter-Pro" target="_blank" class="link-arrow">View Repo →</a>
           </div>
         </div>
+
+        <div class="card">
+            <div class="card-content">
+              <div class="work-header">
+                <h3>ReconMapper v2.0</h3>
+              </div>
+              <p>Mapeamento visual e organização de dados de reconhecimento de infraestrutura.</p>
+              <div class="pill-container">
+                <span class="pill">BASH</span>
+                <span class="pill">MAPPING</span>
+                <span class="pill">CLI</span>
+              </div>
+              <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="link-arrow">View Repo →</a>
+            </div>
+          </div>
 
       </div>
     </section>
@@ -695,203 +670,160 @@
     <section class="container section" id="method">
       <div class="section-head reveal">
         <h2 class="section-title">Method</h2>
-        <p class="section-desc">Como abordo problemas complexos.</p>
+        <p class="section-desc">Abordagem técnica sistemática para resolução de problemas de segurança.</p>
       </div>
       <div class="method-grid reveal">
-        <div class="method-card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
+        <div class="method-card">
           <ol class="method-list">
             <li class="method-item">
-              <strong>Reconhecimento Profundo:</strong> Entender o negócio antes de atacar a tecnologia.
+                <h3>Recon & Threat Modeling</h3>
+                <p>Mapeamento extensivo da superfície de ataque. Entender a lógica de negócio antes de enviar o primeiro payload.</p>
             </li>
             <li class="method-item">
-              <strong>Automação Customizada:</strong> Criar ferramentas específicas para o alvo, não depender só de scanners.
+                <h3>Automation & Fuzzing</h3>
+                <p>Criação de ferramentas customizadas para testar edge cases e input validation em escala.</p>
             </li>
             <li class="method-item">
-              <strong>Impacto Real:</strong> Traduzir vulnerabilidades técnicas em risco financeiro/operacional claro.
+                <h3>Manual Exploitation</h3>
+                <p>Validação manual de vulnerabilidades críticas e encadeamento de falhas (chaining) para impacto máximo.</p>
             </li>
             <li class="method-item">
-              <strong>Correção Colaborativa:</strong> Trabalhar com os devs para corrigir a raiz do problema, não apenas o sintoma.
+                <h3>Reporting & Fix</h3>
+                <p>Relatórios detalhados com steps-to-reproduce claros e sugestões de correção arquitetural, não apenas patches rápidos.</p>
             </li>
           </ol>
         </div>
-        <div class="card" style="justify-content:center; text-align:center; border-color: var(--accent-dim);">
-          <p style="font-size: 1.1rem; font-style: italic; color: var(--text-primary);">
-            "Offensive security sem contexto de negócio é apenas barulho. O objetivo é fortalecer, não apenas quebrar."
-          </p>
+        
+        <div class="experience-col">
+            <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--text-primary);">Experience</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="time-date">2024 — Present (2025)</span>
+                    <div class="time-role">Senior Offensive Security Engineer</div>
+                    <div class="time-company">Consultoria / Freelance</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-date">2021 — 2023</span>
+                    <div class="time-role">Security Analyst & Backend Lead</div>
+                    <div class="time-company">Tech Fin/Sec</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-date">2017 — 2020</span>
+                    <div class="time-role">Full Stack Developer</div>
+                    <div class="time-company">Software House</div>
+                </div>
+            </div>
         </div>
       </div>
     </section>
 
-    <section class="container section" id="experience">
-      <div class="section-head reveal">
-        <h2 class="section-title">Experience</h2>
-      </div>
-      <div class="card reveal">
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="time-date">2022 - Present</span>
-            <h3>Senior Offensive Security Engineer</h3>
-            <p>Liderança técnica em Red Team operations, desenvolvimento de automação de segurança e hardening de infraestrutura crítica.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="time-date">2019 - 2022</span>
-            <h3>Senior Backend Developer</h3>
-            <p>Arquitetura de microsserviços em Go e Node.js. Foco em escalabilidade e segurança desde o design (Shift Left).</p>
-          </div>
-          <div class="timeline-item">
-            <span class="time-date">2016 - 2019</span>
-            <h3>Security Analyst & Dev</h3>
-            <p>Início da carreira focando em análise de vulnerabilidades web e desenvolvimento fullstack.</p>
-          </div>
+    <section class="container section" id="contact">
+        <div class="section-head reveal">
+            <h2 class="section-title">Get in touch</h2>
+            <p class="section-desc">Vamos construir algo seguro ou quebrar algo inseguro.</p>
         </div>
-      </div>
+        <div class="contact-grid reveal">
+            <div>
+                <p style="color: var(--text-secondary);">Mande um ping para discutir projetos, pentests ou arquitetura de backend.</p>
+                <a href="https://x.com/inf0secc" target="_blank" class="email-display">@inf0secc</a>
+                <div class="btn-row">
+                    <a href="https://github.com/m2hcz" target="_blank" class="btn btn-primary">GitHub</a>
+                    <a href="https://x.com/inf0secc" target="_blank" class="btn btn-ghost">X / Twitter</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="mono" style="color: var(--accent); margin-bottom: 1rem;">> connect_with.sh</h4>
+                <div class="friends-list">
+                    <a href="#" class="friend-tag">Security Research</a>
+                    <a href="#" class="friend-tag">Backend Dev</a>
+                    <a href="#" class="friend-tag">Bug Bounty</a>
+                    <a href="#" class="friend-tag">Open Source</a>
+                    <a href="#" class="friend-tag">Arch Linux</a>
+                </div>
+            </div>
+        </div>
     </section>
-
-    <section class="container section reveal" id="contact">
-      <div class="contact-grid">
-        <div class="card">
-          <h3>Contact</h3>
-          <p>Vamos construir (ou quebrar) algo juntos.</p>
-          <a href="mailto:hello@m2hcs.com" class="email-display">hello@m2hcs.com</a>
-          <div class="socials" style="justify-content: flex-start;">
-            <a href="#" class="nav-link">Github</a>
-            <a href="#" class="nav-link">LinkedIn</a>
-            <a href="#" class="nav-link">Twitter</a>
-          </div>
-        </div>
-
-        <div class="card" id="friends">
-          <h3>Friends</h3>
-          <p>Pessoas e projetos incríveis.</p>
-          <div class="friends-list">
-            <a href="#" class="friend-tag">friend1.com</a>
-            <a href="#" class="friend-tag">sec-buddy.io</a>
-            <a href="#" class="friend-tag">design-guru.net</a>
-            <a href="#" class="friend-tag">hacker-space.org</a>
-            <a href="#" class="friend-tag">linux-lover</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <footer>
     <div class="container">
-      <div class="socials">
-        <a href="#">Github</a>
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
-      </div>
-      <p class="mono" style="font-size: 0.85rem; opacity: 0.6;">
-        © 2024 m2hcs. System Secure.<br>
-        Built with pure HTML/CSS & Offensive Mindset.
-      </p>
+        <div class="socials">
+            <a href="https://github.com/m2hcz" target="_blank">GitHub</a>
+            <a href="https://x.com/inf0secc" target="_blank">X (Twitter)</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2025 m2hcs. Crafted with raw HTML/CSS.</p>
     </div>
   </footer>
 
   <script>
-    // --- 1. THEME TOGGLE ---
-    const themeBtn = document.getElementById('themeToggle');
-    themeBtn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('light');
-      const isLight = document.documentElement.classList.contains('light');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      themeBtn.textContent = isLight ? '☾' : '☀';
+    // Theme Toggle Logic
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light');
+        const isLight = document.documentElement.classList.contains('light');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        toggleBtn.innerText = isLight ? '☀' : '☾';
     });
 
-    // --- 2. COPY SSH COMMAND ---
-    function copySSH(btn) {
-      const text = "ssh m2hcs@internet";
-      navigator.clipboard.writeText(text);
-      const original = btn.innerHTML;
-      btn.innerHTML = "<span class='mono' style='color:var(--accent)'>Copied!</span>";
-      setTimeout(() => btn.innerHTML = original, 2000);
-    }
-
-    // --- 3. TUI (TERMINAL) LOGIC ---
-    const tuiData = {
-      'about.sh': `Name: m2hcs\nRole: Senior Security Engineer & Backend Dev\nExp: 8+ Years\n\n"I don't just build software; I understand how to break it, which makes me the best person to secure it."`,
-      'skills.sh': `drwxr-xr-x  m2hcs  languages\n-rwxr--r--  m2hcs  golang (Expert)\n-rwxr--r--  m2hcs  python (Advanced)\n-rwxr--r--  m2hcs  javascript (Fullstack)\n\ndrwxr-xr-x  m2hcs  security\n-rwxr--r--  m2hcs  pentesting\n-rwxr--r--  m2hcs  appsec`,
-      'experience.sh': `[2022-NOW] Senior Offensive Security Eng\n[2019-2022] Senior Backend Dev\n[2016-2019] Security Analyst`,
-      'stack.sh': `Host: Arch Linux\nShell: Zsh + Tmux\nEditor: Neovim\nC2: Custom Go Implants`
-    };
-
-    let typeInterval;
-    function runCmd(cmd, tabEl) {
-      // UI Updates
-      document.querySelectorAll('.tui-tab').forEach(t => t.classList.remove('active'));
-      tabEl.classList.add('active');
-
-      const cmdEl = document.getElementById('tui-cmd');
-      const outEl = document.getElementById('tui-out');
-      
-      cmdEl.textContent = "";
-      outEl.textContent = "";
-      clearTimeout(typeInterval);
-
-      // Typing Animation for Command
-      let i = 0;
-      function typeCommand() {
-        if (i < cmd.length) {
-          cmdEl.textContent += cmd.charAt(i);
-          i++;
-          setTimeout(typeCommand, 40);
-        } else {
-          // Execute Output
-          setTimeout(() => {
-            let key = 'about.sh';
-            if(cmd.includes('skills')) key = 'skills.sh';
-            if(cmd.includes('experience')) key = 'experience.sh';
-            if(cmd.includes('stack')) key = 'stack.sh';
-            
-            let txt = tuiData[key];
-            let j = 0;
-            function typeOutput() {
-              if (j < txt.length) {
-                outEl.textContent += txt.charAt(j);
-                j++;
-                typeInterval = setTimeout(typeOutput, 5);
-              }
-            }
-            typeOutput();
-          }, 300);
-        }
-      }
-      typeCommand();
-    }
-    
-    // Initial Run
-    window.onload = () => runCmd('cat about.sh', document.querySelector('.tui-tab'));
-
-    // --- 4. MOUSE HOVER GLOW EFFECT ---
-    const cardsContainer = document.getElementById('grid-services');
-    if(cardsContainer){
-        cardsContainer.onmousemove = e => {
-        for(const card of document.getElementsByClassName('card')) {
-            const rect = card.getBoundingClientRect(),
-                x = e.clientX - rect.left,
-                y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        }
-        };
-    }
-
-    // --- 5. SCROLL OBSERVER (STAGGERED ANIMATIONS) ---
-    const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+    // Scroll Reveal Animation (Intersection Observer)
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
     }, observerOptions);
 
-    document.querySelectorAll('.hero-content, .hero-card, .tui-section, .section-head, .reveal, .reveal-grid, .method-grid').forEach(el => {
-      observer.observe(el);
+    document.querySelectorAll('.reveal, .reveal-grid, .hero-card, .tui-section, .method-grid, .contact-grid').forEach(el => {
+        observer.observe(el);
     });
+
+    // Mouse Move Effect on Cards
+    document.addEventListener('mousemove', e => {
+        document.querySelectorAll('.card').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // Simple TUI Simulation
+    const tuiContent = {
+        'cat about.sh': 'Name: m2hcs\nRole: Senior Backend & Offensive Security\nLocation: Internet\nStatus: Available for 2025 projects.\n\n"I break things to make them stronger."',
+        'ls -la projects/': 'drwx------ m2hcs staff\n-rwx------ PoC-Nextjs-Middleware\n-rwx------ Sqli-Auto-Scanner\n-rwx------ ParamHunter-Pro\n-rwx------ ReconMapper-v2',
+        './socials.sh': 'Connecting...\n\nGitHub: https://github.com/m2hcz\nX: https://x.com/inf0secc\n\nConnection established.'
+    };
+
+    function runCmd(cmd, tabElement) {
+        // Update active tab
+        document.querySelectorAll('.tui-tab').forEach(t => t.classList.remove('active'));
+        tabElement.classList.add('active');
+
+        const cmdDisplay = document.getElementById('tui-cmd');
+        const outDisplay = document.getElementById('tui-out');
+
+        cmdDisplay.innerText = cmd;
+        outDisplay.innerText = "Executing...";
+        
+        setTimeout(() => {
+            outDisplay.innerText = tuiContent[cmd] || "Command not found.";
+        }, 300);
+    }
+
+    // Set initial output
+    document.getElementById('tui-out').innerText = tuiContent['cat about.sh'];
+    
+    // Copy function for Hero
+    function copySSH(btn) {
+        navigator.clipboard.writeText('ssh m2hcs@internet');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<span class="mono" style="color:var(--accent)">Copied!</span>';
+        setTimeout(() => btn.innerHTML = original, 2000);
+    }
   </script>
 </body>
 </html>
