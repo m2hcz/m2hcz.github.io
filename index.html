@@ -356,6 +356,41 @@
     .card-list { margin-top: 1rem; list-style: none; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem; }
     .card-list li::before { content: "» "; color: var(--accent); margin-right: 5px; }
 
+    /* --- FEATURED PROJECT --- */
+    .featured-wrapper { margin-bottom: 3rem; opacity: 0; transform: translateY(20px); }
+    .reveal.active .featured-wrapper { animation: fadeInUp 0.8s var(--ease-smooth) forwards; }
+    
+    .featured-card {
+        display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem;
+        background: linear-gradient(145deg, var(--surface) 0%, rgba(0, 255, 157, 0.03) 100%);
+        border: 1px solid var(--accent-dim);
+        box-shadow: 0 0 30px rgba(0, 255, 157, 0.05);
+        padding: 2.5rem;
+        align-items: center;
+    }
+    .featured-card:hover { border-color: var(--accent); }
+    
+    .featured-badge { 
+        font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); 
+        background: var(--accent-dim); padding: 4px 12px; border-radius: 100px;
+        text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 1rem;
+    }
+    .featured-desc { margin-bottom: 1.5rem; color: var(--text-secondary); }
+    
+    .code-display {
+        background: #080808; border-radius: 12px; padding: 1.5rem;
+        font-family: var(--font-mono); font-size: 0.8rem;
+        border: 1px solid var(--surface-border); color: #a5b3ce;
+        position: relative; overflow-x: hidden;
+    }
+    .code-header {
+        display: flex; justify-content: space-between; margin-bottom: 1rem; 
+        border-bottom: 1px solid #222; padding-bottom: 0.5rem; color: #666; font-size: 0.7rem;
+    }
+    .cmd-row { display: block; margin-bottom: 0.5rem; }
+    .cmd-prompt { color: #555; user-select: none; margin-right: 8px; }
+    .cmd-val { color: var(--accent); }
+
     /* --- WORKS & EXPERIENCE --- */
     .work-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
     .pill-container { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto; }
@@ -425,12 +460,14 @@
     .socials a:hover { color: var(--accent); transform: translateY(-3px); display: inline-block; }
 
     @media(max-width: 800px) {
-      .hero-grid, .method-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-grid, .method-grid, .contact-grid, .featured-card { grid-template-columns: 1fr; }
       .hero { padding-top: 8rem; text-align: center; }
       .hero-lead { margin: 0 auto 2rem; }
       .btn-row, .tags-row { justify-content: center; }
       .nav-links { display: none; }
       .hero-title { font-size: 2.5rem; }
+      .featured-card { gap: 1.5rem; }
+      .code-display { font-size: 0.7rem; overflow-x: scroll; }
     }
   </style>
 </head>
@@ -642,6 +679,45 @@
         <h2 class="section-title">Selected Projects</h2>
         <p class="section-desc">Open source contributions & PoCs. Explore more on <a href="https://github.com/m2hcz" class="mono" style="color:var(--accent)">GitHub</a>.</p>
       </div>
+      
+      <!-- FEATURED PROJECT: NetSentinel -->
+      <div class="reveal featured-wrapper">
+        <div class="card featured-card">
+            <div>
+                <span class="featured-badge">Featured Tool v1.0</span>
+                <h3 style="font-size: 2rem; font-family: var(--font-heading); margin-bottom: 1rem;">NetSentinel</h3>
+                <p class="lead" style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 1rem;">
+                    Is your monitoring blind to ephemeral attacks?
+                </p>
+                <p class="featured-desc">
+                    Legacy SIEMs miss fast, stealthy attacks like ARP spoofing or quick port-scans because they rely on sampled logs. NetSentinel captures real-time context, packet-by-packet, revealing what traditional probes miss.
+                    <br><br>
+                    <strong>The Fix:</strong> Deterministic visibility without sampling. Detects anomalies, extracts TLS SNI, and correlates flows instantly.
+                </p>
+                <div class="pill-container" style="margin-bottom: 2rem;">
+                    <span class="pill">PYTHON</span>
+                    <span class="pill">SCAPY</span>
+                    <span class="pill">THREAT HUNTING</span>
+                    <span class="pill">EDGE</span>
+                </div>
+                <a href="https://github.com/m2hcz/netsentinel" target="_blank" class="btn btn-primary" style="font-size: 0.85rem;">View on GitHub</a>
+            </div>
+            
+            <div class="code-display">
+                <div class="code-header">
+                    <span>bash — install.sh</span>
+                    <span>python3</span>
+                </div>
+                <span class="cmd-row"><span class="cmd-prompt">$</span>git clone https://github.com/m2hcz/netsentinel.git</span>
+                <span class="cmd-row"><span class="cmd-prompt">$</span>cd netsentinel</span>
+                <span class="cmd-row"><span class="cmd-prompt">$</span>python3 -m venv v; source v/bin/activate</span>
+                <span class="cmd-row"><span class="cmd-prompt">$</span>pip install -r requirements.txt</span>
+                <span class="cmd-row" style="margin-top: 10px;"><span class="cmd-prompt">$</span>sudo python3 <span class="cmd-val">netsentinel.py</span> --iface eth0</span>
+            </div>
+        </div>
+      </div>
+      <!-- END FEATURED -->
+
       <div class="grid-3 reveal-grid">
         
         <div class="card">
@@ -834,7 +910,7 @@
     // Simple TUI Simulation
     const tuiContent = {
         'cat about.sh': 'Name: m2hcs\nRole: Senior Backend & Offensive Security\nLocation: Internet\nStatus: Available for 2025 projects.\n\n"I break things to make them stronger."',
-        'ls -la projects/': 'drwx------ m2hcs staff\n-rwx------ PoC-Nextjs-Middleware\n-rwx------ Sqli-Auto-Scanner\n-rwx------ ParamHunter-Pro\n-rwx------ ReconMapper-v2',
+        'ls -la projects/': 'drwx------ m2hcs staff\n-rwx------ NetSentinel-v1.0\n-rwx------ PoC-Nextjs-Middleware\n-rwx------ Sqli-Auto-Scanner\n-rwx------ ParamHunter-Pro\n-rwx------ ReconMapper-v2',
         './socials.sh': 'Connecting...\n\nGitHub: https://github.com/m2hcz\nX: https://x.com/inf0secc\n\nConnection established.'
     };
 
