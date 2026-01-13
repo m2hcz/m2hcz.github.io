@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m2hcs | Senior Backend Developer</title>
+    <title>m2hcs | Senior Full-Stack & Security Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
             --primary-dark: #00cc6a;
             --secondary: #00d4ff;
             --accent: #ff00aa;
+            --warning: #ffaa00;
             --bg-dark: #0a0a0f;
             --bg-card: #12121a;
             --bg-card-hover: #1a1a25;
@@ -40,7 +41,6 @@
             line-height: 1.6;
         }
 
-        /* Cursor personalizado */
         .cursor {
             width: 20px;
             height: 20px;
@@ -64,7 +64,6 @@
             transform: translate(-50%, -50%);
         }
 
-        /* Background animado */
         .bg-grid {
             position: fixed;
             top: 0;
@@ -111,7 +110,6 @@
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -189,7 +187,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -201,7 +198,35 @@
 
         .hero-content {
             text-align: center;
-            max-width: 900px;
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            margin-bottom: 30px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+        }
+
+        .hero-badge-icon {
+            font-size: 1.2rem;
+        }
+
+        .hero-badge-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            letter-spacing: 1px;
         }
 
         .glitch-container {
@@ -232,13 +257,27 @@
             background-clip: text;
         }
 
+        .hero-role {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            animation: subtitleReveal 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
         .hero-subtitle {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 30px;
             animation: subtitleReveal 1s ease-out 0.3s forwards;
             opacity: 0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes subtitleReveal {
@@ -263,7 +302,6 @@
             50% { opacity: 0; }
         }
 
-        /* Stats */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -280,6 +318,22 @@
 
         .stat-item {
             text-align: center;
+            position: relative;
+        }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, transparent, var(--border), transparent);
+        }
+
+        .stat-item:last-child::after {
+            display: none;
         }
 
         .stat-number {
@@ -300,7 +354,6 @@
             letter-spacing: 2px;
         }
 
-        /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -321,7 +374,6 @@
             opacity: 0.5;
         }
 
-        /* Section styling */
         section {
             padding: 100px 50px;
             position: relative;
@@ -347,6 +399,74 @@
             font-size: 3rem;
             font-weight: 700;
             letter-spacing: 5px;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .expertise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.1));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .expertise-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .expertise-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         /* Projects Grid */
@@ -585,6 +705,16 @@
             margin-left: auto;
         }
 
+        .opensource-lang.python {
+            background: rgba(255, 170, 0, 0.1);
+            color: var(--warning);
+        }
+
+        .opensource-lang.js {
+            background: rgba(255, 0, 170, 0.1);
+            color: var(--accent);
+        }
+
         .opensource-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
@@ -611,64 +741,105 @@
             height: 16px;
         }
 
-        /* Skills Section */
-        .skills-container {
+        /* Tech Stack Section */
+        .stack-container {
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+        .stack-category {
+            margin-bottom: 40px;
         }
 
-        .skill-item {
+        .stack-category-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .stack-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stack-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 25px 20px;
-            text-align: center;
+            border-radius: 12px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: all 0.3s ease;
         }
 
-        .skill-item:hover {
+        .stack-item:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--glow);
         }
 
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .stack-icon {
+            font-size: 1.5rem;
         }
 
-        .skill-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
+        .stack-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
             color: var(--text);
         }
 
         /* Contact Section */
         .contact-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
 
         .contact-text {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             line-height: 1.8;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+        }
+
+        .contact-info-item span {
+            color: var(--text);
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         .contact-btn {
@@ -721,6 +892,30 @@
             height: 22px;
         }
 
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .payment-item span {
+            font-size: 1.2rem;
+        }
+
         /* Footer */
         footer {
             padding: 40px 50px;
@@ -738,7 +933,7 @@
             color: var(--primary);
         }
 
-        /* Animations on scroll */
+        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -748,48 +943,6 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 100px 20px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-                letter-spacing: 5px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
         }
 
         /* Glitch effect */
@@ -837,60 +990,117 @@
             100% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 2px); }
         }
 
-        /* Neon border animation */
-        @keyframes neonPulse {
-            0%, 100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary); }
-            50% { box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px var(--primary); }
-        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
 
-        .neon-border {
-            animation: neonPulse 2s infinite;
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+            }
+
+            .hero-role {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .stat-item::after {
+                display: none;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Background -->
     <div class="bg-grid"></div>
     <div class="bg-particles" id="particles"></div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="logo">M2HCS</a>
         <ul class="nav-links">
-            <li><a href="#projects">Projetos</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#opensource">Open Source</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contato</a></li>
+            <li><a href="#stack">Tech Stack</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="hero-badge fade-in">
+                <span class="hero-badge-icon">🛡️</span>
+                <span class="hero-badge-text">Available for Hire</span>
+            </div>
+
             <div class="glitch-container">
                 <h1 class="hero-title">
                     <span class="highlight glitch" data-text="M2HCS">M2HCS</span>
                 </h1>
             </div>
-            <p class="hero-subtitle">SENIOR BACKEND DEVELOPER</p>
+
+            <p class="hero-role">SENIOR FULL-STACK & SECURITY-FIRST DEVELOPER</p>
+            <p class="hero-subtitle">
+                Engineering high-performance game economies and secure architectures since 2014. 
+                Bridging gameplay engineering and cybersecurity.
+            </p>
+
             <div class="typing-text" id="typing"></div>
             
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number" data-count="12">0</span>
-                    <span class="stat-label">Anos de Experiência</span>
+                    <span class="stat-label">Years Full-Stack</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="8">0</span>
+                    <span class="stat-label">Years InfoSec</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="1.2">0</span>
-                    <span class="stat-label">Bilhões de Visits</span>
+                    <span class="stat-label">Billion Visits</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-count="1.9">0</span>
-                    <span class="stat-label">K CCU Peak</span>
+                    <span class="stat-label">K Peak CCU</span>
                 </div>
             </div>
         </div>
@@ -902,10 +1112,54 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <section id="expertise">
+        <div class="section-header fade-in">
+            <span class="section-tag">// Specialized Expertise</span>
+            <h2 class="section-title">WHAT I DO BEST</h2>
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-card fade-in">
+                <div class="expertise-icon">💰</div>
+                <h3 class="expertise-title">Game Economy & Logic Integrity</h3>
+                <p class="expertise-desc">
+                    Implementation of atomic transaction models for Trading, Inventory, and Gacha systems 
+                    to prevent item duplication and economy inflation.
+                </p>
+            </div>
+
+            <div class="expertise-card fade-in">
+                <div class="expertise-icon">🛡️</div>
+                <h3 class="expertise-title">Revenue Protection & Security</h3>
+                <p class="expertise-desc">
+                    Advanced anti-abuse architecture and server-side validation designed to neutralize 
+                    executors/injectors without degrading legitimate player UX.
+                </p>
+            </div>
+
+            <div class="expertise-card fade-in">
+                <div class="expertise-icon">⚡</div>
+                <h3 class="expertise-title">High-Concurrency Architecture</h3>
+                <p class="expertise-desc">
+                    Data-driven frameworks and modular state management (ProfileService/DS2) optimized 
+                    for massive player counts and sub-100ms latency replication.
+                </p>
+            </div>
+
+            <div class="expertise-card fade-in">
+                <div class="expertise-icon">⚙️</div>
+                <h3 class="expertise-title">Systems Engineering</h3>
+                <p class="expertise-desc">
+                    Complex battle engines, RNG manipulation prevention, and memory-efficient 
+                    networking strategies for enterprise-grade maintainability.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section id="projects">
         <div class="section-header fade-in">
-            <span class="section-tag">// Projetos em Destaque</span>
+            <span class="section-tag">// Featured Projects</span>
             <h2 class="section-title">GAMES & CONTRIBUTIONS</h2>
         </div>
 
@@ -920,8 +1174,8 @@
                         <span class="project-badge">LEAD DEV</span>
                     </h3>
                     <p class="project-description">
-                        Jogo de terror/survival onde sobreviventes precisam se esconder do killer. 
-                        Atuo como Lead Developer responsável por toda arquitetura backend.
+                        Horror/survival game where survivors must hide from the killer. 
+                        Lead Developer responsible for entire backend architecture, anti-cheat systems, and game economy.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -935,7 +1189,7 @@
                         </div>
                     </div>
                     <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="project-link">
-                        Jogar Agora
+                        Play Now
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -953,8 +1207,8 @@
                         <span class="project-badge">BACKEND</span>
                     </h3>
                     <p class="project-description">
-                        Jogo de palavras onde cada jogador deve começar com a última letra 
-                        da palavra anterior. Sistemas de validação e anti-cheat.
+                        Word game where each player must start with the last letter 
+                        of the previous word. Built validation systems and anti-cheat measures.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -967,7 +1221,7 @@
                         </div>
                     </div>
                     <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" class="project-link">
-                        Jogar Agora
+                        Play Now
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -985,8 +1239,8 @@
                         <span class="project-badge">SYSTEMS</span>
                     </h3>
                     <p class="project-description">
-                        Simulação militar do Exército Brasileiro. Desenvolvimento de sistemas 
-                        de ranking, treinamento e mecânicas de combate.
+                        Brazilian Army military simulation. Developed ranking systems, 
+                        training mechanics, and combat systems with server-authoritative validation.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -997,7 +1251,7 @@
                         </div>
                     </div>
                     <a href="https://www.roblox.com/games/14511049/EB-Ex-rcito-Brasileiro" target="_blank" class="project-link">
-                        Jogar Agora
+                        Play Now
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -1015,8 +1269,8 @@
                         <span class="project-badge">BACKEND</span>
                     </h3>
                     <p class="project-description">
-                        Jogo de aventura com mecânicas únicas. Responsável pela 
-                        implementação de sistemas backend e data persistence.
+                        Adventure game with unique mechanics. Responsible for 
+                        backend systems implementation and data persistence architecture.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -1027,7 +1281,7 @@
                         </div>
                     </div>
                     <a href="https://www.roblox.com/games/17274762379/MushYO" target="_blank" class="project-link">
-                        Jogar Agora
+                        Play Now
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -1037,14 +1291,34 @@
         </div>
     </section>
 
-    <!-- Open Source Section -->
     <section id="opensource">
         <div class="section-header fade-in">
-            <span class="section-tag">// Código Aberto</span>
-            <h2 class="section-title">OPEN SOURCE PROJECTS</h2>
+            <span class="section-tag">// Open Source</span>
+            <h2 class="section-title">GITHUB PORTFOLIO</h2>
         </div>
 
         <div class="opensource-grid">
+            <div class="opensource-card fade-in">
+                <div class="opensource-header">
+                    <div class="opensource-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <span class="opensource-name">Race-Family-Reroll</span>
+                    <span class="opensource-lang">Luau</span>
+                </div>
+                <p class="opensource-desc">Secure Gacha/RNG logic with weighted pools and scalable reward handling for anime/RPG games.</p>
+                <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="opensource-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    View on GitHub
+                </a>
+            </div>
+
             <div class="opensource-card fade-in">
                 <div class="opensource-header">
                     <div class="opensource-icon">
@@ -1056,12 +1330,12 @@
                     <span class="opensource-name">OOPModule</span>
                     <span class="opensource-lang">Luau</span>
                 </div>
-                <p class="opensource-desc">Módulo de Programação Orientada a Objetos para Roblox com herança e polimorfismo.</p>
+                <p class="opensource-desc">High-level structural framework for maintainable, modular gameplay code with inheritance support.</p>
                 <a href="https://github.com/m2hcz/OOPModule" target="_blank" class="opensource-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Ver no GitHub
+                    View on GitHub
                 </a>
             </div>
 
@@ -1075,33 +1349,12 @@
                     <span class="opensource-name">NetSentinel</span>
                     <span class="opensource-lang">Luau</span>
                 </div>
-                <p class="opensource-desc">Sistema de segurança e validação de rede para jogos Roblox. Anti-exploit avançado.</p>
+                <p class="opensource-desc">Defensive networking concepts and traffic analysis tooling for Roblox security.</p>
                 <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="opensource-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Ver no GitHub
-                </a>
-            </div>
-
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">Race-Family-Reroll</span>
-                    <span class="opensource-lang">Luau</span>
-                </div>
-                <p class="opensource-desc">Sistema de reroll de raças e famílias para jogos de anime/RPG no Roblox.</p>
-                <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    Ver no GitHub
+                    View on GitHub
                 </a>
             </div>
 
@@ -1115,12 +1368,12 @@
                     <span class="opensource-name">PhantomNet</span>
                     <span class="opensource-lang">Luau</span>
                 </div>
-                <p class="opensource-desc">Biblioteca de networking otimizada para comunicação cliente-servidor no Roblox.</p>
+                <p class="opensource-desc">Optimized networking library for client-server communication in Roblox games.</p>
                 <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="opensource-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Ver no GitHub
+                    View on GitHub
                 </a>
             </div>
 
@@ -1132,14 +1385,34 @@
                         </svg>
                     </div>
                     <span class="opensource-name">ReconMapper v2</span>
-                    <span class="opensource-lang">Python</span>
+                    <span class="opensource-lang python">Python</span>
                 </div>
-                <p class="opensource-desc">Ferramenta de reconhecimento e mapeamento de rede para security research.</p>
+                <p class="opensource-desc">Network reconnaissance and mapping tool for security research and penetration testing.</p>
                 <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="opensource-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Ver no GitHub
+                    View on GitHub
+                </a>
+            </div>
+
+            <div class="opensource-card fade-in">
+                <div class="opensource-header">
+                    <div class="opensource-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <span class="opensource-name">SQLi-Scanner</span>
+                    <span class="opensource-lang python">Python</span>
+                </div>
+                <p class="opensource-desc">Automation & vulnerability research utilities for SQL injection detection.</p>
+                <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="opensource-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    View on GitHub
                 </a>
             </div>
 
@@ -1153,76 +1426,122 @@
                         </svg>
                     </div>
                     <span class="opensource-name">Next.js PoC</span>
-                    <span class="opensource-lang">JavaScript</span>
+                    <span class="opensource-lang js">JavaScript</span>
                 </div>
-                <p class="opensource-desc">Proof of Concept de vulnerabilidade em Next.js Middleware. Security Research.</p>
+                <p class="opensource-desc">Middleware implementation proof-of-concept for Next.js vulnerability research.</p>
                 <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="opensource-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
-                    Ver no GitHub
+                    View on GitHub
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
+    <section id="stack">
         <div class="section-header fade-in">
-            <span class="section-tag">// Tech Stack</span>
-            <h2 class="section-title">SKILLS & EXPERTISE</h2>
+            <span class="section-tag">// Technical Stack</span>
+            <h2 class="section-title">TECHNOLOGIES</h2>
         </div>
 
-        <div class="skills-container">
-            <div class="skills-grid">
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🎮</div>
-                    <span class="skill-name">Luau/Roblox</span>
+        <div class="stack-container">
+            <div class="stack-category fade-in">
+                <h3 class="stack-category-title">Core & Scripting</h3>
+                <div class="stack-grid">
+                    <div class="stack-item">
+                        <span class="stack-icon">🎮</span>
+                        <span class="stack-name">Luau (Roblox)</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">📘</span>
+                        <span class="stack-name">TypeScript</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">🐍</span>
+                        <span class="stack-name">Python</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">⚡</span>
+                        <span class="stack-name">JavaScript</span>
+                    </div>
                 </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🐍</div>
-                    <span class="skill-name">Python</span>
+            </div>
+
+            <div class="stack-category fade-in">
+                <h3 class="stack-category-title">Systems & Research</h3>
+                <div class="stack-grid">
+                    <div class="stack-item">
+                        <span class="stack-icon">🦀</span>
+                        <span class="stack-name">Rust</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">⚙️</span>
+                        <span class="stack-name">C++</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">🔧</span>
+                        <span class="stack-name">C</span>
+                    </div>
                 </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">⚡</div>
-                    <span class="skill-name">JavaScript</span>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🔒</div>
-                    <span class="skill-name">InfoSec</span>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🗄️</div>
-                    <span class="skill-name">Databases</span>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🛡️</div>
-                    <span class="skill-name">Anti-Cheat</span>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">🌐</div>
-                    <span class="skill-name">Networking</span>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">⚙️</div>
-                    <span class="skill-name">Backend</span>
+            </div>
+
+            <div class="stack-category fade-in">
+                <h3 class="stack-category-title">Specializations</h3>
+                <div class="stack-grid">
+                    <div class="stack-item">
+                        <span class="stack-icon">🛡️</span>
+                        <span class="stack-name">Offensive Security</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">🔒</span>
+                        <span class="stack-name">Anti-Cheat Systems</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">💰</span>
+                        <span class="stack-name">Game Economy</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">🌐</span>
+                        <span class="stack-name">Networking</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-icon">🗄️</span>
+                        <span class="stack-name">ProfileService/DS2</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="section-header fade-in">
-            <span class="section-tag">// Vamos Conversar</span>
-            <h2 class="section-title">GET IN TOUCH</h2>
+            <span class="section-tag">// Get in Touch</span>
+            <h2 class="section-title">CONTACT</h2>
         </div>
 
         <div class="contact-container fade-in">
             <p class="contact-text">
-                Disponível para projetos freelance, colaborações e oportunidades de trabalho.
-                <br>12 anos de experiência em desenvolvimento backend e segurança da informação.
+                Available for long-term contracts and full-time positions.
+                <br>BSc in Information Security • English (Professional) • Portuguese (Native)
             </p>
+
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <span>m2hczs@proton.me</span>
+                </div>
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <span>High Availability</span>
+                </div>
+            </div>
 
             <div class="contact-links">
                 <a href="https://github.com/m2hcz" target="_blank" class="contact-btn">
@@ -1237,27 +1556,39 @@
                     </svg>
                     Security Portfolio
                 </a>
-                <a href="https://www.roblox.com/users/profile" target="_blank" class="contact-btn accent">
+                <a href="mailto:m2hczs@proton.me" class="contact-btn accent">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    Roblox Profile
+                    Email Me
                 </a>
+            </div>
+
+            <div class="payment-methods">
+                <div class="payment-item">
+                    <span>₿</span> BTC (Lightning/On-chain)
+                </div>
+                <div class="payment-item">
+                    <span>💳</span> Mercado Pago
+                </div>
+                <div class="payment-item">
+                    <span>🎮</span> Robux
+                </div>
+                <div class="payment-item">
+                    <span>🔄</span> Mixed
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p class="footer-text">
-            <span>&lt;/&gt;</span> Desenvolvido por <span>m2hcs</span> • Coding since <span>2014</span>
+            <span>&lt;/&gt;</span> Built by <span>m2hcs</span> • Coding since <span>2014</span> • BSc Information Security
         </p>
     </footer>
 
     <script>
-        // Custom Cursor
         const cursor = document.querySelector('.cursor');
         const cursorDot = document.querySelector('.cursor-dot');
 
@@ -1282,7 +1613,6 @@
             });
         });
 
-        // Particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -1293,14 +1623,14 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Typing Effect
         const typingText = document.getElementById('typing');
         const phrases = [
             'Lead Developer @ Massacre',
-            '12 anos de experiência',
-            '1.2B+ visits em contribuições',
-            'Especialista em Backend & Security',
-            'Luau • Python • JavaScript'
+            '12 Years Full-Stack Experience',
+            '8 Years Offensive Security',
+            '1.2B+ Total Game Visits',
+            'Server-Authoritative Architecture',
+            'Anti-Exploit & Revenue Protection'
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -1333,7 +1663,6 @@
 
         type();
 
-        // Counter Animation
         const counters = document.querySelectorAll('.stat-number');
         const animateCounter = (counter) => {
             const target = parseFloat(counter.getAttribute('data-count'));
@@ -1355,7 +1684,6 @@
             updateCounter();
         };
 
-        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1377,7 +1705,6 @@
             observer.observe(el);
         });
 
-        // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1391,7 +1718,6 @@
             });
         });
 
-        // Navbar background on scroll
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
