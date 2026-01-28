@@ -469,6 +469,36 @@
             line-height: 1.7;
         }
 
+        /* Demos Section */
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-video {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .demo-video:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+            transform: translateY(-5px);
+        }
+
+        .demo-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Projects Grid */
         .projects-grid {
             display: grid;
@@ -1030,7 +1060,8 @@
                 font-size: 2rem;
             }
 
-            .projects-grid {
+            .projects-grid,
+            .demos-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1057,6 +1088,7 @@
         <a href="#" class="logo">M2HCS</a>
         <ul class="nav-links">
             <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#demos">Demos</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#opensource">Open Source</a></li>
             <li><a href="#stack">Tech Stack</a></li>
@@ -1153,6 +1185,31 @@
                     Complex battle engines, RNG manipulation prevention, and memory-efficient 
                     networking strategies for enterprise-grade maintainability.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="demos">
+        <div class="section-header fade-in">
+            <span class="section-tag">// Live Demos</span>
+            <h2 class="section-title">DEMONSTRATIONS</h2>
+        </div>
+
+        <div class="demos-grid">
+            <div class="demo-video fade-in">
+                <iframe src="https://www.youtube.com/embed/O4aq18kq9Ek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="demo-video fade-in">
+                <iframe src="https://www.youtube.com/embed/ZtMgbzYnNBc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="demo-video fade-in">
+                <iframe src="https://www.youtube.com/embed/yxRt3mg-TTw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="demo-video fade-in">
+                <iframe src="https://www.youtube.com/embed/9vNY2cupsdk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="demo-video fade-in">
+                <iframe src="https://www.youtube.com/embed/3XtXRmI8aOU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -1588,6 +1645,7 @@
     </footer>
 
     <script>
+        // Custom cursor
         const cursor = document.querySelector('.cursor');
         const cursorDot = document.querySelector('.cursor-dot');
 
@@ -1601,7 +1659,7 @@
             }, 50);
         });
 
-        document.querySelectorAll('a, button').forEach(el => {
+        document.querySelectorAll('a, button, .demo-video').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
                 cursor.style.borderColor = 'var(--accent)';
@@ -1612,6 +1670,7 @@
             });
         });
 
+        // Particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -1622,6 +1681,7 @@
             particlesContainer.appendChild(particle);
         }
 
+        // Typing effect
         const typingText = document.getElementById('typing');
         const phrases = [
             'Lead Developer @ Massacre',
@@ -1662,6 +1722,7 @@
 
         type();
 
+        // Counter animation
         const counters = document.querySelectorAll('.stat-number');
         const animateCounter = (counter) => {
             const target = parseFloat(counter.getAttribute('data-count'));
@@ -1683,6 +1744,7 @@
             updateCounter();
         };
 
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1704,6 +1766,7 @@
             observer.observe(el);
         });
 
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1717,6 +1780,7 @@
             });
         });
 
+        // Navbar background on scroll
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
