@@ -1,1753 +1,639 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m2hcs | Senior Full-Stack & Security Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #00ff88;
-            --primary-dark: #00cc6a;
-            --secondary: #00d4ff;
-            --accent: #ff00aa;
-            --warning: #ffaa00;
-            --bg-dark: #0a0a0f;
-            --bg-card: #12121a;
-            --bg-card-hover: #1a1a25;
-            --text: #ffffff;
-            --text-muted: #8892a0;
-            --border: rgba(0, 255, 136, 0.2);
-            --glow: 0 0 30px rgba(0, 255, 136, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s, border-color 0.3s;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-dot {
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-        }
-
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: 3px;
-            position: relative;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            animation: logoGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes logoGlow {
-            0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
-            50% { opacity: 1; transform: scaleX(1); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 50px;
-            position: relative;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 1000px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 25px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 30px;
-            margin-bottom: 30px;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
-        }
-
-        .hero-badge-icon {
-            font-size: 1.2rem;
-        }
-
-        .hero-badge-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .glitch-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            letter-spacing: 10px;
-            margin-bottom: 20px;
-            position: relative;
-            animation: titleReveal 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        @keyframes titleReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-role {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text);
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-            animation: subtitleReveal 1s ease-out 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            animation: subtitleReveal 1s ease-out 0.3s forwards;
-            opacity: 0;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @keyframes subtitleReveal {
-            to { opacity: 1; }
-        }
-
-        .typing-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 40px;
-            min-height: 40px;
-        }
-
-        .typing-text::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 50px;
-            animation: statsReveal 1s ease-out 0.6s forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes statsReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .stat-item {
-            text-align: center;
-            position: relative;
-        }
-
-        .stat-item::after {
-            content: '';
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(180deg, transparent, var(--border), transparent);
-        }
-
-        .stat-item:last-child::after {
-            display: none;
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            stroke: var(--primary);
-            opacity: 0.5;
-        }
-
-        section {
-            padding: 100px 50px;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-        }
-
-        /* Expertise Section */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expertise-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-            transform-origin: left;
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-        }
-
-        .expertise-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .expertise-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.1));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .expertise-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .expertise-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* Demos Section */
-        .demos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .demo-video {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.4s ease;
-        }
-
-        .demo-video:hover {
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-            transform: translateY(-5px);
-        }
-
-        .demo-video iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--bg-card-hover), var(--bg-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover .project-image::after {
-            left: 100%;
-        }
-
-        .project-icon {
-            font-size: 4rem;
-            opacity: 0.3;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 4px 10px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .project-description {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-
-        .project-stats {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .project-stat {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--primary);
-        }
-
-        .project-stat svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            box-shadow: var(--glow);
-        }
-
-        .project-link svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .project-link:hover svg {
-            transform: translateX(5px);
-        }
-
-        /* Open Source Section */
-        .opensource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .opensource-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .opensource-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-            transform-origin: bottom;
-        }
-
-        .opensource-card:hover {
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .opensource-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .opensource-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .opensource-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .opensource-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--bg-dark);
-        }
-
-        .opensource-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .opensource-lang {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--primary);
-            border-radius: 15px;
-            margin-left: auto;
-        }
-
-        .opensource-lang.python {
-            background: rgba(255, 170, 0, 0.1);
-            color: var(--warning);
-        }
-
-        .opensource-lang.js {
-            background: rgba(255, 0, 170, 0.1);
-            color: var(--accent);
-        }
-
-        .opensource-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-
-        .opensource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            transition: color 0.3s ease;
-        }
-
-        .opensource-link:hover {
-            color: var(--primary);
-        }
-
-        .opensource-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Tech Stack Section */
-        .stack-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stack-category {
-            margin-bottom: 40px;
-        }
-
-        .stack-category-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            padding-left: 15px;
-            border-left: 3px solid var(--primary);
-        }
-
-        .stack-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .stack-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .stack-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
-        }
-
-        .stack-icon {
-            font-size: 1.5rem;
-        }
-
-        .stack-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-text {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .contact-info-item svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--primary);
-        }
-
-        .contact-info-item span {
-            color: var(--text);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 35px;
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .contact-btn:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            box-shadow: var(--glow);
-            transform: translateY(-3px);
-        }
-
-        .contact-btn.secondary {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .contact-btn.secondary:hover {
-            background: var(--secondary);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .contact-btn.accent {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .contact-btn.accent:hover {
-            background: var(--accent);
-            box-shadow: 0 0 30px rgba(255, 0, 170, 0.3);
-        }
-
-        .contact-btn svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            padding: 25px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-        }
-
-        .payment-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .payment-item span {
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 50px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .footer-text span {
-            color: var(--primary);
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Glitch effect */
-        .glitch {
-            position: relative;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .glitch::before {
-            animation: glitch-1 0.3s infinite linear alternate-reverse;
-            color: var(--secondary);
-            z-index: -1;
-        }
-
-        .glitch::after {
-            animation: glitch-2 0.3s infinite linear alternate-reverse;
-            color: var(--accent);
-            z-index: -2;
-        }
-
-        @keyframes glitch-1 {
-            0% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, 2px); }
-            20% { clip-path: inset(10% 0 80% 0); transform: translate(3px, -2px); }
-            40% { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 3px); }
-            60% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -3px); }
-            80% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 2px); }
-            100% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -2px); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(60% 0 20% 0); transform: translate(3px, -2px); }
-            20% { clip-path: inset(80% 0 10% 0); transform: translate(-3px, 2px); }
-            40% { clip-path: inset(30% 0 50% 0); transform: translate(2px, -3px); }
-            60% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 3px); }
-            80% { clip-path: inset(50% 0 30% 0); transform: translate(3px, -2px); }
-            100% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 2px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 100px 20px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-                letter-spacing: 5px;
-            }
-
-            .hero-role {
-                font-size: 1.1rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .stat-item::after {
-                display: none;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects-grid,
-            .demos-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>m2hcs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#020202;--bg2:#060606;--bg3:#0a0a0a;--bg4:#0e0e0e;
+  --b1:#111;--b2:#1a1a1a;--b3:#222;
+  --t1:#e8e8e8;--t2:#999;--t3:#555;--t4:#333;
+  --ac:#00d4aa;--ac2:#00a883;--ac3:rgba(0,212,170,.08);
+  --ac4:rgba(0,212,170,.15);--ac5:rgba(0,212,170,.03);
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'Instrument Sans',sans-serif;
+  --display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1a1a1a #020202}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#020202}
+::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:3px}
+body{font-family:var(--sans);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ac4);color:var(--ac)}
+
+/* ═══ NOISE OVERLAY ═══ */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══ VIGNETTE ═══ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.6) 100%);
+}
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+.rv-d4{transition-delay:.4s}.rv-d5{transition-delay:.5s}.rv-d6{transition-delay:.6s}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;width:100%;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s}
+nav.scrolled{background:rgba(2,2,2,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1)}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--t1);text-decoration:none;letter-spacing:-.02em}
+.nav-logo span{color:var(--ac);font-weight:800}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.7rem;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--ac);transition:width .3s}
+.nav-links a:hover{color:var(--t2)}
+.nav-links a:hover::after{width:100%}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;opacity:.03;
+  background-image:linear-gradient(var(--b1) 1px,transparent 1px),linear-gradient(90deg,var(--b1) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-gradient{position:absolute;top:-30%;right:-20%;width:80vw;height:80vw;
+  background:radial-gradient(circle,rgba(0,212,170,.04) 0%,transparent 60%);pointer-events:none;
+}
+.hero-tag{font-family:var(--mono);font-size:.65rem;color:var(--t3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--ac)}
+.hero-name{font-family:var(--display);font-size:clamp(3rem,8vw,7rem);font-weight:800;letter-spacing:-.04em;line-height:.9;margin-bottom:16px;color:var(--t1)}
+.hero-name span{color:var(--ac);display:inline-block;position:relative}
+.hero-role{font-family:var(--sans);font-size:clamp(1rem,2vw,1.4rem);font-weight:500;color:var(--t2);margin-bottom:32px;max-width:580px;line-height:1.6}
+.hero-metrics{display:flex;gap:48px;margin-top:40px}
+.metric{position:relative;padding-left:16px}
+.metric::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;background:var(--ac);opacity:.4}
+.metric-val{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--t1);letter-spacing:-.02em}
+.metric-val span{color:var(--ac)}
+.metric-lbl{font-family:var(--mono);font-size:.6rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.hero-scroll{position:absolute;bottom:40px;left:48px;font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:12px;animation:pulse 2s ease-in-out infinite}
+.hero-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(var(--ac),transparent)}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+
+/* ═══ SECTIONS ═══ */
+section{padding:120px 48px;position:relative}
+.sec-label{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:8px;height:8px;border:1px solid var(--ac);border-radius:1px;opacity:.5}
+.sec-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:48px;color:var(--t1)}
+.sec-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--b1),var(--b2),var(--b1))}
+
+/* ═══ ABOUT ═══ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px}
+.about-text{font-size:1.05rem;line-height:1.85;color:var(--t2);max-width:540px}
+.about-text strong{color:var(--t1);font-weight:600}
+.about-detail{display:flex;flex-direction:column;gap:20px}
+.detail-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--b1)}
+.detail-key{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
+.detail-val{font-family:var(--sans);font-size:.85rem;color:var(--t1);text-align:right}
+.detail-val a{color:var(--ac);text-decoration:none;transition:opacity .3s}
+.detail-val a:hover{opacity:.7}
+
+/* ═══ EXPERIENCE ═══ */
+.exp-list{max-width:900px;display:flex;flex-direction:column;gap:0}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:32px 0;border-bottom:1px solid var(--b1);transition:background .3s;position:relative}
+.exp-item:hover{background:var(--ac5)}
+.exp-item:hover .exp-company{color:var(--ac)}
+.exp-period{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.05em;padding-top:4px}
+.exp-company{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--t1);margin-bottom:2px;transition:color .3s;letter-spacing:-.01em}
+.exp-role{font-family:var(--sans);font-size:.85rem;color:var(--ac2);margin-bottom:12px;font-weight:500}
+.exp-desc{font-size:.85rem;color:var(--t2);line-height:1.7;max-width:560px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.exp-tag{font-family:var(--mono);font-size:.55rem;color:var(--t3);padding:3px 8px;border:1px solid var(--b2);border-radius:2px;letter-spacing:.05em;text-transform:uppercase}
+
+/* ═══ PROJECTS ═══ */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1px;background:var(--b1);max-width:1100px}
+.proj-card{background:var(--bg);padding:36px;transition:all .4s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--ac);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.proj-card:hover{background:var(--bg2)}
+.proj-card:hover::before{width:100%}
+.proj-card:hover .proj-arrow{transform:translate(3px,-3px);opacity:1}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.proj-name{font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.proj-badge{font-family:var(--mono);font-size:.55rem;color:var(--ac);padding:3px 8px;border:1px solid var(--ac4);border-radius:2px;letter-spacing:.08em;white-space:nowrap}
+.proj-desc{font-size:.85rem;color:var(--t2);line-height:1.7;margin-bottom:16px}
+.proj-stat{font-family:var(--mono);font-size:.65rem;color:var(--t3);letter-spacing:.05em;margin-bottom:16px}
+.proj-stat span{color:var(--ac)}
+.proj-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.65rem;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.proj-link:hover{color:var(--ac)}
+.proj-arrow{display:inline-block;transition:all .3s;opacity:.5}
+
+/* ═══ OPEN SOURCE ═══ */
+.os-grid{display:flex;flex-direction:column;gap:0;max-width:900px}
+.os-item{display:grid;grid-template-columns:1fr auto;gap:24px;padding:20px 0;border-bottom:1px solid var(--b1);transition:all .3s;align-items:center}
+.os-item:hover{padding-left:12px;background:var(--ac5)}
+.os-item:hover .os-name{color:var(--ac)}
+.os-left{display:flex;align-items:baseline;gap:16px}
+.os-name{font-family:var(--display);font-size:.95rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.01em;white-space:nowrap}
+.os-desc{font-size:.8rem;color:var(--t3);line-height:1.5}
+.os-lang{font-family:var(--mono);font-size:.55rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--b2);border-radius:2px;white-space:nowrap}
+.os-lang.lua{color:var(--ac);border-color:var(--ac4)}
+.os-lang.py{color:#c9a040;border-color:rgba(201,160,64,.2)}
+.os-lang.js{color:#c070c0;border-color:rgba(192,112,192,.2)}
+.os-link-wrap{display:flex;align-items:center}
+.os-link{font-family:var(--mono);font-size:.6rem;color:var(--t4);text-decoration:none;letter-spacing:.05em;transition:color .3s;white-space:nowrap}
+.os-link:hover{color:var(--ac)}
+
+/* ═══ STACK ═══ */
+.stack-wrap{max-width:900px;display:flex;flex-direction:column;gap:40px}
+.stack-cat-label{font-family:var(--mono);font-size:.6rem;color:var(--ac2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;padding-left:2px}
+.stack-row{display:flex;flex-wrap:wrap;gap:8px}
+.stack-pill{font-family:var(--mono);font-size:.7rem;color:var(--t2);padding:8px 16px;background:var(--bg3);border:1px solid var(--b1);border-radius:3px;transition:all .3s;cursor:default;letter-spacing:.02em}
+.stack-pill:hover{border-color:var(--ac4);color:var(--t1);background:var(--bg4)}
+
+/* ═══ CONTACT ═══ */
+.contact-wrap{max-width:700px}
+.contact-text{font-size:1.05rem;color:var(--t2);line-height:1.8;margin-bottom:40px}
+.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.contact-btn{font-family:var(--mono);font-size:.65rem;color:var(--t2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--b2);border-radius:3px;transition:all .3s;display:inline-flex;align-items:center;gap:10px}
+.contact-btn:hover{border-color:var(--ac);color:var(--ac);background:var(--ac5)}
+.contact-btn.primary{border-color:var(--ac4);color:var(--ac);background:var(--ac3)}
+.contact-btn.primary:hover{background:var(--ac4)}
+.contact-pay{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.05em;margin-top:24px}
+.contact-pay span{color:var(--t3)}
+
+/* ═══ FOOTER ═══ */
+footer{padding:40px 48px;border-top:1px solid var(--b1)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.05em}
+.footer-left span{color:var(--ac)}
+.footer-right{display:flex;gap:24px}
+.footer-right a{font-family:var(--mono);font-size:.6rem;color:var(--t4);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.footer-right a:hover{color:var(--ac)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .hero,.section-wrap,section{padding-left:24px;padding-right:24px}
+  .hero-metrics{flex-wrap:wrap;gap:24px}
+  .hero-scroll{display:none}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .exp-item{grid-template-columns:1fr;gap:8px}
+  .proj-grid{grid-template-columns:1fr}
+  .os-item{grid-template-columns:1fr;gap:8px}
+  .os-left{flex-direction:column;gap:4px}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
 
-    <div class="bg-grid"></div>
-    <div class="bg-particles" id="particles"></div>
+<nav id="nav">
+  <a href="#" class="nav-logo">m2hcs<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#opensource">Open Source</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <nav class="navbar">
-        <a href="#" class="logo">M2HCS</a>
-        <ul class="nav-links">
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#demos">Demos</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#opensource">Open Source</a></li>
-            <li><a href="#stack">Tech Stack</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-gradient"></div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge fade-in">
-                <span class="hero-badge-icon">🛡️</span>
-                <span class="hero-badge-text">Available for Hire</span>
-            </div>
+  <div class="hero-tag rv rv-d1">Senior Backend Developer & Security Researcher</div>
 
-            <div class="glitch-container">
-                <h1 class="hero-title">
-                    <span class="highlight glitch" data-text="M2HCS">M2HCS</span>
-                </h1>
-            </div>
+  <h1 class="hero-name rv rv-d2">m2hcs<span>.</span></h1>
 
-            <p class="hero-role">SENIOR FULL-STACK & SECURITY-FIRST DEVELOPER</p>
-            <p class="hero-subtitle">
-                Engineering high-performance game economies and secure architectures since 2014. 
-                Bridging gameplay engineering and cybersecurity.
-            </p>
+  <p class="hero-role rv rv-d3">
+    Engineering scalable game backends and security infrastructure since 2014.
+    Currently leading development on a live title with 2k+ concurrent users.
+  </p>
 
-            <div class="typing-text" id="typing"></div>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="12">0</span>
-                    <span class="stat-label">Years Full-Stack</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="8">0</span>
-                    <span class="stat-label">Years InfoSec</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="1.2">0</span>
-                    <span class="stat-label">Billion Visits</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="23">0</span>
-                    <span class="stat-label">K Peak CCU</span>
-                </div>
-            </div>
+  <div class="hero-metrics rv rv-d4">
+    <div class="metric">
+      <div class="metric-val">12<span>yr</span></div>
+      <div class="metric-lbl">Development</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">2.2<span>k</span></div>
+      <div class="metric-lbl">Peak CCU</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">1.3<span>M+</span></div>
+      <div class="metric-lbl">Group Members</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">9<span>yr</span></div>
+      <div class="metric-lbl">InfoSec</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="sec-label rv">// 001</div>
+  <h2 class="sec-title rv rv-d1">About</h2>
+
+  <div class="about-grid">
+    <div class="about-text rv rv-d2">
+      Backend-focused engineer with <strong>12 years of hands-on experience</strong> building
+      high-concurrency game systems, live-ops infrastructure, and security tooling.
+      Currently serving as Developer for Massacre, managing the entire backend
+      architecture for a game sustaining 1.2k–2.2k concurrent users daily.
+      <br><br>
+      Background in <strong>offensive security and vulnerability research</strong> — mapping
+      attack surfaces, building exploit chains, and running red team engagements with
+      disciplined OPSEC. I bridge gameplay engineering and cybersecurity to build systems
+      that are both performant and resilient.
+    </div>
+
+    <div class="about-detail rv rv-d3">
+      <div class="detail-row">
+        <span class="detail-key">Location</span>
+        <span class="detail-val">Brazil</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Languages</span>
+        <span class="detail-val">Portuguese (native), English (professional)</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Education</span>
+        <span class="detail-val">BSc Information Security</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Email</span>
+        <span class="detail-val"><a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">GitHub</span>
+        <span class="detail-val"><a href="https://github.com/m2hcz" target="_blank">github.com/m2hcz</a></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Twitter</span>
+        <span class="detail-val"><a href="https://x.com/inf0secc" target="_blank">@inf0secc</a></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-key">Availability</span>
+        <span class="detail-val" style="color:var(--ac)">Open to work</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience">
+  <div class="sec-label rv">// 002</div>
+  <h2 class="sec-title rv rv-d1">Experience</h2>
+
+  <div class="exp-list">
+    <div class="exp-item rv rv-d2">
+      <div class="exp-period">2023 — Present</div>
+      <div>
+        <div class="exp-company">Massacre</div>
+        <div class="exp-role">Lead Developer</div>
+        <div class="exp-desc">
+          Architect and maintain the entire backend for a live horror/survival game sustaining
+          1.2k–2.2k concurrent users. Designed DataStore infrastructure with sharding, WAL,
+          and cross-server replication. Built server-authoritative combat, perk systems, economy
+          pipeline, anti-exploit validation, and votekick anti-abuse architecture.
         </div>
-
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
+        <div class="exp-tags">
+          <span class="exp-tag">Luau</span>
+          <span class="exp-tag">DataStore</span>
+          <span class="exp-tag">MessagingService</span>
+          <span class="exp-tag">Live-Ops</span>
+          <span class="exp-tag">Anti-Cheat</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="expertise">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Specialized Expertise</span>
-            <h2 class="section-title">WHAT I DO BEST</h2>
+    <div class="exp-item rv rv-d3">
+      <div class="exp-period">2026</div>
+      <div>
+        <div class="exp-company">Gothyc!</div>
+        <div class="exp-role">Backend Developer</div>
+        <div class="exp-desc">
+          Built core backend systems for a UGC-verified group with 1.3M+ members.
+
         </div>
-
-        <div class="expertise-grid">
-            <div class="expertise-card fade-in">
-                <div class="expertise-icon">💰</div>
-                <h3 class="expertise-title">Game Economy & Logic Integrity</h3>
-                <p class="expertise-desc">
-                    Implementation of atomic transaction models for Trading, Inventory, and Gacha systems 
-                    to prevent item duplication and economy inflation.
-                </p>
-            </div>
-
-            <div class="expertise-card fade-in">
-                <div class="expertise-icon">🛡️</div>
-                <h3 class="expertise-title">Revenue Protection & Security</h3>
-                <p class="expertise-desc">
-                    Advanced anti-abuse architecture and server-side validation designed to neutralize 
-                    executors/injectors without degrading legitimate player UX.
-                </p>
-            </div>
-
-            <div class="expertise-card fade-in">
-                <div class="expertise-icon">⚡</div>
-                <h3 class="expertise-title">High-Concurrency Architecture</h3>
-                <p class="expertise-desc">
-                    Data-driven frameworks and modular state management (ProfileService/DS2) optimized 
-                    for massive player counts and sub-100ms latency replication.
-                </p>
-            </div>
-
-            <div class="expertise-card fade-in">
-                <div class="expertise-icon">⚙️</div>
-                <h3 class="expertise-title">Systems Engineering</h3>
-                <p class="expertise-desc">
-                    Complex battle engines, RNG manipulation prevention, and memory-efficient 
-                    networking strategies for enterprise-grade maintainability.
-                </p>
-            </div>
+        <div class="exp-tags">
+          <span class="exp-tag">Luau</span>
+          <span class="exp-tag">UGC</span>
+          <span class="exp-tag">1.3M Members</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="demos">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Live Demos</span>
-            <h2 class="section-title">DEMONSTRATIONS</h2>
+    <div class="exp-item rv rv-d3">
+      <div class="exp-period">2025</div>
+      <div>
+        <div class="exp-company">Last Letter / mushyo</div>
+        <div class="exp-role">Game Systems Developer</div>
+        <div class="exp-desc">
+          Developed core gameplay systems, networking layers, and data persistence
+          for multiple game projects with modular, reusable architectures.
         </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Featured Projects</span>
-            <h2 class="section-title">GAMES & CONTRIBUTIONS</h2>
+        <div class="exp-tags">
+          <span class="exp-tag">Luau</span>
+          <span class="exp-tag">Networking</span>
+          <span class="exp-tag">Data Persistence</span>
         </div>
+      </div>
+    </div>
 
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-image">
-                    <span class="project-icon">🎯</span>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">
-                        Massacre
-                        <span class="project-badge">LEAD DEV</span>
-                    </h3>
-                    <p class="project-description">
-                        Horror/survival game where survivors must hide from the killer. 
-                        Lead Developer responsible for entire backend architecture, anti-cheat systems, and game economy.
-                    </p>
-                    <div class="project-stats">
-                        <div class="project-stat">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            1.2K - 1.9K CCU
-                        </div>
-                    </div>
-                    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="project-link">
-                        Play Now
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in">
-                <div class="project-image">
-                    <span class="project-icon">🔤</span>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">
-                        Last Letter
-                        <span class="project-badge">BACKEND</span>
-                    </h3>
-                    <p class="project-description">
-                        Word game where each player must start with the last letter 
-                        of the previous word. Built validation systems and anti-cheat measures.
-                    </p>
-                    <div class="project-stats">
-                        <div class="project-stat">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                            Backend Systems
-                        </div>
-                    </div>
-                    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" class="project-link">
-                        Play Now
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in">
-                <div class="project-image">
-                    <span class="project-icon">🎖️</span>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">
-                        Exército Brasileiro
-                        <span class="project-badge">SYSTEMS</span>
-                    </h3>
-                    <p class="project-description">
-                        Brazilian Army military simulation. Developed ranking systems, 
-                        training mechanics, and combat systems with server-authoritative validation.
-                    </p>
-                    <div class="project-stats">
-                        <div class="project-stat">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                            </svg>
-                            Military Simulation
-                        </div>
-                    </div>
-                    <a href="https://www.roblox.com/games/14511049/EB-Ex-rcito-Brasileiro" target="_blank" class="project-link">
-                        Play Now
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in">
-                <div class="project-image">
-                    <span class="project-icon">🍕</span>
-                </div>
-            </div>
+    <div class="exp-item rv rv-d3">
+      <div class="exp-period">2014 — 2020</div>
+      <div>
+        <div class="exp-company">Freelance</div>
+        <div class="exp-role">Developer</div>
+        <div class="exp-desc">
+          Self-taught since 2014. Progressively built expertise across Lua/Luau,
+          Python, web platforms, backend architecture, and security fundamentals
+          through increasingly complex projects.
         </div>
-    </section>
-
-    <section id="opensource">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Open Source</span>
-            <h2 class="section-title">GITHUB PORTFOLIO</h2>
+        <div class="exp-tags">
+          <span class="exp-tag">Lua</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">Web</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="opensource-grid">
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">Race-Family-Reroll</span>
-                    <span class="opensource-lang">Luau</span>
-                </div>
-                <p class="opensource-desc">Secure Gacha/RNG logic with weighted pools and scalable reward handling for anime/RPG games.</p>
-                <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+<div class="sec-divider"></div>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="16 18 22 12 16 6"/>
-                            <polyline points="8 6 2 12 8 18"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">OOPModule</span>
-                    <span class="opensource-lang">Luau</span>
-                </div>
-                <p class="opensource-desc">High-level structural framework for maintainable, modular gameplay code with inheritance support.</p>
-                <a href="https://github.com/m2hcz/OOPModule" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="sec-label rv">// 003</div>
+  <h2 class="sec-title rv rv-d1">Projects</h2>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">NetSentinel</span>
-                    <span class="opensource-lang">Luau</span>
-                </div>
-                <p class="opensource-desc">Defensive networking concepts and traffic analysis tooling for Roblox security.</p>
-                <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+  <div class="proj-grid rv rv-d2">
+    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="proj-card" style="text-decoration:none">
+      <div class="proj-head">
+        <div class="proj-name">Massacre</div>
+        <div class="proj-badge">LEAD DEV</div>
+      </div>
+      <div class="proj-desc">
+        Horror/survival game — survivors hide from the killer. Responsible for
+        entire backend: combat, economy, anti-cheat, data persistence, live-ops.
+      </div>
+      <div class="proj-stat"><span>1.2k–2.2k</span> concurrent users</div>
+      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
+    </a>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">PhantomNet</span>
-                    <span class="opensource-lang">Luau</span>
-                </div>
-                <p class="opensource-desc">Optimized networking library for client-server communication in Roblox games.</p>
-                <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" class="proj-card" style="text-decoration:none">
+      <div class="proj-head">
+        <div class="proj-name">Last Letter</div>
+        <div class="proj-badge">BACKEND</div>
+      </div>
+      <div class="proj-desc">
+        Word game where each player must start with the last letter of the
+        previous word. Built validation, anti-cheat, and backend systems.
+      </div>
+      <div class="proj-stat">Backend architecture</div>
+      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
+    </a>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">ReconMapper v2</span>
-                    <span class="opensource-lang python">Python</span>
-                </div>
-                <p class="opensource-desc">Network reconnaissance and mapping tool for security research and penetration testing.</p>
-                <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+    <a href="https://www.roblox.com/games/14511049/EB-Ex-rcito-Brasileiro" target="_blank" class="proj-card" style="text-decoration:none">
+      <div class="proj-head">
+        <div class="proj-name">Exército Brasileiro</div>
+        <div class="proj-badge">SYSTEMS</div>
+      </div>
+      <div class="proj-desc">
+        Military simulation. Ranking systems, training mechanics, and
+        combat with server-authoritative validation.
+      </div>
+      <div class="proj-stat">Military simulation</div>
+      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
+    </a>
+  </div>
+</section>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"/>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">SQLi-Scanner</span>
-                    <span class="opensource-lang python">Python</span>
-                </div>
-                <p class="opensource-desc">Automation & vulnerability research utilities for SQL injection detection.</p>
-                <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
+<div class="sec-divider"></div>
 
-            <div class="opensource-card fade-in">
-                <div class="opensource-header">
-                    <div class="opensource-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                            <line x1="12" y1="9" x2="12" y2="13"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                    </div>
-                    <span class="opensource-name">Next.js PoC</span>
-                    <span class="opensource-lang js">JavaScript</span>
-                </div>
-                <p class="opensource-desc">Middleware implementation proof-of-concept for Next.js vulnerability research.</p>
-                <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="opensource-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    View on GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- ═══ OPEN SOURCE ═══ -->
+<section id="opensource">
+  <div class="sec-label rv">// 004</div>
+  <h2 class="sec-title rv rv-d1">Open Source</h2>
 
-    <section id="stack">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Technical Stack</span>
-            <h2 class="section-title">TECHNOLOGIES</h2>
-        </div>
+  <div class="os-grid">
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="os-item rv rv-d2" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">NetSentinel</div>
+        <div class="os-desc">Network security monitoring and threat detection</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang lua">Luau</span>
+      </div>
+    </a>
 
-        <div class="stack-container">
-            <div class="stack-category fade-in">
-                <h3 class="stack-category-title">Core & Scripting</h3>
-                <div class="stack-grid">
-                    <div class="stack-item">
-                        <span class="stack-icon">🎮</span>
-                        <span class="stack-name">Luau (Roblox)</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">📘</span>
-                        <span class="stack-name">TypeScript</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">🐍</span>
-                        <span class="stack-name">Python</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">⚡</span>
-                        <span class="stack-name">JavaScript</span>
-                    </div>
-                </div>
-            </div>
+    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="os-item rv rv-d2" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">PhantomNet</div>
+        <div class="os-desc">Optimized networking library for client-server communication</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang lua">Luau</span>
+      </div>
+    </a>
 
-            <div class="stack-category fade-in">
-                <h3 class="stack-category-title">Systems & Research</h3>
-                <div class="stack-grid">
-                    <div class="stack-item">
-                        <span class="stack-icon">🦀</span>
-                        <span class="stack-name">Rust</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">⚙️</span>
-                        <span class="stack-name">C++</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">🔧</span>
-                        <span class="stack-name">C</span>
-                    </div>
-                </div>
-            </div>
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="os-item rv rv-d3" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">ReconMapper v2</div>
+        <div class="os-desc">Automated reconnaissance and attack surface mapping</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang py">Python</span>
+      </div>
+    </a>
 
-            <div class="stack-category fade-in">
-                <h3 class="stack-category-title">Specializations</h3>
-                <div class="stack-grid">
-                    <div class="stack-item">
-                        <span class="stack-icon">🛡️</span>
-                        <span class="stack-name">Offensive Security</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">🔒</span>
-                        <span class="stack-name">Anti-Cheat Systems</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">💰</span>
-                        <span class="stack-name">Game Economy</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">🌐</span>
-                        <span class="stack-name">Networking</span>
-                    </div>
-                    <div class="stack-item">
-                        <span class="stack-icon">🗄️</span>
-                        <span class="stack-name">ProfileService/DS2</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="os-item rv rv-d3" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">Race-Family-Reroll</div>
+        <div class="os-desc">Gacha/RNG system with weighted pools for anime RPG games</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang lua">Luau</span>
+      </div>
+    </a>
 
-    <section id="contact">
-        <div class="section-header fade-in">
-            <span class="section-tag">// Get in Touch</span>
-            <h2 class="section-title">CONTACT</h2>
-        </div>
+    <a href="https://github.com/m2hcz/OOPModule" target="_blank" class="os-item rv rv-d4" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">OOPModule</div>
+        <div class="os-desc">Object-oriented framework for Luau with inheritance</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang lua">Luau</span>
+      </div>
+    </a>
 
-        <div class="contact-container fade-in">
-            <p class="contact-text">
-                Available for long-term contracts and full-time positions.
-                <br>BSc in Information Security • English (Professional) • Portuguese (Native)
-            </p>
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="os-item rv rv-d4" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">SQLi Scanner</div>
+        <div class="os-desc">SQL injection detection and vulnerability automation</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang py">Typescript</span>
+      </div>
+    </a>
 
-            <div class="contact-info">
-                <div class="contact-info-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                    <span>m2hczs@proton.me</span>
-                </div>
-                <div class="contact-info-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    <span>High Availability</span>
-                </div>
-            </div>
+    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="os-item rv rv-d5" style="text-decoration:none;color:inherit">
+      <div class="os-left">
+        <div class="os-name">Next.js Middleware PoC</div>
+        <div class="os-desc">Proof-of-concept for middleware auth bypass vulnerability</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="os-lang js">Python</span>
+      </div>
+    </a>
+  </div>
+</section>
 
-            <div class="contact-links">
-                <a href="https://github.com/m2hcz" target="_blank" class="contact-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://m2hcz.github.io/" target="_blank" class="contact-btn secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                    Security Portfolio
-                </a>
-                <a href="mailto:m2hczs@proton.me" class="contact-btn accent">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                    Email Me
-                </a>
-            </div>
+<div class="sec-divider"></div>
 
-            <div class="payment-methods">
-                <div class="payment-item">
-                    <span>₿</span> BTC (Lightning/On-chain)
-                </div>
-                <div class="payment-item">
-                    <span>💳</span> Mercado Pago
-                </div>
-                <div class="payment-item">
-                    <span>🎮</span> Robux
-                </div>
-                <div class="payment-item">
-                    <span>🔄</span> Mixed
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ═══ STACK ═══ -->
+<section id="stack">
+  <div class="sec-label rv">// 005</div>
+  <h2 class="sec-title rv rv-d1">Stack</h2>
 
-    <footer>
-        <p class="footer-text">
-            <span>&lt;/&gt;</span> Built by <span>m2hcs</span> • Coding since <span>2014</span> • BSc Information Security
-        </p>
-    </footer>
+  <div class="stack-wrap">
+    <div class="rv rv-d2">
+      <div class="stack-cat-label">Languages</div>
+      <div class="stack-row">
+        <span class="stack-pill">Lua / Luau</span>
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">TypeScript</span>
+        <span class="stack-pill">Rust</span>
+        <span class="stack-pill">Go</span>
+        <span class="stack-pill">C</span>
+        <span class="stack-pill">C#</span>
+        <span class="stack-pill">Bash</span>
+        <span class="stack-pill">XAML</span>
+      </div>
+    </div>
 
-    <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+    <div class="rv rv-d3">
+      <div class="stack-cat-label">Platforms & Infra</div>
+      <div class="stack-row">
+        <span class="stack-pill">Roblox Studio</span>
+        <span class="stack-pill">DataStores</span>
+        <span class="stack-pill">MessagingService</span>
+        <span class="stack-pill">Linux</span>
+        <span class="stack-pill">Docker</span>
+        <span class="stack-pill">Kubernetes</span>
+        <span class="stack-pill">Terraform</span>
+        <span class="stack-pill">Cloudflare</span>
+        <span class="stack-pill">GitHub Actions</span>
+        <span class="stack-pill">WPF / .NET 8</span>
+      </div>
+    </div>
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            }, 50);
-        });
+    <div class="rv rv-d4">
+      <div class="stack-cat-label">Security Tooling</div>
+      <div class="stack-row">
+        <span class="stack-pill">Burp Suite</span>
+        <span class="stack-pill">mitmproxy</span>
+        <span class="stack-pill">Frida</span>
+        <span class="stack-pill">Ghidra</span>
+        <span class="stack-pill">Radare2</span>
+        <span class="stack-pill">pwntools</span>
+        <span class="stack-pill">Z3</span>
+        <span class="stack-pill">Semgrep</span>
+      </div>
+    </div>
 
-        document.querySelectorAll('a, button, .demo-video').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'var(--accent)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--primary)';
-            });
-        });
+    <div class="rv rv-d5">
+      <div class="stack-cat-label">Specializations</div>
+      <div class="stack-row">
+        <span class="stack-pill">Scalable game backends</span>
+        <span class="stack-pill">DataStore sharding</span>
+        <span class="stack-pill">Procedural generation</span>
+        <span class="stack-pill">Anti-cheat architecture</span>
+        <span class="stack-pill">Networking / replication</span>
+        <span class="stack-pill">Exploit development</span>
+        <span class="stack-pill">Vuln research</span>
+        <span class="stack-pill">Cloud intrusion</span>
+        <span class="stack-pill">APT emulation</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
+<div class="sec-divider"></div>
 
-        // Typing effect
-        const typingText = document.getElementById('typing');
-        const phrases = [
-            'Lead Developer @ Massacre',
-            '12 Years Full-Stack Experience',
-            '8 Years Offensive Security',
-            '1.2B+ Total Game Visits',
-            'Server-Authoritative Architecture',
-            'Anti-Exploit & Revenue Protection'
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="sec-label rv">// 006</div>
+  <h2 class="sec-title rv rv-d1">Contact</h2>
 
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
+  <div class="contact-wrap rv rv-d2">
+    <div class="contact-text">
+      Available for long-term contracts and full-time positions.
+      Open to backend, security, and systems engineering roles.
+    </div>
 
-            let typeSpeed = isDeleting ? 30 : 80;
+    <div class="contact-row">
+      <a href="mailto:m2hczs@proton.me" class="contact-btn primary">m2hczs@proton.me</a>
+      <a href="https://github.com/m2hcz" target="_blank" class="contact-btn">GitHub</a>
+      <a href="https://x.com/inf0secc" target="_blank" class="contact-btn">Twitter</a>
+    </div>
 
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
-            }
+    <div class="contact-pay">
+      Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Robux · Mixed</span>
+    </div>
+  </div>
+</section>
 
-            setTimeout(type, typeSpeed);
-        }
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">© 2025 <span>m2hcs</span> — Coding since 2014</div>
+    <div class="footer-right">
+      <a href="https://github.com/m2hcz" target="_blank">GitHub</a>
+      <a href="mailto:m2hczs@proton.me">Email</a>
+      <a href="https://x.com/inf0secc" target="_blank">Twitter</a>
+    </div>
+  </div>
+</footer>
 
-        type();
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
-        // Counter animation
-        const counters = document.querySelectorAll('.stat-number');
-        const animateCounter = (counter) => {
-            const target = parseFloat(counter.getAttribute('data-count'));
-            const isDecimal = target % 1 !== 0;
-            const duration = 2000;
-            const increment = target / (duration / 16);
-            let current = 0;
+// Navbar scroll
+const nav = document.getElementById('nav');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
 
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counter.textContent = isDecimal ? target.toFixed(1) : target;
-                }
-            };
-
-            updateCounter();
-        };
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    if (entry.target.classList.contains('stat-number')) {
-                        animateCounter(entry.target);
-                    }
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in, .stat-number').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-            } else {
-                navbar.style.background = 'linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%)';
-            }
-        });
-    </script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
 </body>
 </html>
