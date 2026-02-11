@@ -126,6 +126,28 @@ section{padding:120px 48px;position:relative}
 .proj-link:hover{color:var(--ac)}
 .proj-arrow{display:inline-block;transition:all .3s;opacity:.5}
 
+/* ═══ DEMOS ═══ */
+.demos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:24px;max-width:1100px}
+.demo-card{background:var(--bg2);border:1px solid var(--b1);border-radius:4px;overflow:hidden;transition:all .4s;position:relative}
+.demo-card:hover{border-color:var(--b3);transform:translateY(-2px)}
+.demo-card:hover .demo-info{border-color:var(--b3)}
+.demo-card:hover .demo-title{color:var(--ac)}
+.demo-embed{position:relative;width:100%;padding-top:56.25%;background:var(--bg);overflow:hidden}
+.demo-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.demo-embed-link{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-decoration:none;transition:all .3s;background:var(--bg3)}
+.demo-embed-link:hover{background:var(--bg4)}
+.demo-embed-link:hover .demo-play-icon{border-color:var(--ac);color:var(--ac);transform:scale(1.08)}
+.demo-play-icon{width:56px;height:56px;border-radius:50%;border:2px solid var(--b3);display:flex;align-items:center;justify-content:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.demo-play-icon svg{width:20px;height:20px;fill:none;stroke:var(--t2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.demo-embed-link:hover .demo-play-icon svg{stroke:var(--ac)}
+.demo-play-label{font-family:var(--mono);font-size:.55rem;color:var(--t4);letter-spacing:.15em;text-transform:uppercase}
+.demo-platform-badge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;z-index:2}
+.demo-platform-badge.yt{color:#ff4444;background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.15)}
+.demo-platform-badge.x{color:var(--t2);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.demo-info{padding:20px 24px;border-top:1px solid var(--b1);transition:border-color .4s}
+.demo-title{font-family:var(--display);font-size:.95rem;font-weight:700;color:var(--t1);margin-bottom:4px;transition:color .3s;letter-spacing:-.01em}
+.demo-desc{font-family:var(--mono);font-size:.6rem;color:var(--t3);letter-spacing:.05em;text-transform:uppercase}
+
 /* ═══ OPEN SOURCE ═══ */
 .os-grid{display:flex;flex-direction:column;gap:0;max-width:900px}
 .os-item{display:grid;grid-template-columns:1fr auto;gap:24px;padding:20px 0;border-bottom:1px solid var(--b1);transition:all .3s;align-items:center}
@@ -179,6 +201,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .about-grid{grid-template-columns:1fr;gap:40px}
   .exp-item{grid-template-columns:1fr;gap:8px}
   .proj-grid{grid-template-columns:1fr}
+  .demos-grid{grid-template-columns:1fr}
   .os-item{grid-template-columns:1fr;gap:8px}
   .os-left{flex-direction:column;gap:4px}
   .footer-inner{flex-direction:column;gap:16px;text-align:center}
@@ -193,6 +216,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#demos">Demos</a></li>
     <li><a href="#opensource">Open Source</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -317,7 +341,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
 
-
     <div class="exp-item rv rv-d3">
       <div class="exp-period">2025</div>
       <div>
@@ -406,9 +429,120 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="sec-divider"></div>
 
+<!-- ═══ DEMOS ═══ -->
+<section id="demos">
+  <div class="sec-label rv">// 004</div>
+  <h2 class="sec-title rv rv-d1">Demos</h2>
+
+  <div class="demos-grid">
+
+    <!-- Procedural World Generation -->
+    <div class="demo-card rv rv-d2">
+      <div class="demo-embed">
+        <span class="demo-platform-badge yt">YouTube</span>
+        <iframe src="https://www.youtube.com/embed/pf4V4JApDHM" title="Procedural World Generation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">Procedural World Generation</div>
+        <div class="demo-desc">Runtime terrain & biome generation system</div>
+      </div>
+    </div>
+
+    <!-- Gun System -->
+    <div class="demo-card rv rv-d2">
+      <div class="demo-embed">
+        <span class="demo-platform-badge yt">YouTube</span>
+        <iframe src="https://www.youtube.com/embed/O4aq18kq9Ek" title="Gun System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">Gun System</div>
+        <div class="demo-desc">Server-authoritative weapon framework</div>
+      </div>
+    </div>
+
+    <!-- Re-roll Perks -->
+    <div class="demo-card rv rv-d3">
+      <div class="demo-embed">
+        <span class="demo-platform-badge yt">YouTube</span>
+        <iframe src="https://www.youtube.com/embed/yxRt3mg-TTw" title="Re-roll Perks" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">Perk Re-roll System</div>
+        <div class="demo-desc">Weighted RNG with economy integration</div>
+      </div>
+    </div>
+
+    <!-- Testing a system -->
+    <div class="demo-card rv rv-d3">
+      <div class="demo-embed">
+        <span class="demo-platform-badge yt">YouTube</span>
+        <iframe src="https://www.youtube.com/embed/ZtMgbzYnNBc" title="System Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">System Testing</div>
+        <div class="demo-desc">Internal testing for a large-scale project in development</div>
+      </div>
+    </div>
+
+    <!-- PVP System (X/Twitter) -->
+    <a href="https://x.com/inf0secc/status/2018043651947958754" target="_blank" class="demo-card rv rv-d4" style="text-decoration:none;color:inherit">
+      <div class="demo-embed">
+        <span class="demo-platform-badge x">X / Twitter</span>
+        <div class="demo-embed-link">
+          <div class="demo-play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="demo-play-label">Watch on X</div>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">PVP System</div>
+        <div class="demo-desc">Server-authoritative player vs player combat</div>
+      </div>
+    </a>
+
+    <!-- X post 2 -->
+    <a href="https://x.com/inf0secc/status/1999099988442272170" target="_blank" class="demo-card rv rv-d4" style="text-decoration:none;color:inherit">
+      <div class="demo-embed">
+        <span class="demo-platform-badge x">X / Twitter</span>
+        <div class="demo-embed-link">
+          <div class="demo-play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="demo-play-label">Watch on X</div>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">Gameplay Demo</div>
+        <div class="demo-desc">Live gameplay showcase</div>
+      </div>
+    </a>
+
+    <!-- X post 3 -->
+    <a href="https://x.com/inf0secc/status/1999102423621628222" target="_blank" class="demo-card rv rv-d5" style="text-decoration:none;color:inherit">
+      <div class="demo-embed">
+        <span class="demo-platform-badge x">X / Twitter</span>
+        <div class="demo-embed-link">
+          <div class="demo-play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="demo-play-label">Watch on X</div>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-title">Gameplay Demo</div>
+        <div class="demo-desc">Live gameplay showcase</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
 <!-- ═══ OPEN SOURCE ═══ -->
 <section id="opensource">
-  <div class="sec-label rv">// 004</div>
+  <div class="sec-label rv">// 005</div>
   <h2 class="sec-title rv rv-d1">Open Source</h2>
 
   <div class="os-grid">
@@ -488,7 +622,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <!-- ═══ STACK ═══ -->
 <section id="stack">
-  <div class="sec-label rv">// 005</div>
+  <div class="sec-label rv">// 006</div>
   <h2 class="sec-title rv rv-d1">Stack</h2>
 
   <div class="stack-wrap">
@@ -558,7 +692,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
-  <div class="sec-label rv">// 006</div>
+  <div class="sec-label rv">// 007</div>
   <h2 class="sec-title rv rv-d1">Contact</h2>
 
   <div class="contact-wrap rv rv-d2">
