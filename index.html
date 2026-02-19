@@ -3,720 +3,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>m2hcs</title>
+<title>m2hcs — Software Engineer & Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Fontes: Inter (Textos), Space Grotesk (Títulos), JetBrains Mono (Código/UI) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
 :root{
-  --bg:#020202;--bg2:#060606;--bg3:#0a0a0a;--bg4:#0e0e0e;
-  --b1:#111;--b2:#1a1a1a;--b3:#222;
-  --t1:#e8e8e8;--t2:#999;--t3:#555;--t4:#333;
-  --ac:#00d4aa;--ac2:#00a883;--ac3:rgba(0,212,170,.08);
-  --ac4:rgba(0,212,170,.15);--ac5:rgba(0,212,170,.03);
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'Instrument Sans',sans-serif;
-  --display:'Syne',sans-serif;
+  --bg:#000;
+  --bg2:#050505;
+  --bg3:#0a0a0a;
+  --b1:#0f0f0f;
+  --b2:#161616;
+  --b3:#1c1c1c;
+  --t1:#f0f0f0;
+  --t2:#9ca3af; /* Cinza legível para leitura longa */
+  --t3:#6b7280;
+  --t4:#4b5563;
+  --ac:#00e5b0;
+  --ac2:#00c99a;
+  --ac-glow:rgba(0,229,176,.06);
+  --ac-glow2:rgba(0,229,176,.12);
+  --ac-glow3:rgba(0,229,176,.03);
+  
+  /* TIPOGRAFIA */
+  --mono:'JetBrains Mono', monospace;
+  --body:'Inter', sans-serif;
+  --heading:'Space Grotesk', sans-serif;
+  
+  --r:4px;
 }
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1a1a1a #020202}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:#020202}
+
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1a1a1a #000}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#000}
 ::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:3px}
-body{font-family:var(--sans);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::selection{background:var(--ac4);color:var(--ac)}
+::-webkit-scrollbar-thumb:hover{background:var(--t4)}
 
-/* ═══ NOISE OVERLAY ═══ */
-body::after{
-  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--ac-glow2);color:var(--ac)}
+:focus-visible{outline: 1px solid var(--ac); outline-offset: 4px; border-radius: 2px;}
 
-/* ═══ VIGNETTE ═══ */
-body::before{
-  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
-  background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.6) 100%);
-}
+/* ═══ CURSOR GLOW (Otimizado com GPU) ═══ */
+.cursor-glow{position:fixed;top:0;left:0;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:9990;background:radial-gradient(circle,rgba(0,229,176,.04) 0%,rgba(0,229,176,.01) 30%,transparent 60%);transform:translate(-50%,-50%);transition:opacity .4s, width 0.3s, height 0.3s;opacity:0;will-change:transform;}
+.cursor-glow.active{opacity:1}
+.cursor-glow.hover-effect{width:800px; height:800px; background:radial-gradient(circle,rgba(0,229,176,.06) 0%,rgba(0,229,176,.01) 40%,transparent 60%);}
 
-/* ═══ REVEAL ANIMATIONS ═══ */
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+/* ═══ NOISE & SCANLINE ═══ */
+body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.scanline{position:fixed;top:0;left:0;width:100%;height:2px;z-index:9999;pointer-events:none;background:linear-gradient(90deg,transparent,var(--ac-glow2),transparent);animation:scanDown 8s linear infinite;opacity:.3;}
+@keyframes scanDown{0%{top:-2px}100%{top:100%}}
+
+/* ═══ REVEAL SYSTEM ═══ */
+.rv{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(.22,1,.36,1),transform 0.8s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
-.rv-d4{transition-delay:.4s}.rv-d5{transition-delay:.5s}.rv-d6{transition-delay:.6s}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}
 
 /* ═══ NAV ═══ */
-nav{position:fixed;top:0;left:0;width:100%;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s}
-nav.scrolled{background:rgba(2,2,2,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1)}
-.nav-logo{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--t1);text-decoration:none;letter-spacing:-.02em}
-.nav-logo span{color:var(--ac);font-weight:800}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.7rem;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--ac);transition:width .3s}
-.nav-links a:hover{color:var(--t2)}
+nav{position:fixed;top:0;left:0;width:100%;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s cubic-bezier(.22,1,.36,1)}
+nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1)}
+.nav-logo{font-family:var(--heading);font-weight:700;font-size:1.1rem;color:var(--t1);text-decoration:none;letter-spacing:-.03em;position:relative; z-index: 101;}
+.nav-logo span{color:var(--ac)}
+.nav-logo::after{content:'_';color:var(--ac);font-family:var(--mono);animation:blink 1.2s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:32px;list-style:none; z-index: 100;}
+.nav-links a{font-family:var(--mono);font-size:.75rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s;position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--ac);transition:width .3s cubic-bezier(.22,1,.36,1)}
+.nav-links a:hover{color:var(--t1)}
 .nav-links a:hover::after{width:100%}
+
+/* Mobile Menu Button */
+.menu-btn{display:none; flex-direction:column; gap:6px; background:none; border:none; cursor:pointer; z-index:101; padding:10px;}
+.menu-btn span{width:24px; height:2px; background:var(--t1); transition:0.3s;}
+.menu-btn.active span:nth-child(1){transform:translateY(8px) rotate(45deg); background:var(--ac);}
+.menu-btn.active span:nth-child(2){opacity:0;}
+.menu-btn.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg); background:var(--ac);}
 
 /* ═══ HERO ═══ */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;opacity:.03;
-  background-image:linear-gradient(var(--b1) 1px,transparent 1px),linear-gradient(90deg,var(--b1) 1px,transparent 1px);
-  background-size:60px 60px;
-}
-.hero-gradient{position:absolute;top:-30%;right:-20%;width:80vw;height:80vw;
-  background:radial-gradient(circle,rgba(0,212,170,.04) 0%,transparent 60%);pointer-events:none;
-}
-.hero-tag{font-family:var(--mono);font-size:.65rem;color:var(--t3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px}
-.hero-tag::before{content:'';width:24px;height:1px;background:var(--ac)}
-.hero-name{font-family:var(--display);font-size:clamp(3rem,8vw,7rem);font-weight:800;letter-spacing:-.04em;line-height:.9;margin-bottom:16px;color:var(--t1)}
-.hero-name span{color:var(--ac);display:inline-block;position:relative}
-.hero-role{font-family:var(--sans);font-size:clamp(1rem,2vw,1.4rem);font-weight:500;color:var(--t2);margin-bottom:32px;max-width:580px;line-height:1.6}
-.hero-metrics{display:flex;gap:48px;margin-top:40px}
-.metric{position:relative;padding-left:16px}
-.metric::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;background:var(--ac);opacity:.4}
-.metric-val{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--t1);letter-spacing:-.02em}
-.metric-val span{color:var(--ac)}
-.metric-lbl{font-family:var(--mono);font-size:.6rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
-.hero-scroll{position:absolute;bottom:40px;left:48px;font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:12px;animation:pulse 2s ease-in-out infinite}
-.hero-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(var(--ac),transparent)}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+.hero-grid{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(rgba(0,229,176,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,176,.15) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 20%,transparent 70%);}
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);}
+.hero-orb-1{top:-15%;right:-5%;width:50vw;height:50vw;background:rgba(0,229,176,.03)}
+.hero-orb-2{bottom:-20%;left:-10%;width:40vw;height:40vw;background:rgba(0,229,176,.015)}
+
+.hero-tag{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;}
+.hero-tag .line{width:32px;height:1px;background:var(--ac);opacity:.5}
+.hero-tag .dot{width:4px;height:4px;background:var(--ac);border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+
+.hero-name{font-family:var(--heading);font-size:clamp(3.5rem,8vw,7.5rem);font-weight:700;letter-spacing:-.06em;line-height:.9;margin-bottom:24px;color:var(--t1);}
+.hero-name .accent{color:transparent;-webkit-text-stroke:2px var(--ac);position:relative;display:inline-block;}
+.hero-name .accent::after{content:'';position:absolute;bottom:8px;left:0;width:100%;height:3px;background:var(--ac);opacity:.3;}
+
+/* Glitch Hover */
+.hero-name:hover .accent{animation:glitch .3s ease;}
+@keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,-1px)}80%{transform:translate(1px,2px)}}
+
+.hero-sub{font-family:var(--body);font-size:clamp(1rem,2vw,1.15rem);font-weight:300;color:var(--t2);margin-bottom:48px;max-width:600px;line-height:1.8;letter-spacing:-.01em;}
+.hero-sub strong{color:var(--t1);font-weight:500}
+
+.hero-stats{display:flex;gap:48px;margin-top:16px}
+.stat{position:relative;padding-left:20px}
+.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ac),transparent);opacity:.4;}
+.stat-num{font-family:var(--heading);font-size:2.5rem;font-weight:700;color:var(--t1);letter-spacing:-.04em;line-height:1; display:flex; align-items:baseline;}
+.stat-num span.suffix{color:var(--ac);font-weight:600; font-size:1.8rem;}
+.stat-label{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+
+.scroll-hint{position:absolute;bottom:40px;left:48px;display:flex;align-items:center;gap:14px; text-decoration:none; cursor:pointer; opacity: 0.7; transition: opacity 0.3s;}
+.scroll-hint:hover{opacity: 1;}
+.scroll-line{width:1px;height:48px;background:linear-gradient(180deg,var(--ac),transparent);opacity:.5;animation:scrollPulse 2.5s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.2;height:48px}50%{opacity:.8;height:56px}}
+.scroll-text{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-lr}
 
 /* ═══ SECTIONS ═══ */
 section{padding:120px 48px;position:relative}
-.sec-label{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
-.sec-label::before{content:'';width:8px;height:8px;border:1px solid var(--ac);border-radius:1px;opacity:.5}
-.sec-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:48px;color:var(--t1)}
-.sec-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--b1),var(--b2),var(--b1))}
+.sec-num{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t4);letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sec-num .dash{width:24px;height:1px;background:var(--ac);opacity:.4}
+.sec-heading{font-family:var(--heading);font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:700;letter-spacing:-.05em;margin-bottom:64px;color:var(--t1);line-height:1.1;}
+.sec-heading .ghost{color:transparent;-webkit-text-stroke:1px var(--t4)}
+.divider{width:100%;height:1px;background:var(--b1)}
 
 /* ═══ ABOUT ═══ */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px}
-.about-text{font-size:1.05rem;line-height:1.85;color:var(--t2);max-width:540px}
-.about-text strong{color:var(--t1);font-weight:600}
-.about-detail{display:flex;flex-direction:column;gap:20px}
-.detail-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--b1)}
-.detail-key{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
-.detail-val{font-family:var(--sans);font-size:.85rem;color:var(--t1);text-align:right}
-.detail-val a{color:var(--ac);text-decoration:none;transition:opacity .3s}
-.detail-val a:hover{opacity:.7}
-
-/* ═══ EXPERIENCE ═══ */
-.exp-list{max-width:900px;display:flex;flex-direction:column;gap:0}
-.exp-item{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:32px 0;border-bottom:1px solid var(--b1);transition:background .3s;position:relative}
-.exp-item:hover{background:var(--ac5)}
-.exp-item:hover .exp-company{color:var(--ac)}
-.exp-period{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.05em;padding-top:4px}
-.exp-company{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--t1);margin-bottom:2px;transition:color .3s;letter-spacing:-.01em}
-.exp-role{font-family:var(--sans);font-size:.85rem;color:var(--ac2);margin-bottom:12px;font-weight:500}
-.exp-desc{font-size:.85rem;color:var(--t2);line-height:1.7;max-width:560px}
-.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.exp-tag{font-family:var(--mono);font-size:.55rem;color:var(--t3);padding:3px 8px;border:1px solid var(--b2);border-radius:2px;letter-spacing:.05em;text-transform:uppercase}
-
-/* ═══ PROJECTS ═══ */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1px;background:var(--b1);max-width:1100px}
-.proj-card{background:var(--bg);padding:36px;transition:all .4s;position:relative;overflow:hidden}
-.proj-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--ac);transition:width .5s cubic-bezier(.16,1,.3,1)}
-.proj-card:hover{background:var(--bg2)}
-.proj-card:hover::before{width:100%}
-.proj-card:hover .proj-arrow{transform:translate(3px,-3px);opacity:1}
-.proj-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.proj-name{font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--t1);letter-spacing:-.01em}
-.proj-badge{font-family:var(--mono);font-size:.55rem;color:var(--ac);padding:3px 8px;border:1px solid var(--ac4);border-radius:2px;letter-spacing:.08em;white-space:nowrap}
-.proj-desc{font-size:.85rem;color:var(--t2);line-height:1.7;margin-bottom:16px}
-.proj-stat{font-family:var(--mono);font-size:.65rem;color:var(--t3);letter-spacing:.05em;margin-bottom:16px}
-.proj-stat span{color:var(--ac)}
-.proj-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.65rem;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
-.proj-link:hover{color:var(--ac)}
-.proj-arrow{display:inline-block;transition:all .3s;opacity:.5}
-
-/* ═══ DEMOS ═══ */
-.demos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:24px;max-width:1100px}
-.demo-card{background:var(--bg2);border:1px solid var(--b1);border-radius:4px;overflow:hidden;transition:all .4s;position:relative}
-.demo-card:hover{border-color:var(--b3);transform:translateY(-2px)}
-.demo-card:hover .demo-info{border-color:var(--b3)}
-.demo-card:hover .demo-title{color:var(--ac)}
-.demo-embed{position:relative;width:100%;padding-top:56.25%;background:var(--bg);overflow:hidden}
-.demo-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.demo-embed-link{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-decoration:none;transition:all .3s;background:var(--bg3)}
-.demo-embed-link:hover{background:var(--bg4)}
-.demo-embed-link:hover .demo-play-icon{border-color:var(--ac);color:var(--ac);transform:scale(1.08)}
-.demo-play-icon{width:56px;height:56px;border-radius:50%;border:2px solid var(--b3);display:flex;align-items:center;justify-content:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
-.demo-play-icon svg{width:20px;height:20px;fill:none;stroke:var(--t2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.demo-embed-link:hover .demo-play-icon svg{stroke:var(--ac)}
-.demo-play-label{font-family:var(--mono);font-size:.55rem;color:var(--t4);letter-spacing:.15em;text-transform:uppercase}
-.demo-platform-badge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;z-index:2}
-.demo-platform-badge.yt{color:#ff4444;background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.15)}
-.demo-platform-badge.x{color:var(--t2);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
-.demo-info{padding:20px 24px;border-top:1px solid var(--b1);transition:border-color .4s}
-.demo-title{font-family:var(--display);font-size:.95rem;font-weight:700;color:var(--t1);margin-bottom:4px;transition:color .3s;letter-spacing:-.01em}
-.demo-desc{font-family:var(--mono);font-size:.6rem;color:var(--t3);letter-spacing:.05em;text-transform:uppercase}
+.about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;max-width:1100px}
+.about-text{font-family:var(--body);font-size:1.1rem;line-height:1.85;color:var(--t2);font-weight:300;letter-spacing:-.01em;}
+.about-text strong{color:var(--t1);font-weight:500}
+.about-details{display:flex;flex-direction:column;gap:0}
+.detail{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--b1);transition:all .3s}
+.detail:hover{padding-left:12px;border-color:var(--ac); background: linear-gradient(90deg, var(--ac-glow3), transparent);}
+.detail-k{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+.detail-v{font-family:var(--body);font-size:.95rem;color:var(--t1);text-align:right;font-weight:400}
+.detail-v a{color:var(--ac);text-decoration:none;transition:opacity .3s}
+.detail-v a:hover{opacity:.7; text-decoration:underline; text-underline-offset: 4px;}
+.status-dot{display:inline-block;width:8px;height:8px;background:var(--ac);border-radius:50%;margin-right:8px;animation:dotPulse 2s ease-in-out infinite; box-shadow: 0 0 8px var(--ac);}
 
 /* ═══ OPEN SOURCE ═══ */
-.os-grid{display:flex;flex-direction:column;gap:0;max-width:900px}
-.os-item{display:grid;grid-template-columns:1fr auto;gap:24px;padding:20px 0;border-bottom:1px solid var(--b1);transition:all .3s;align-items:center}
-.os-item:hover{padding-left:12px;background:var(--ac5)}
-.os-item:hover .os-name{color:var(--ac)}
-.os-left{display:flex;align-items:baseline;gap:16px}
-.os-name{font-family:var(--display);font-size:.95rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.01em;white-space:nowrap}
-.os-desc{font-size:.8rem;color:var(--t3);line-height:1.5}
-.os-lang{font-family:var(--mono);font-size:.55rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--b2);border-radius:2px;white-space:nowrap}
-.os-lang.lua{color:var(--ac);border-color:var(--ac4)}
-.os-lang.py{color:#c9a040;border-color:rgba(201,160,64,.2)}
-.os-lang.js{color:#c070c0;border-color:rgba(192,112,192,.2)}
-.os-link-wrap{display:flex;align-items:center}
-.os-link{font-family:var(--mono);font-size:.6rem;color:var(--t4);text-decoration:none;letter-spacing:.05em;transition:color .3s;white-space:nowrap}
-.os-link:hover{color:var(--ac)}
+.os-featured{max-width:1100px; display: flex; flex-direction: column; gap: 12px;}
+.os-card{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;padding:32px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;text-decoration:none;color:inherit;}
+.os-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,var(--ac),transparent);transition:height .4s cubic-bezier(.22,1,.36,1);}
+.os-card:hover{border-color:var(--b3);transform:translateX(8px); background:var(--b1); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);}
+.os-card:hover::before{height:100%}
+.os-card:hover .os-name{color:var(--ac)}
+.os-card:hover .os-arrow{transform:translateX(6px);color:var(--ac); opacity:1}
+
+.os-main{position:relative;z-index:1}
+.os-top{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.os-name{font-family:var(--heading);font-size:1.3rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
+.os-lang-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+.os-lang-tag.luau{color:var(--ac);background:var(--ac-glow);border:1px solid rgba(0,229,176,.15)}
+.os-lang-tag.python{color:#e0a040;background:rgba(224,160,64,.08);border:1px solid rgba(224,160,64,.15)}
+.os-lang-tag.ts{color:#6090e0;background:rgba(96,144,224,.08);border:1px solid rgba(96,144,224,.15)}
+.os-desc{font-family:var(--body);font-size:.95rem;color:var(--t2);line-height:1.6;max-width:600px;letter-spacing:-.01em;}
+.os-right{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.os-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.6}
 
 /* ═══ STACK ═══ */
-.stack-wrap{max-width:900px;display:flex;flex-direction:column;gap:40px}
-.stack-cat-label{font-family:var(--mono);font-size:.6rem;color:var(--ac2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;padding-left:2px}
-.stack-row{display:flex;flex-wrap:wrap;gap:8px}
-.stack-pill{font-family:var(--mono);font-size:.7rem;color:var(--t2);padding:8px 16px;background:var(--bg3);border:1px solid var(--b1);border-radius:3px;transition:all .3s;cursor:default;letter-spacing:.02em}
-.stack-pill:hover{border-color:var(--ac4);color:var(--t1);background:var(--bg4)}
+.stack-grid{max-width:1100px;display:flex;flex-direction:column;gap:56px}
+.stack-category{position:relative}
+.stack-cat-name{font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--ac2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+.stack-cat-name::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:.8rem;font-weight:400;color:var(--t2);padding:10px 20px;background:var(--bg2);border:1px solid var(--b1);border-radius:20px;transition:all .3s ease;cursor:default;letter-spacing:0em;position:relative;overflow:hidden;}
+.pill:hover{border-color:rgba(0,229,176,.3);color:var(--t1);transform:translateY(-2px); background:var(--ac-glow);}
 
 /* ═══ CONTACT ═══ */
-.contact-wrap{max-width:700px}
-.contact-text{font-size:1.05rem;color:var(--t2);line-height:1.8;margin-bottom:40px}
-.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.contact-btn{font-family:var(--mono);font-size:.65rem;color:var(--t2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--b2);border-radius:3px;transition:all .3s;display:inline-flex;align-items:center;gap:10px}
-.contact-btn:hover{border-color:var(--ac);color:var(--ac);background:var(--ac5)}
-.contact-btn.primary{border-color:var(--ac4);color:var(--ac);background:var(--ac3)}
-.contact-btn.primary:hover{background:var(--ac4)}
-.contact-pay{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.05em;margin-top:24px}
-.contact-pay span{color:var(--t3)}
+.contact-inner{max-width:700px}
+.contact-text{font-family:var(--body);font-size:1.25rem;color:var(--t2);line-height:1.7;margin-bottom:48px;font-weight:300;letter-spacing:-.01em;}
+.contact-links{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.cbtn{font-family:var(--mono);font-size:.75rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b3);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2);}
+.cbtn:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px); box-shadow: 0 4px 15px var(--ac-glow);}
+.cbtn.main{border-color:rgba(0,229,176,.3);color:var(--ac);background:var(--ac-glow)}
+.cbtn.main:hover{background:var(--ac-glow2); box-shadow: 0 4px 20px var(--ac-glow2);}
+.contact-note{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.02em}
+.contact-note span{color:var(--t2)}
 
 /* ═══ FOOTER ═══ */
-footer{padding:40px 48px;border-top:1px solid var(--b1)}
-.footer-inner{display:flex;justify-content:space-between;align-items:center}
-.footer-left{font-family:var(--mono);font-size:.6rem;color:var(--t4);letter-spacing:.05em}
-.footer-left span{color:var(--ac)}
-.footer-right{display:flex;gap:24px}
-.footer-right a{font-family:var(--mono);font-size:.6rem;color:var(--t4);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
-.footer-right a:hover{color:var(--ac)}
+footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
+.footer-in{display:flex;justify-content:space-between;align-items:center; max-width: 1100px;}
+.footer-l{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.02em}
+.footer-l span{color:var(--ac);font-weight:600;}
+.footer-r{display:flex;gap:24px}
+.footer-r a{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.footer-r a:hover{color:var(--ac)}
+
+/* ═══ MAGNETIC HOVER ═══ */
+.magnetic{display:inline-block; transition:transform 0.1s linear;}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:768px){
-  nav{padding:16px 24px}
-  .nav-links{display:none}
-  .hero,.section-wrap,section{padding-left:24px;padding-right:24px}
-  .hero-metrics{flex-wrap:wrap;gap:24px}
-  .hero-scroll{display:none}
-  .about-grid{grid-template-columns:1fr;gap:40px}
-  .exp-item{grid-template-columns:1fr;gap:8px}
-  .proj-grid{grid-template-columns:1fr}
-  .demos-grid{grid-template-columns:1fr}
-  .os-item{grid-template-columns:1fr;gap:8px}
-  .os-left{flex-direction:column;gap:4px}
-  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+  nav{padding:16px 24px;}
+  .menu-btn{display:flex;}
+  
+  /* Mobile Menu Overlay */
+  .nav-links{
+    position:fixed; top:0; left:0; width:100%; height:100vh; background:rgba(0,0,0,0.95);
+    backdrop-filter:blur(10px); flex-direction:column; justify-content:center; align-items:center;
+    gap:40px; transform:translateY(-100%); transition:transform 0.4s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-links.open{transform:translateY(0);}
+  .nav-links a{font-size:1.2rem;}
+
+  .hero,section{padding:80px 24px;}
+  .hero-name{font-size: 3.2rem;}
+  .hero-stats{flex-direction:column;gap:32px;}
+  .stat::before{width:100%; height:2px; left:0; top:-10px; background:linear-gradient(90deg,var(--ac),transparent);}
+  .stat{padding-left:0; padding-top:10px;}
+  .scroll-hint{display:none}
+  .about-layout{grid-template-columns:1fr;gap:48px}
+  .os-card{grid-template-columns:1fr;gap:16px; padding:24px;}
+  .os-top{flex-wrap: wrap;}
+  .contact-links{flex-direction:column;}
+  .cbtn{justify-content:center;}
+  .footer-in{flex-direction:column;gap:16px;text-align:center}
 }
+
+/* Stagger Animations */
+.stagger > *:nth-child(1){transition-delay:.05s}
+.stagger > *:nth-child(2){transition-delay:.1s}
+.stagger > *:nth-child(3){transition-delay:.15s}
+.stagger > *:nth-child(4){transition-delay:.2s}
+.stagger > *:nth-child(5){transition-delay:.25s}
 </style>
 </head>
 <body>
 
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="scanline"></div>
+
 <nav id="nav">
   <a href="#" class="nav-logo">m2hcs<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#demos">Demos</a></li>
-    <li><a href="#opensource">Open Source</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#stack" class="nav-link">Stack</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-gradient"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
 
-  <div class="hero-tag rv rv-d1">Senior Backend Developer & Security Researcher</div>
+  <div class="hero-tag rv d1">
+    <span class="dot"></span>
+    <span class="line"></span>
+    Software Engineer & Security Researcher
+  </div>
 
-  <h1 class="hero-name rv rv-d2">m2hcs<span>.</span></h1>
+  <h1 class="hero-name rv d2">m2hcs<span class="accent">.</span></h1>
 
-  <p class="hero-role rv rv-d3">
-    Engineering scalable game backends and security infrastructure since 2014.
-    Currently leading development on a live title with 2k+ concurrent users.
+  <p class="hero-sub rv d3">
+    Building <strong>secure, scalable systems</strong> and conducting <strong>offensive security research</strong>.
+    Focused on backend engineering, vulnerability analysis, and infrastructure that's both
+    performant and resilient.
   </p>
 
-  <div class="hero-metrics rv rv-d4">
-    <div class="metric">
-      <div class="metric-val">12<span>yr</span></div>
-      <div class="metric-lbl">Development</div>
+  <div class="hero-stats rv d4">
+    <div class="stat">
+      <!-- HTML ajustado para não quebrar no JS -->
+      <div class="stat-num"><span class="counter" data-target="12">0</span><span class="suffix">yr</span></div>
+      <div class="stat-label">Development</div>
     </div>
-    <div class="metric">
-      <div class="metric-val">25<span>k</span></div>
-      <div class="metric-lbl">Peak CCU</div>
+    <div class="stat">
+      <div class="stat-num"><span class="counter" data-target="9">0</span><span class="suffix">yr</span></div>
+      <div class="stat-label">InfoSec</div>
     </div>
-    <div class="metric">
-      <div class="metric-val">1.3<span>M+</span></div>
-      <div class="metric-lbl">Group Members</div>
-    </div>
-    <div class="metric">
-      <div class="metric-val">9<span>yr</span></div>
-      <div class="metric-lbl">InfoSec</div>
+    <div class="stat">
+      <div class="stat-num"><span class="counter" data-target="7">0</span><span class="suffix">+</span></div>
+      <div class="stat-label">Open Source Projects</div>
     </div>
   </div>
 
-  <div class="hero-scroll">Scroll</div>
+  <a href="#about" class="scroll-hint rv d5">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </a>
 </section>
 
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about">
-  <div class="sec-label rv">// 001</div>
-  <h2 class="sec-title rv rv-d1">About</h2>
+  <div class="sec-num rv"><span class="dash"></span>001</div>
+  <h2 class="sec-heading rv d1">About <span class="ghost">me</span></h2>
 
-  <div class="about-grid">
-    <div class="about-text rv rv-d2">
-      Backend-focused engineer with <strong>12 years of hands-on experience</strong> building
-      high-concurrency game systems, live-ops infrastructure, and security tooling.
-      Currently serving as Developer for Massacre, managing the entire backend
-      architecture for a game sustaining 1.2k–2.2k concurrent users daily.
+  <div class="about-layout">
+    <div class="about-text rv d2">
+      Software engineer with <strong>12 years of hands-on experience</strong> building
+      backend systems, security tooling, and distributed infrastructure.
+      Deep background in <strong>offensive security and vulnerability research</strong> —
+      mapping attack surfaces, building exploit chains, and running red team
+      engagements with disciplined OPSEC.
       <br><br>
-      Background in <strong>offensive security and vulnerability research</strong> — mapping
-      attack surfaces, building exploit chains, and running red team engagements with
-      disciplined OPSEC. I bridge gameplay engineering and cybersecurity to build systems
-      that are both performant and resilient.
+      I bridge software engineering and cybersecurity to build systems that are
+      both <strong>performant and resilient</strong>. Passionate about clean architecture,
+      threat modeling, and infrastructure hardening.
     </div>
 
-    <div class="about-detail rv rv-d3">
-      <div class="detail-row">
-        <span class="detail-key">Location</span>
-        <span class="detail-val">Brazil</span>
+    <div class="about-details rv d3 stagger">
+      <div class="detail">
+        <span class="detail-k">Location</span>
+        <span class="detail-v">Brazil</span>
       </div>
-      <div class="detail-row">
-        <span class="detail-key">Languages</span>
-        <span class="detail-val">Portuguese (native), English (professional)</span>
+      <div class="detail">
+        <span class="detail-k">Languages</span>
+        <span class="detail-v">Portuguese (native) · English</span>
       </div>
-      <div class="detail-row">
-        <span class="detail-key">Education</span>
-        <span class="detail-val">BSc Information Security</span>
+      <div class="detail">
+        <span class="detail-k">Email</span>
+        <span class="detail-v"><a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a></span>
       </div>
-      <div class="detail-row">
-        <span class="detail-key">Email</span>
-        <span class="detail-val"><a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a></span>
+      <div class="detail">
+        <span class="detail-k">GitHub</span>
+        <span class="detail-v"><a href="https://github.com/m2hcz" target="_blank">github.com/m2hcz</a></span>
       </div>
-      <div class="detail-row">
-        <span class="detail-key">GitHub</span>
-        <span class="detail-val"><a href="https://github.com/m2hcz" target="_blank">github.com/m2hcz</a></span>
+      <div class="detail">
+        <span class="detail-k">Twitter</span>
+        <span class="detail-v"><a href="https://x.com/inf0secc" target="_blank">@inf0secc</a></span>
       </div>
-      <div class="detail-row">
-        <span class="detail-key">Twitter</span>
-        <span class="detail-val"><a href="https://x.com/inf0secc" target="_blank">@inf0secc</a></span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-key">Availability</span>
-        <span class="detail-val" style="color:var(--ac)">Open to work</span>
+      <div class="detail">
+        <span class="detail-k">Status</span>
+        <span class="detail-v" style="color:var(--ac)"><span class="status-dot"></span>Open to work</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="sec-divider"></div>
-
-<!-- ═══ EXPERIENCE ═══ -->
-<section id="experience">
-  <div class="sec-label rv">// 002</div>
-  <h2 class="sec-title rv rv-d1">Experience</h2>
-
-  <div class="exp-list">
-    <div class="exp-item rv rv-d2">
-      <div class="exp-period">2025-2026 — Present</div>
-      <div>
-        <div class="exp-company">Massacre</div>
-        <div class="exp-role">Lead Developer</div>
-        <div class="exp-desc">
-          Architect and maintain the entire backend for a live horror/survival game sustaining
-          1.2k–2.2k concurrent users. Designed DataStore infrastructure with sharding, WAL,
-          and cross-server replication. Built server-authoritative combat, perk systems, economy
-          pipeline, anti-exploit validation, and votekick anti-abuse architecture.
-        </div>
-        <div class="exp-tags">
-          <span class="exp-tag">Luau</span>
-          <span class="exp-tag">DataStore</span>
-          <span class="exp-tag">MessagingService</span>
-          <span class="exp-tag">Live-Ops</span>
-          <span class="exp-tag">Anti-Cheat</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item rv rv-d3">
-      <div class="exp-period">2025</div>
-      <div>
-        <div class="exp-company">Last Letter</div>
-        <div class="exp-role">Game Systems Developer</div>
-        <div class="exp-desc">
-          Developed core gameplay systems, networking layers, and data persistence
-          for multiple game projects with modular, reusable architectures.
-        </div>
-        <div class="exp-tags">
-          <span class="exp-tag">Luau</span>
-          <span class="exp-tag">Networking</span>
-          <span class="exp-tag">Data Persistence</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item rv rv-d3">
-      <div class="exp-period">2014 — 2020</div>
-      <div>
-        <div class="exp-company">Freelance</div>
-        <div class="exp-role">Developer</div>
-        <div class="exp-desc">
-          Self-taught since 2014. Progressively built expertise across Lua/Luau,
-          Python, web platforms, backend architecture, and security fundamentals
-          through increasingly complex projects.
-        </div>
-        <div class="exp-tags">
-          <span class="exp-tag">Lua</span>
-          <span class="exp-tag">Python</span>
-          <span class="exp-tag">Web</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sec-divider"></div>
-
-<!-- ═══ PROJECTS ═══ -->
-<section id="projects">
-  <div class="sec-label rv">// 003</div>
-  <h2 class="sec-title rv rv-d1">Projects</h2>
-
-  <div class="proj-grid rv rv-d2">
-    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="proj-card" style="text-decoration:none">
-      <div class="proj-head">
-        <div class="proj-name">Massacre</div>
-        <div class="proj-badge">LEAD DEV</div>
-      </div>
-      <div class="proj-desc">
-        Horror/survival game — survivors hide from the killer. Responsible for
-        entire backend: combat, economy, anti-cheat, data persistence, live-ops.
-      </div>
-      <div class="proj-stat"><span>1.2k–2.2k</span> concurrent users</div>
-      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
-    </a>
-
-    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" class="proj-card" style="text-decoration:none">
-      <div class="proj-head">
-        <div class="proj-name">Last Letter</div>
-        <div class="proj-badge">BACKEND</div>
-      </div>
-      <div class="proj-desc">
-        Word game where each player must start with the last letter of the
-        previous word. Built validation, anti-cheat, and backend systems.
-      </div>
-      <div class="proj-stat">Backend architecture</div>
-      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
-    </a>
-
-    <a href="https://www.roblox.com/games/14511049/EB-Ex-rcito-Brasileiro" target="_blank" class="proj-card" style="text-decoration:none">
-      <div class="proj-head">
-        <div class="proj-name">Exército Brasileiro</div>
-        <div class="proj-badge">SYSTEMS</div>
-      </div>
-      <div class="proj-desc">
-        Military simulation. Ranking systems, training mechanics, and
-        combat with server-authoritative validation.
-      </div>
-      <div class="proj-stat">Military simulation</div>
-      <div class="proj-link">Play <span class="proj-arrow">↗</span></div>
-    </a>
-  </div>
-</section>
-
-<div class="sec-divider"></div>
-
-<!-- ═══ DEMOS ═══ -->
-<section id="demos">
-  <div class="sec-label rv">// 004</div>
-  <h2 class="sec-title rv rv-d1">Demos</h2>
-
-  <div class="demos-grid">
-
-    <!-- Procedural World Generation -->
-    <div class="demo-card rv rv-d2">
-      <div class="demo-embed">
-        <span class="demo-platform-badge yt">YouTube</span>
-        <iframe src="https://www.youtube.com/embed/pf4V4JApDHM" title="Procedural World Generation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">Procedural World Generation</div>
-        <div class="demo-desc">Runtime terrain & biome generation system</div>
-      </div>
-    </div>
-
-    <!-- Gun System -->
-    <div class="demo-card rv rv-d2">
-      <div class="demo-embed">
-        <span class="demo-platform-badge yt">YouTube</span>
-        <iframe src="https://www.youtube.com/embed/O4aq18kq9Ek" title="Gun System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">Gun System</div>
-        <div class="demo-desc">Server-authoritative weapon framework</div>
-      </div>
-    </div>
-
-    <!-- Re-roll Perks -->
-    <div class="demo-card rv rv-d3">
-      <div class="demo-embed">
-        <span class="demo-platform-badge yt">YouTube</span>
-        <iframe src="https://www.youtube.com/embed/yxRt3mg-TTw" title="Re-roll Perks" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">Perk Re-roll System</div>
-        <div class="demo-desc">Weighted RNG with economy integration</div>
-      </div>
-    </div>
-
-    <!-- Testing a system -->
-    <div class="demo-card rv rv-d3">
-      <div class="demo-embed">
-        <span class="demo-platform-badge yt">YouTube</span>
-        <iframe src="https://www.youtube.com/embed/ZtMgbzYnNBc" title="System Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">System Testing</div>
-        <div class="demo-desc">Internal testing for a large-scale project in development</div>
-      </div>
-    </div>
-
-    <!-- PVP System (X/Twitter) -->
-    <a href="https://x.com/inf0secc/status/2018043651947958754" target="_blank" class="demo-card rv rv-d4" style="text-decoration:none;color:inherit">
-      <div class="demo-embed">
-        <span class="demo-platform-badge x">X / Twitter</span>
-        <div class="demo-embed-link">
-          <div class="demo-play-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </div>
-          <div class="demo-play-label">Watch on X</div>
-        </div>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">PVP System</div>
-        <div class="demo-desc">Server-authoritative player vs player combat</div>
-      </div>
-    </a>
-
-    <!-- X post 2 -->
-    <a href="https://x.com/inf0secc/status/1999099988442272170" target="_blank" class="demo-card rv rv-d4" style="text-decoration:none;color:inherit">
-      <div class="demo-embed">
-        <span class="demo-platform-badge x">X / Twitter</span>
-        <div class="demo-embed-link">
-          <div class="demo-play-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </div>
-          <div class="demo-play-label">Watch on X</div>
-        </div>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">Gameplay Demo</div>
-        <div class="demo-desc">Live gameplay showcase</div>
-      </div>
-    </a>
-
-    <!-- X post 3 -->
-    <a href="https://x.com/inf0secc/status/1999102423621628222" target="_blank" class="demo-card rv rv-d5" style="text-decoration:none;color:inherit">
-      <div class="demo-embed">
-        <span class="demo-platform-badge x">X / Twitter</span>
-        <div class="demo-embed-link">
-          <div class="demo-play-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </div>
-          <div class="demo-play-label">Watch on X</div>
-        </div>
-      </div>
-      <div class="demo-info">
-        <div class="demo-title">Gameplay Demo</div>
-        <div class="demo-desc">Live gameplay showcase</div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
 <!-- ═══ OPEN SOURCE ═══ -->
-<section id="opensource">
-  <div class="sec-label rv">// 005</div>
-  <h2 class="sec-title rv rv-d1">Open Source</h2>
+<section id="projects">
+  <div class="sec-num rv"><span class="dash"></span>002</div>
+  <h2 class="sec-heading rv d1">Open <span class="ghost">Source</span></h2>
 
-  <div class="os-grid">
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="os-item rv rv-d2" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">NetSentinel</div>
-        <div class="os-desc">Network security monitoring and threat detection</div>
+  <div class="os-featured stagger">
+
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="os-card rv hover-trigger">
+      <div class="os-main">
+        <div class="os-top">
+          <div class="os-name">NetSentinel</div>
+          <span class="os-lang-tag luau">Luau</span>
+        </div>
+        <div class="os-desc">Network security monitoring and threat detection framework. Real-time traffic analysis with configurable alert thresholds.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang lua">Luau</span>
-      </div>
+      <div class="os-right"><span class="os-arrow">→</span></div>
     </a>
 
-    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="os-item rv rv-d2" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">PhantomNet</div>
-        <div class="os-desc">Optimized networking library for client-server communication</div>
+    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="os-card rv hover-trigger">
+      <div class="os-main">
+        <div class="os-top">
+          <div class="os-name">PhantomNet</div>
+          <span class="os-lang-tag luau">Luau</span>
+        </div>
+        <div class="os-desc">Optimized networking library for high-performance client-server communication with delta compression and packet batching.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang lua">Luau</span>
-      </div>
+      <div class="os-right"><span class="os-arrow">→</span></div>
     </a>
 
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="os-item rv rv-d3" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">ReconMapper v2</div>
-        <div class="os-desc">Automated reconnaissance and attack surface mapping</div>
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="os-card rv hover-trigger">
+      <div class="os-main">
+        <div class="os-top">
+          <div class="os-name">ReconMapper v2</div>
+          <span class="os-lang-tag python">Python</span>
+        </div>
+        <div class="os-desc">Automated reconnaissance and attack surface mapping tool. Subdomain enumeration, port scanning, and vulnerability fingerprinting.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang py">Python</span>
-      </div>
+      <div class="os-right"><span class="os-arrow">→</span></div>
     </a>
 
-    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="os-item rv rv-d3" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">Race-Family-Reroll</div>
-        <div class="os-desc">Gacha/RNG system with weighted pools for anime RPG games</div>
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="os-card rv hover-trigger">
+      <div class="os-main">
+        <div class="os-top">
+          <div class="os-name">SQLi Scanner</div>
+          <span class="os-lang-tag ts">TypeScript</span>
+        </div>
+        <div class="os-desc">Automated SQL injection detection and vulnerability scanner with payload generation and response analysis.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang lua">Luau</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/m2hcz/OOPModule" target="_blank" class="os-item rv rv-d4" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">OOPModule</div>
-        <div class="os-desc">Object-oriented framework for Luau with inheritance</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang lua">Luau</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="os-item rv rv-d4" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">SQLi Scanner</div>
-        <div class="os-desc">SQL injection detection and vulnerability automation</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang py">Typescript</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="os-item rv rv-d5" style="text-decoration:none;color:inherit">
-      <div class="os-left">
-        <div class="os-name">Next.js Middleware PoC</div>
-        <div class="os-desc">Proof-of-concept for middleware auth bypass vulnerability</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="os-lang js">Python</span>
-      </div>
+      <div class="os-right"><span class="os-arrow">→</span></div>
     </a>
   </div>
 </section>
 
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
 <!-- ═══ STACK ═══ -->
 <section id="stack">
-  <div class="sec-label rv">// 006</div>
-  <h2 class="sec-title rv rv-d1">Stack</h2>
+  <div class="sec-num rv"><span class="dash"></span>003</div>
+  <h2 class="sec-heading rv d1">Tech <span class="ghost">Stack</span></h2>
 
-  <div class="stack-wrap">
-    <div class="rv rv-d2">
-      <div class="stack-cat-label">Languages</div>
-      <div class="stack-row">
-        <span class="stack-pill">Lua / Luau</span>
-        <span class="stack-pill">Python</span>
-        <span class="stack-pill">TypeScript</span>
-        <span class="stack-pill">Rust</span>
-        <span class="stack-pill">Go</span>
-        <span class="stack-pill">C</span>
-        <span class="stack-pill">C#</span>
-        <span class="stack-pill">Bash</span>
-        <span class="stack-pill">XAML</span>
+  <div class="stack-grid">
+    <div class="stack-category rv d2">
+      <div class="stack-cat-name">Languages</div>
+      <div class="pills">
+        <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">Rust</span>
+        <span class="pill">Go</span><span class="pill">C</span><span class="pill">C#</span>
+        <span class="pill">Lua / Luau</span><span class="pill">Bash</span><span class="pill">SQL</span>
       </div>
     </div>
 
-    <div class="rv rv-d3">
-      <div class="stack-cat-label">Platforms & Infra</div>
-      <div class="stack-row">
-        <span class="stack-pill">Roblox Studio</span>
-        <span class="stack-pill">DataStores</span>
-        <span class="stack-pill">MessagingService</span>
-        <span class="stack-pill">Linux</span>
-        <span class="stack-pill">Docker</span>
-        <span class="stack-pill">Kubernetes</span>
-        <span class="stack-pill">Terraform</span>
-        <span class="stack-pill">Cloudflare</span>
-        <span class="stack-pill">GitHub Actions</span>
-        <span class="stack-pill">WPF / .NET 8</span>
+    <div class="stack-category rv d3">
+      <div class="stack-cat-name">Infrastructure</div>
+      <div class="pills">
+        <span class="pill">Linux</span><span class="pill">Docker</span><span class="pill">Kubernetes</span>
+        <span class="pill">Terraform</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span>
+        <span class="pill">Nginx</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span>
       </div>
     </div>
 
-    <div class="rv rv-d4">
-      <div class="stack-cat-label">Security Tooling</div>
-      <div class="stack-row">
-        <span class="stack-pill">Burp Suite</span>
-        <span class="stack-pill">mitmproxy</span>
-        <span class="stack-pill">Frida</span>
-        <span class="stack-pill">Ghidra</span>
-        <span class="stack-pill">Radare2</span>
-        <span class="stack-pill">pwntools</span>
-        <span class="stack-pill">Z3</span>
-        <span class="stack-pill">Semgrep</span>
+    <div class="stack-category rv d4">
+      <div class="stack-cat-name">Security Tooling</div>
+      <div class="pills">
+        <span class="pill">Burp Suite</span><span class="pill">mitmproxy</span><span class="pill">Frida</span>
+        <span class="pill">Ghidra</span><span class="pill">Radare2</span><span class="pill">pwntools</span>
+        <span class="pill">Z3</span><span class="pill">Semgrep</span><span class="pill">Nmap</span>
+        <span class="pill">Wireshark</span>
       </div>
     </div>
 
-    <div class="rv rv-d5">
-      <div class="stack-cat-label">Specializations</div>
-      <div class="stack-row">
-        <span class="stack-pill">Scalable game backends</span>
-        <span class="stack-pill">DataStore sharding</span>
-        <span class="stack-pill">Procedural generation</span>
-        <span class="stack-pill">Anti-cheat architecture</span>
-        <span class="stack-pill">Networking / replication</span>
-        <span class="stack-pill">Exploit development</span>
-        <span class="stack-pill">Vuln research</span>
-        <span class="stack-pill">Cloud intrusion</span>
-        <span class="stack-pill">APT emulation</span>
+    <div class="stack-category rv d5">
+      <div class="stack-cat-name">Specializations</div>
+      <div class="pills">
+        <span class="pill">Backend Architecture</span><span class="pill">Distributed Systems</span>
+        <span class="pill">Vulnerability Research</span><span class="pill">Exploit Development</span>
+        <span class="pill">Red Team Ops</span><span class="pill">APT Emulation</span>
+        <span class="pill">Cloud Intrusion</span><span class="pill">Reverse Engineering</span>
+        <span class="pill">Threat Modeling</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="sec-divider"></div>
+<div class="divider"></div>
 
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
-  <div class="sec-label rv">// 007</div>
-  <h2 class="sec-title rv rv-d1">Contact</h2>
+  <div class="sec-num rv"><span class="dash"></span>004</div>
+  <h2 class="sec-heading rv d1">Let's <span class="ghost">talk</span></h2>
 
-  <div class="contact-wrap rv rv-d2">
+  <div class="contact-inner rv d2">
     <div class="contact-text">
-      Available for long-term contracts and full-time positions.
-      Open to backend, security, and systems engineering roles.
+      Available for contracts and full-time positions in
+      backend engineering, security research, and systems infrastructure.
     </div>
 
-    <div class="contact-row">
-      <a href="mailto:m2hczs@proton.me" class="contact-btn primary">m2hczs@proton.me</a>
-      <a href="https://github.com/m2hcz" target="_blank" class="contact-btn">GitHub</a>
-      <a href="https://x.com/inf0secc" target="_blank" class="contact-btn">Twitter</a>
+    <div class="contact-links">
+      <a href="mailto:m2hczs@proton.me" class="cbtn main magnetic hover-trigger">m2hczs@proton.me</a>
+      <a href="https://github.com/m2hcz" target="_blank" class="cbtn magnetic hover-trigger">GitHub</a>
+      <a href="https://x.com/inf0secc" target="_blank" class="cbtn magnetic hover-trigger">Twitter</a>
     </div>
 
-    <div class="contact-pay">
-      Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Robux · Mixed</span>
+    <div class="contact-note">
+      Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Mixed</span>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-left">© 2025 <span>m2hcs</span> — Coding since 2014</div>
-    <div class="footer-right">
+  <div class="footer-in">
+    <div class="footer-l">© 2025 <span>m2hcs</span> — building since 2014</div>
+    <div class="footer-r">
       <a href="https://github.com/m2hcz" target="_blank">GitHub</a>
       <a href="mailto:m2hczs@proton.me">Email</a>
       <a href="https://x.com/inf0secc" target="_blank">Twitter</a>
@@ -725,31 +476,100 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 </footer>
 
 <script>
-// Scroll reveal
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+// ═══ CURSOR GLOW (Otimizado usando translate3d) ═══
+const glow = document.getElementById('cursorGlow');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 
-// Navbar scroll
-const nav = document.getElementById('nav');
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-      ticking = false;
-    });
-    ticking = true;
-  }
+document.addEventListener('mousemove', e => {
+  if (!glow.classList.contains('active')) glow.classList.add('active');
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 });
 
-// Smooth scroll
+// RequestAnimationFrame para performance fluida do cursor
+function updateCursor() {
+  glow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+  requestAnimationFrame(updateCursor);
+}
+requestAnimationFrame(updateCursor);
+
+// Aumenta o cursor em links interativos
+document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+  el.addEventListener('mouseenter', () => glow.classList.add('hover-effect'));
+  el.addEventListener('mouseleave', () => glow.classList.remove('hover-effect'));
+});
+
+// ═══ SCROLL REVEAL ═══
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// ═══ NAV SCROLL & MOBILE MENU ═══
+const nav = document.getElementById('nav');
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+// Fechar menu ao clicar num link (Mobile)
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    menuBtn.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ═══ SMOOTH SCROLL ═══
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const t = document.querySelector(a.getAttribute('href'));
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ═══ COUNTER ANIMATION FIXO ═══
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.getAttribute('data-target'));
+    const duration = 1500;
+    const start = performance.now();
+    
+    // Curva de ease-out
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      el.innerText = Math.round(easeOut(p) * target);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
+
+// ═══ MAGNETIC HOVER IMPLEMENTATION ═══
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0px, 0px)';
   });
 });
 </script>
