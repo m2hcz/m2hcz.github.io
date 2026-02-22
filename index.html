@@ -3,280 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>m2hcs — Software Engineer & Security Researcher</title>
+<title>m2hcz — Software Engineer & Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fontes: Inter (Textos), Space Grotesk (Títulos), JetBrains Mono (Código/UI) -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root{
   --bg:#000;
-  --bg2:#050505;
+  --bg2:#060606;
   --bg3:#0a0a0a;
-  --b1:#0f0f0f;
-  --b2:#161616;
-  --b3:#1c1c1c;
-  --t1:#f0f0f0;
-  --t2:#9ca3af; /* Cinza legível para leitura longa */
-  --t3:#6b7280;
-  --t4:#4b5563;
-  --ac:#00e5b0;
-  --ac2:#00c99a;
-  --ac-glow:rgba(0,229,176,.06);
-  --ac-glow2:rgba(0,229,176,.12);
-  --ac-glow3:rgba(0,229,176,.03);
-  
-  /* TIPOGRAFIA */
-  --mono:'JetBrains Mono', monospace;
-  --body:'Inter', sans-serif;
-  --heading:'Space Grotesk', sans-serif;
-  
-  --r:4px;
+  --b1:#111;
+  --b2:#191919;
+  --b3:#222;
+  --t1:#eee;
+  --t2:#999;
+  --t3:#666;
+  --t4:#444;
+  --ac:#fff;
+  --ac2:#ccc;
+  --ac-dim:rgba(255,255,255,.04);
+  --ac-dim2:rgba(255,255,255,.08);
+  --ac-dim3:rgba(255,255,255,.12);
+  --red:#ff3b3b;
+  --live:#4ade80;
+  --mono:'Geist Mono',monospace;
+  --body:'DM Sans',sans-serif;
+  --heading:'Outfit',sans-serif;
+  --r:6px;
 }
 
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1a1a1a #000}
-::-webkit-scrollbar{width:6px}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#111 #000}
+::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#000}
 ::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--t4)}
+body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(255,255,255,.15);color:#fff}
+:focus-visible{outline:1px solid var(--t3);outline-offset:4px}
 
-body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-::selection{background:var(--ac-glow2);color:var(--ac)}
-:focus-visible{outline: 1px solid var(--ac); outline-offset: 4px; border-radius: 2px;}
-
-/* ═══ CURSOR GLOW (Otimizado com GPU) ═══ */
-.cursor-glow{position:fixed;top:0;left:0;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:9990;background:radial-gradient(circle,rgba(0,229,176,.04) 0%,rgba(0,229,176,.01) 30%,transparent 60%);transform:translate(-50%,-50%);transition:opacity .4s, width 0.3s, height 0.3s;opacity:0;will-change:transform;}
+/* Cursor */
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:9990;background:radial-gradient(circle,rgba(255,255,255,.025) 0%,transparent 55%);transform:translate(-50%,-50%);transition:opacity .5s;opacity:0;will-change:transform}
 .cursor-glow.active{opacity:1}
-.cursor-glow.hover-effect{width:800px; height:800px; background:radial-gradient(circle,rgba(0,229,176,.06) 0%,rgba(0,229,176,.01) 40%,transparent 60%);}
 
-/* ═══ NOISE & SCANLINE ═══ */
-body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.scanline{position:fixed;top:0;left:0;width:100%;height:2px;z-index:9999;pointer-events:none;background:linear-gradient(90deg,transparent,var(--ac-glow2),transparent);animation:scanDown 8s linear infinite;opacity:.3;}
-@keyframes scanDown{0%{top:-2px}100%{top:100%}}
-
-/* ═══ REVEAL SYSTEM ═══ */
-.rv{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(.22,1,.36,1),transform 0.8s cubic-bezier(.22,1,.36,1)}
+/* Reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}.d6{transition-delay:.3s}
 
-/* ═══ NAV ═══ */
-nav{position:fixed;top:0;left:0;width:100%;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s cubic-bezier(.22,1,.36,1)}
-nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1)}
-.nav-logo{font-family:var(--heading);font-weight:700;font-size:1.1rem;color:var(--t1);text-decoration:none;letter-spacing:-.03em;position:relative; z-index: 101;}
-.nav-logo span{color:var(--ac)}
-.nav-logo::after{content:'_';color:var(--ac);font-family:var(--mono);animation:blink 1.2s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.nav-links{display:flex;gap:32px;list-style:none; z-index: 100;}
-.nav-links a{font-family:var(--mono);font-size:.75rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s;position:relative;padding:4px 0}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--ac);transition:width .3s cubic-bezier(.22,1,.36,1)}
-.nav-links a:hover{color:var(--t1)}
-.nav-links a:hover::after{width:100%}
+/* Nav */
+nav{position:fixed;top:0;left:0;width:100%;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s}
+nav.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1)}
+.nav-logo{font-family:var(--heading);font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.04em}
+.nav-logo span{font-weight:400;color:var(--t3)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;padding:4px 0}
+.nav-links a:hover{color:#fff}
+.menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:101;padding:10px}
+.menu-btn span{width:22px;height:1.5px;background:#fff;transition:.3s}
+.menu-btn.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.menu-btn.active span:nth-child(2){opacity:0}
+.menu-btn.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* Mobile Menu Button */
-.menu-btn{display:none; flex-direction:column; gap:6px; background:none; border:none; cursor:pointer; z-index:101; padding:10px;}
-.menu-btn span{width:24px; height:2px; background:var(--t1); transition:0.3s;}
-.menu-btn.active span:nth-child(1){transform:translateY(8px) rotate(45deg); background:var(--ac);}
-.menu-btn.active span:nth-child(2){opacity:0;}
-.menu-btn.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg); background:var(--ac);}
-
-/* ═══ HERO ═══ */
+/* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(rgba(0,229,176,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,176,.15) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 20%,transparent 70%);}
-.hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);}
-.hero-orb-1{top:-15%;right:-5%;width:50vw;height:50vw;background:rgba(0,229,176,.03)}
-.hero-orb-2{bottom:-20%;left:-10%;width:40vw;height:40vw;background:rgba(0,229,176,.015)}
-
-.hero-tag{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;}
-.hero-tag .line{width:32px;height:1px;background:var(--ac);opacity:.5}
-.hero-tag .dot{width:4px;height:4px;background:var(--ac);border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
-
-.hero-name{font-family:var(--heading);font-size:clamp(3.5rem,8vw,7.5rem);font-weight:700;letter-spacing:-.06em;line-height:.9;margin-bottom:24px;color:var(--t1);}
-.hero-name .accent{color:transparent;-webkit-text-stroke:2px var(--ac);position:relative;display:inline-block;}
-.hero-name .accent::after{content:'';position:absolute;bottom:8px;left:0;width:100%;height:3px;background:var(--ac);opacity:.3;}
-
-/* Glitch Hover */
-.hero-name:hover .accent{animation:glitch .3s ease;}
-@keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,-1px)}80%{transform:translate(1px,2px)}}
-
-.hero-sub{font-family:var(--body);font-size:clamp(1rem,2vw,1.15rem);font-weight:300;color:var(--t2);margin-bottom:48px;max-width:600px;line-height:1.8;letter-spacing:-.01em;}
-.hero-sub strong{color:var(--t1);font-weight:500}
-
-.hero-stats{display:flex;gap:48px;margin-top:16px}
+.hero-grid{position:absolute;inset:0;opacity:.02;background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:100px 100px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 20%,transparent 70%)}
+.hero-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:14px}
+.hero-tag .line{width:40px;height:1px;background:var(--t3)}
+.hero-name{font-family:var(--heading);font-size:clamp(4rem,9vw,9rem);font-weight:900;letter-spacing:-.07em;line-height:.88;margin-bottom:28px;color:#fff}
+.hero-name .outline{color:transparent;-webkit-text-stroke:1.5px var(--t3)}
+.hero-sub{font-family:var(--body);font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:var(--t2);margin-bottom:56px;max-width:560px;line-height:1.85;letter-spacing:-.01em}
+.hero-sub strong{color:#fff;font-weight:500}
+.hero-stats{display:flex;gap:56px}
 .stat{position:relative;padding-left:20px}
-.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ac),transparent);opacity:.4;}
-.stat-num{font-family:var(--heading);font-size:2.5rem;font-weight:700;color:var(--t1);letter-spacing:-.04em;line-height:1; display:flex; align-items:baseline;}
-.stat-num span.suffix{color:var(--ac);font-weight:600; font-size:1.8rem;}
-.stat-label{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.stat::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;background:linear-gradient(180deg,var(--t3),transparent)}
+.stat-num{font-family:var(--heading);font-size:2.8rem;font-weight:800;color:#fff;letter-spacing:-.05em;line-height:1;display:flex;align-items:baseline}
+.stat-num .suffix{font-weight:500;font-size:1.6rem;color:var(--t3);margin-left:2px}
+.stat-label{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
+.scroll-hint{position:absolute;bottom:40px;left:48px;display:flex;align-items:center;gap:12px;text-decoration:none;opacity:.4;transition:opacity .3s}
+.scroll-hint:hover{opacity:.8}
+.scroll-line{width:1px;height:48px;background:linear-gradient(180deg,var(--t3),transparent);animation:scrollP 2.5s ease-in-out infinite}
+@keyframes scrollP{0%,100%{opacity:.3;height:48px}50%{opacity:.8;height:56px}}
+.scroll-text{font-family:var(--mono);font-size:.55rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-lr}
 
-.scroll-hint{position:absolute;bottom:40px;left:48px;display:flex;align-items:center;gap:14px; text-decoration:none; cursor:pointer; opacity: 0.7; transition: opacity 0.3s;}
-.scroll-hint:hover{opacity: 1;}
-.scroll-line{width:1px;height:48px;background:linear-gradient(180deg,var(--ac),transparent);opacity:.5;animation:scrollPulse 2.5s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:.2;height:48px}50%{opacity:.8;height:56px}}
-.scroll-text{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-lr}
-
-/* ═══ SECTIONS ═══ */
+/* Sections */
 section{padding:120px 48px;position:relative}
-.sec-num{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t4);letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-.sec-num .dash{width:24px;height:1px;background:var(--ac);opacity:.4}
-.sec-heading{font-family:var(--heading);font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:700;letter-spacing:-.05em;margin-bottom:64px;color:var(--t1);line-height:1.1;}
-.sec-heading .ghost{color:transparent;-webkit-text-stroke:1px var(--t4)}
+.sec-label{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t4);letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.sec-label .dash{width:20px;height:1px;background:var(--t4)}
+.sec-title{font-family:var(--heading);font-size:clamp(2.5rem,5vw,3.8rem);font-weight:800;letter-spacing:-.05em;margin-bottom:64px;color:#fff;line-height:1.05}
+.sec-title .ghost{color:transparent;-webkit-text-stroke:1px var(--t4)}
 .divider{width:100%;height:1px;background:var(--b1)}
 
-/* ═══ ABOUT ═══ */
-.about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;max-width:1100px}
-.about-text{font-family:var(--body);font-size:1.1rem;line-height:1.85;color:var(--t2);font-weight:300;letter-spacing:-.01em;}
-.about-text strong{color:var(--t1);font-weight:500}
-.about-details{display:flex;flex-direction:column;gap:0}
-.detail{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--b1);transition:all .3s}
-.detail:hover{padding-left:12px;border-color:var(--ac); background: linear-gradient(90deg, var(--ac-glow3), transparent);}
-.detail-k{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
-.detail-v{font-family:var(--body);font-size:.95rem;color:var(--t1);text-align:right;font-weight:400}
-.detail-v a{color:var(--ac);text-decoration:none;transition:opacity .3s}
-.detail-v a:hover{opacity:.7; text-decoration:underline; text-underline-offset: 4px;}
-.status-dot{display:inline-block;width:8px;height:8px;background:var(--ac);border-radius:50%;margin-right:8px;animation:dotPulse 2s ease-in-out infinite; box-shadow: 0 0 8px var(--ac);}
+/* About */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;max-width:1100px}
+.about-text{font-size:1.08rem;line-height:1.85;color:var(--t2);font-weight:300;letter-spacing:-.01em}
+.about-text strong{color:#fff;font-weight:500}
+.about-details{display:flex;flex-direction:column}
+.detail{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--b1);transition:all .3s}
+.detail:hover{padding-left:12px;border-color:var(--b3);background:linear-gradient(90deg,var(--ac-dim),transparent)}
+.detail-k{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+.detail-v{font-size:.9rem;color:var(--t1);text-align:right;font-weight:400}
+.detail-v a{color:#fff;text-decoration:none;border-bottom:1px solid var(--b3);transition:border-color .3s}
+.detail-v a:hover{border-color:var(--t2)}
+.status-dot{display:inline-block;width:7px;height:7px;background:var(--live);border-radius:50%;margin-right:8px;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--live)}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 
-/* ═══ OPEN SOURCE ═══ */
-.os-featured{max-width:1100px; display: flex; flex-direction: column; gap: 12px;}
-.os-card{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;padding:32px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;text-decoration:none;color:inherit;}
-.os-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,var(--ac),transparent);transition:height .4s cubic-bezier(.22,1,.36,1);}
-.os-card:hover{border-color:var(--b3);transform:translateX(8px); background:var(--b1); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);}
-.os-card:hover::before{height:100%}
-.os-card:hover .os-name{color:var(--ac)}
-.os-card:hover .os-arrow{transform:translateX(6px);color:var(--ac); opacity:1}
+/* Games */
+.games-grid{max-width:1100px;display:grid;grid-template-columns:1fr;gap:2px}
+.game-card{display:grid;grid-template-columns:1fr auto;align-items:center;padding:32px 36px;background:var(--bg2);border:1px solid var(--b1);transition:all .4s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.game-card:first-child{border-radius:var(--r) var(--r) 0 0}
+.game-card:last-child{border-radius:0 0 var(--r) var(--r)}
+.game-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:#fff;transition:height .4s}
+.game-card:hover{background:var(--b1);border-color:var(--b2)}
+.game-card:hover::before{height:100%}
+.game-card:hover .game-name{color:#fff}
+.game-card:hover .game-arrow{transform:translateX(6px);opacity:1}
+.game-info{display:flex;flex-direction:column;gap:8px}
+.game-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.game-name{font-family:var(--heading);font-size:1.35rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
+.game-studio{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--b2);border-radius:20px}
+.game-desc{font-size:.9rem;color:var(--t2);line-height:1.6;max-width:600px}
+.game-stats{display:flex;gap:24px;margin-top:4px;flex-wrap:wrap}
+.game-stat{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--t3)}
+.game-stat .num{color:var(--t1);font-weight:600}
+.game-stat.live .num{color:var(--live)}
+.game-stat svg{width:12px;height:12px;opacity:.5}
+.game-right{display:flex;align-items:center}
+.game-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.5}
 
-.os-main{position:relative;z-index:1}
-.os-top{display:flex;align-items:center;gap:16px;margin-bottom:8px}
-.os-name{font-family:var(--heading);font-size:1.3rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
-.os-lang-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
-.os-lang-tag.luau{color:var(--ac);background:var(--ac-glow);border:1px solid rgba(0,229,176,.15)}
-.os-lang-tag.python{color:#e0a040;background:rgba(224,160,64,.08);border:1px solid rgba(224,160,64,.15)}
-.os-lang-tag.ts{color:#6090e0;background:rgba(96,144,224,.08);border:1px solid rgba(96,144,224,.15)}
-.os-desc{font-family:var(--body);font-size:.95rem;color:var(--t2);line-height:1.6;max-width:600px;letter-spacing:-.01em;}
-.os-right{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
-.os-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.6}
+/* Groups */
+.groups-grid{max-width:1100px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.group-card{padding:32px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.group-card:hover{border-color:var(--b3);background:var(--b1)}
+.group-card:hover .group-name{color:#fff}
+.group-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.group-name{font-family:var(--heading);font-size:1.2rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
+.group-role{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
+.group-desc{font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.group-members{font-family:var(--mono);font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:6px}
+.group-members .num{color:var(--t1);font-weight:600}
 
-/* ═══ STACK ═══ */
-.stack-grid{max-width:1100px;display:flex;flex-direction:column;gap:56px}
-.stack-category{position:relative}
-.stack-cat-name{font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--ac2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+/* Open Source */
+.os-grid{max-width:1100px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.os-card{padding:28px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px}
+.os-card:hover{border-color:var(--b3);transform:translateY(-3px);background:var(--b1)}
+.os-card:hover .os-name{color:#fff}
+.os-top{display:flex;align-items:center;gap:12px}
+.os-name{font-family:var(--heading);font-size:1.05rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
+.os-lang{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--b2);border-radius:12px}
+.os-desc{font-size:.85rem;color:var(--t2);line-height:1.6}
+
+/* Stack */
+.stack-wrap{max-width:1100px;display:flex;flex-direction:column;gap:48px}
+.stack-cat-name{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t2);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
 .stack-cat-name::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:var(--mono);font-size:.8rem;font-weight:400;color:var(--t2);padding:10px 20px;background:var(--bg2);border:1px solid var(--b1);border-radius:20px;transition:all .3s ease;cursor:default;letter-spacing:0em;position:relative;overflow:hidden;}
-.pill:hover{border-color:rgba(0,229,176,.3);color:var(--t1);transform:translateY(-2px); background:var(--ac-glow);}
+.pill{font-family:var(--mono);font-size:.75rem;color:var(--t2);padding:10px 20px;background:var(--bg2);border:1px solid var(--b1);border-radius:20px;transition:all .3s;cursor:default}
+.pill:hover{border-color:var(--b3);color:#fff;transform:translateY(-2px);background:var(--ac-dim)}
 
-/* ═══ CONTACT ═══ */
+/* Contact */
 .contact-inner{max-width:700px}
-.contact-text{font-family:var(--body);font-size:1.25rem;color:var(--t2);line-height:1.7;margin-bottom:48px;font-weight:300;letter-spacing:-.01em;}
-.contact-links{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
-.cbtn{font-family:var(--mono);font-size:.75rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b3);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2);}
-.cbtn:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px); box-shadow: 0 4px 15px var(--ac-glow);}
-.cbtn.main{border-color:rgba(0,229,176,.3);color:var(--ac);background:var(--ac-glow)}
-.cbtn.main:hover{background:var(--ac-glow2); box-shadow: 0 4px 20px var(--ac-glow2);}
-.contact-note{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.02em}
+.contact-text{font-size:1.2rem;color:var(--t2);line-height:1.7;margin-bottom:48px;font-weight:300}
+.contact-links{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.cbtn{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2)}
+.cbtn:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
+.cbtn.main{border-color:var(--t3);color:#fff;background:var(--ac-dim)}
+.cbtn.main:hover{background:var(--ac-dim2);border-color:var(--t2)}
+.contact-note{font-family:var(--mono);font-size:.65rem;color:var(--t4);letter-spacing:.02em}
 .contact-note span{color:var(--t2)}
 
-/* ═══ FOOTER ═══ */
-footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
-.footer-in{display:flex;justify-content:space-between;align-items:center; max-width: 1100px;}
-.footer-l{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.02em}
-.footer-l span{color:var(--ac);font-weight:600;}
+/* Footer */
+footer{padding:40px 48px;border-top:1px solid var(--b1)}
+.footer-in{display:flex;justify-content:space-between;align-items:center}
+.footer-l{font-family:var(--mono);font-size:.65rem;color:var(--t4)}
+.footer-l span{color:var(--t2);font-weight:600}
 .footer-r{display:flex;gap:24px}
-.footer-r a{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
-.footer-r a:hover{color:var(--ac)}
+.footer-r a{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t4);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.footer-r a:hover{color:#fff}
 
-/* ═══ MAGNETIC HOVER ═══ */
-.magnetic{display:inline-block; transition:transform 0.1s linear;}
-
-/* ═══ RESPONSIVE ═══ */
+/* Responsive */
 @media(max-width:768px){
-  nav{padding:16px 24px;}
-  .menu-btn{display:flex;}
-  
-  /* Mobile Menu Overlay */
-  .nav-links{
-    position:fixed; top:0; left:0; width:100%; height:100vh; background:rgba(0,0,0,0.95);
-    backdrop-filter:blur(10px); flex-direction:column; justify-content:center; align-items:center;
-    gap:40px; transform:translateY(-100%); transition:transform 0.4s cubic-bezier(.22,1,.36,1);
-  }
-  .nav-links.open{transform:translateY(0);}
-  .nav-links a{font-size:1.2rem;}
-
-  .hero,section{padding:80px 24px;}
-  .hero-name{font-size: 3.2rem;}
-  .hero-stats{flex-direction:column;gap:32px;}
-  .stat::before{width:100%; height:2px; left:0; top:-10px; background:linear-gradient(90deg,var(--ac),transparent);}
-  .stat{padding-left:0; padding-top:10px;}
+  nav{padding:16px 24px}
+  .menu-btn{display:flex}
+  .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.97);backdrop-filter:blur(10px);flex-direction:column;justify-content:center;align-items:center;gap:40px;transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{font-size:1.1rem}
+  .hero,section{padding:80px 24px}
+  .hero-name{font-size:3.5rem}
+  .hero-stats{flex-direction:column;gap:28px}
+  .stat{padding-left:0;padding-top:12px}
+  .stat::before{width:100%;height:1px;left:0;top:0;background:linear-gradient(90deg,var(--t4),transparent)}
   .scroll-hint{display:none}
-  .about-layout{grid-template-columns:1fr;gap:48px}
-  .os-card{grid-template-columns:1fr;gap:16px; padding:24px;}
-  .os-top{flex-wrap: wrap;}
-  .contact-links{flex-direction:column;}
-  .cbtn{justify-content:center;}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .game-card{grid-template-columns:1fr;padding:24px}
+  .game-right{display:none}
+  .groups-grid{grid-template-columns:1fr}
+  .os-grid{grid-template-columns:1fr}
+  .contact-links{flex-direction:column}
+  .cbtn{justify-content:center}
   .footer-in{flex-direction:column;gap:16px;text-align:center}
 }
-
-/* Stagger Animations */
-.stagger > *:nth-child(1){transition-delay:.05s}
-.stagger > *:nth-child(2){transition-delay:.1s}
-.stagger > *:nth-child(3){transition-delay:.15s}
-.stagger > *:nth-child(4){transition-delay:.2s}
-.stagger > *:nth-child(5){transition-delay:.25s}
 </style>
 </head>
 <body>
 
 <div class="cursor-glow" id="cursorGlow"></div>
-<div class="scanline"></div>
 
 <nav id="nav">
-  <a href="#" class="nav-logo">m2hcs<span>.</span></a>
-  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="#" class="nav-logo">m2hcz<span>.</span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#games" class="nav-link">Games</a></li>
     <li><a href="#projects" class="nav-link">Projects</a></li>
     <li><a href="#stack" class="nav-link">Stack</a></li>
     <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
 
   <div class="hero-tag rv d1">
-    <span class="dot"></span>
     <span class="line"></span>
     Software Engineer & Security Researcher
   </div>
 
-  <h1 class="hero-name rv d2">m2hcs<span class="accent">.</span></h1>
+  <h1 class="hero-name rv d2">m2hcz<span class="outline">.</span></h1>
 
   <p class="hero-sub rv d3">
-    Building <strong>secure, scalable systems</strong> and conducting <strong>offensive security research</strong>.
-    Focused on backend engineering, vulnerability analysis, and infrastructure that's both
-    performant and resilient.
+    Building <strong>secure, scalable systems</strong> at scale. Backend engineering for live games with thousands of concurrent users, <strong>offensive security research</strong>, and infrastructure that holds under pressure.
   </p>
 
   <div class="hero-stats rv d4">
     <div class="stat">
-      <!-- HTML ajustado para não quebrar no JS -->
       <div class="stat-num"><span class="counter" data-target="12">0</span><span class="suffix">yr</span></div>
       <div class="stat-label">Development</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="9">0</span><span class="suffix">yr</span></div>
-      <div class="stat-label">InfoSec</div>
+      <div class="stat-num"><span class="counter" data-target="116">0</span><span class="suffix">M+</span></div>
+      <div class="stat-label">Total Game Visits</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="7">0</span><span class="suffix">+</span></div>
-      <div class="stat-label">Open Source Projects</div>
+      <div class="stat-num"><span class="counter" data-target="2">0</span><span class="suffix">M+</span></div>
+      <div class="stat-label">Community Members</div>
     </div>
   </div>
 
@@ -288,32 +259,31 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
 
 <div class="divider"></div>
 
-<!-- ═══ ABOUT ═══ -->
+<!-- ABOUT -->
 <section id="about">
-  <div class="sec-num rv"><span class="dash"></span>001</div>
-  <h2 class="sec-heading rv d1">About <span class="ghost">me</span></h2>
+  <div class="sec-label rv"><span class="dash"></span>001</div>
+  <h2 class="sec-title rv d1">About <span class="ghost">me</span></h2>
 
-  <div class="about-layout">
+  <div class="about-grid">
     <div class="about-text rv d2">
       Software engineer with <strong>12 years of hands-on experience</strong> building
-      backend systems, security tooling, and distributed infrastructure.
+      backend systems, security tooling, and distributed infrastructure for live games
+      serving thousands of concurrent players.
+      <br><br>
       Deep background in <strong>offensive security and vulnerability research</strong> —
       mapping attack surfaces, building exploit chains, and running red team
-      engagements with disciplined OPSEC.
-      <br><br>
-      I bridge software engineering and cybersecurity to build systems that are
-      both <strong>performant and resilient</strong>. Passionate about clean architecture,
-      threat modeling, and infrastructure hardening.
+      engagements. I bridge engineering and security to build systems that are
+      both <strong>performant and resilient</strong>.
     </div>
 
-    <div class="about-details rv d3 stagger">
+    <div class="about-details rv d3">
       <div class="detail">
         <span class="detail-k">Location</span>
         <span class="detail-v">Brazil</span>
       </div>
       <div class="detail">
         <span class="detail-k">Languages</span>
-        <span class="detail-v">Portuguese (native) · English</span>
+        <span class="detail-v">Portuguese · English</span>
       </div>
       <div class="detail">
         <span class="detail-k">Email</span>
@@ -329,7 +299,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
       </div>
       <div class="detail">
         <span class="detail-k">Status</span>
-        <span class="detail-v" style="color:var(--ac)"><span class="status-dot"></span>Open to work</span>
+        <span class="detail-v" style="color:var(--live)"><span class="status-dot"></span>Open to work</span>
       </div>
     </div>
   </div>
@@ -337,77 +307,208 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
 
 <div class="divider"></div>
 
-<!-- ═══ OPEN SOURCE ═══ -->
-<section id="projects">
-  <div class="sec-num rv"><span class="dash"></span>002</div>
-  <h2 class="sec-heading rv d1">Open <span class="ghost">Source</span></h2>
+<!-- GAMES -->
+<section id="games">
+  <div class="sec-label rv"><span class="dash"></span>002</div>
+  <h2 class="sec-title rv d1">Games <span class="ghost">I built</span></h2>
 
-  <div class="os-featured stagger">
-
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="os-card rv hover-trigger">
-      <div class="os-main">
-        <div class="os-top">
-          <div class="os-name">NetSentinel</div>
-          <span class="os-lang-tag luau">Luau</span>
+  <div class="games-grid">
+    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="game-card rv d2">
+      <div class="game-info">
+        <div class="game-top">
+          <span class="game-name">Massacre</span>
+          <span class="game-studio">Abysmal Covenant</span>
         </div>
-        <div class="os-desc">Network security monitoring and threat detection framework. Real-time traffic analysis with configurable alert thresholds.</div>
+        <div class="game-desc">Asymmetric horror hide-and-seek. Led entire backend architecture — DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
+        <div class="game-stats">
+          <div class="game-stat live">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+            <span class="num">1.2k–2.2k</span> playing
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="num">2.5M+</span> visits
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="num">177k</span> group
+          </div>
+        </div>
       </div>
-      <div class="os-right"><span class="os-arrow">→</span></div>
+      <div class="game-right"><span class="game-arrow">→</span></div>
     </a>
 
-    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="os-card rv hover-trigger">
-      <div class="os-main">
-        <div class="os-top">
-          <div class="os-name">PhantomNet</div>
-          <span class="os-lang-tag luau">Luau</span>
+    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" class="game-card rv d3">
+      <div class="game-info">
+        <div class="game-top">
+          <span class="game-name">Animatronic Nights</span>
+          <span class="game-studio">PlayBox!</span>
         </div>
-        <div class="os-desc">Optimized networking library for high-performance client-server communication with delta compression and packet batching.</div>
+        <div class="game-desc">Horror survival — hunt or survive as animatronics. Contributing to backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
+        <div class="game-stats">
+          <div class="game-stat live">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+            <span class="num">2k–4k</span> playing
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="num">25M+</span> visits
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="num">818k</span> group
+          </div>
+        </div>
       </div>
-      <div class="os-right"><span class="os-arrow">→</span></div>
+      <div class="game-right"><span class="game-arrow">→</span></div>
     </a>
 
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="os-card rv hover-trigger">
-      <div class="os-main">
-        <div class="os-top">
-          <div class="os-name">ReconMapper v2</div>
-          <span class="os-lang-tag python">Python</span>
+    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" class="game-card rv d4">
+      <div class="game-info">
+        <div class="game-top">
+          <span class="game-name">Last Letter</span>
+          <span class="game-studio">MmiiGames</span>
         </div>
-        <div class="os-desc">Automated reconnaissance and attack surface mapping tool. Subdomain enumeration, port scanning, and vulnerability fingerprinting.</div>
+        <div class="game-desc">Competitive word game — every last letter counts. Developed core gameplay systems, networking, data persistence layers, and modular architectures for rapid iteration.</div>
+        <div class="game-stats">
+          <div class="game-stat live">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+            <span class="num">5k–7k</span> playing
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="num">89M+</span> visits
+          </div>
+        </div>
       </div>
-      <div class="os-right"><span class="os-arrow">→</span></div>
+      <div class="game-right"><span class="game-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- Groups -->
+  <h3 class="sec-title rv d1" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:80px;margin-bottom:32px">Studios <span class="ghost">& Groups</span></h3>
+  <div class="groups-grid">
+    <a href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" class="group-card rv d2">
+      <div class="group-top">
+        <span class="group-name">PlayBox!</span>
+        <span class="group-role">Backend Dev</span>
+      </div>
+      <div class="group-desc">Verified Roblox studio. Contributing to Animatronic Nights and other titles under the PlayBox brand.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">818,424</span> members
+      </div>
     </a>
 
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="os-card rv hover-trigger">
-      <div class="os-main">
-        <div class="os-top">
-          <div class="os-name">SQLi Scanner</div>
-          <span class="os-lang-tag ts">TypeScript</span>
-        </div>
-        <div class="os-desc">Automated SQL injection detection and vulnerability scanner with payload generation and response analysis.</div>
+    <a href="https://www.roblox.com/communities/1014009190/Abysmal-Covenant" target="_blank" class="group-card rv d3">
+      <div class="group-top">
+        <span class="group-name">Abysmal Covenant</span>
+        <span class="group-role">Lead Dev</span>
       </div>
-      <div class="os-right"><span class="os-arrow">→</span></div>
+      <div class="group-desc">Home of Massacre. Leading the entire backend infrastructure, game systems, and live-ops pipeline.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">177,173</span> members
+      </div>
+    </a>
+
+    <a href="https://www.roblox.com/communities/5826271/Gothyc" target="_blank" class="group-card rv d4">
+      <div class="group-top">
+        <span class="group-name">Gothyc!</span>
+        <span class="group-role">Backend Dev</span>
+      </div>
+      <div class="group-desc">UGC-verified group with 1.3M+ members. Built core backend systems and engineered game infrastructure across multiple titles.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">1,324,293</span> members
+      </div>
     </a>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ STACK ═══ -->
-<section id="stack">
-  <div class="sec-num rv"><span class="dash"></span>003</div>
-  <h2 class="sec-heading rv d1">Tech <span class="ghost">Stack</span></h2>
+<!-- OPEN SOURCE -->
+<section id="projects">
+  <div class="sec-label rv"><span class="dash"></span>003</div>
+  <h2 class="sec-title rv d1">Open <span class="ghost">Source</span></h2>
 
-  <div class="stack-grid">
-    <div class="stack-category rv d2">
+  <div class="os-grid">
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">NetSentinel</span>
+        <span class="os-lang">Luau</span>
+      </div>
+      <div class="os-desc">Network security monitoring and threat detection framework with real-time traffic analysis.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">PhantomNet</span>
+        <span class="os-lang">Luau</span>
+      </div>
+      <div class="os-desc">Optimized networking library for high-performance client-server communication with delta compression.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">ReconMapper v2</span>
+        <span class="os-lang">Python</span>
+      </div>
+      <div class="os-desc">Automated reconnaissance and attack surface mapping. Subdomain enumeration, port scanning, fingerprinting.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">SQLi Scanner</span>
+        <span class="os-lang">TypeScript</span>
+      </div>
+      <div class="os-desc">Automated SQL injection detection and vulnerability scanner with payload generation.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">Race-Family-Reroll</span>
+        <span class="os-lang">Luau</span>
+      </div>
+      <div class="os-desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/OOPModule" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">OOPModule</span>
+        <span class="os-lang">Luau</span>
+      </div>
+      <div class="os-desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div>
+    </a>
+
+    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" class="os-card rv">
+      <div class="os-top">
+        <span class="os-name">Next.js Middleware PoC</span>
+        <span class="os-lang">JavaScript</span>
+      </div>
+      <div class="os-desc">Proof-of-concept exploit for Next.js middleware bypass vulnerability.</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="sec-label rv"><span class="dash"></span>004</div>
+  <h2 class="sec-title rv d1">Tech <span class="ghost">Stack</span></h2>
+
+  <div class="stack-wrap">
+    <div class="rv d2">
       <div class="stack-cat-name">Languages</div>
       <div class="pills">
-        <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">Rust</span>
-        <span class="pill">Go</span><span class="pill">C</span><span class="pill">C#</span>
-        <span class="pill">Lua / Luau</span><span class="pill">Bash</span><span class="pill">SQL</span>
+        <span class="pill">Lua / Luau</span><span class="pill">Python</span><span class="pill">TypeScript</span>
+        <span class="pill">Rust</span><span class="pill">Go</span><span class="pill">C</span>
+        <span class="pill">C#</span><span class="pill">Bash</span><span class="pill">SQL</span>
       </div>
     </div>
-
-    <div class="stack-category rv d3">
+    <div class="rv d3">
       <div class="stack-cat-name">Infrastructure</div>
       <div class="pills">
         <span class="pill">Linux</span><span class="pill">Docker</span><span class="pill">Kubernetes</span>
@@ -415,8 +516,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
         <span class="pill">Nginx</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span>
       </div>
     </div>
-
-    <div class="stack-category rv d4">
+    <div class="rv d4">
       <div class="stack-cat-name">Security Tooling</div>
       <div class="pills">
         <span class="pill">Burp Suite</span><span class="pill">mitmproxy</span><span class="pill">Frida</span>
@@ -425,15 +525,14 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
         <span class="pill">Wireshark</span>
       </div>
     </div>
-
-    <div class="stack-category rv d5">
+    <div class="rv d5">
       <div class="stack-cat-name">Specializations</div>
       <div class="pills">
-        <span class="pill">Backend Architecture</span><span class="pill">Distributed Systems</span>
-        <span class="pill">Vulnerability Research</span><span class="pill">Exploit Development</span>
-        <span class="pill">Red Team Ops</span><span class="pill">APT Emulation</span>
-        <span class="pill">Cloud Intrusion</span><span class="pill">Reverse Engineering</span>
-        <span class="pill">Threat Modeling</span>
+        <span class="pill">Scalable Game Backends</span><span class="pill">DataStore Sharding</span>
+        <span class="pill">Anti-Cheat Architecture</span><span class="pill">Vulnerability Research</span>
+        <span class="pill">Exploit Development</span><span class="pill">Red Team Ops</span>
+        <span class="pill">APT Emulation</span><span class="pill">Cloud Intrusion</span>
+        <span class="pill">Reverse Engineering</span><span class="pill">Supply Chain Security</span>
       </div>
     </div>
   </div>
@@ -441,32 +540,28 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
 
 <div class="divider"></div>
 
-<!-- ═══ CONTACT ═══ -->
+<!-- CONTACT -->
 <section id="contact">
-  <div class="sec-num rv"><span class="dash"></span>004</div>
-  <h2 class="sec-heading rv d1">Let's <span class="ghost">talk</span></h2>
+  <div class="sec-label rv"><span class="dash"></span>005</div>
+  <h2 class="sec-title rv d1">Let's <span class="ghost">talk</span></h2>
 
   <div class="contact-inner rv d2">
     <div class="contact-text">
       Available for contracts and full-time positions in
       backend engineering, security research, and systems infrastructure.
     </div>
-
     <div class="contact-links">
-      <a href="mailto:m2hczs@proton.me" class="cbtn main magnetic hover-trigger">m2hczs@proton.me</a>
-      <a href="https://github.com/m2hcz" target="_blank" class="cbtn magnetic hover-trigger">GitHub</a>
-      <a href="https://x.com/inf0secc" target="_blank" class="cbtn magnetic hover-trigger">Twitter</a>
+      <a href="mailto:m2hczs@proton.me" class="cbtn main">m2hczs@proton.me</a>
+      <a href="https://github.com/m2hcz" target="_blank" class="cbtn">GitHub</a>
+      <a href="https://x.com/inf0secc" target="_blank" class="cbtn">Twitter</a>
     </div>
-
-    <div class="contact-note">
-      Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Mixed</span>
-    </div>
+    <div class="contact-note">Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Mixed</span></div>
   </div>
 </section>
 
 <footer>
   <div class="footer-in">
-    <div class="footer-l">© 2025 <span>m2hcs</span> — building since 2014</div>
+    <div class="footer-l">© 2025 <span>m2hcz</span> — building since 2014</div>
     <div class="footer-r">
       <a href="https://github.com/m2hcz" target="_blank">GitHub</a>
       <a href="mailto:m2hczs@proton.me">Email</a>
@@ -476,102 +571,43 @@ footer{padding:40px 48px;border-top:1px solid var(--b1); background:var(--bg2);}
 </footer>
 
 <script>
-// ═══ CURSOR GLOW (Otimizado usando translate3d) ═══
-const glow = document.getElementById('cursorGlow');
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-document.addEventListener('mousemove', e => {
-  if (!glow.classList.contains('active')) glow.classList.add('active');
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+// Cursor
+const glow=document.getElementById('cursorGlow');
+document.addEventListener('mousemove',e=>{
+  if(!glow.classList.contains('active'))glow.classList.add('active');
+  glow.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
 });
 
-// RequestAnimationFrame para performance fluida do cursor
-function updateCursor() {
-  glow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-  requestAnimationFrame(updateCursor);
-}
-requestAnimationFrame(updateCursor);
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Aumenta o cursor em links interativos
-document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
-  el.addEventListener('mouseenter', () => glow.classList.add('hover-effect'));
-  el.addEventListener('mouseleave', () => glow.classList.remove('hover-effect'));
+// Nav
+const nav=document.getElementById('nav');
+const menuBtn=document.getElementById('menuBtn');
+const navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('active');navLinks.classList.toggle('open')});
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{menuBtn.classList.remove('active');navLinks.classList.remove('open')}));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
 });
 
-// ═══ SCROLL REVEAL ═══
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
-
-// ═══ NAV SCROLL & MOBILE MENU ═══
-const nav = document.getElementById('nav');
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('active');
-  navLinks.classList.toggle('open');
-});
-
-// Fechar menu ao clicar num link (Mobile)
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    menuBtn.classList.remove('active');
-    navLinks.classList.remove('open');
+// Counters
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target,target=parseInt(el.dataset.target),start=performance.now();
+    const ease=t=>1-Math.pow(1-t,3);
+    function tick(now){const p=Math.min((now-start)/1500,1);el.innerText=Math.round(ease(p)*target);if(p<1)requestAnimationFrame(tick)}
+    requestAnimationFrame(tick);cObs.unobserve(el);
   });
-});
-
-// ═══ SMOOTH SCROLL ═══
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-// ═══ COUNTER ANIMATION FIXO ═══
-const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = parseInt(el.getAttribute('data-target'));
-    const duration = 1500;
-    const start = performance.now();
-    
-    // Curva de ease-out
-    const easeOut = t => 1 - Math.pow(1 - t, 3);
-    
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      el.innerText = Math.round(easeOut(p) * target);
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    counterObs.unobserve(el);
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
-
-// ═══ MAGNETIC HOVER IMPLEMENTATION ═══
-document.querySelectorAll('.magnetic').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-  });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = 'translate(0px, 0px)';
-  });
-});
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(c=>cObs.observe(c));
 </script>
 </body>
 </html>
