@@ -142,6 +142,7 @@ section{padding:120px 48px;position:relative}
 .group-desc{font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
 .group-members{font-family:var(--mono);font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:6px}
 .group-members .num{color:var(--t1);font-weight:600}
+.groups-grid-wide{max-width:1100px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px}
 
 /* Open Source */
 .os-grid{max-width:1100px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
@@ -197,7 +198,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .game-card{grid-template-columns:1fr;padding:24px}
   .game-right{display:none}
-  .groups-grid{grid-template-columns:1fr}
+  .groups-grid,.groups-grid-wide{grid-template-columns:1fr}
   .os-grid{grid-template-columns:1fr}
   .contact-links{flex-direction:column}
   .cbtn{justify-content:center}
@@ -242,8 +243,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="stat-label">Development</div>
     </div>
     <div class="stat">
-      <!-- Atualizado para refletir o peso gigantesco de Run For Brainrots -->
-      <div class="stat-num"><span class="counter" data-target="350">0</span><span class="suffix">M+</span></div>
+      <div class="stat-num"><span class="counter" data-target="2300">0</span><span class="suffix">M+</span></div>
       <div class="stat-label">Total Game Visits</div>
     </div>
     <div class="stat">
@@ -314,50 +314,47 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   <h2 class="sec-title rv d1">Games <span class="ghost">I built</span></h2>
 
   <div class="games-grid">
-    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="game-card rv d2">
+    <!-- Run For Brainrots — biggest, first -->
+    <a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" class="game-card rv d2">
       <div class="game-info">
         <div class="game-top">
-          <span class="game-name">Massacre</span>
-          <span class="game-studio">Abysmal Covenant</span>
+          <span class="game-name">Run For Brainrots</span>
+          <span class="game-studio">Independent</span>
         </div>
-        <div class="game-desc">Asymmetric horror hide-and-seek. Led entire backend architecture — DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
+        <div class="game-desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to handle viral player growth.</div>
         <div class="game-stats">
           <div class="game-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">1.2k–2.2k</span> playing
+            <span class="num">12k–60k</span> playing
           </div>
           <div class="game-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">2.5M+</span> visits
-          </div>
-          <div class="game-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">177k</span> group
+            <span class="num">1.4B+</span> visits
           </div>
         </div>
       </div>
       <div class="game-right"><span class="game-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" class="game-card rv d3">
+    <a href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" class="game-card rv d3">
       <div class="game-info">
         <div class="game-top">
-          <span class="game-name">Animatronic Nights</span>
-          <span class="game-studio">PlayBox!</span>
+          <span class="game-name">Violence District</span>
+          <span class="game-studio">Frontman Studios</span>
         </div>
-        <div class="game-desc">Horror survival — hunt or survive as animatronics. Contributing to backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
+        <div class="game-desc">Asymmetric horror survival — 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
         <div class="game-stats">
           <div class="game-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">2k–4k</span> playing
+            <span class="num">10k–25k</span> playing
           </div>
           <div class="game-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">25M+</span> visits
+            <span class="num">705M+</span> visits
           </div>
           <div class="game-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">818k</span> group
+            <span class="num">313k</span> group
           </div>
         </div>
       </div>
@@ -385,21 +382,50 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="game-right"><span class="game-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" class="game-card rv d5">
+    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" class="game-card rv d5">
       <div class="game-info">
         <div class="game-top">
-          <span class="game-name">Run For Brainrots</span>
-          <span class="game-studio">Independent</span>
+          <span class="game-name">Animatronic Nights</span>
+          <span class="game-studio">PlayBox!</span>
         </div>
-        <div class="game-desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to handle viral player growth.</div>
+        <div class="game-desc">Horror survival — hunt or survive as animatronics. Contributing to backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
         <div class="game-stats">
           <div class="game-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">12k–60k</span> playing
+            <span class="num">2k–4k</span> playing
           </div>
           <div class="game-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">250M+</span> visits
+            <span class="num">25M+</span> visits
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="num">818k</span> group
+          </div>
+        </div>
+      </div>
+      <div class="game-right"><span class="game-arrow">→</span></div>
+    </a>
+
+    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" class="game-card rv d6">
+      <div class="game-info">
+        <div class="game-top">
+          <span class="game-name">Massacre</span>
+          <span class="game-studio">Abysmal Covenant</span>
+        </div>
+        <div class="game-desc">Asymmetric horror hide-and-seek. Led entire backend architecture — DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
+        <div class="game-stats">
+          <div class="game-stat live">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+            <span class="num">1.2k–2.2k</span> playing
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="num">2.5M+</span> visits
+          </div>
+          <div class="game-stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="num">177k</span> group
           </div>
         </div>
       </div>
@@ -409,6 +435,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
   <!-- Groups -->
   <h3 class="sec-title rv d1" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:80px;margin-bottom:32px">Studios <span class="ghost">& Groups</span></h3>
+
+  <!-- Row 1: 3 cols -->
   <div class="groups-grid">
     <a href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" class="group-card rv d2">
       <div class="group-top">
@@ -443,6 +471,45 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="group-members">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">1,324,293</span> members
+      </div>
+    </a>
+  </div>
+
+  <!-- Row 2: 3 cols -->
+  <div class="groups-grid" style="margin-top:16px">
+    <a href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" class="group-card rv d2">
+      <div class="group-top">
+        <span class="group-name">Frontman Studios</span>
+        <span class="group-role">Backend Dev</span>
+      </div>
+      <div class="group-desc">Studio behind Violence District — one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">—</span> members
+      </div>
+    </a>
+
+    <a href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" class="group-card rv d3">
+      <div class="group-top">
+        <span class="group-name">VIOLENCE DISTRICT</span>
+        <span class="group-role">Backend Dev</span>
+      </div>
+      <div class="group-desc">Official fan community for Violence District — 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">313,088</span> members
+      </div>
+    </a>
+
+    <a href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" class="group-card rv d4">
+      <div class="group-top">
+        <span class="group-name">Resenha e Games</span>
+        <span class="group-role">Backend Dev</span>
+      </div>
+      <div class="group-desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div>
+      <div class="group-members">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="num">—</span> members
       </div>
     </a>
   </div>
@@ -619,13 +686,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
 });
 
-// Counters
+// Counters — handle values > 999 with formatting
 const cObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
     const el=entry.target,target=parseInt(el.dataset.target),start=performance.now();
     const ease=t=>1-Math.pow(1-t,3);
-    function tick(now){const p=Math.min((now-start)/1500,1);el.innerText=Math.round(ease(p)*target);if(p<1)requestAnimationFrame(tick)}
+    function fmt(n){return n>=1000?Math.round(n).toLocaleString('en-US'):Math.round(n)}
+    function tick(now){const p=Math.min((now-start)/1800,1);el.innerText=fmt(ease(p)*target);if(p<1)requestAnimationFrame(tick)}
     requestAnimationFrame(tick);cObs.unobserve(el);
   });
 },{threshold:.5});
