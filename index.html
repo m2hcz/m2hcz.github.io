@@ -183,6 +183,19 @@ section{padding:120px 48px;position:relative}
 .cve-desc{font-size:.92rem;color:var(--t2);line-height:1.7;max-width:780px}
 .cve-desc strong{color:#fff;font-weight:500}
 
+/* Featured report (additive, monochrome) */
+.report-feature{max-width:1100px;position:relative;padding:34px 38px;background:var(--bg2);border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:32px}
+.report-feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#fff}
+.report-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.report-eyebrow .star{color:var(--live)}
+.report-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15}
+.report-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.badge-fixed{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--live);letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(74,222,128,.3);border-radius:20px;background:rgba(74,222,128,.06)}
+.report-desc{font-size:.95rem;color:var(--t2);line-height:1.75;max-width:840px;margin-bottom:14px}
+.report-desc strong{color:#fff;font-weight:500}
+.report-thanks{font-size:.83rem;color:var(--t3);line-height:1.6;max-width:840px;margin-bottom:22px}
+.report-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+
 /* Disclosure note (additive, monochrome) */
 .disc-note{max-width:1100px;font-family:var(--mono);font-size:.68rem;color:var(--t3);line-height:1.75;margin-top:22px;padding:16px 20px;border:1px dashed var(--b2);border-radius:var(--r);background:var(--bg2)}
 .disc-note b{color:var(--t2);font-weight:600}
@@ -235,6 +248,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .groups-grid{grid-template-columns:1fr}
   .os-grid{grid-template-columns:1fr}
   .sec-intro{margin-top:-32px}
+  .report-feature{padding:24px}
+  .report-actions .cbtn-sm{justify-content:center;flex:1}
   .contact-links{flex-direction:column}
   .cbtn{justify-content:center}
   .footer-in{flex-direction:column;gap:16px;text-align:center}
@@ -388,6 +403,27 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   <div class="sec-label rv"><span class="dash"></span>003</div>
   <h2 class="sec-title rv d1">Security Research <span class="ghost">& Vulnerability Discovery</span></h2>
   <p class="sec-intro rv d2">I have identified and responsibly reported security vulnerabilities affecting <strong>real-world platforms and organizations</strong>. My approach follows responsible disclosure: identify the weakness, validate impact with a proof of concept, and report through the appropriate channels.</p>
+
+  <div class="report-feature rv d2">
+    <div class="report-eyebrow"><span class="star">★</span> Featured Report</div>
+    <div class="report-title">File Browser — Symlink Directory Scope Bypass</div>
+    <div class="report-badges">
+      <span class="badge-meta">Open Source · Go</span>
+      <span class="badge-meta">GitHub Security Advisory</span>
+      <span class="badge-fixed">Fixed in v2.63.11</span>
+    </div>
+    <div class="report-desc">I reported a security vulnerability in the open-source <strong>File Browser</strong> project through GitHub's private Security Advisory flow. The issue involved <strong>scope validation in scenarios with linked directories / symlinks</strong>: certain accesses could exceed the intended scope, allowing scoped users and public-share recipients to read and write files outside the boundary the application was meant to enforce. The report was <strong>accepted by the maintainers</strong>, a fix was implemented, and the patched version was published on GitHub. The case reinforced how critical strict path/scope validation is for applications that handle files — especially with public sharing, symbolic links, per-user permissions, and network-exposed surfaces.</div>
+    <div class="report-thanks">Thanks to the File Browser maintainers for the fast response, technical validation, and responsible fix.</div>
+    <div class="report-actions">
+      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="cbtn-sm">Fixed release · v2.63.11 ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/commit/1086903c14553545aef0f1a5321011cb139aca3d" target="_blank" rel="noopener" class="cbtn-sm">Patch commit ↗</a>
+    </div>
+    <div class="pills">
+      <span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path / Scope Validation</span><span class="pill sm">GoLang</span><span class="pill sm">GitHub Security Advisory</span>
+    </div>
+  </div>
+
+  <div class="stack-cat-name rv" style="margin-top:8px;margin-bottom:18px">Additional Responsible Disclosures</div>
 
   <div class="games-grid">
     <div class="game-card rv d2">
