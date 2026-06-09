@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="m2hcz — Senior Software Engineer and Offensive Security Researcher. Vulnerability research, application security, and large-scale backend engineering.">
+<meta name="theme-color" content="#050505">
 <title>m2hcz — Senior Software Engineer & Offensive Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,54 +13,62 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  --bg:#000;
-  --bg2:#060606;
-  --bg3:#0a0a0a;
-  --b1:#111;
-  --b2:#191919;
-  --b3:#222;
-  --t1:#eee;
-  --t2:#999;
-  --t3:#666;
-  --t4:#444;
-  --ac:#fff;
-  --ac2:#ccc;
+  --bg:#050505;
+  --bg2:#0a0a0b;
+  --bg3:#0e0e10;
+  --b1:#161618;
+  --b2:#1f1f22;
+  --b3:#2a2a2e;
+  --t1:#f2f2f2;
+  --t2:#9b9ba3;
+  --t3:#6b6b73;
+  --t4:#46464d;
   --ac-dim:rgba(255,255,255,.04);
   --ac-dim2:rgba(255,255,255,.08);
-  --ac-dim3:rgba(255,255,255,.12);
-  --red:#ff3b3b;
+  --ac-dim3:rgba(255,255,255,.14);
+  --red:#ff4d4d;
   --live:#4ade80;
   --mono:'Geist Mono',monospace;
   --body:'DM Sans',sans-serif;
   --heading:'Outfit',sans-serif;
-  --r:6px;
+  --r:10px;
+  --max:1140px;
 }
 
-html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#111 #000}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:#000}
-::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:3px}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1c1c1f #050505}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#050505}
+::-webkit-scrollbar-thumb{background:#1f1f22;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#2a2a2e}
 body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::selection{background:rgba(255,255,255,.15);color:#fff}
-:focus-visible{outline:1px solid var(--t3);outline-offset:4px}
 
-/* Cursor */
-.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:9990;background:radial-gradient(circle,rgba(255,255,255,.025) 0%,transparent 55%);transform:translate(-50%,-50%);transition:opacity .5s;opacity:0;will-change:transform}
+/* Selection: inverted, high contrast */
+::selection{background:#fff;color:#000;text-shadow:none}
+::-moz-selection{background:#fff;color:#000;text-shadow:none}
+:focus-visible{outline:2px solid var(--t2);outline-offset:4px;border-radius:2px}
+
+/* Cursor glow */
+.cursor-glow{position:fixed;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 55%);transform:translate(-50%,-50%);transition:opacity .5s;opacity:0;will-change:transform}
 .cursor-glow.active{opacity:1}
 
 /* Reveal */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}.d6{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
 
 /* Nav */
-nav{position:fixed;top:0;left:0;width:100%;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:all .4s}
-nav.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1)}
+nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:background .4s,border-color .4s,padding .4s}
+nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:14px 48px}
 .nav-logo{font-family:var(--heading);font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.04em}
 .nav-logo span{font-weight:400;color:var(--t3)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;padding:4px 0}
-.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{position:relative;font-family:var(--mono);font-size:.68rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s,background .3s;padding:8px 14px;border-radius:20px}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:#fff;background:var(--ac-dim2)}
 .menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:101;padding:10px}
 .menu-btn span{width:22px;height:1.5px;background:#fff;transition:.3s}
 .menu-btn.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -67,13 +77,14 @@ nav.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(20px);border-bottom:
 
 /* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;opacity:.02;background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:100px 100px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,black 20%,transparent 70%)}
-.hero-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:14px}
-.hero-tag .line{width:40px;height:1px;background:var(--t3)}
-.hero-name{font-family:var(--heading);font-size:clamp(4rem,9vw,9rem);font-weight:900;letter-spacing:-.07em;line-height:.88;margin-bottom:28px;color:#fff}
-.hero-name .outline{color:transparent;-webkit-text-stroke:1.5px var(--t3)}
-.hero-sub{font-family:var(--body);font-size:clamp(1rem,1.8vw,1.15rem);font-weight:300;color:var(--t2);margin-bottom:56px;max-width:600px;line-height:1.85;letter-spacing:-.01em}
+.hero-grid{position:absolute;inset:0;opacity:.025;background-image:linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);background-size:90px 90px;mask-image:radial-gradient(ellipse 65% 55% at 50% 45%,black 15%,transparent 70%)}
+.hero-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:14px}
+.hero-tag .line{width:42px;height:1px;background:var(--t3)}
+.hero-name{font-family:var(--heading);font-size:clamp(4rem,9vw,9rem);font-weight:900;letter-spacing:-.07em;line-height:.88;margin-bottom:30px;background:linear-gradient(180deg,#fff 55%,#777);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-name .outline{background:none;color:transparent;-webkit-text-stroke:1.5px var(--t3)}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.18rem);font-weight:300;color:var(--t2);margin-bottom:48px;max-width:620px;line-height:1.85;letter-spacing:-.01em}
 .hero-sub strong{color:#fff;font-weight:500}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
 .hero-stats{display:flex;gap:56px}
 .stat{position:relative;padding-left:20px}
 .stat::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;background:linear-gradient(180deg,var(--t3),transparent)}
@@ -87,136 +98,134 @@ nav.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(20px);border-bottom:
 .scroll-text{font-family:var(--mono);font-size:.55rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-lr}
 
 /* Sections */
-section{padding:120px 48px;position:relative}
-.sec-label{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t4);letter-spacing:.25em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
-.sec-label .dash{width:20px;height:1px;background:var(--t4)}
-.sec-title{font-family:var(--heading);font-size:clamp(2.5rem,5vw,3.8rem);font-weight:800;letter-spacing:-.05em;margin-bottom:64px;color:#fff;line-height:1.05}
+section{padding:130px 48px;position:relative}
+.sec-head{max-width:var(--max);margin-bottom:64px;position:relative}
+.sec-label{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.sec-label .dash{width:22px;height:1px;background:var(--t4)}
+.sec-title{font-family:var(--heading);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;letter-spacing:-.05em;color:#fff;line-height:1.05}
 .sec-title .ghost{color:transparent;-webkit-text-stroke:1px var(--t4)}
-.divider{width:100%;height:1px;background:var(--b1)}
+.sec-intro{max-width:680px;font-size:1.02rem;line-height:1.8;color:var(--t2);font-weight:300;letter-spacing:-.01em;margin-top:20px}
+.sec-intro strong{color:#fff;font-weight:500}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--b2),transparent)}
 
 /* About */
-.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;max-width:1100px}
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;max-width:var(--max)}
 .about-text{font-size:1.08rem;line-height:1.85;color:var(--t2);font-weight:300;letter-spacing:-.01em}
 .about-text strong{color:#fff;font-weight:500}
 .about-text p{margin-bottom:20px}
 .about-text p:last-child{margin-bottom:0}
-.about-details{display:flex;flex-direction:column}
-.detail{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--b1);transition:all .3s}
-.detail:hover{padding-left:12px;border-color:var(--b3);background:linear-gradient(90deg,var(--ac-dim),transparent)}
-.detail-k{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.about-details{display:flex;flex-direction:column;border-top:1px solid var(--b1)}
+.detail{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 4px;border-bottom:1px solid var(--b1);transition:all .3s}
+.detail:hover{padding-left:14px;border-color:var(--b3);background:linear-gradient(90deg,var(--ac-dim),transparent)}
+.detail-k{font-family:var(--mono);font-size:.63rem;font-weight:500;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 .detail-v{font-size:.9rem;color:var(--t1);text-align:right;font-weight:400}
 .detail-v a{color:#fff;text-decoration:none;border-bottom:1px solid var(--b3);transition:border-color .3s}
 .detail-v a:hover{border-color:var(--t2)}
 .status-dot{display:inline-block;width:7px;height:7px;background:var(--live);border-radius:50%;margin-right:8px;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--live)}
 @keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 
-/* Games */
-.games-grid{max-width:1100px;display:grid;grid-template-columns:1fr;gap:2px}
-.game-card{display:grid;grid-template-columns:1fr auto;align-items:center;padding:32px 36px;background:var(--bg2);border:1px solid var(--b1);transition:all .4s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
-.game-card:first-child{border-radius:var(--r) var(--r) 0 0}
-.game-card:last-child{border-radius:0 0 var(--r) var(--r)}
-.game-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:#fff;transition:height .4s}
-.game-card:hover{background:var(--b1);border-color:var(--b2)}
-.game-card:hover::before{height:100%}
-.game-card:hover .game-name{color:#fff}
-.game-card:hover .game-arrow{transform:translateX(6px);opacity:1}
-.game-info{display:flex;flex-direction:column;gap:8px}
-.game-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.game-name{font-family:var(--heading);font-size:1.35rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
-.game-studio{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--b2);border-radius:20px}
-.game-desc{font-size:.9rem;color:var(--t2);line-height:1.6;max-width:680px}
-.game-stats{display:flex;gap:24px;margin-top:4px;flex-wrap:wrap}
-.game-stat{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--t3)}
-.game-stat .num{color:var(--t1);font-weight:600}
-.game-stat.live .num{color:var(--live)}
-.game-stat svg{width:12px;height:12px;opacity:.5}
-.game-right{display:flex;align-items:center}
-.game-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.5}
+/* Row cards (research, games) */
+.rows{max-width:var(--max);display:flex;flex-direction:column;gap:10px}
+.row-card{display:grid;grid-template-columns:1fr auto;align-items:center;padding:30px 34px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.row-card::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:#fff;transition:height .4s}
+.row-card:hover{background:var(--bg3);border-color:var(--b3);transform:translateX(4px)}
+.row-card:hover::before{height:100%}
+.row-card:hover .row-name{color:#fff}
+.row-card:hover .row-arrow{transform:translateX(6px);opacity:1}
+.row-info{display:flex;flex-direction:column;gap:8px}
+.row-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.row-name{font-family:var(--heading);font-size:1.3rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
+.tag{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
+.tag.ok{color:var(--live);border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.05)}
+.row-desc{font-size:.9rem;color:var(--t2);line-height:1.65;max-width:680px}
+.row-stats{display:flex;gap:24px;margin-top:4px;flex-wrap:wrap}
+.row-stat{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--t3)}
+.row-stat .num{color:var(--t1);font-weight:600}
+.row-stat.live .num{color:var(--live)}
+.row-stat svg{width:12px;height:12px;opacity:.5}
+.row-right{display:flex;align-items:center}
+.row-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.5}
 
-/* Groups */
-.groups-grid{max-width:1100px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.group-card{padding:32px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
-.group-card:hover{border-color:var(--b3);background:var(--b1)}
+/* Grid cards */
+.cards{max-width:var(--max);display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.card{padding:28px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover{border-color:var(--b3);transform:translateY(-3px);background:var(--bg3)}
+.card:hover::after{opacity:1}
+.card:hover .card-name{color:#fff}
+.card-top{display:flex;align-items:center;gap:12px}
+.card-name{font-family:var(--heading);font-size:1.08rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
+.card-desc{font-size:.86rem;color:var(--t2);line-height:1.65}
+.card-arrow{margin-left:auto;font-family:var(--mono);font-size:1rem;color:var(--t4);transition:.3s}
+.card:hover .card-arrow{color:#fff;transform:translate(2px,-2px)}
+.card-meta{font-family:var(--mono);font-size:.68rem;color:var(--t3);letter-spacing:.03em;margin-top:auto}
+
+/* Group cards */
+.groups{max-width:var(--max);display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.group-card{padding:30px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit}
+.group-card:hover{border-color:var(--b3);background:var(--bg3);transform:translateY(-3px)}
 .group-card:hover .group-name{color:#fff}
 .group-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
-.group-name{font-family:var(--heading);font-size:1.2rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
-.group-role{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
-.group-desc{font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.group-name{font-family:var(--heading);font-size:1.18rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
+.group-desc{font-size:.85rem;color:var(--t2);line-height:1.65;margin-bottom:16px}
 .group-members{font-family:var(--mono);font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:6px}
 .group-members .num{color:var(--t1);font-weight:600}
+.group-members svg{width:12px;height:12px;opacity:.5}
 
-/* Open Source / cards */
-.os-grid{max-width:1100px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.os-card{padding:28px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:all .4s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px}
-.os-card:hover{border-color:var(--b3);transform:translateY(-3px);background:var(--b1)}
-.os-card:hover .os-name{color:#fff}
-.os-top{display:flex;align-items:center;gap:12px}
-.os-name{font-family:var(--heading);font-size:1.05rem;font-weight:600;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
-.os-lang{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--b2);border-radius:12px}
-.os-desc{font-size:.85rem;color:var(--t2);line-height:1.6}
-.os-arrow{margin-left:auto;font-family:var(--mono);font-size:1rem;color:var(--t4);transition:.3s}
-.os-card:hover .os-arrow{color:#fff;transform:translate(2px,-2px)}
-.os-meta{font-family:var(--mono);font-size:.68rem;color:var(--t3);letter-spacing:.03em;margin-top:auto}
-
-/* Stack */
-.stack-wrap{max-width:1100px;display:flex;flex-direction:column;gap:48px}
-.stack-cat-name{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t2);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
-.stack-cat-name::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
+/* Pills / stack */
+.stack-wrap{max-width:var(--max);display:flex;flex-direction:column;gap:48px}
+.stack-cat{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t2);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.stack-cat::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:var(--mono);font-size:.75rem;color:var(--t2);padding:10px 20px;background:var(--bg2);border:1px solid var(--b1);border-radius:20px;transition:all .3s;cursor:default}
+.pill{font-family:var(--mono);font-size:.74rem;color:var(--t2);padding:10px 20px;background:var(--bg2);border:1px solid var(--b1);border-radius:20px;transition:all .3s;cursor:default}
 .pill:hover{border-color:var(--b3);color:#fff;transform:translateY(-2px);background:var(--ac-dim)}
-.pill.sm{font-size:.66rem;padding:7px 14px}
+.pill.sm{font-size:.65rem;padding:6px 13px}
 
-/* Section intro (additive, matches system) */
-.sec-intro{max-width:680px;font-size:1.02rem;line-height:1.8;color:var(--t2);font-weight:300;letter-spacing:-.01em;margin-top:-44px;margin-bottom:56px}
-.sec-intro strong{color:#fff;font-weight:500}
+/* Featured report */
+.feature{max-width:var(--max);position:relative;padding:36px 40px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:36px}
+.feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#fff,var(--t4))}
+.feature-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.feature-eyebrow .star{color:var(--live)}
+.feature-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15}
+.feature-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.badge-fixed{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--live);letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(74,222,128,.3);border-radius:20px;background:rgba(74,222,128,.06)}
+.badge-crit{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--red);letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(255,77,77,.3);border-radius:20px;background:rgba(255,77,77,.06)}
+.feature-desc{font-size:.95rem;color:var(--t2);line-height:1.75;max-width:840px;margin-bottom:14px}
+.feature-desc strong{color:#fff;font-weight:500}
+.feature-thanks{font-size:.82rem;color:var(--t3);line-height:1.6;max-width:840px;margin-bottom:22px}
+.feature-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
 
-/* Expertise cards reuse os-card */
-.exp-card .pills{margin-top:4px}
-
-/* CVE highlight (additive, monochrome) */
-.cve-box{max-width:1100px;padding:32px 36px;background:var(--bg2);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:20px;position:relative;overflow:hidden}
+/* CVE box */
+.cve-box{max-width:var(--max);padding:32px 36px;background:var(--bg2);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:24px}
 .cve-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .cve-id{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:#fff;letter-spacing:.02em}
-.badge-crit{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--red);letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(255,59,59,.3);border-radius:20px;background:rgba(255,59,59,.06)}
 .badge-meta{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t2);letter-spacing:.05em;padding:5px 11px;border:1px solid var(--b2);border-radius:20px}
 .cve-desc{font-size:.92rem;color:var(--t2);line-height:1.7;max-width:780px}
 .cve-desc strong{color:#fff;font-weight:500}
 
-/* Featured report (additive, monochrome) */
-.report-feature{max-width:1100px;position:relative;padding:34px 38px;background:var(--bg2);border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:32px}
-.report-feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#fff}
-.report-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.report-eyebrow .star{color:var(--live)}
-.report-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15}
-.report-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.badge-fixed{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--live);letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(74,222,128,.3);border-radius:20px;background:rgba(74,222,128,.06)}
-.report-desc{font-size:.95rem;color:var(--t2);line-height:1.75;max-width:840px;margin-bottom:14px}
-.report-desc strong{color:#fff;font-weight:500}
-.report-thanks{font-size:.83rem;color:var(--t3);line-height:1.6;max-width:840px;margin-bottom:22px}
-.report-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+/* Note */
+.note{max-width:var(--max);font-family:var(--mono);font-size:.68rem;color:var(--t3);line-height:1.75;margin-top:24px;padding:16px 20px;border:1px dashed var(--b2);border-radius:var(--r);background:var(--bg2)}
+.note b{color:var(--t2);font-weight:600}
 
-/* Disclosure note (additive, monochrome) */
-.disc-note{max-width:1100px;font-family:var(--mono);font-size:.68rem;color:var(--t3);line-height:1.75;margin-top:22px;padding:16px 20px;border:1px dashed var(--b2);border-radius:var(--r);background:var(--bg2)}
-.disc-note b{color:var(--t2);font-weight:600}
+/* Buttons */
+.btn{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2)}
+.btn:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
+.btn.main{border-color:#fff;color:#000;background:#fff;font-weight:600}
+.btn.main:hover{background:#e4e4e4;border-color:#e4e4e4}
+.btn svg{width:15px;height:15px}
+.btn-sm{font-family:var(--mono);font-size:.68rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;padding:13px 22px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2);white-space:nowrap}
+.btn-sm:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
+.btn-sm svg{width:15px;height:15px}
 
-/* GitHub head + cta */
-.gh-head{max-width:1100px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.gh-head .sec-title{margin-bottom:0}
-.cbtn-sm{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2);white-space:nowrap}
-.cbtn-sm:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
-.cbtn-sm svg{width:15px;height:15px}
+/* GitHub head */
+.gh-head{max-width:var(--max);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.gh-head .sec-head{margin-bottom:0}
 
 /* Contact */
 .contact-inner{max-width:700px}
 .contact-text{font-size:1.2rem;color:var(--t2);line-height:1.7;margin-bottom:48px;font-weight:300}
 .contact-text strong{color:#fff;font-weight:500}
 .contact-links{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
-.cbtn{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2)}
-.cbtn:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
-.cbtn.main{border-color:var(--t3);color:#fff;background:var(--ac-dim)}
-.cbtn.main:hover{background:var(--ac-dim2);border-color:var(--t2)}
-.cbtn svg{width:15px;height:15px}
 .contact-note{font-family:var(--mono);font-size:.65rem;color:var(--t4);letter-spacing:.02em}
 .contact-note span{color:var(--t2)}
 
@@ -231,33 +240,31 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 /* Responsive */
 @media(max-width:768px){
-  nav{padding:16px 24px}
+  nav,nav.scrolled{padding:14px 22px}
   .menu-btn{display:flex}
-  .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.97);backdrop-filter:blur(10px);flex-direction:column;justify-content:center;align-items:center;gap:40px;transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+  .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(5,5,5,.97);backdrop-filter:blur(10px);flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
   .nav-links.open{transform:translateY(0)}
-  .nav-links a{font-size:1.1rem}
-  .hero,section{padding:80px 24px}
-  .hero-name{font-size:3.5rem}
+  .nav-links a{font-size:1.05rem}
+  .hero,section{padding:90px 22px}
+  .hero-name{font-size:3.4rem}
   .hero-stats{flex-direction:column;gap:28px}
   .stat{padding-left:0;padding-top:12px}
   .stat::before{width:100%;height:1px;left:0;top:0;background:linear-gradient(90deg,var(--t4),transparent)}
   .scroll-hint{display:none}
   .about-grid{grid-template-columns:1fr;gap:48px}
-  .game-card{grid-template-columns:1fr;padding:24px}
-  .game-right{display:none}
-  .groups-grid{grid-template-columns:1fr}
-  .os-grid{grid-template-columns:1fr}
-  .sec-intro{margin-top:-32px}
-  .report-feature{padding:24px}
-  .report-actions .cbtn-sm{justify-content:center;flex:1}
+  .row-card{grid-template-columns:1fr;padding:24px}
+  .row-right{display:none}
+  .groups{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .feature{padding:24px}
+  .feature-actions .btn-sm{justify-content:center;flex:1}
   .contact-links{flex-direction:column}
-  .cbtn{justify-content:center}
+  .btn{justify-content:center}
   .footer-in{flex-direction:column;gap:16px;text-align:center}
 }
 </style>
 </head>
 <body>
-
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <nav id="nav">
@@ -268,6 +275,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <li><a href="#expertise" class="nav-link">Expertise</a></li>
     <li><a href="#research" class="nav-link">Research</a></li>
     <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#engineering" class="nav-link">Experience</a></li>
     <li><a href="#games" class="nav-link">Games</a></li>
     <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
@@ -279,31 +287,36 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
   <div class="hero-tag rv d1">
     <span class="line"></span>
-    Senior Software Engineer & Offensive Security Researcher
+    Senior Software Engineer · Offensive Security Researcher
   </div>
 
   <h1 class="hero-name rv d2">m2hcz<span class="outline">.</span></h1>
 
   <p class="hero-sub rv d3">
-    Building <strong>secure systems</strong>, researching <strong>real-world vulnerabilities</strong>, and developing offensive security tools — backed by a strong software engineering foundation.
+    I design and build <strong>secure, large-scale systems</strong> — and break them through <strong>vulnerability research</strong>, reverse engineering, and exploit development. Security work grounded in over a decade of production engineering.
   </p>
 
-  <div class="hero-stats rv d4">
+  <div class="hero-cta rv d4">
+    <a href="#research" class="btn main">View Research</a>
+    <a href="#contact" class="btn">Get in Touch</a>
+  </div>
+
+  <div class="hero-stats rv d5">
     <div class="stat">
       <div class="stat-num"><span class="counter" data-target="12">0</span><span class="suffix">yr</span></div>
-      <div class="stat-label">Engineering</div>
+      <div class="stat-label">Engineering Experience</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="5">0</span><span class="suffix">+</span></div>
-      <div class="stat-label">Orgs Disclosed To</div>
+      <div class="stat-num"><span class="counter" data-target="6">0</span><span class="suffix">+</span></div>
+      <div class="stat-label">Responsible Disclosures</div>
     </div>
     <div class="stat">
       <div class="stat-num"><span class="counter" data-target="2300">0</span><span class="suffix">M+</span></div>
-      <div class="stat-label">Game Visits</div>
+      <div class="stat-label">Visits Across Shipped Games</div>
     </div>
   </div>
 
-  <a href="#about" class="scroll-hint rv d5">
+  <a href="#about" class="scroll-hint rv d6">
     <div class="scroll-line"></div>
     <div class="scroll-text">Scroll</div>
   </a>
@@ -313,28 +326,30 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="sec-label rv"><span class="dash"></span>001</div>
-  <h2 class="sec-title rv d1">About <span class="ghost">me</span></h2>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>01 — Profile</div>
+    <h2 class="sec-title rv d1">About <span class="ghost">me</span></h2>
+  </div>
 
   <div class="about-grid">
     <div class="about-text rv d2">
-      <p>I'm a <strong>senior software engineer and offensive security researcher</strong> with over a decade of hands-on experience building — and breaking — large-scale systems. My work sits at the intersection of secure software engineering and adversarial research: designing resilient backend architecture on one side, and dismantling it through vulnerability research, reverse engineering, and exploit development on the other.</p>
-      <p>I bring an <strong>investigative, results-oriented mindset</strong> to every engagement — applying strong critical thinking and an offensive security mindset to map attack surfaces, validate impact with working proofs of concept, and translate complex technical risk into clear narratives for <strong>engineering teams, business teams, and executive stakeholders</strong>.</p>
-      <p>I operate effectively in <strong>dynamic, high-pressure environments</strong>, both independently and embedded in a team, and have worked within <strong>financial / fintech-grade contexts</strong> where correctness, confidentiality, and uptime are non-negotiable. With knowledge of <strong>reverse engineering and advanced exploitation</strong> and a solid software engineering background, my focus stays the same: practical security impact backed by rigorous engineering.</p>
+      <p>I am a <strong>senior software engineer and offensive security researcher</strong> with over a decade of experience building and breaking large-scale systems. My work lives at the intersection of secure engineering and adversarial research: designing resilient backend architecture on one side, and stress-testing it through vulnerability research, reverse engineering, and exploit development on the other.</p>
+      <p>Every engagement follows the same discipline: <strong>map the attack surface, validate impact with a working proof of concept, and report clearly</strong>. I translate complex technical risk into actionable guidance for engineering teams, product owners, and executive stakeholders.</p>
+      <p>I perform reliably in <strong>fast-moving, high-stakes environments</strong>, working independently or embedded in a team, including <strong>fintech-grade contexts</strong> where correctness, confidentiality, and uptime are non-negotiable. The goal never changes: practical security impact backed by rigorous engineering.</p>
     </div>
 
     <div class="about-details rv d3">
       <div class="detail">
         <span class="detail-k">Role</span>
-        <span class="detail-v">Sr. Engineer · Offensive Security</span>
+        <span class="detail-v">Senior Engineer · Offensive Security</span>
       </div>
       <div class="detail">
         <span class="detail-k">Focus</span>
-        <span class="detail-v">AppSec · Vuln Research · Backend</span>
+        <span class="detail-v">AppSec · Vulnerability Research · Backend</span>
       </div>
       <div class="detail">
         <span class="detail-k">Location</span>
-        <span class="detail-v">Brazil</span>
+        <span class="detail-v">Brazil (UTC-3) · Remote</span>
       </div>
       <div class="detail">
         <span class="detail-k">Languages</span>
@@ -349,12 +364,12 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
         <span class="detail-v"><a href="https://github.com/m2hcz" target="_blank" rel="noopener">github.com/m2hcz</a></span>
       </div>
       <div class="detail">
-        <span class="detail-k">Twitter</span>
+        <span class="detail-k">Twitter / X</span>
         <span class="detail-v"><a href="https://x.com/inf0secc" target="_blank" rel="noopener">@inf0secc</a></span>
       </div>
       <div class="detail">
-        <span class="detail-k">Status</span>
-        <span class="detail-v" style="color:var(--live)"><span class="status-dot"></span>Open to work</span>
+        <span class="detail-k">Availability</span>
+        <span class="detail-v" style="color:var(--live)"><span class="status-dot"></span>Open to new opportunities</span>
       </div>
     </div>
   </div>
@@ -362,35 +377,40 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- CORE EXPERTISE -->
+<!-- EXPERTISE -->
 <section id="expertise">
-  <div class="sec-label rv"><span class="dash"></span>002</div>
-  <h2 class="sec-title rv d1">Core <span class="ghost">expertise</span></h2>
-  <p class="sec-intro rv d2">A full-spectrum skill set spanning offensive research, application security, and production software engineering.</p>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>02 — Capabilities</div>
+    <h2 class="sec-title rv d1">Core <span class="ghost">expertise</span></h2>
+    <p class="sec-intro rv d2">A full-spectrum skill set spanning offensive research, application security, and production software engineering.</p>
+  </div>
 
-  <div class="os-grid">
-    <div class="os-card exp-card rv d2">
-      <div class="os-top"><span class="os-name">Offensive Security & Research</span></div>
+  <div class="cards">
+    <div class="card rv d2">
+      <div class="card-top"><span class="card-name">Offensive Security & Research</span></div>
+      <div class="card-desc">Finding and proving real-world weaknesses before attackers do.</div>
       <div class="pills">
-        <span class="pill sm">Offensive Security</span><span class="pill sm">Vulnerability Research</span>
-        <span class="pill sm">Exploit Development</span><span class="pill sm">Reverse Engineering</span>
-        <span class="pill sm">Reconnaissance Tooling</span><span class="pill sm">Red Team Operations</span>
+        <span class="pill sm">Vulnerability Research</span><span class="pill sm">Exploit Development</span>
+        <span class="pill sm">Reverse Engineering</span><span class="pill sm">Red Team Operations</span>
+        <span class="pill sm">Reconnaissance Tooling</span>
       </div>
     </div>
-    <div class="os-card exp-card rv d3">
-      <div class="os-top"><span class="os-name">Application & Product Security</span></div>
+    <div class="card rv d3">
+      <div class="card-top"><span class="card-name">Application & Product Security</span></div>
+      <div class="card-desc">Securing the software delivery lifecycle end to end.</div>
       <div class="pills">
-        <span class="pill sm">Web Application Security</span><span class="pill sm">Application Security</span>
-        <span class="pill sm">API Security</span><span class="pill sm">Secure Code Review</span>
-        <span class="pill sm">DevSecOps</span><span class="pill sm">Security Automation</span>
+        <span class="pill sm">Web Application Security</span><span class="pill sm">API Security</span>
+        <span class="pill sm">Secure Code Review</span><span class="pill sm">DevSecOps</span>
+        <span class="pill sm">Security Automation</span>
       </div>
     </div>
-    <div class="os-card exp-card rv d4">
-      <div class="os-top"><span class="os-name">Software Engineering</span></div>
+    <div class="card rv d4">
+      <div class="card-top"><span class="card-name">Software Engineering</span></div>
+      <div class="card-desc">Production-grade backend systems built to scale and to resist abuse.</div>
       <div class="pills">
-        <span class="pill sm">Secure Software Engineering</span><span class="pill sm">Backend Architecture</span>
-        <span class="pill sm">Scalable Systems</span><span class="pill sm">Performance Optimization</span>
-        <span class="pill sm">Distributed Infrastructure</span><span class="pill sm">Anti-Cheat & Integrity</span>
+        <span class="pill sm">Backend Architecture</span><span class="pill sm">Distributed Systems</span>
+        <span class="pill sm">Performance Optimization</span><span class="pill sm">Anti-Cheat & Integrity</span>
+        <span class="pill sm">Secure SDLC</span>
       </div>
     </div>
   </div>
@@ -398,147 +418,144 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- SECURITY RESEARCH -->
+<!-- RESEARCH -->
 <section id="research">
-  <div class="sec-label rv"><span class="dash"></span>003</div>
-  <h2 class="sec-title rv d1">Security Research <span class="ghost">& Vulnerability Discovery</span></h2>
-  <p class="sec-intro rv d2">I have identified and responsibly reported security vulnerabilities affecting <strong>real-world platforms and organizations</strong>. My approach follows responsible disclosure: identify the weakness, validate impact with a proof of concept, and report through the appropriate channels.</p>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>03 — Security Research</div>
+    <h2 class="sec-title rv d1">Vulnerability <span class="ghost">research</span></h2>
+    <p class="sec-intro rv d2">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure: confirm the weakness, prove impact with a working proof of concept, and report through the proper channel.</p>
+  </div>
 
-  <div class="report-feature rv d2">
-    <div class="report-eyebrow"><span class="star">★</span> Featured Report</div>
-    <div class="report-title">File Browser — Symlink Directory Scope Bypass</div>
-    <div class="report-badges">
+  <div class="feature rv d2">
+    <div class="feature-eyebrow"><span class="star">★</span> Featured disclosure</div>
+    <div class="feature-title">File Browser — Symlink Directory Scope Bypass</div>
+    <div class="feature-badges">
       <span class="badge-meta">Open Source · Go</span>
       <span class="badge-meta">GitHub Security Advisory</span>
       <span class="badge-fixed">Fixed in v2.63.11</span>
     </div>
-    <div class="report-desc">I reported a security vulnerability in the open-source <strong>File Browser</strong> project through GitHub's private Security Advisory flow. The issue involved <strong>scope validation in scenarios with linked directories / symlinks</strong>: certain accesses could exceed the intended scope, allowing scoped users and public-share recipients to read and write files outside the boundary the application was meant to enforce. The report was <strong>accepted by the maintainers</strong>, a fix was implemented, and the patched version was published on GitHub. The case reinforced how critical strict path/scope validation is for applications that handle files — especially with public sharing, symbolic links, per-user permissions, and network-exposed surfaces.</div>
-    <div class="report-thanks">Thanks to the File Browser maintainers for the fast response, technical validation, and responsible fix.</div>
-    <div class="report-actions">
-      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="cbtn-sm">Fixed release · v2.63.11 ↗</a>
-      <a href="https://github.com/filebrowser/filebrowser/commit/1086903c14553545aef0f1a5321011cb139aca3d" target="_blank" rel="noopener" class="cbtn-sm">Patch commit ↗</a>
+    <div class="feature-desc">Reported through GitHub's private Security Advisory process, this finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application, especially with public sharing, symbolic links, and per-user permissions on network-exposed surfaces.</div>
+    <div class="feature-thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
+    <div class="feature-actions">
+      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="btn-sm">Fixed release · v2.63.11 ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/commit/1086903c14553545aef0f1a5321011cb139aca3d" target="_blank" rel="noopener" class="btn-sm">Patch commit ↗</a>
     </div>
     <div class="pills">
-      <span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path / Scope Validation</span><span class="pill sm">GoLang</span><span class="pill sm">GitHub Security Advisory</span>
+      <span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path & Scope Validation</span><span class="pill sm">Go</span>
     </div>
   </div>
 
-  <div class="stack-cat-name rv" style="margin-top:8px;margin-bottom:18px">Additional Responsible Disclosures</div>
+  <div class="stack-cat rv" style="margin-bottom:18px">Additional responsible disclosures</div>
 
-  <div class="games-grid">
-    <div class="game-card rv d2">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Universidade de São Paulo (USP)</span>
-          <span class="game-studio">Responsibly Disclosed</span>
+  <div class="rows">
+    <div class="row-card rv d2">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Universidade de São Paulo (USP)</span>
+          <span class="tag ok">Responsibly disclosed</span>
         </div>
-        <div class="game-desc">Identified and reported security weaknesses affecting university web assets.</div>
+        <div class="row-desc">Identified and reported security weaknesses affecting university web assets.</div>
       </div>
-      <div class="game-right"><span class="game-arrow">✓</span></div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-
-    <div class="game-card rv d3">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Ybera Paris Applications</span>
-          <span class="game-studio">Responsibly Disclosed</span>
+    <div class="row-card rv d3">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Ybera Paris</span>
+          <span class="tag ok">Responsibly disclosed</span>
         </div>
-        <div class="game-desc">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div>
+        <div class="row-desc">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div>
       </div>
-      <div class="game-right"><span class="game-arrow">✓</span></div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-
-    <div class="game-card rv d4">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Automattic / WordPress.com</span>
-          <span class="game-studio">Responsibly Disclosed</span>
+    <div class="row-card rv d4">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Automattic / WordPress.com</span>
+          <span class="tag ok">Responsibly disclosed</span>
         </div>
-        <div class="game-desc">Reported security issues affecting Automattic / WordPress.com-related assets.</div>
+        <div class="row-desc">Reported security issues affecting Automattic and WordPress.com-related assets.</div>
       </div>
-      <div class="game-right"><span class="game-arrow">✓</span></div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-
-    <div class="game-card rv d5">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Parse.ly</span>
-          <span class="game-studio">Responsibly Disclosed</span>
+    <div class="row-card rv d5">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Parse.ly</span>
+          <span class="tag ok">Responsibly disclosed</span>
         </div>
-        <div class="game-desc">Reported a security vulnerability affecting Parse.ly assets.</div>
+        <div class="row-desc">Reported a security vulnerability affecting Parse.ly assets.</div>
       </div>
-      <div class="game-right"><span class="game-arrow">✓</span></div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-
-    <div class="game-card rv d6">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Discord</span>
-          <span class="game-studio">Responsibly Disclosed</span>
+    <div class="row-card rv d6">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Discord</span>
+          <span class="tag ok">Responsibly disclosed</span>
         </div>
-        <div class="game-desc">Reported a security issue through Discord's vulnerability disclosure channel.</div>
+        <div class="row-desc">Reported a security issue through Discord's vulnerability disclosure program.</div>
       </div>
-      <div class="game-right"><span class="game-arrow">✓</span></div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
   </div>
 
-  <div class="disc-note rv">
-    <b>On responsible disclosure —</b> All findings above were investigated and reported following responsible-disclosure practices, with the goal of practical security impact and remediation. This reflects research and reporting activity and does not claim official CVE authorship except where explicitly referenced below.
+  <div class="note rv">
+    <b>Responsible disclosure —</b> Every finding above was investigated and reported under responsible-disclosure practices, prioritizing remediation and practical security impact. This reflects research and reporting activity; no official CVE authorship is claimed except where explicitly referenced.
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- FEATURED SECURITY PROJECTS -->
+<!-- PROJECTS -->
 <section id="projects">
-  <div class="sec-label rv"><span class="dash"></span>004</div>
-  <h2 class="sec-title rv d1">Featured <span class="ghost">Security Projects</span></h2>
-  <p class="sec-intro rv d2">Offensive tooling, scanners, and proof-of-concept research — open source and built for practical use.</p>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>04 — Tooling</div>
+    <h2 class="sec-title rv d1">Featured <span class="ghost">projects</span></h2>
+    <p class="sec-intro rv d2">Open-source offensive tooling, scanners, and proof-of-concept research, built for practical day-to-day use.</p>
+  </div>
 
-  <div class="os-grid">
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top">
-        <span class="os-name">ReconMapper v2</span>
-        <span class="os-lang">Python</span>
-        <span class="os-arrow">↗</span>
+  <div class="cards">
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top">
+        <span class="card-name">ReconMapper v2</span>
+        <span class="tag">Python</span>
+        <span class="card-arrow">↗</span>
       </div>
-      <div class="os-desc">Automated reconnaissance and attack-surface mapping — subdomain enumeration, port scanning, and service fingerprinting in one repeatable pipeline.</div>
+      <div class="card-desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, and service fingerprinting in a single repeatable pipeline.</div>
       <div class="pills">
         <span class="pill sm">Offensive Security</span><span class="pill sm">Recon</span><span class="pill sm">Automation</span>
       </div>
     </a>
-
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top">
-        <span class="os-name">SQLi Scanner</span>
-        <span class="os-lang">TypeScript</span>
-        <span class="os-arrow">↗</span>
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top">
+        <span class="card-name">SQLi Scanner</span>
+        <span class="tag">TypeScript</span>
+        <span class="card-arrow">↗</span>
       </div>
-      <div class="os-desc">Automated SQL injection detection and vulnerability scanner with payload generation to surface injection points across web targets.</div>
+      <div class="card-desc">Automated SQL injection detection with payload generation, surfacing injection points across web targets.</div>
       <div class="pills">
         <span class="pill sm">Web Security</span><span class="pill sm">Scanner</span><span class="pill sm">AppSec</span>
       </div>
     </a>
-
-    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top">
-        <span class="os-name">Next.js Middleware PoC</span>
-        <span class="os-lang">JavaScript</span>
-        <span class="os-arrow">↗</span>
+    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top">
+        <span class="card-name">Next.js Middleware PoC</span>
+        <span class="tag">JavaScript</span>
+        <span class="card-arrow">↗</span>
       </div>
-      <div class="os-desc">Proof-of-concept demonstrating a Next.js middleware authorization-bypass technique — research into framework-level security boundaries.</div>
+      <div class="card-desc">Proof of concept demonstrating a Next.js middleware authorization-bypass technique; research into framework-level security boundaries.</div>
       <div class="pills">
         <span class="pill sm">PoC</span><span class="pill sm">Exploit Development</span><span class="pill sm">Web Security</span>
       </div>
     </a>
-
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top">
-        <span class="os-name">NetSentinel</span>
-        <span class="os-lang">Luau</span>
-        <span class="os-arrow">↗</span>
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top">
+        <span class="card-name">NetSentinel</span>
+        <span class="tag">Luau</span>
+        <span class="card-arrow">↗</span>
       </div>
-      <div class="os-desc">Network security monitoring and threat-detection framework with real-time traffic analysis for identifying anomalous behaviour and abuse.</div>
+      <div class="card-desc">Network security monitoring and threat-detection framework with real-time traffic analysis for spotting anomalous behavior and abuse.</div>
       <div class="pills">
         <span class="pill sm">Security Tooling</span><span class="pill sm">Threat Detection</span><span class="pill sm">Network Security</span>
       </div>
@@ -548,11 +565,13 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- PUBLIC REFERENCES -->
+<!-- REFERENCES -->
 <section id="references">
-  <div class="sec-label rv"><span class="dash"></span>005</div>
-  <h2 class="sec-title rv d1">Public References <span class="ghost">& Threat Intelligence Mentions</span></h2>
-  <p class="sec-intro rv d2">My public GitHub security research repositories have been <strong>referenced and indexed by vulnerability-intelligence and exploit-tracking platforms</strong>, including Feedly, cve.imfht, Sploitus, and ShellCodeX.</p>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>05 — External Validation</div>
+    <h2 class="sec-title rv d1">Public <span class="ghost">references</span></h2>
+    <p class="sec-intro rv d2">My public security research has been <strong>indexed by vulnerability-intelligence and exploit-tracking platforms</strong>, including Feedly, cve.imfht, Sploitus, and ShellCodeX.</p>
+  </div>
 
   <div class="cve-box rv d2">
     <div class="cve-head">
@@ -560,48 +579,50 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <span class="badge-crit">Critical</span>
       <span class="badge-meta">CVSS 9.8 · CWE-434</span>
     </div>
-    <div class="cve-desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload that can lead to remote code execution. A public proof-of-concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
+    <div class="cve-desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload leading to potential remote code execution. The public proof of concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
   </div>
 
-  <div class="os-grid">
-    <a href="https://feedly.com/cve/CVE-2025-6440" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">Feedly</span><span class="os-arrow">↗</span></div>
-      <div class="os-meta">CVE-2025-6440 · Exploits & Severity</div>
+  <div class="cards">
+    <a href="https://feedly.com/cve/CVE-2025-6440" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">Feedly</span><span class="card-arrow">↗</span></div>
+      <div class="card-meta">CVE-2025-6440 · Exploits & severity</div>
     </a>
-    <a href="https://cve.imfht.com/detail/CVE-2025-6440" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">cve.imfht</span><span class="os-arrow">↗</span></div>
-      <div class="os-meta">CVE-2025-6440 · Detail page</div>
+    <a href="https://cve.imfht.com/detail/CVE-2025-6440" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">cve.imfht</span><span class="card-arrow">↗</span></div>
+      <div class="card-meta">CVE-2025-6440 · Detail page</div>
     </a>
-    <a href="https://cve.imfht.com/poc_detail/5017fb2c4a7ce0762028468b896cb95056c16c05" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">cve.imfht</span><span class="os-arrow">↗</span></div>
-      <div class="os-meta">PoC detail · CVE-2025-6440</div>
+    <a href="https://cve.imfht.com/poc_detail/5017fb2c4a7ce0762028468b896cb95056c16c05" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">cve.imfht</span><span class="card-arrow">↗</span></div>
+      <div class="card-meta">PoC detail · CVE-2025-6440</div>
     </a>
-    <a href="https://sploitus.com/exploit?id=93509C82-B3B5-511B-88DD-5E37F231D631" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">Sploitus</span><span class="os-arrow">↗</span></div>
-      <div class="os-meta">Exploit listing · CVE-2025-6440</div>
+    <a href="https://sploitus.com/exploit?id=93509C82-B3B5-511B-88DD-5E37F231D631" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">Sploitus</span><span class="card-arrow">↗</span></div>
+      <div class="card-meta">Exploit listing · CVE-2025-6440</div>
     </a>
-    <a href="https://shellcodex.com/tool/poc-in-github" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">ShellCodeX</span><span class="os-arrow">↗</span></div>
-      <div class="os-meta">PoC-in-GitHub listing</div>
+    <a href="https://shellcodex.com/tool/poc-in-github" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">ShellCodeX</span><span class="card-arrow">↗</span></div>
+      <div class="card-meta">PoC-in-GitHub listing</div>
     </a>
   </div>
 
-  <div class="disc-note rv">
+  <div class="note rv">
     <b>Context —</b> These platforms automatically aggregate and index public security research from GitHub. The references above reflect external indexing of my published work; they are not a claim of official CVE authorship or assignment.
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- SOFTWARE ENGINEERING EXPERIENCE -->
+<!-- ENGINEERING -->
 <section id="engineering">
-  <div class="sec-label rv"><span class="dash"></span>006</div>
-  <h2 class="sec-title rv d1">Software Engineering <span class="ghost">Experience</span></h2>
-  <p class="sec-intro rv d2">Over a decade shipping production backend systems and distributed infrastructure — from data persistence and real-time networking to anti-cheat and live-ops pipelines serving thousands of concurrent users. This engineering depth is what makes my security work practical: I understand systems well enough to know precisely where and how they fail.</p>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>06 — Background</div>
+    <h2 class="sec-title rv d1">Engineering <span class="ghost">experience</span></h2>
+    <p class="sec-intro rv d2">Over a decade shipping production backend systems and distributed infrastructure: data persistence, real-time networking, anti-cheat, and live-ops pipelines serving thousands of concurrent users. That engineering depth is what makes my security work practical — I understand systems well enough to know exactly where and how they fail.</p>
+  </div>
 
   <div class="stack-wrap">
     <div class="rv d2">
-      <div class="stack-cat-name">Languages</div>
+      <div class="stack-cat">Languages</div>
       <div class="pills">
         <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">Rust</span>
         <span class="pill">Go</span><span class="pill">C</span><span class="pill">C#</span>
@@ -609,7 +630,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d3">
-      <div class="stack-cat-name">Infrastructure</div>
+      <div class="stack-cat">Infrastructure</div>
       <div class="pills">
         <span class="pill">Linux</span><span class="pill">Docker</span><span class="pill">Kubernetes</span>
         <span class="pill">Terraform</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span>
@@ -617,7 +638,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d4">
-      <div class="stack-cat-name">Security Tooling</div>
+      <div class="stack-cat">Security Tooling</div>
       <div class="pills">
         <span class="pill">Burp Suite</span><span class="pill">mitmproxy</span><span class="pill">Frida</span>
         <span class="pill">Ghidra</span><span class="pill">Radare2</span><span class="pill">pwntools</span>
@@ -626,11 +647,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d5">
-      <div class="stack-cat-name">Specializations</div>
+      <div class="stack-cat">Specializations</div>
       <div class="pills">
         <span class="pill">Scalable Game Backends</span><span class="pill">DataStore Sharding</span>
         <span class="pill">Anti-Cheat Architecture</span><span class="pill">Vulnerability Research</span>
-        <span class="pill">Exploit Development</span><span class="pill">Red Team Ops</span>
+        <span class="pill">Exploit Development</span><span class="pill">Red Team Operations</span>
         <span class="pill">Reverse Engineering</span><span class="pill">Supply Chain Security</span>
       </div>
     </div>
@@ -639,141 +660,152 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- GAME DEVELOPMENT (secondary) -->
+<!-- GAMES -->
 <section id="games">
-  <div class="sec-label rv"><span class="dash"></span>007</div>
-  <h2 class="sec-title rv d1">Game <span class="ghost">Development</span> <span class="game-studio" style="font-family:var(--mono);vertical-align:middle;font-size:.6rem">Secondary Focus</span></h2>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>07 — Shipped Titles</div>
+    <h2 class="sec-title rv d1">Game <span class="ghost">development</span></h2>
+    <p class="sec-intro rv d2">Backend engineering behind titles with a combined <strong>2.3B+ visits</strong>. Architecture, networking, persistence, and live operations at viral scale.</p>
+  </div>
 
-  <div class="games-grid">
-    <a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" rel="noopener" class="game-card rv d2">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Run For Brainrots</span>
-          <span class="game-studio">Independent</span>
+  <div class="rows">
+    <a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" rel="noopener" class="row-card rv d2">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Run For Brainrots</span>
+          <span class="tag">Independent</span>
         </div>
-        <div class="game-desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to handle viral player growth.</div>
-        <div class="game-stats">
-          <div class="game-stat live">
+        <div class="row-desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to absorb viral player growth.</div>
+        <div class="row-stats">
+          <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
             <span class="num">12k–60k</span> playing
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="num">1.4B+</span> visits
           </div>
         </div>
       </div>
-      <div class="game-right"><span class="game-arrow">→</span></div>
+      <div class="row-right"><span class="row-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" rel="noopener" class="game-card rv d3">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Violence District</span>
-          <span class="game-studio">VIOLENCE DISTRICT</span>
+    <a href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" rel="noopener" class="row-card rv d3">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Violence District</span>
+          <span class="tag">VIOLENCE DISTRICT</span>
         </div>
-        <div class="game-desc">Asymmetric horror survival — 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
-        <div class="game-stats">
-          <div class="game-stat live">
+        <div class="row-desc">Asymmetric horror survival, 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
+        <div class="row-stats">
+          <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
             <span class="num">10k–25k</span> playing
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="num">705M+</span> visits
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">346k</span> group
+            <span class="num">346k</span> community
           </div>
         </div>
       </div>
-      <div class="game-right"><span class="game-arrow">→</span></div>
+      <div class="row-right"><span class="row-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" rel="noopener" class="game-card rv d4">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Last Letter</span>
-          <span class="game-studio">MmiiGames</span>
+    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" rel="noopener" class="row-card rv d4">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Last Letter</span>
+          <span class="tag">MmiiGames</span>
         </div>
-        <div class="game-desc">Competitive word game — every last letter counts. Developed core gameplay systems, networking, data persistence layers, and modular architectures for rapid iteration.</div>
-        <div class="game-stats">
-          <div class="game-stat live">
+        <div class="row-desc">Competitive word game where every last letter counts. Developed core gameplay systems, networking, data-persistence layers, and modular architecture for rapid iteration.</div>
+        <div class="row-stats">
+          <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
             <span class="num">5k–7k</span> playing
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="num">89M+</span> visits
           </div>
         </div>
       </div>
-      <div class="game-right"><span class="game-arrow">→</span></div>
+      <div class="row-right"><span class="row-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" rel="noopener" class="game-card rv d5">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Animatronic Nights</span>
-          <span class="game-studio">PlayBox!</span>
+    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" rel="noopener" class="row-card rv d5">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Animatronic Nights</span>
+          <span class="tag">PlayBox!</span>
         </div>
-        <div class="game-desc">Horror survival — hunt or survive as animatronics. Contributing to backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
-        <div class="game-stats">
-          <div class="game-stat live">
+        <div class="row-desc">Horror survival: hunt or survive as animatronics. Contributing backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
+        <div class="row-stats">
+          <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
             <span class="num">2k–4k</span> playing
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="num">25M+</span> visits
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">818k</span> group
+            <span class="num">818k</span> community
           </div>
         </div>
       </div>
-      <div class="game-right"><span class="game-arrow">→</span></div>
+      <div class="row-right"><span class="row-arrow">→</span></div>
     </a>
 
-    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener" class="game-card rv d6">
-      <div class="game-info">
-        <div class="game-top">
-          <span class="game-name">Massacre</span>
-          <span class="game-studio">Abysmal Covenant</span>
+    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener" class="row-card rv d6">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Massacre</span>
+          <span class="tag">Abysmal Covenant</span>
         </div>
-        <div class="game-desc">Asymmetric horror hide-and-seek. Led entire backend architecture — DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
-        <div class="game-stats">
-          <div class="game-stat live">
+        <div class="row-desc">Asymmetric horror hide-and-seek. Led the entire backend architecture: DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
+        <div class="row-stats">
+          <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
             <span class="num">1.2k–2.2k</span> playing
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span class="num">2.5M+</span> visits
           </div>
-          <div class="game-stat">
+          <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">177k</span> group
+            <span class="num">177k</span> community
           </div>
         </div>
       </div>
-      <div class="game-right"><span class="game-arrow">→</span></div>
+      <div class="row-right"><span class="row-arrow">→</span></div>
     </a>
   </div>
+</section>
 
-  <h3 class="sec-title rv d1" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:80px;margin-bottom:32px">Studios <span class="ghost">& Groups</span></h3>
+<div class="divider"></div>
 
-  <div class="groups-grid">
+<!-- STUDIOS -->
+<section id="studios">
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>08 — Collaborations</div>
+    <h2 class="sec-title rv d1">Studios <span class="ghost">& communities</span></h2>
+  </div>
+
+  <div class="groups">
     <a href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" rel="noopener" class="group-card rv d2">
       <div class="group-top">
         <span class="group-name">PlayBox!</span>
-        <span class="group-role">Backend Dev</span>
+        <span class="tag">Backend Engineer</span>
       </div>
       <div class="group-desc">Verified Roblox studio. Contributing to Animatronic Nights and other titles under the PlayBox brand.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">818,424</span> members
       </div>
     </a>
@@ -781,11 +813,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <a href="https://www.roblox.com/communities/1014009190/Abysmal-Covenant" target="_blank" rel="noopener" class="group-card rv d3">
       <div class="group-top">
         <span class="group-name">Abysmal Covenant</span>
-        <span class="group-role">Lead Dev</span>
+        <span class="tag">Lead Engineer</span>
       </div>
       <div class="group-desc">Home of Massacre. Leading the entire backend infrastructure, game systems, and live-ops pipeline.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">177,173</span> members
       </div>
     </a>
@@ -793,25 +825,25 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <a href="https://www.roblox.com/communities/5826271/Gothyc" target="_blank" rel="noopener" class="group-card rv d4">
       <div class="group-top">
         <span class="group-name">Gothyc!</span>
-        <span class="group-role">Backend Dev</span>
+        <span class="tag">Backend Engineer</span>
       </div>
-      <div class="group-desc">UGC-verified group with 1.3M+ members. Built core backend systems and engineered game infrastructure across multiple titles.</div>
+      <div class="group-desc">UGC-verified community with 1.3M+ members. Built core backend systems and game infrastructure across multiple titles.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">1,324,293</span> members
       </div>
     </a>
   </div>
 
-  <div class="groups-grid" style="margin-top:16px">
+  <div class="groups" style="margin-top:14px">
     <a href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" rel="noopener" class="group-card rv d2">
       <div class="group-top">
         <span class="group-name">Frontman Studios</span>
-        <span class="group-role">Backend Dev</span>
+        <span class="tag">Backend Engineer</span>
       </div>
-      <div class="group-desc">Studio behind Violence District — one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
+      <div class="group-desc">Studio behind Violence District, one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">Studio</span>
       </div>
     </a>
@@ -819,11 +851,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <a href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" rel="noopener" class="group-card rv d3">
       <div class="group-top">
         <span class="group-name">VIOLENCE DISTRICT</span>
-        <span class="group-role">Backend Dev</span>
+        <span class="tag">Backend Engineer</span>
       </div>
-      <div class="group-desc">Official community for Violence District — 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
+      <div class="group-desc">Official community for Violence District, a 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">345,880</span> members
       </div>
     </a>
@@ -831,11 +863,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <a href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener" class="group-card rv d4">
       <div class="group-top">
         <span class="group-name">Resenha e Games</span>
-        <span class="group-role">Backend Dev</span>
+        <span class="tag">Backend Engineer</span>
       </div>
       <div class="group-desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div>
       <div class="group-members">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span class="num">Studio</span>
       </div>
     </a>
@@ -844,45 +876,47 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- GITHUB REPOSITORIES -->
+<!-- GITHUB -->
 <section id="github">
-  <div class="sec-label rv"><span class="dash"></span>008</div>
   <div class="gh-head">
-    <h2 class="sec-title rv d1">GitHub <span class="ghost">Repositories</span></h2>
-    <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="cbtn-sm rv d2">
+    <div class="sec-head">
+      <div class="sec-label rv"><span class="dash"></span>09 — Open Source</div>
+      <h2 class="sec-title rv d1">GitHub <span class="ghost">repositories</span></h2>
+    </div>
+    <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn-sm rv d2">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
       github.com/m2hcz
     </a>
   </div>
 
-  <div class="os-grid">
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">NetSentinel</span><span class="os-lang">Luau</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Network security monitoring and threat detection framework with real-time traffic analysis.</div>
+  <div class="cards">
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">NetSentinel</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Network security monitoring and threat-detection framework with real-time traffic analysis.</div>
     </a>
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">ReconMapper v2</span><span class="os-lang">Python</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Automated reconnaissance and attack surface mapping. Subdomain enumeration, port scanning, fingerprinting.</div>
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">ReconMapper v2</span><span class="tag">Python</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, fingerprinting.</div>
     </a>
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">SQLi Scanner</span><span class="os-lang">TypeScript</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Automated SQL injection detection and vulnerability scanner with payload generation.</div>
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">SQLi Scanner</span><span class="tag">TypeScript</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Automated SQL injection detection and vulnerability scanning with payload generation.</div>
     </a>
-    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">Next.js Middleware PoC</span><span class="os-lang">JavaScript</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Proof-of-concept for a Next.js middleware authorization-bypass technique.</div>
+    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">Next.js Middleware PoC</span><span class="tag">JavaScript</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Proof of concept for a Next.js middleware authorization-bypass technique.</div>
     </a>
-    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">PhantomNet</span><span class="os-lang">Luau</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Optimized networking library for high-performance client-server communication with delta compression.</div>
+    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">PhantomNet</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Optimized networking library for high-performance client-server communication with delta compression.</div>
     </a>
-    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">Race-Family-Reroll</span><span class="os-lang">Luau</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div>
+    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">Race-Family-Reroll</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div>
     </a>
-    <a href="https://github.com/m2hcz/OOPModule" target="_blank" rel="noopener" class="os-card rv">
-      <div class="os-top"><span class="os-name">OOPModule</span><span class="os-lang">Luau</span><span class="os-arrow">↗</span></div>
-      <div class="os-desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div>
+    <a href="https://github.com/m2hcz/OOPModule" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">OOPModule</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div>
     </a>
   </div>
 </section>
@@ -891,25 +925,27 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="sec-label rv"><span class="dash"></span>009</div>
-  <h2 class="sec-title rv d1">Let's <span class="ghost">talk</span></h2>
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span>10 — Contact</div>
+    <h2 class="sec-title rv d1">Let's work <span class="ghost">together</span></h2>
+  </div>
 
   <div class="contact-inner rv d2">
     <div class="contact-text">
-      Available for <strong>contracts and full-time positions</strong> in offensive security, application security, vulnerability research, and backend / systems engineering.
+      Available for <strong>contract engagements and full-time roles</strong> in offensive security, application security, vulnerability research, and backend / systems engineering.
     </div>
     <div class="contact-links">
-      <a href="mailto:m2hczs@proton.me" class="cbtn main">m2hczs@proton.me</a>
-      <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="cbtn">GitHub</a>
-      <a href="https://x.com/inf0secc" target="_blank" rel="noopener" class="cbtn">Twitter</a>
+      <a href="mailto:m2hczs@proton.me" class="btn main">m2hczs@proton.me</a>
+      <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn">GitHub</a>
+      <a href="https://x.com/inf0secc" target="_blank" rel="noopener" class="btn">Twitter / X</a>
     </div>
-    <div class="contact-note">Payment — <span>BTC (Lightning / On-chain) · Mercado Pago · Mixed</span></div>
+    <div class="contact-note">Payment options — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexible</span></div>
   </div>
 </section>
 
 <footer>
   <div class="footer-in">
-    <div class="footer-l">© 2025 <span>m2hcz</span> — building since 2014</div>
+    <div class="footer-l">© 2025 <span>m2hcz</span> — engineering since 2014</div>
     <div class="footer-r">
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:m2hczs@proton.me">Email</a>
@@ -919,11 +955,20 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 </footer>
 
 <script>
-// Cursor
+// Cursor glow
 const glow=document.getElementById('cursorGlow');
 document.addEventListener('mousemove',e=>{
   if(!glow.classList.contains('active'))glow.classList.add('active');
   glow.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
+});
+
+// Card spotlight follows cursor
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    card.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
 });
 
 // Scroll reveal
@@ -940,23 +985,30 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scro
 menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('active');navLinks.classList.toggle('open')});
 document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{menuBtn.classList.remove('active');navLinks.classList.remove('open')}));
 
-// Smooth scroll
+// Smooth anchor scroll
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
 });
 
-// Scroll-spy
+// Scroll-spy: highlights the section closest to the viewport center
 const links=[...document.querySelectorAll('.nav-link')];
-const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id))}})},{rootMargin:'-45% 0px -50% 0px'});
-document.querySelectorAll('section[id]').forEach(s=>spy.observe(s));
+const sections=[...document.querySelectorAll('section[id]')];
+function spy(){
+  const mid=window.scrollY+innerHeight*.4;
+  let current=null;
+  for(const s of sections){if(s.offsetTop<=mid)current=s.id}
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+current));
+}
+window.addEventListener('scroll',spy,{passive:true});
+spy();
 
-// Counters — handle values > 999 with formatting
+// Animated counters with thousands formatting
 const cObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
     const el=entry.target,target=parseInt(el.dataset.target),start=performance.now();
     const ease=t=>1-Math.pow(1-t,3);
-    function fmt(n){return n>=1000?Math.round(n).toLocaleString('en-US'):Math.round(n)}
+    const fmt=n=>n>=1000?Math.round(n).toLocaleString('en-US'):Math.round(n);
     function tick(now){const p=Math.min((now-start)/1800,1);el.innerText=fmt(ease(p)*target);if(p<1)requestAnimationFrame(tick)}
     requestAnimationFrame(tick);cObs.unobserve(el);
   });
