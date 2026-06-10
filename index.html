@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="m2hcz — Senior Software Engineer and Offensive Security Researcher. Vulnerability research, application security, and large-scale backend engineering.">
 <meta name="theme-color" content="#050505">
-<title>m2hcz — Senior Software Engineer & Offensive Security Researcher</title>
+<title>m2hcz — Senior Software Engineer &amp; Offensive Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -65,10 +65,18 @@ nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;display:flex;justif
 nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:14px 48px}
 .nav-logo{font-family:var(--heading);font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.04em}
 .nav-logo span{font-weight:400;color:var(--t3)}
+.nav-right{display:flex;align-items:center;gap:10px}
 .nav-links{display:flex;gap:6px;list-style:none}
 .nav-links a{position:relative;font-family:var(--mono);font-size:.68rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s,background .3s;padding:8px 14px;border-radius:20px}
 .nav-links a:hover{color:#fff}
 .nav-links a.active{color:#fff;background:var(--ac-dim2)}
+
+/* Language toggle */
+.lang-toggle{display:flex;align-items:center;border:1px solid var(--b2);border-radius:20px;overflow:hidden;background:var(--bg2)}
+.lang-toggle button{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);background:none;border:none;padding:7px 12px;cursor:pointer;transition:color .3s,background .3s}
+.lang-toggle button:hover{color:#fff}
+.lang-toggle button.active{color:#000;background:#fff}
+
 .menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:101;padding:10px}
 .menu-btn span{width:22px;height:1.5px;background:#fff;transition:.3s}
 .menu-btn.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -138,6 +146,7 @@ section{padding:130px 48px;position:relative}
 .tag{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
 .tag.ok{color:var(--live);border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.05)}
 .row-desc{font-size:.9rem;color:var(--t2);line-height:1.65;max-width:680px}
+.row-desc code{font-family:var(--mono);font-size:.82rem;color:var(--t1);background:var(--ac-dim2);padding:2px 6px;border-radius:5px}
 .row-stats{display:flex;gap:24px;margin-top:4px;flex-wrap:wrap}
 .row-stat{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--t3)}
 .row-stat .num{color:var(--t1);font-weight:600}
@@ -182,7 +191,7 @@ section{padding:130px 48px;position:relative}
 .pill.sm{font-size:.65rem;padding:6px 13px}
 
 /* Featured report */
-.feature{max-width:var(--max);position:relative;padding:36px 40px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:36px}
+.feature{max-width:var(--max);position:relative;padding:36px 40px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
 .feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#fff,var(--t4))}
 .feature-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .feature-eyebrow .star{color:var(--live)}
@@ -190,8 +199,11 @@ section{padding:130px 48px;position:relative}
 .feature-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .badge-fixed{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--live);letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(74,222,128,.3);border-radius:20px;background:rgba(74,222,128,.06)}
 .badge-crit{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--red);letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(255,77,77,.3);border-radius:20px;background:rgba(255,77,77,.06)}
+.badge-high{font-family:var(--mono);font-size:.58rem;font-weight:600;color:#ffb347;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(255,179,71,.3);border-radius:20px;background:rgba(255,179,71,.06)}
+.badge-cve{font-family:var(--mono);font-size:.58rem;font-weight:700;color:#fff;letter-spacing:.06em;padding:5px 11px;border:1px solid var(--ac-dim3);border-radius:20px;background:var(--ac-dim2)}
 .feature-desc{font-size:.95rem;color:var(--t2);line-height:1.75;max-width:840px;margin-bottom:14px}
 .feature-desc strong{color:#fff;font-weight:500}
+.feature-desc code{font-family:var(--mono);font-size:.85rem;color:var(--t1);background:var(--ac-dim2);padding:2px 6px;border-radius:5px}
 .feature-thanks{font-size:.82rem;color:var(--t3);line-height:1.6;max-width:840px;margin-bottom:22px}
 .feature-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
 
@@ -269,16 +281,22 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <nav id="nav">
   <a href="#" class="nav-logo">m2hcz<span>.</span></a>
-  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#expertise" class="nav-link">Expertise</a></li>
-    <li><a href="#research" class="nav-link">Research</a></li>
-    <li><a href="#projects" class="nav-link">Projects</a></li>
-    <li><a href="#engineering" class="nav-link">Experience</a></li>
-    <li><a href="#games" class="nav-link">Games</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+      <li><a href="#expertise" class="nav-link" data-i18n="nav.expertise">Expertise</a></li>
+      <li><a href="#research" class="nav-link" data-i18n="nav.research">Research</a></li>
+      <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#engineering" class="nav-link" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#games" class="nav-link" data-i18n="nav.games">Games</a></li>
+      <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en" class="active" aria-label="English">EN</button>
+      <button data-lang="pt" aria-label="Português">PT</button>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -287,38 +305,38 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
   <div class="hero-tag rv d1">
     <span class="line"></span>
-    Senior Software Engineer · Offensive Security Researcher
+    <span data-i18n="hero.tag">Senior Software Engineer · Offensive Security Researcher</span>
   </div>
 
   <h1 class="hero-name rv d2">m2hcz<span class="outline">.</span></h1>
 
-  <p class="hero-sub rv d3">
+  <p class="hero-sub rv d3" data-i18n="hero.sub">
     I design and build <strong>secure, large-scale systems</strong> — and break them through <strong>vulnerability research</strong>, reverse engineering, and exploit development. Security work grounded in over a decade of production engineering.
   </p>
 
   <div class="hero-cta rv d4">
-    <a href="#research" class="btn main">View Research</a>
-    <a href="#contact" class="btn">Get in Touch</a>
+    <a href="#research" class="btn main" data-i18n="hero.cta1">View Research</a>
+    <a href="#contact" class="btn" data-i18n="hero.cta2">Get in Touch</a>
   </div>
 
   <div class="hero-stats rv d5">
     <div class="stat">
       <div class="stat-num"><span class="counter" data-target="12">0</span><span class="suffix">yr</span></div>
-      <div class="stat-label">Engineering Experience</div>
+      <div class="stat-label" data-i18n="stat.exp">Engineering Experience</div>
     </div>
     <div class="stat">
       <div class="stat-num"><span class="counter" data-target="6">0</span><span class="suffix">+</span></div>
-      <div class="stat-label">Responsible Disclosures</div>
+      <div class="stat-label" data-i18n="stat.disc">Responsible Disclosures</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="2300">0</span><span class="suffix">M+</span></div>
-      <div class="stat-label">Visits Across Shipped Games</div>
+      <div class="stat-num"><span class="counter" data-target="2200">0</span><span class="suffix">M+</span></div>
+      <div class="stat-label" data-i18n="stat.visits">Visits Across Shipped Games</div>
     </div>
   </div>
 
   <a href="#about" class="scroll-hint rv d6">
     <div class="scroll-line"></div>
-    <div class="scroll-text">Scroll</div>
+    <div class="scroll-text" data-i18n="scroll">Scroll</div>
   </a>
 </section>
 
@@ -327,36 +345,36 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- ABOUT -->
 <section id="about">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>01 — Profile</div>
-    <h2 class="sec-title rv d1">About <span class="ghost">me</span></h2>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="about.label">01 — Profile</span></div>
+    <h2 class="sec-title rv d1" data-i18n="about.title">About <span class="ghost">me</span></h2>
   </div>
 
   <div class="about-grid">
     <div class="about-text rv d2">
-      <p>I am a <strong>senior software engineer and offensive security researcher</strong> with over a decade of experience building and breaking large-scale systems. My work lives at the intersection of secure engineering and adversarial research: designing resilient backend architecture on one side, and stress-testing it through vulnerability research, reverse engineering, and exploit development on the other.</p>
-      <p>Every engagement follows the same discipline: <strong>map the attack surface, validate impact with a working proof of concept, and report clearly</strong>. I translate complex technical risk into actionable guidance for engineering teams, product owners, and executive stakeholders.</p>
-      <p>I perform reliably in <strong>fast-moving, high-stakes environments</strong>, working independently or embedded in a team, including <strong>fintech-grade contexts</strong> where correctness, confidentiality, and uptime are non-negotiable. The goal never changes: practical security impact backed by rigorous engineering.</p>
+      <p data-i18n="about.p1">I am a <strong>senior software engineer and offensive security researcher</strong> with over a decade of experience building and breaking large-scale systems. My work lives at the intersection of secure engineering and adversarial research: designing resilient backend architecture on one side, and stress-testing it through vulnerability research, reverse engineering, and exploit development on the other.</p>
+      <p data-i18n="about.p2">Every engagement follows the same discipline: <strong>map the attack surface, validate impact with a working proof of concept, and report clearly</strong>. I translate complex technical risk into actionable guidance for engineering teams, product owners, and executive stakeholders.</p>
+      <p data-i18n="about.p3">I perform reliably in <strong>fast-moving, high-stakes environments</strong>, working independently or embedded in a team, including <strong>fintech-grade contexts</strong> where correctness, confidentiality, and uptime are non-negotiable. The goal never changes: practical security impact backed by rigorous engineering.</p>
     </div>
 
     <div class="about-details rv d3">
       <div class="detail">
-        <span class="detail-k">Role</span>
-        <span class="detail-v">Senior Engineer · Offensive Security</span>
+        <span class="detail-k" data-i18n="detail.role">Role</span>
+        <span class="detail-v" data-i18n="detail.role.v">Senior Engineer · Offensive Security</span>
       </div>
       <div class="detail">
-        <span class="detail-k">Focus</span>
-        <span class="detail-v">AppSec · Vulnerability Research · Backend</span>
+        <span class="detail-k" data-i18n="detail.focus">Focus</span>
+        <span class="detail-v" data-i18n="detail.focus.v">AppSec · Vulnerability Research · Backend</span>
       </div>
       <div class="detail">
-        <span class="detail-k">Location</span>
-        <span class="detail-v">Brazil (UTC-3) · Remote</span>
+        <span class="detail-k" data-i18n="detail.loc">Location</span>
+        <span class="detail-v" data-i18n="detail.loc.v">Brazil (UTC-3) · Remote</span>
       </div>
       <div class="detail">
-        <span class="detail-k">Languages</span>
-        <span class="detail-v">Portuguese · English</span>
+        <span class="detail-k" data-i18n="detail.langs">Languages</span>
+        <span class="detail-v" data-i18n="detail.langs.v">Portuguese · English</span>
       </div>
       <div class="detail">
-        <span class="detail-k">Email</span>
+        <span class="detail-k" data-i18n="detail.email">Email</span>
         <span class="detail-v"><a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a></span>
       </div>
       <div class="detail">
@@ -368,8 +386,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
         <span class="detail-v"><a href="https://x.com/inf0secc" target="_blank" rel="noopener">@inf0secc</a></span>
       </div>
       <div class="detail">
-        <span class="detail-k">Availability</span>
-        <span class="detail-v" style="color:var(--live)"><span class="status-dot"></span>Open to new opportunities</span>
+        <span class="detail-k" data-i18n="detail.avail">Availability</span>
+        <span class="detail-v" style="color:var(--live)" data-i18n="detail.avail.v"><span class="status-dot"></span>Open to new opportunities</span>
       </div>
     </div>
   </div>
@@ -380,15 +398,15 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- EXPERTISE -->
 <section id="expertise">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>02 — Capabilities</div>
-    <h2 class="sec-title rv d1">Core <span class="ghost">expertise</span></h2>
-    <p class="sec-intro rv d2">A full-spectrum skill set spanning offensive research, application security, and production software engineering.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="expertise.label">02 — Capabilities</span></div>
+    <h2 class="sec-title rv d1" data-i18n="expertise.title">Core <span class="ghost">expertise</span></h2>
+    <p class="sec-intro rv d2" data-i18n="expertise.intro">A full-spectrum skill set spanning offensive research, application security, and production software engineering.</p>
   </div>
 
   <div class="cards">
     <div class="card rv d2">
-      <div class="card-top"><span class="card-name">Offensive Security & Research</span></div>
-      <div class="card-desc">Finding and proving real-world weaknesses before attackers do.</div>
+      <div class="card-top"><span class="card-name" data-i18n="exp.c1.name">Offensive Security &amp; Research</span></div>
+      <div class="card-desc" data-i18n="exp.c1.desc">Finding and proving real-world weaknesses before attackers do.</div>
       <div class="pills">
         <span class="pill sm">Vulnerability Research</span><span class="pill sm">Exploit Development</span>
         <span class="pill sm">Reverse Engineering</span><span class="pill sm">Red Team Operations</span>
@@ -396,8 +414,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="card rv d3">
-      <div class="card-top"><span class="card-name">Application & Product Security</span></div>
-      <div class="card-desc">Securing the software delivery lifecycle end to end.</div>
+      <div class="card-top"><span class="card-name" data-i18n="exp.c2.name">Application &amp; Product Security</span></div>
+      <div class="card-desc" data-i18n="exp.c2.desc">Securing the software delivery lifecycle end to end.</div>
       <div class="pills">
         <span class="pill sm">Web Application Security</span><span class="pill sm">API Security</span>
         <span class="pill sm">Secure Code Review</span><span class="pill sm">DevSecOps</span>
@@ -405,11 +423,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="card rv d4">
-      <div class="card-top"><span class="card-name">Software Engineering</span></div>
-      <div class="card-desc">Production-grade backend systems built to scale and to resist abuse.</div>
+      <div class="card-top"><span class="card-name" data-i18n="exp.c3.name">Software Engineering</span></div>
+      <div class="card-desc" data-i18n="exp.c3.desc">Production-grade backend systems built to scale and to resist abuse.</div>
       <div class="pills">
         <span class="pill sm">Backend Architecture</span><span class="pill sm">Distributed Systems</span>
-        <span class="pill sm">Performance Optimization</span><span class="pill sm">Anti-Cheat & Integrity</span>
+        <span class="pill sm">Performance Optimization</span><span class="pill sm">Anti-Cheat &amp; Integrity</span>
         <span class="pill sm">Secure SDLC</span>
       </div>
     </div>
@@ -421,70 +439,128 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- RESEARCH -->
 <section id="research">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>03 — Security Research</div>
-    <h2 class="sec-title rv d1">Vulnerability <span class="ghost">research</span></h2>
-    <p class="sec-intro rv d2">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure: confirm the weakness, prove impact with a working proof of concept, and report through the proper channel.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="research.label">03 — Security Research</span></div>
+    <h2 class="sec-title rv d1" data-i18n="research.title">Vulnerability <span class="ghost">research</span></h2>
+    <p class="sec-intro rv d2" data-i18n="research.intro">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure: confirm the weakness, prove impact with a working proof of concept, and report through the proper channel.</p>
   </div>
 
+  <!-- Featured: assigned CVE -->
   <div class="feature rv d2">
-    <div class="feature-eyebrow"><span class="star">★</span> Featured disclosure</div>
-    <div class="feature-title">File Browser — Symlink Directory Scope Bypass</div>
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.cve.eyebrow">Featured disclosure · CVE</span></div>
+    <div class="feature-title" data-i18n="feat.cve.title">Gitea — Git LFS Cross-Repository Authorization Bypass</div>
+    <div class="feature-badges">
+      <span class="badge-cve">CVE-2026-28740</span>
+      <span class="badge-high">High</span>
+      <span class="badge-meta">CVSS 7.1 · CWE-639 / CWE-863</span>
+      <span class="badge-fixed" data-i18n="feat.cve.fixedbadge">Fixed · PR #38006</span>
+    </div>
+    <div class="feature-desc" data-i18n="feat.cve.desc">Reported through GitHub's Security Advisory process and assigned <strong>CVE-2026-28740</strong>. An authorization flaw in Gitea's cross-repository Git LFS flow let a user with non-Code access improperly authorize and retrieve <strong>private LFS objects</strong> belonging to source repositories. Network-exploitable, with high confidentiality impact. The maintainers triaged the report, assigned the CVE, and merged the fix.</div>
+    <div class="feature-thanks" data-i18n="feat.cve.thanks">Credit to the Gitea maintainers for the quick triage and CVE assignment.</div>
+    <div class="feature-actions">
+      <a href="https://github.com/go-gitea/gitea/pull/38006" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.cve.fix">Fix · PR #38006 ↗</a>
+    </div>
+    <div class="pills">
+      <span class="pill sm">AppSec</span><span class="pill sm">Authorization Bypass</span><span class="pill sm">Git LFS</span><span class="pill sm">Open Source Security</span><span class="pill sm">Go</span>
+    </div>
+  </div>
+
+  <!-- Featured: File Browser -->
+  <div class="feature rv d3">
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.fb.eyebrow">Featured disclosure</span></div>
+    <div class="feature-title" data-i18n="feat.fb.title">File Browser — Symlink Directory Scope Bypass</div>
     <div class="feature-badges">
       <span class="badge-meta">Open Source · Go</span>
       <span class="badge-meta">GitHub Security Advisory</span>
-      <span class="badge-fixed">Fixed in v2.63.11</span>
+      <span class="badge-high">High · CVSS 7.5</span>
+      <span class="badge-fixed" data-i18n="feat.fb.fixedbadge">Fixed in v2.63.11</span>
     </div>
-    <div class="feature-desc">Reported through GitHub's private Security Advisory process, this finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application, especially with public sharing, symbolic links, and per-user permissions on network-exposed surfaces.</div>
-    <div class="feature-thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
+    <div class="feature-desc" data-i18n="feat.fb.desc">Reported through GitHub's private Security Advisory process, this finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application, especially with public sharing, symbolic links, and per-user permissions on network-exposed surfaces.</div>
+    <div class="feature-thanks" data-i18n="feat.fb.thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
     <div class="feature-actions">
-      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="btn-sm">Fixed release · v2.63.11 ↗</a>
-      <a href="https://github.com/filebrowser/filebrowser/commit/1086903c14553545aef0f1a5321011cb139aca3d" target="_blank" rel="noopener" class="btn-sm">Patch commit ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.fix">Fixed release · v2.63.11 ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/commit/1086903c14553545aef0f1a5321011cb139aca3d" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.patch">Patch commit ↗</a>
     </div>
     <div class="pills">
-      <span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path & Scope Validation</span><span class="pill sm">Go</span>
+      <span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path &amp; Scope Validation</span><span class="pill sm">Go</span>
     </div>
   </div>
 
-  <div class="stack-cat rv" style="margin-bottom:18px">Additional responsible disclosures</div>
+  <div class="stack-cat rv" style="margin:34px 0 18px"><span data-i18n="tech.cat">Named technical disclosures</span></div>
 
   <div class="rows">
     <div class="row-card rv d2">
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Universidade de São Paulo (USP)</span>
-          <span class="tag ok">Responsibly disclosed</span>
+          <span class="row-name">Gemini CLI</span>
+          <span class="tag">Google</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
-        <div class="row-desc">Identified and reported security weaknesses affecting university web assets.</div>
+        <div class="row-desc" data-i18n="disc.gemini">Reported three vulnerabilities in the Gemini CLI involving CI/CD flows and AI developer-tooling surfaces, focused on practical impact, technical validation, and risk mitigation in engineering environments.</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
     <div class="row-card rv d3">
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Ybera Paris</span>
-          <span class="tag ok">Responsibly disclosed</span>
+          <span class="row-name">GitHub CLI</span>
+          <span class="tag">HackerOne #3786623</span>
         </div>
-        <div class="row-desc">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div>
+        <div class="row-desc" data-i18n="disc.ghcli">Symlink path traversal / Git hook injection in <code>gh run download</code>: artifact-name-based extraction could resolve through a repository-controlled symlink, enabling writes outside the expected boundary and the planting of an executable Git hook.</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+  </div>
+
+  <div class="stack-cat rv" style="margin:34px 0 18px"><span data-i18n="addl.cat">Additional responsible disclosures</span></div>
+
+  <div class="rows">
+    <div class="row-card rv d2">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Universidade de São Paulo (USP)</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.usp">Identified and reported security weaknesses affecting university web assets.</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+    <div class="row-card rv d3">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">X (Twitter)</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.x">Reported a security issue through X's (Twitter) vulnerability disclosure program.</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
     <div class="row-card rv d4">
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Automattic / WordPress.com</span>
-          <span class="tag ok">Responsibly disclosed</span>
+          <span class="row-name">Ybera Paris</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
-        <div class="row-desc">Reported security issues affecting Automattic and WordPress.com-related assets.</div>
+        <div class="row-desc" data-i18n="disc.ybera">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
     <div class="row-card rv d5">
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Parse.ly</span>
-          <span class="tag ok">Responsibly disclosed</span>
+          <span class="row-name">Automattic / WordPress.com</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
-        <div class="row-desc">Reported a security vulnerability affecting Parse.ly assets.</div>
+        <div class="row-desc" data-i18n="disc.automattic">Reported security issues affecting Automattic and WordPress.com-related assets.</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+    <div class="row-card rv d6">
+      <div class="row-info">
+        <div class="row-top">
+          <span class="row-name">Parse.ly</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.parsely">Reported a security vulnerability affecting Parse.ly assets.</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
@@ -492,16 +568,16 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="row-info">
         <div class="row-top">
           <span class="row-name">Discord</span>
-          <span class="tag ok">Responsibly disclosed</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
-        <div class="row-desc">Reported a security issue through Discord's vulnerability disclosure program.</div>
+        <div class="row-desc" data-i18n="disc.discord">Reported a security issue through Discord's vulnerability disclosure program.</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
   </div>
 
-  <div class="note rv">
-    <b>Responsible disclosure —</b> Every finding above was investigated and reported under responsible-disclosure practices, prioritizing remediation and practical security impact. This reflects research and reporting activity; no official CVE authorship is claimed except where explicitly referenced.
+  <div class="note rv" data-i18n="research.note">
+    <b>Responsible disclosure —</b> Every finding above was investigated and reported under responsible-disclosure practices, prioritizing remediation and practical security impact. CVE-2026-28740 (Gitea) is an officially assigned identifier; the other entries reflect research and reporting activity through the appropriate channels.
   </div>
 </section>
 
@@ -510,19 +586,30 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- PROJECTS -->
 <section id="projects">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>04 — Tooling</div>
-    <h2 class="sec-title rv d1">Featured <span class="ghost">projects</span></h2>
-    <p class="sec-intro rv d2">Open-source offensive tooling, scanners, and proof-of-concept research, built for practical day-to-day use.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="projects.label">04 — Tooling</span></div>
+    <h2 class="sec-title rv d1" data-i18n="projects.title">Featured <span class="ghost">projects</span></h2>
+    <p class="sec-intro rv d2" data-i18n="projects.intro">Open-source security tooling, scanners, and defensive libraries, built for practical day-to-day use.</p>
   </div>
 
   <div class="cards">
+    <a href="https://github.com/m2hcz/pathward" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top">
+        <span class="card-name">pathward</span>
+        <span class="tag">Python</span>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="card-desc" data-i18n="proj.pathward.desc">Defensive Python library against path traversal, symlink escape, Zip Slip, and TOCTOU. Inspired by the File Browser symlink disclosure; 54 tests, CI across Python 3.9–3.13.</div>
+      <div class="pills">
+        <span class="pill sm">Defensive Security</span><span class="pill sm">Path Safety</span><span class="pill sm">Library</span>
+      </div>
+    </a>
     <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv">
       <div class="card-top">
         <span class="card-name">ReconMapper v2</span>
         <span class="tag">Python</span>
         <span class="card-arrow">↗</span>
       </div>
-      <div class="card-desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, and service fingerprinting in a single repeatable pipeline.</div>
+      <div class="card-desc" data-i18n="proj.recon.desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, and service fingerprinting in a single repeatable pipeline.</div>
       <div class="pills">
         <span class="pill sm">Offensive Security</span><span class="pill sm">Recon</span><span class="pill sm">Automation</span>
       </div>
@@ -533,7 +620,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
         <span class="tag">TypeScript</span>
         <span class="card-arrow">↗</span>
       </div>
-      <div class="card-desc">Automated SQL injection detection with payload generation, surfacing injection points across web targets.</div>
+      <div class="card-desc" data-i18n="proj.sqli.desc">Automated SQL injection detection with payload generation, surfacing injection points across web targets.</div>
       <div class="pills">
         <span class="pill sm">Web Security</span><span class="pill sm">Scanner</span><span class="pill sm">AppSec</span>
       </div>
@@ -544,20 +631,9 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
         <span class="tag">JavaScript</span>
         <span class="card-arrow">↗</span>
       </div>
-      <div class="card-desc">Proof of concept demonstrating a Next.js middleware authorization-bypass technique; research into framework-level security boundaries.</div>
+      <div class="card-desc" data-i18n="proj.next.desc">Proof of concept demonstrating a Next.js middleware authorization-bypass technique; research into framework-level security boundaries.</div>
       <div class="pills">
         <span class="pill sm">PoC</span><span class="pill sm">Exploit Development</span><span class="pill sm">Web Security</span>
-      </div>
-    </a>
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv">
-      <div class="card-top">
-        <span class="card-name">NetSentinel</span>
-        <span class="tag">Luau</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <div class="card-desc">Network security monitoring and threat-detection framework with real-time traffic analysis for spotting anomalous behavior and abuse.</div>
-      <div class="pills">
-        <span class="pill sm">Security Tooling</span><span class="pill sm">Threat Detection</span><span class="pill sm">Network Security</span>
       </div>
     </a>
   </div>
@@ -568,9 +644,9 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- REFERENCES -->
 <section id="references">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>05 — External Validation</div>
-    <h2 class="sec-title rv d1">Public <span class="ghost">references</span></h2>
-    <p class="sec-intro rv d2">My public security research has been <strong>indexed by vulnerability-intelligence and exploit-tracking platforms</strong>, including Feedly, cve.imfht, Sploitus, and ShellCodeX.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="refs.label">05 — External Validation</span></div>
+    <h2 class="sec-title rv d1" data-i18n="refs.title">Public <span class="ghost">references</span></h2>
+    <p class="sec-intro rv d2" data-i18n="refs.intro">My public security research has been <strong>indexed by vulnerability-intelligence and exploit-tracking platforms</strong>, including Feedly, cve.imfht, Sploitus, and ShellCodeX.</p>
   </div>
 
   <div class="cve-box rv d2">
@@ -579,13 +655,13 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <span class="badge-crit">Critical</span>
       <span class="badge-meta">CVSS 9.8 · CWE-434</span>
     </div>
-    <div class="cve-desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload leading to potential remote code execution. The public proof of concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
+    <div class="cve-desc" data-i18n="cve.6440.desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload leading to potential remote code execution. The public proof of concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
   </div>
 
   <div class="cards">
     <a href="https://feedly.com/cve/CVE-2025-6440" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">Feedly</span><span class="card-arrow">↗</span></div>
-      <div class="card-meta">CVE-2025-6440 · Exploits & severity</div>
+      <div class="card-meta">CVE-2025-6440 · Exploits &amp; severity</div>
     </a>
     <a href="https://cve.imfht.com/detail/CVE-2025-6440" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">cve.imfht</span><span class="card-arrow">↗</span></div>
@@ -605,7 +681,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     </a>
   </div>
 
-  <div class="note rv">
+  <div class="note rv" data-i18n="refs.note">
     <b>Context —</b> These platforms automatically aggregate and index public security research from GitHub. The references above reflect external indexing of my published work; they are not a claim of official CVE authorship or assignment.
   </div>
 </section>
@@ -615,14 +691,14 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- ENGINEERING -->
 <section id="engineering">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>06 — Background</div>
-    <h2 class="sec-title rv d1">Engineering <span class="ghost">experience</span></h2>
-    <p class="sec-intro rv d2">Over a decade shipping production backend systems and distributed infrastructure: data persistence, real-time networking, anti-cheat, and live-ops pipelines serving thousands of concurrent users. That engineering depth is what makes my security work practical — I understand systems well enough to know exactly where and how they fail.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="eng.label">06 — Background</span></div>
+    <h2 class="sec-title rv d1" data-i18n="eng.title">Engineering <span class="ghost">experience</span></h2>
+    <p class="sec-intro rv d2" data-i18n="eng.intro">Over a decade shipping production backend systems and distributed infrastructure: data persistence, real-time networking, anti-cheat, and live-ops pipelines serving thousands of concurrent users. That engineering depth is what makes my security work practical — I understand systems well enough to know exactly where and how they fail.</p>
   </div>
 
   <div class="stack-wrap">
     <div class="rv d2">
-      <div class="stack-cat">Languages</div>
+      <div class="stack-cat"><span data-i18n="stack.langs">Languages</span></div>
       <div class="pills">
         <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">Rust</span>
         <span class="pill">Go</span><span class="pill">C</span><span class="pill">C#</span>
@@ -630,7 +706,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d3">
-      <div class="stack-cat">Infrastructure</div>
+      <div class="stack-cat"><span data-i18n="stack.infra">Infrastructure</span></div>
       <div class="pills">
         <span class="pill">Linux</span><span class="pill">Docker</span><span class="pill">Kubernetes</span>
         <span class="pill">Terraform</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span>
@@ -638,7 +714,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d4">
-      <div class="stack-cat">Security Tooling</div>
+      <div class="stack-cat"><span data-i18n="stack.sec">Security Tooling</span></div>
       <div class="pills">
         <span class="pill">Burp Suite</span><span class="pill">mitmproxy</span><span class="pill">Frida</span>
         <span class="pill">Ghidra</span><span class="pill">Radare2</span><span class="pill">pwntools</span>
@@ -647,7 +723,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
     </div>
     <div class="rv d5">
-      <div class="stack-cat">Specializations</div>
+      <div class="stack-cat"><span data-i18n="stack.spec">Specializations</span></div>
       <div class="pills">
         <span class="pill">Scalable Game Backends</span><span class="pill">DataStore Sharding</span>
         <span class="pill">Anti-Cheat Architecture</span><span class="pill">Vulnerability Research</span>
@@ -663,9 +739,9 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- GAMES -->
 <section id="games">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>07 — Shipped Titles</div>
-    <h2 class="sec-title rv d1">Game <span class="ghost">development</span></h2>
-    <p class="sec-intro rv d2">Backend engineering behind titles with a combined <strong>2.3B+ visits</strong>. Architecture, networking, persistence, and live operations at viral scale.</p>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="games.label">07 — Shipped Titles</span></div>
+    <h2 class="sec-title rv d1" data-i18n="games.title">Game <span class="ghost">development</span></h2>
+    <p class="sec-intro rv d2" data-i18n="games.intro">Backend engineering behind titles with a combined <strong>2.2B+ visits</strong>. Architecture, networking, persistence, and live operations at viral scale.</p>
   </div>
 
   <div class="rows">
@@ -673,17 +749,17 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="row-info">
         <div class="row-top">
           <span class="row-name">Run For Brainrots</span>
-          <span class="tag">Independent</span>
+          <span class="tag" data-i18n="role.independent">Independent</span>
         </div>
-        <div class="row-desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to absorb viral player growth.</div>
+        <div class="row-desc" data-i18n="game.run.desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to absorb viral player growth.</div>
         <div class="row-stats">
           <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">12k–60k</span> playing
+            <span class="num">12k–60k</span> <span data-i18n="u.playing">playing</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">1.4B+</span> visits
+            <span class="num">1.4B+</span> <span data-i18n="u.visits">visits</span>
           </div>
         </div>
       </div>
@@ -696,19 +772,19 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
           <span class="row-name">Violence District</span>
           <span class="tag">VIOLENCE DISTRICT</span>
         </div>
-        <div class="row-desc">Asymmetric horror survival, 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
+        <div class="row-desc" data-i18n="game.vd.desc">Asymmetric horror survival, 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
         <div class="row-stats">
           <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">10k–25k</span> playing
+            <span class="num">10k–25k</span> <span data-i18n="u.playing">playing</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">705M+</span> visits
+            <span class="num">705M+</span> <span data-i18n="u.visits">visits</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">346k</span> community
+            <span class="num">346k</span> <span data-i18n="u.community">community</span>
           </div>
         </div>
       </div>
@@ -721,15 +797,15 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
           <span class="row-name">Last Letter</span>
           <span class="tag">MmiiGames</span>
         </div>
-        <div class="row-desc">Competitive word game where every last letter counts. Developed core gameplay systems, networking, data-persistence layers, and modular architecture for rapid iteration.</div>
+        <div class="row-desc" data-i18n="game.ll.desc">Competitive word game where every last letter counts. Developed core gameplay systems, networking, data-persistence layers, and modular architecture for rapid iteration.</div>
         <div class="row-stats">
           <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">5k–7k</span> playing
+            <span class="num">5k–7k</span> <span data-i18n="u.playing">playing</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">89M+</span> visits
+            <span class="num">89M+</span> <span data-i18n="u.visits">visits</span>
           </div>
         </div>
       </div>
@@ -742,19 +818,19 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
           <span class="row-name">Animatronic Nights</span>
           <span class="tag">PlayBox!</span>
         </div>
-        <div class="row-desc">Horror survival: hunt or survive as animatronics. Contributing backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
+        <div class="row-desc" data-i18n="game.an.desc">Horror survival: hunt or survive as animatronics. Contributing backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
         <div class="row-stats">
           <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">2k–4k</span> playing
+            <span class="num">2k–4k</span> <span data-i18n="u.playing">playing</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">25M+</span> visits
+            <span class="num">25M+</span> <span data-i18n="u.visits">visits</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">818k</span> community
+            <span class="num">818k</span> <span data-i18n="u.community">community</span>
           </div>
         </div>
       </div>
@@ -767,19 +843,19 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
           <span class="row-name">Massacre</span>
           <span class="tag">Abysmal Covenant</span>
         </div>
-        <div class="row-desc">Asymmetric horror hide-and-seek. Led the entire backend architecture: DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
+        <div class="row-desc" data-i18n="game.mas.desc">Asymmetric horror hide-and-seek. Led the entire backend architecture: DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
         <div class="row-stats">
           <div class="row-stat live">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">1.2k–2.2k</span> playing
+            <span class="num">1.2k–2.2k</span> <span data-i18n="u.playing">playing</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">2.5M+</span> visits
+            <span class="num">2.5M+</span> <span data-i18n="u.visits">visits</span>
           </div>
           <div class="row-stat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">177k</span> community
+            <span class="num">177k</span> <span data-i18n="u.community">community</span>
           </div>
         </div>
       </div>
@@ -793,44 +869,44 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- STUDIOS -->
 <section id="studios">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>08 — Collaborations</div>
-    <h2 class="sec-title rv d1">Studios <span class="ghost">& communities</span></h2>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="studios.label">08 — Collaborations</span></div>
+    <h2 class="sec-title rv d1" data-i18n="studios.title">Studios <span class="ghost">&amp; communities</span></h2>
   </div>
 
   <div class="groups">
     <a href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" rel="noopener" class="group-card rv d2">
       <div class="group-top">
         <span class="group-name">PlayBox!</span>
-        <span class="tag">Backend Engineer</span>
+        <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
-      <div class="group-desc">Verified Roblox studio. Contributing to Animatronic Nights and other titles under the PlayBox brand.</div>
+      <div class="group-desc" data-i18n="studio.playbox.desc">Verified Roblox studio. Contributing to Animatronic Nights and other titles under the PlayBox brand.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">818,424</span> members
+        <span class="num">818,424</span> <span data-i18n="u.members">members</span>
       </div>
     </a>
 
     <a href="https://www.roblox.com/communities/1014009190/Abysmal-Covenant" target="_blank" rel="noopener" class="group-card rv d3">
       <div class="group-top">
         <span class="group-name">Abysmal Covenant</span>
-        <span class="tag">Lead Engineer</span>
+        <span class="tag" data-i18n="role.lead">Lead Engineer</span>
       </div>
-      <div class="group-desc">Home of Massacre. Leading the entire backend infrastructure, game systems, and live-ops pipeline.</div>
+      <div class="group-desc" data-i18n="studio.abysmal.desc">Home of Massacre. Leading the entire backend infrastructure, game systems, and live-ops pipeline.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">177,173</span> members
+        <span class="num">177,173</span> <span data-i18n="u.members">members</span>
       </div>
     </a>
 
     <a href="https://www.roblox.com/communities/5826271/Gothyc" target="_blank" rel="noopener" class="group-card rv d4">
       <div class="group-top">
         <span class="group-name">Gothyc!</span>
-        <span class="tag">Backend Engineer</span>
+        <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
-      <div class="group-desc">UGC-verified community with 1.3M+ members. Built core backend systems and game infrastructure across multiple titles.</div>
+      <div class="group-desc" data-i18n="studio.gothyc.desc">UGC-verified community with 1.3M+ members. Built core backend systems and game infrastructure across multiple titles.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">1,324,293</span> members
+        <span class="num">1,324,293</span> <span data-i18n="u.members">members</span>
       </div>
     </a>
   </div>
@@ -839,36 +915,36 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <a href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" rel="noopener" class="group-card rv d2">
       <div class="group-top">
         <span class="group-name">Frontman Studios</span>
-        <span class="tag">Backend Engineer</span>
+        <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
-      <div class="group-desc">Studio behind Violence District, one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
+      <div class="group-desc" data-i18n="studio.frontman.desc">Studio behind Violence District, one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">Studio</span>
+        <span class="num" data-i18n="u.studio">Studio</span>
       </div>
     </a>
 
     <a href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" rel="noopener" class="group-card rv d3">
       <div class="group-top">
         <span class="group-name">VIOLENCE DISTRICT</span>
-        <span class="tag">Backend Engineer</span>
+        <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
-      <div class="group-desc">Official community for Violence District, a 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
+      <div class="group-desc" data-i18n="studio.vd.desc">Official community for Violence District, a 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">345,880</span> members
+        <span class="num">345,880</span> <span data-i18n="u.members">members</span>
       </div>
     </a>
 
     <a href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener" class="group-card rv d4">
       <div class="group-top">
         <span class="group-name">Resenha e Games</span>
-        <span class="tag">Backend Engineer</span>
+        <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
-      <div class="group-desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div>
+      <div class="group-desc" data-i18n="studio.resenha.desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div>
       <div class="group-members">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">Studio</span>
+        <span class="num" data-i18n="u.studio">Studio</span>
       </div>
     </a>
   </div>
@@ -880,8 +956,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <section id="github">
   <div class="gh-head">
     <div class="sec-head">
-      <div class="sec-label rv"><span class="dash"></span>09 — Open Source</div>
-      <h2 class="sec-title rv d1">GitHub <span class="ghost">repositories</span></h2>
+      <div class="sec-label rv"><span class="dash"></span><span data-i18n="github.label">09 — Open Source</span></div>
+      <h2 class="sec-title rv d1" data-i18n="github.title">GitHub <span class="ghost">repositories</span></h2>
     </div>
     <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn-sm rv d2">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
@@ -890,33 +966,37 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </div>
 
   <div class="cards">
+    <a href="https://github.com/m2hcz/pathward" target="_blank" rel="noopener" class="card rv">
+      <div class="card-top"><span class="card-name">pathward</span><span class="tag">Python</span><span class="card-arrow">↗</span></div>
+      <div class="card-desc" data-i18n="gh.pathward.desc">Defensive library against path traversal, symlink escape, Zip Slip, and TOCTOU. 54 tests, CI on Python 3.9–3.13.</div>
+    </a>
     <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">NetSentinel</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Network security monitoring and threat-detection framework with real-time traffic analysis.</div>
+      <div class="card-desc" data-i18n="gh.net.desc">Network security monitoring and threat-detection framework with real-time traffic analysis.</div>
     </a>
     <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">ReconMapper v2</span><span class="tag">Python</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, fingerprinting.</div>
+      <div class="card-desc" data-i18n="gh.recon.desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, fingerprinting.</div>
     </a>
     <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">SQLi Scanner</span><span class="tag">TypeScript</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Automated SQL injection detection and vulnerability scanning with payload generation.</div>
+      <div class="card-desc" data-i18n="gh.sqli.desc">Automated SQL injection detection and vulnerability scanning with payload generation.</div>
     </a>
     <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">Next.js Middleware PoC</span><span class="tag">JavaScript</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Proof of concept for a Next.js middleware authorization-bypass technique.</div>
+      <div class="card-desc" data-i18n="gh.next.desc">Proof of concept for a Next.js middleware authorization-bypass technique.</div>
     </a>
     <a href="https://github.com/m2hcz/PhantomNet" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">PhantomNet</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Optimized networking library for high-performance client-server communication with delta compression.</div>
+      <div class="card-desc" data-i18n="gh.phantom.desc">Optimized networking library for high-performance client-server communication with delta compression.</div>
     </a>
     <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">Race-Family-Reroll</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div>
+      <div class="card-desc" data-i18n="gh.reroll.desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div>
     </a>
     <a href="https://github.com/m2hcz/OOPModule" target="_blank" rel="noopener" class="card rv">
       <div class="card-top"><span class="card-name">OOPModule</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div>
-      <div class="card-desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div>
+      <div class="card-desc" data-i18n="gh.oop.desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div>
     </a>
   </div>
 </section>
@@ -926,12 +1006,12 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 <!-- CONTACT -->
 <section id="contact">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span>10 — Contact</div>
-    <h2 class="sec-title rv d1">Let's work <span class="ghost">together</span></h2>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="contact.label">10 — Contact</span></div>
+    <h2 class="sec-title rv d1" data-i18n="contact.title">Let's work <span class="ghost">together</span></h2>
   </div>
 
   <div class="contact-inner rv d2">
-    <div class="contact-text">
+    <div class="contact-text" data-i18n="contact.text">
       Available for <strong>contract engagements and full-time roles</strong> in offensive security, application security, vulnerability research, and backend / systems engineering.
     </div>
     <div class="contact-links">
@@ -939,13 +1019,13 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn">GitHub</a>
       <a href="https://x.com/inf0secc" target="_blank" rel="noopener" class="btn">Twitter / X</a>
     </div>
-    <div class="contact-note">Payment options — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexible</span></div>
+    <div class="contact-note" data-i18n="contact.pay">Payment options — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexible</span></div>
   </div>
 </section>
 
 <footer>
   <div class="footer-in">
-    <div class="footer-l">© 2025 <span>m2hcz</span> — engineering since 2014</div>
+    <div class="footer-l" data-i18n="footer.l">© 2026 <span>m2hcz</span> — engineering since 2014</div>
     <div class="footer-r">
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:m2hczs@proton.me">Email</a>
@@ -955,14 +1035,137 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 </footer>
 
 <script>
-// Cursor glow
+/* ---------- i18n: PT dictionary (EN is the source, captured from DOM) ---------- */
+const PT = {
+  'nav.about':'Sobre','nav.expertise':'Especialidades','nav.research':'Pesquisa','nav.projects':'Projetos','nav.experience':'Experiência','nav.games':'Jogos','nav.contact':'Contato',
+
+  'hero.tag':'Engenheiro de Software Sênior · Pesquisador de Segurança Ofensiva',
+  'hero.sub':'Eu projeto e construo <strong>sistemas seguros e de larga escala</strong> — e os quebro através de <strong>pesquisa de vulnerabilidades</strong>, engenharia reversa e desenvolvimento de exploits. Trabalho de segurança fundamentado em mais de uma década de engenharia em produção.',
+  'hero.cta1':'Ver Pesquisa','hero.cta2':'Entre em Contato',
+  'stat.exp':'Anos de Engenharia','stat.disc':'Disclosures Responsáveis','stat.visits':'Visitas em Jogos Publicados','scroll':'Rolar',
+
+  'about.label':'01 — Perfil','about.title':'Sobre <span class="ghost">mim</span>',
+  'about.p1':'Sou um <strong>engenheiro de software sênior e pesquisador de segurança ofensiva</strong> com mais de uma década de experiência construindo e quebrando sistemas de larga escala. Meu trabalho vive na interseção entre engenharia segura e pesquisa adversarial: projetar arquitetura backend resiliente de um lado, e testá-la sob estresse através de pesquisa de vulnerabilidades, engenharia reversa e desenvolvimento de exploits do outro.',
+  'about.p2':'Cada trabalho segue a mesma disciplina: <strong>mapear a superfície de ataque, validar o impacto com uma prova de conceito funcional e reportar com clareza</strong>. Traduzo riscos técnicos complexos em orientações acionáveis para times de engenharia, donos de produto e stakeholders executivos.',
+  'about.p3':'Tenho desempenho confiável em <strong>ambientes dinâmicos e de alto risco</strong>, atuando de forma independente ou integrado a um time, incluindo <strong>contextos de nível fintech</strong> onde correção, confidencialidade e disponibilidade são inegociáveis. O objetivo nunca muda: impacto prático de segurança apoiado em engenharia rigorosa.',
+  'detail.role':'Cargo','detail.role.v':'Engenheiro Sênior · Segurança Ofensiva',
+  'detail.focus':'Foco','detail.focus.v':'AppSec · Pesquisa de Vulnerabilidades · Backend',
+  'detail.loc':'Localização','detail.loc.v':'Brasil (UTC-3) · Remoto',
+  'detail.langs':'Idiomas','detail.langs.v':'Português · Inglês',
+  'detail.email':'Email','detail.avail':'Disponibilidade',
+  'detail.avail.v':'<span class="status-dot"></span>Aberto a novas oportunidades',
+
+  'expertise.label':'02 — Capacidades','expertise.title':'Principais <span class="ghost">especialidades</span>',
+  'expertise.intro':'Um conjunto de habilidades full-spectrum cobrindo pesquisa ofensiva, segurança de aplicações e engenharia de software em produção.',
+  'exp.c1.name':'Segurança Ofensiva &amp; Pesquisa','exp.c1.desc':'Encontrar e provar fraquezas do mundo real antes dos atacantes.',
+  'exp.c2.name':'Segurança de Aplicações &amp; Produto','exp.c2.desc':'Proteger o ciclo de entrega de software de ponta a ponta.',
+  'exp.c3.name':'Engenharia de Software','exp.c3.desc':'Sistemas backend de nível produção, feitos para escalar e resistir a abuso.',
+
+  'research.label':'03 — Pesquisa de Segurança','research.title':'Pesquisa de <span class="ghost">vulnerabilidades</span>',
+  'research.intro':'Fraquezas de segurança identificadas e reportadas em <strong>plataformas e organizações do mundo real</strong>, sempre sob divulgação responsável: confirmar a fraqueza, provar o impacto com uma prova de conceito funcional e reportar pelo canal apropriado.',
+
+  'feat.cve.eyebrow':'Disclosure em destaque · CVE',
+  'feat.cve.title':'Gitea — Bypass de Autorização Cross-Repository no Git LFS',
+  'feat.cve.fixedbadge':'Corrigido · PR #38006',
+  'feat.cve.desc':'Reportado pelo processo de Security Advisory do GitHub e recebeu o identificador <strong>CVE-2026-28740</strong>. Uma falha de autorização no fluxo cross-repository de Git LFS do Gitea permitia que um usuário com acesso non-Code autorizasse e recuperasse indevidamente <strong>objetos LFS privados</strong> pertencentes aos repositórios de origem. Explorável via rede, com alto impacto de confidencialidade. Os mantenedores triaram o report, atribuíram a CVE e mesclaram a correção.',
+  'feat.cve.thanks':'Crédito ao time do Gitea pela triagem ágil e pela atribuição da CVE.',
+  'feat.cve.fix':'Correção · PR #38006 ↗',
+
+  'feat.fb.eyebrow':'Disclosure em destaque',
+  'feat.fb.title':'File Browser — Bypass de Escopo de Diretório via Symlink',
+  'feat.fb.fixedbadge':'Corrigido na v2.63.11',
+  'feat.fb.desc':'Reportado pelo processo privado de Security Advisory do GitHub, este achado envolveu a <strong>validação de escopo ao lidar com diretórios linkados e symlinks</strong>: certas operações podiam escapar do limite pretendido, permitindo que usuários escopados e public-share recipients lessem e escrevessem arquivos fora da área que a aplicação deveria garantir. Os mantenedores <strong>aceitaram o report, lançaram uma correção e publicaram a versão corrigida</strong>. O caso reforça o quão crítica é a validação estrita de caminho e escopo em qualquer aplicação que manipula arquivos, especialmente com compartilhamento público, symlinks e permissões por usuário em superfícies expostas à rede.',
+  'feat.fb.thanks':'Crédito aos mantenedores do File Browser pela triagem rápida, validação técnica e correção responsável.',
+  'feat.fb.fix':'Versão corrigida · v2.63.11 ↗','feat.fb.patch':'Commit da correção ↗',
+
+  'tech.cat':'Disclosures técnicas nomeadas',
+  'disc.gemini':'Reportou três vulnerabilidades no Gemini CLI envolvendo fluxos de CI/CD e superfícies de tooling de IA para desenvolvedores, com foco em impacto prático, validação técnica e mitigação de risco em ambientes de engenharia.',
+  'disc.ghcli':'Symlink path traversal / Git hook injection em <code>gh run download</code>: a extração baseada no nome do artifact podia resolver através de um symlink controlado pelo repositório, permitindo escrita fora do limite esperado e o plantio de um Git hook executável.',
+  'addl.cat':'Disclosures responsáveis adicionais',
+  'tag.disclosed':'Divulgado responsavelmente',
+  'disc.usp':'Identificou e reportou fraquezas de segurança afetando ativos web da universidade.',
+  'disc.x':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do X (Twitter).',
+  'disc.ybera':'Reportou vulnerabilidades afetando aplicações voltadas ao cliente da Ybera Paris.',
+  'disc.automattic':'Reportou problemas de segurança afetando ativos relacionados à Automattic e ao WordPress.com.',
+  'disc.parsely':'Reportou uma vulnerabilidade de segurança afetando ativos da Parse.ly.',
+  'disc.discord':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do Discord.',
+  'research.note':'<b>Divulgação responsável —</b> Cada achado acima foi investigado e reportado sob práticas de divulgação responsável, priorizando a remediação e o impacto prático de segurança. CVE-2026-28740 (Gitea) é um identificador oficialmente atribuído; os demais itens refletem atividade de pesquisa e reporte pelos canais apropriados.',
+
+  'projects.label':'04 — Ferramentas','projects.title':'Projetos em <span class="ghost">destaque</span>',
+  'projects.intro':'Ferramentas de segurança open-source, scanners e bibliotecas defensivas, feitos para uso prático no dia a dia.',
+  'proj.pathward.desc':'Biblioteca Python defensiva contra path traversal, symlink escape, Zip Slip e TOCTOU. Inspirada pelo disclosure de symlink no File Browser; 54 testes, CI em Python 3.9–3.13.',
+  'proj.recon.desc':'Reconhecimento automatizado e mapeamento de superfície de ataque: enumeração de subdomínios, port scanning e fingerprinting de serviços em um único pipeline repetível.',
+  'proj.sqli.desc':'Detecção automatizada de SQL injection com geração de payloads, identificando pontos de injeção em alvos web.',
+  'proj.next.desc':'Prova de conceito demonstrando uma técnica de bypass de autorização em middleware do Next.js; pesquisa sobre limites de segurança a nível de framework.',
+
+  'refs.label':'05 — Validação Externa','refs.title':'Referências <span class="ghost">públicas</span>',
+  'refs.intro':'Minha pesquisa pública de segurança foi <strong>indexada por plataformas de inteligência de vulnerabilidades e rastreamento de exploits</strong>, incluindo Feedly, cve.imfht, Sploitus e ShellCodeX.',
+  'cve.6440.desc':'<strong>WooCommerce Designer Pro (WordPress)</strong> — upload irrestrito de arquivos levando a potencial execução remota de código. A prova de conceito pública publicada no meu GitHub foi <strong>indexada por plataformas de rastreamento de exploits e inteligência de vulnerabilidades</strong>, espalhando a pesquisa por múltiplos feeds.',
+  'refs.note':'<b>Contexto —</b> Essas plataformas agregam e indexam automaticamente pesquisa pública de segurança do GitHub. As referências acima refletem a indexação externa do meu trabalho publicado; não constituem uma alegação de autoria ou atribuição oficial de CVE.',
+
+  'eng.label':'06 — Histórico','eng.title':'Experiência em <span class="ghost">engenharia</span>',
+  'eng.intro':'Mais de uma década entregando sistemas backend em produção e infraestrutura distribuída: persistência de dados, networking em tempo real, anti-cheat e pipelines de live-ops servindo milhares de usuários simultâneos. Essa profundidade de engenharia é o que torna meu trabalho de segurança prático — entendo os sistemas bem o suficiente para saber exatamente onde e como eles falham.',
+  'stack.langs':'Linguagens','stack.infra':'Infraestrutura','stack.sec':'Ferramentas de Segurança','stack.spec':'Especializações',
+
+  'games.label':'07 — Títulos Publicados','games.title':'Desenvolvimento de <span class="ghost">jogos</span>',
+  'games.intro':'Engenharia backend por trás de títulos com mais de <strong>2.2B de visitas</strong> combinadas. Arquitetura, networking, persistência e operações ao vivo em escala viral.',
+  'game.run.desc':'Runner multiplayer acelerado. Engenharia de máquinas de estado escaláveis para loops de sobrevivência por rodadas, replicação de movimento de alta performance e carregamento dinâmico de assets para absorver o crescimento viral de jogadores.',
+  'game.vd.desc':'Survival horror assimétrico, 5 sobreviventes vs um killer. Construí infraestrutura de servidor escalável, sistemas de combate em tempo real e recursos de live-ops que sustentam um dos títulos de horror mais bem ranqueados do Roblox.',
+  'game.ll.desc':'Jogo de palavras competitivo onde cada última letra conta. Desenvolvi sistemas centrais de gameplay, networking, camadas de persistência de dados e arquitetura modular para iteração rápida.',
+  'game.an.desc':'Survival horror: caçe ou sobreviva como animatronics. Contribuindo com sistemas de backend, infraestrutura de servidor escalável, sistemas de jogo em tempo real e recursos de live-ops.',
+  'game.mas.desc':'Esconde-esconde de horror assimétrico. Liderei toda a arquitetura backend: sharding de DataStore, combate server-authoritative, anti-cheat, pipeline de live-ops e sistemas de perks/habilidades.',
+  'role.independent':'Independente','u.playing':'jogando','u.visits':'visitas','u.community':'comunidade',
+
+  'studios.label':'08 — Colaborações','studios.title':'Estúdios <span class="ghost">&amp; comunidades</span>',
+  'studio.playbox.desc':'Estúdio verificado do Roblox. Contribuindo para Animatronic Nights e outros títulos sob a marca PlayBox.',
+  'studio.abysmal.desc':'Casa de Massacre. Liderando toda a infraestrutura backend, sistemas de jogo e pipeline de live-ops.',
+  'studio.gothyc.desc':'Comunidade verificada por UGC com mais de 1.3M de membros. Construí sistemas centrais de backend e infraestrutura de jogo em múltiplos títulos.',
+  'studio.frontman.desc':'Estúdio por trás de Violence District, um dos títulos de horror assimétrico mais bem ranqueados do Roblox. Contribuindo com arquitetura backend, sistemas de combate e live-ops.',
+  'studio.vd.desc':'Comunidade oficial de Violence District, um título de horror com mais de 705M de visitas. Parte do time central que constrói e mantém a infraestrutura backend do jogo.',
+  'studio.resenha.desc':'Comunidade e estúdio brasileiro de Roblox. Colaborando em infraestrutura de jogo e sistemas backend para títulos do mercado lusófono.',
+  'role.backend':'Engenheiro Backend','role.lead':'Engenheiro Líder','u.members':'membros','u.studio':'Estúdio',
+
+  'github.label':'09 — Open Source','github.title':'Repositórios <span class="ghost">no GitHub</span>',
+  'gh.pathward.desc':'Biblioteca defensiva contra path traversal, symlink escape, Zip Slip e TOCTOU. 54 testes, CI em Python 3.9–3.13.',
+  'gh.net.desc':'Framework de monitoramento de segurança de rede e detecção de ameaças com análise de tráfego em tempo real.',
+  'gh.recon.desc':'Reconhecimento automatizado e mapeamento de superfície de ataque: enumeração de subdomínios, port scanning, fingerprinting.',
+  'gh.sqli.desc':'Detecção automatizada de SQL injection e varredura de vulnerabilidades com geração de payloads.',
+  'gh.next.desc':'Prova de conceito para uma técnica de bypass de autorização em middleware do Next.js.',
+  'gh.phantom.desc':'Biblioteca de networking otimizada para comunicação client-server de alta performance com compressão delta.',
+  'gh.reroll.desc':'Sistema modular de jogo Roblox com arquitetura OOP para mecânicas de reroll de personagem.',
+  'gh.oop.desc':'Framework de programação orientada a objetos para Luau com herança e encapsulamento.',
+
+  'contact.label':'10 — Contato','contact.title':'Vamos trabalhar <span class="ghost">juntos</span>',
+  'contact.text':'Disponível para <strong>trabalhos por contrato e posições full-time</strong> em segurança ofensiva, segurança de aplicações, pesquisa de vulnerabilidades e engenharia de backend / sistemas.',
+  'contact.pay':'Formas de pagamento — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexível</span>',
+  'footer.l':'© 2026 <span>m2hcz</span> — engenharia desde 2014'
+};
+
+/* Capture the English source from the DOM, then allow swapping. */
+const i18nEls = document.querySelectorAll('[data-i18n]');
+const EN = {};
+i18nEls.forEach(el=>{ EN[el.dataset.i18n] = el.innerHTML; });
+
+function setLang(lang){
+  i18nEls.forEach(el=>{
+    const k = el.dataset.i18n;
+    el.innerHTML = (lang==='pt' && PT[k]!==undefined) ? PT[k] : EN[k];
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+}
+document.querySelectorAll('.lang-toggle button').forEach(b=>{
+  b.addEventListener('click',()=>setLang(b.dataset.lang));
+});
+
+/* ---------- Cursor glow ---------- */
 const glow=document.getElementById('cursorGlow');
 document.addEventListener('mousemove',e=>{
   if(!glow.classList.contains('active'))glow.classList.add('active');
   glow.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
 });
 
-// Card spotlight follows cursor
+/* Card spotlight follows cursor */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
@@ -971,13 +1174,13 @@ document.querySelectorAll('.card').forEach(card=>{
   });
 });
 
-// Scroll reveal
+/* Scroll reveal */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
 },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Nav
+/* Nav */
 const nav=document.getElementById('nav');
 const menuBtn=document.getElementById('menuBtn');
 const navLinks=document.getElementById('navLinks');
@@ -985,12 +1188,12 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scro
 menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('active');navLinks.classList.toggle('open')});
 document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{menuBtn.classList.remove('active');navLinks.classList.remove('open')}));
 
-// Smooth anchor scroll
+/* Smooth anchor scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
 });
 
-// Scroll-spy: highlights the section closest to the viewport center
+/* Scroll-spy: highlights the section closest to the viewport center */
 const links=[...document.querySelectorAll('.nav-link')];
 const sections=[...document.querySelectorAll('section[id]')];
 function spy(){
@@ -1002,7 +1205,7 @@ function spy(){
 window.addEventListener('scroll',spy,{passive:true});
 spy();
 
-// Animated counters with thousands formatting
+/* Animated counters with thousands formatting */
 const cObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
