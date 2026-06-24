@@ -7,8 +7,8 @@
 <meta name="theme-color" content="#050505">
 <title>m2hcz — Senior Software Engineer &amp; Offensive Security Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
@@ -42,16 +42,13 @@ html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#1c1c1f #050505
 ::-webkit-scrollbar-thumb:hover{background:#2a2a2e}
 body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* Selection: inverted, high contrast */
 ::selection{background:#fff;color:#000;text-shadow:none}
 ::-moz-selection{background:#fff;color:#000;text-shadow:none}
 :focus-visible{outline:2px solid var(--t2);outline-offset:4px;border-radius:2px}
 
-/* Cursor glow */
 .cursor-glow{position:fixed;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 55%);transform:translate(-50%,-50%);transition:opacity .5s;opacity:0;will-change:transform}
 .cursor-glow.active{opacity:1}
 
-/* Reveal */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}.d6{transition-delay:.3s}
@@ -60,7 +57,6 @@ body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hid
   html{scroll-behavior:auto}
 }
 
-/* Nav */
 nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:background .4s,border-color .4s,padding .4s}
 nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b1);padding:14px 48px}
 .nav-logo{font-family:var(--heading);font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.04em}
@@ -71,7 +67,6 @@ nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom
 .nav-links a:hover{color:#fff}
 .nav-links a.active{color:#fff;background:var(--ac-dim2)}
 
-/* Language toggle */
 .lang-toggle{display:flex;align-items:center;border:1px solid var(--b2);border-radius:20px;overflow:hidden;background:var(--bg2)}
 .lang-toggle button{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);background:none;border:none;padding:7px 12px;cursor:pointer;transition:color .3s,background .3s}
 .lang-toggle button:hover{color:#fff}
@@ -83,14 +78,13 @@ nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom
 .menu-btn.active span:nth-child(2){opacity:0}
 .menu-btn.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;opacity:.025;background-image:linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);background-size:90px 90px;mask-image:radial-gradient(ellipse 65% 55% at 50% 45%,black 15%,transparent 70%)}
+.hero-grid{position:absolute;inset:0;opacity:.025;background-image:linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);background-size:90px 90px;mask-image:radial-gradient(ellipse 65% 55% at 50% 45%,black 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 65% 55% at 50% 45%,black 15%,transparent 70%)}
 .hero-tag{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:14px}
 .hero-tag .line{width:42px;height:1px;background:var(--t3)}
 .hero-name{font-family:var(--heading);font-size:clamp(4rem,9vw,9rem);font-weight:900;letter-spacing:-.07em;line-height:.88;margin-bottom:30px;background:linear-gradient(180deg,#fff 55%,#777);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-name .outline{background:none;color:transparent;-webkit-text-stroke:1.5px var(--t3)}
-.hero-sub{font-size:clamp(1rem,1.8vw,1.18rem);font-weight:300;color:var(--t2);margin-bottom:48px;max-width:620px;line-height:1.85;letter-spacing:-.01em}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.18rem);font-weight:300;color:var(--t2);margin-bottom:48px;max-width:660px;line-height:1.85;letter-spacing:-.01em}
 .hero-sub strong{color:#fff;font-weight:500}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
 .hero-stats{display:flex;gap:56px}
@@ -105,7 +99,6 @@ nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom
 @keyframes scrollP{0%,100%{opacity:.3;height:48px}50%{opacity:.8;height:56px}}
 .scroll-text{font-family:var(--mono);font-size:.55rem;color:var(--t4);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-lr}
 
-/* Sections */
 section{padding:130px 48px;position:relative}
 .sec-head{max-width:var(--max);margin-bottom:64px;position:relative}
 .sec-label{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
@@ -116,7 +109,6 @@ section{padding:130px 48px;position:relative}
 .sec-intro strong{color:#fff;font-weight:500}
 .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--b2),transparent)}
 
-/* About */
 .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;max-width:var(--max)}
 .about-text{font-size:1.08rem;line-height:1.85;color:var(--t2);font-weight:300;letter-spacing:-.01em}
 .about-text strong{color:#fff;font-weight:500}
@@ -132,15 +124,14 @@ section{padding:130px 48px;position:relative}
 .status-dot{display:inline-block;width:7px;height:7px;background:var(--live);border-radius:50%;margin-right:8px;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--live)}
 @keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
 
-/* Row cards (research, games) */
-.rows{max-width:var(--max);display:flex;flex-direction:column;gap:10px}
-.row-card{display:grid;grid-template-columns:1fr auto;align-items:center;padding:30px 34px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.rows{max-width:var(--max);display:flex;flex-direction:column;gap:16px}
+.row-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;padding:34px 38px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
 .row-card::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:#fff;transition:height .4s}
 .row-card:hover{background:var(--bg3);border-color:var(--b3);transform:translateX(4px)}
 .row-card:hover::before{height:100%}
 .row-card:hover .row-name{color:#fff}
 .row-card:hover .row-arrow{transform:translateX(6px);opacity:1}
-.row-info{display:flex;flex-direction:column;gap:8px}
+.row-info{display:flex;flex-direction:column;gap:11px;min-width:0}
 .row-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .row-name{font-family:var(--heading);font-size:1.3rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
 .tag{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
@@ -153,9 +144,8 @@ section{padding:130px 48px;position:relative}
 .row-stat.live .num{color:var(--live)}
 .row-stat svg{width:12px;height:12px;opacity:.5}
 .row-right{display:flex;align-items:center}
-.row-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.5}
+.row-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--t4);transition:all .3s;opacity:.5;text-decoration:none}
 
-/* Grid cards */
 .cards{max-width:var(--max);display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
 .card{padding:28px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.045),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none}
@@ -169,19 +159,17 @@ section{padding:130px 48px;position:relative}
 .card:hover .card-arrow{color:#fff;transform:translate(2px,-2px)}
 .card-meta{font-family:var(--mono);font-size:.68rem;color:var(--t3);letter-spacing:.03em;margin-top:auto}
 
-/* Group cards */
 .groups{max-width:var(--max);display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .group-card{padding:30px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s,transform .35s;text-decoration:none;color:inherit}
 .group-card:hover{border-color:var(--b3);background:var(--bg3);transform:translateY(-3px)}
 .group-card:hover .group-name{color:#fff}
 .group-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
-.group-name{font-family:var(--heading);font-size:1.18rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.02em}
+.group-name{font-family:var(--heading);font-size:1.18rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.02em;text-decoration:none}
 .group-desc{font-size:.85rem;color:var(--t2);line-height:1.65;margin-bottom:16px}
 .group-members{font-family:var(--mono);font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:6px}
 .group-members .num{color:var(--t1);font-weight:600}
 .group-members svg{width:12px;height:12px;opacity:.5}
 
-/* Pills / stack */
 .stack-wrap{max-width:var(--max);display:flex;flex-direction:column;gap:48px}
 .stack-cat{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t2);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px}
 .stack-cat::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
@@ -190,12 +178,11 @@ section{padding:130px 48px;position:relative}
 .pill:hover{border-color:var(--b3);color:#fff;transform:translateY(-2px);background:var(--ac-dim)}
 .pill.sm{font-size:.65rem;padding:6px 13px}
 
-/* Featured report */
 .feature{max-width:var(--max);position:relative;padding:36px 40px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
 .feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#fff,var(--t4))}
 .feature-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .feature-eyebrow .star{color:var(--live)}
-.feature-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15}
+.feature-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15;max-width:760px}
 .feature-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .badge-fixed{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--live);letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(74,222,128,.3);border-radius:20px;background:rgba(74,222,128,.06)}
 .badge-crit{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--red);letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(255,77,77,.3);border-radius:20px;background:rgba(255,77,77,.06)}
@@ -207,7 +194,6 @@ section{padding:130px 48px;position:relative}
 .feature-thanks{font-size:.82rem;color:var(--t3);line-height:1.6;max-width:840px;margin-bottom:22px}
 .feature-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
 
-/* CVE box */
 .cve-box{max-width:var(--max);padding:32px 36px;background:var(--bg2);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:24px}
 .cve-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .cve-id{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:#fff;letter-spacing:.02em}
@@ -215,11 +201,9 @@ section{padding:130px 48px;position:relative}
 .cve-desc{font-size:.92rem;color:var(--t2);line-height:1.7;max-width:780px}
 .cve-desc strong{color:#fff;font-weight:500}
 
-/* Note */
 .note{max-width:var(--max);font-family:var(--mono);font-size:.68rem;color:var(--t3);line-height:1.75;margin-top:24px;padding:16px 20px;border:1px dashed var(--b2);border-radius:var(--r);background:var(--bg2)}
 .note b{color:var(--t2);font-weight:600}
 
-/* Buttons */
 .btn{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2)}
 .btn:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
 .btn.main{border-color:#fff;color:#000;background:#fff;font-weight:600}
@@ -229,11 +213,9 @@ section{padding:130px 48px;position:relative}
 .btn-sm:hover{border-color:var(--t3);color:#fff;transform:translateY(-2px)}
 .btn-sm svg{width:15px;height:15px}
 
-/* GitHub head */
 .gh-head{max-width:var(--max);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
 .gh-head .sec-head{margin-bottom:0}
 
-/* Contact */
 .contact-inner{max-width:700px}
 .contact-text{font-size:1.2rem;color:var(--t2);line-height:1.7;margin-bottom:48px;font-weight:300}
 .contact-text strong{color:#fff;font-weight:500}
@@ -241,7 +223,6 @@ section{padding:130px 48px;position:relative}
 .contact-note{font-family:var(--mono);font-size:.65rem;color:var(--t4);letter-spacing:.02em}
 .contact-note span{color:var(--t2)}
 
-/* Footer */
 footer{padding:40px 48px;border-top:1px solid var(--b1)}
 .footer-in{display:flex;justify-content:space-between;align-items:center}
 .footer-l{font-family:var(--mono);font-size:.65rem;color:var(--t4)}
@@ -250,7 +231,50 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 .footer-r a{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t4);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
 .footer-r a:hover{color:#fff}
 
-/* Responsive */
+/* ---------- Additions: image slots, logo wall, collaboration ---------- */
+image-slot{display:block;background:var(--bg3);border:1px solid var(--b2)}
+image-slot:hover{border-color:var(--b3)}
+
+/* Trust / logo wall band */
+.logos-band{padding:64px 48px 56px;position:relative}
+.logos-inner{max-width:var(--max);margin:0 auto}
+.logos-label{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t3);letter-spacing:.22em;text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:12px}
+.logos-label .dash{width:22px;height:1px;background:var(--t4)}
+.logo-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.logo-cell{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 14px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);transition:border-color .35s,background .35s}
+.logo-cell:hover{border-color:var(--b3);background:var(--bg3)}
+.logo-cell image-slot{width:54px;height:54px}
+.logo-cell .nm{font-family:var(--mono);font-size:.6rem;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;text-align:center;line-height:1.3}
+
+/* Game rows: leading thumbnail */
+.row-card.has-thumb{grid-template-columns:auto 1fr auto}
+.row-thumb{width:108px;height:108px;flex:none;align-self:flex-start}
+.row-name.link{text-decoration:none;color:var(--t1);transition:color .3s}
+.row-name.link:hover{color:#fff}
+a.row-arrow:hover{color:#fff}
+
+/* Disclosure target logos (small inline) */
+.disc-logo{width:30px;height:30px;flex:none}
+
+/* Featured disclosure logo */
+.feat-logo{position:absolute;top:30px;right:30px;width:58px;height:58px}
+
+/* Studios: logo inside card + linked name */
+.studio-logo{width:54px;height:54px;margin-bottom:16px}
+.group-name.link{text-decoration:none}
+.group-name.link:hover{color:#fff}
+
+/* Collaboration credit */
+.collab{max-width:var(--max);display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);margin-top:24px}
+.collab image-slot{width:46px;height:46px;flex:none}
+.collab-text{font-size:.86rem;color:var(--t2);line-height:1.6}
+.collab-text strong{color:#fff;font-weight:600}
+.collab-text a{color:#fff;text-decoration:none;border-bottom:1px solid var(--b3);transition:border-color .3s}
+.collab-text a:hover{border-color:var(--t2)}
+
+@media(max-width:980px){
+  .logo-wall{grid-template-columns:repeat(4,1fr)}
+}
 @media(max-width:768px){
   nav,nav.scrolled{padding:14px 22px}
   .menu-btn{display:flex}
@@ -258,6 +282,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .nav-links.open{transform:translateY(0)}
   .nav-links a{font-size:1.05rem}
   .hero,section{padding:90px 22px}
+  .logos-band{padding:48px 22px}
+  .logo-wall{grid-template-columns:repeat(2,1fr)}
   .hero-name{font-size:3.4rem}
   .hero-stats{flex-direction:column;gap:28px}
   .stat{padding-left:0;padding-top:12px}
@@ -265,7 +291,9 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .scroll-hint{display:none}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .row-card{grid-template-columns:1fr;padding:24px}
+  .row-card.has-thumb{grid-template-columns:auto 1fr}
   .row-right{display:none}
+  .feat-logo{position:static;margin-bottom:16px}
   .groups{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
   .feature{padding:24px}
@@ -273,9 +301,30 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   .contact-links{flex-direction:column}
   .btn{justify-content:center}
   .footer-in{flex-direction:column;gap:16px;text-align:center}
+  .collab{flex-direction:column;text-align:center}
 }
+
+/* ---------- Auto-loaded logo boxes ---------- */
+.logo-box{display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--b2);overflow:hidden;border-radius:10px;flex:none}
+.logo-box img{width:100%;height:100%;object-fit:contain;padding:16%}
+.logo-box.logo-mono{font-family:var(--heading);font-weight:800;color:var(--t2);letter-spacing:-.02em;background:linear-gradient(135deg,#141416,var(--bg2))}
+.logo-cell .logo-box{width:54px;height:54px;border-radius:12px;font-size:1.05rem}
+.feat-logo.logo-box{border-radius:12px}
+.disc-logo.logo-box{border-radius:8px;font-size:.62rem}
+.disc-logo.logo-box img{padding:14%}
+.studio-logo.logo-box{border-radius:12px;font-size:1.05rem}
+.row-thumb.logo-box{border-radius:14px;font-size:1.6rem}
+.row-thumb.logo-box img{padding:0;object-fit:cover}
+
+image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 </style>
-</head>
+<template id="__bundler_thumbnail" data-bg-color="#050505">
+  <svg viewbox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#050505"/>
+    <text x="600" y="430" font-family="&#39;Outfit&#39;,sans-serif" font-size="220" font-weight="900" fill="#f2f2f2" text-anchor="middle" letter-spacing="-10">m2hcz<tspan fill="#6b6b73">.</tspan></text>
+  </svg>
+</template>
+<script type='text/javascript' nonce='5MlZvjeT0H71DqZdhzC+Mg==' src='https://claude.ai/q8ii0sYG-s3t1vjnOlI8Aala8TvEyVhpdM2Tvzv2eIQf70nEuzYTOyfTWcFzZjIVivNffkL8lAfla3RFyWW6EfuAUXb6W0aNbBmo9uNbWAoRhxZ_fW8MGqsh6T5RcifFL5KR7Dz5_HleK_3eL4NtZOcwoEUriwMhIjzALpkqMbNnMWcZ8dD65tPvQzjyeo-2FtobCHTw8XMLTY8UjXp1iJulx7mQ0zATxVs59D4lFqdqDKOgQPE-OfxDH9dn0KSUGvXxcUooA4mP0mU8AHYvCVBuhLSjn0uJm5b3feaiynUfEIpC14mGMr9lRWKYjtLDX9BAXpwqoGowcRxZatVzxOOcPodopvlsGmWfBYmGNS9A5d48RNB-Tch22gemcAHlFiiBGCgjLM86KiPkyCwR12dHpPeLQscbEhBFnrx2IMTWsif6vznX0CbeT8VkA9cIeQIBfspLuRvssPWdOsMZo0D5WVTmwLqVRquV4EjQZsIGiL8X_IYfSqJttKHyWmQZ16BLjogRSk0ArmZV2GvqTPCsjRa3PLVc-uNRrlJrW4NNpV4rOY_Z5s9Hib5xng'></script></head>
 <body>
 <div class="cursor-glow" id="cursorGlow"></div>
 
@@ -299,7 +348,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
 
@@ -311,7 +359,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   <h1 class="hero-name rv d2">m2hcz<span class="outline">.</span></h1>
 
   <p class="hero-sub rv d3" data-i18n="hero.sub">
-    I design and build <strong>secure, large-scale systems</strong> — and break them through <strong>vulnerability research</strong>, reverse engineering, and exploit development. Security work grounded in over a decade of production engineering.
+    I design and build <strong>secure, large-scale systems</strong> — and break them through <strong>vulnerability research</strong>, reverse engineering, and exploit development. <strong>Two assigned CVEs</strong> and responsible disclosures to Google, NASA, Tesla, xAI, and the open-source ecosystem.
   </p>
 
   <div class="hero-cta rv d4">
@@ -325,11 +373,11 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <div class="stat-label" data-i18n="stat.exp">Engineering Experience</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="6">0</span><span class="suffix">+</span></div>
-      <div class="stat-label" data-i18n="stat.disc">Responsible Disclosures</div>
+      <div class="stat-num"><span class="counter" data-target="2">0</span></div>
+      <div class="stat-label" data-i18n="stat.cves">CVEs Assigned</div>
     </div>
     <div class="stat">
-      <div class="stat-num"><span class="counter" data-target="2200">0</span><span class="suffix">M+</span></div>
+      <div class="stat-num"><span class="counter" data-target="2.2">0</span><span class="suffix">B+</span></div>
       <div class="stat-label" data-i18n="stat.visits">Visits Across Shipped Games</div>
     </div>
   </div>
@@ -340,9 +388,22 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </a>
 </section>
 
+<div class="logos-band">
+  <div class="logos-inner">
+    <div class="logos-label rv"><span class="dash"></span><span data-i18n="logos.label">Security research reported to</span></div>
+    <div class="logo-wall">
+      <div class="logo-cell rv d1"><image-slot id="slot-google" shape="rounded" radius="12" placeholder="Google logo"></image-slot><span class="nm">Google</span></div>
+      <div class="logo-cell rv d2"><image-slot id="slot-nasa" shape="rounded" radius="12" placeholder="NASA logo"></image-slot><span class="nm">NASA</span></div>
+      <div class="logo-cell rv d3"><image-slot id="slot-tesla" shape="rounded" radius="12" placeholder="Tesla logo"></image-slot><span class="nm">Tesla</span></div>
+      <div class="logo-cell rv d4"><image-slot id="slot-xai" shape="rounded" radius="12" placeholder="xAI logo"></image-slot><span class="nm">xAI / X</span></div>
+      <div class="logo-cell rv d5"><image-slot id="slot-discord" shape="rounded" radius="12" placeholder="Discord logo"></image-slot><span class="nm">Discord</span></div>
+      <div class="logo-cell rv d6"><image-slot id="slot-automattic" shape="rounded" radius="12" placeholder="Automattic logo"></image-slot><span class="nm">Automattic</span></div>
+    </div>
+  </div>
+</div>
+
 <div class="divider"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="about.label">01 — Profile</span></div>
@@ -375,7 +436,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
       <div class="detail">
         <span class="detail-k" data-i18n="detail.email">Email</span>
-        <span class="detail-v"><a href="mailto:m2hczs@proton.me">m2hczs@proton.me</a></span>
+        <span class="detail-v"><a href="/cdn-cgi/l/email-protection#89e4bbe1eaf3fac9f9fbe6fde6e7a7e4ec"><span class="__cf_email__" data-cfemail="f69bc49e958c85b6868499829998d89b93">[email&#160;protected]</span></a></span>
       </div>
       <div class="detail">
         <span class="detail-k">GitHub</span>
@@ -395,7 +456,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- EXPERTISE -->
 <section id="expertise">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="expertise.label">02 — Capabilities</span></div>
@@ -436,7 +496,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- RESEARCH -->
+
 <section id="research">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="research.label">03 — Security Research</span></div>
@@ -444,8 +504,8 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <p class="sec-intro rv d2" data-i18n="research.intro">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure: confirm the weakness, prove impact with a working proof of concept, and report through the proper channel.</p>
   </div>
 
-  <!-- Featured: assigned CVE -->
   <div class="feature rv d2">
+    <image-slot id="slot-gitea" class="feat-logo" shape="rounded" radius="12" placeholder="Gitea logo"></image-slot>
     <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.cve.eyebrow">Featured disclosure · CVE</span></div>
     <div class="feature-title" data-i18n="feat.cve.title">Gitea — Git LFS Cross-Repository Authorization Bypass</div>
     <div class="feature-badges">
@@ -464,8 +524,25 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     </div>
   </div>
 
-  <!-- Featured: File Browser -->
   <div class="feature rv d3">
+    <image-slot id="slot-ghcli" class="feat-logo" shape="rounded" radius="12" placeholder="GitHub logo"></image-slot>
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.ghcli.eyebrow">Featured disclosure · CVE</span></div>
+    <div class="feature-title" data-i18n="feat.ghcli.title">GitHub CLI — Symlink Path Traversal / Git Hook Injection</div>
+    <div class="feature-badges">
+      <span class="badge-cve">CVE-2026-54094</span>
+      <span class="badge-high">High</span>
+      <span class="badge-meta">CWE-22 / CWE-59</span>
+      <span class="badge-fixed" data-i18n="feat.ghcli.fixedbadge">Triaged · HackerOne #3786623</span>
+    </div>
+    <div class="feature-desc" data-i18n="feat.ghcli.desc">Assigned <strong>CVE-2026-54094</strong>. Symlink path traversal / Git hook injection in <code>gh run download</code>: artifact-name-based extraction could resolve through a repository-controlled symlink, enabling writes outside the expected boundary and the planting of an <strong>executable Git hook</strong> — a route to code execution when operating on untrusted repositories.</div>
+    <div class="feature-thanks" data-i18n="feat.ghcli.thanks">Reported via HackerOne (report #3786623) and validated by GitHub's security team.</div>
+    <div class="pills">
+      <span class="pill sm">AppSec</span><span class="pill sm">Path Traversal</span><span class="pill sm">Git Hook Injection</span><span class="pill sm">CI/CD Security</span><span class="pill sm">Go</span>
+    </div>
+  </div>
+
+  <div class="feature rv d3">
+    <image-slot id="slot-filebrowser" class="feat-logo" shape="rounded" radius="12" placeholder="File Browser logo"></image-slot>
     <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.fb.eyebrow">Featured disclosure</span></div>
     <div class="feature-title" data-i18n="feat.fb.title">File Browser — Symlink Directory Scope Bypass</div>
     <div class="feature-badges">
@@ -474,7 +551,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <span class="badge-high">High · CVSS 7.5</span>
       <span class="badge-fixed" data-i18n="feat.fb.fixedbadge">Fixed in v2.63.11</span>
     </div>
-    <div class="feature-desc" data-i18n="feat.fb.desc">Reported through GitHub's private Security Advisory process, this finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application, especially with public sharing, symbolic links, and per-user permissions on network-exposed surfaces.</div>
+    <div class="feature-desc" data-i18n="feat.fb.desc">Reported through GitHub's private Security Advisory process, this finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application.</div>
     <div class="feature-thanks" data-i18n="feat.fb.thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
     <div class="feature-actions">
       <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.11" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.fix">Fixed release · v2.63.11 ↗</a>
@@ -491,6 +568,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="row-card rv d2">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-gemini" class="disc-logo" shape="rounded" radius="8" placeholder="Google"></image-slot>
           <span class="row-name">Gemini CLI</span>
           <span class="tag">Google</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
@@ -502,10 +580,12 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="row-card rv d3">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-ghcli2" class="disc-logo" shape="rounded" radius="8" placeholder="GH"></image-slot>
           <span class="row-name">GitHub CLI</span>
+          <span class="tag">CVE-2026-54094</span>
           <span class="tag">HackerOne #3786623</span>
         </div>
-        <div class="row-desc" data-i18n="disc.ghcli">Symlink path traversal / Git hook injection in <code>gh run download</code>: artifact-name-based extraction could resolve through a repository-controlled symlink, enabling writes outside the expected boundary and the planting of an executable Git hook.</div>
+        <div class="row-desc" data-i18n="disc.ghcli">Symlink path traversal / Git hook injection in <code>gh run download</code> — see featured disclosure above (CVE-2026-54094).</div>
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
@@ -517,6 +597,40 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="row-card rv d2">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-nasa2" class="disc-logo" shape="rounded" radius="8" placeholder="NASA"></image-slot>
+          <span class="row-name">NASA</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.nasa">Reported a security issue through NASA's Vulnerability Disclosure Program (VDP).</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+    <div class="row-card rv d3">
+      <div class="row-info">
+        <div class="row-top">
+          <image-slot id="slot-tesla2" class="disc-logo" shape="rounded" radius="8" placeholder="Tesla"></image-slot>
+          <span class="row-name">Tesla</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.tesla">Reported a security issue through Tesla's bug bounty program.</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+    <div class="row-card rv d4">
+      <div class="row-info">
+        <div class="row-top">
+          <image-slot id="slot-xai2" class="disc-logo" shape="rounded" radius="8" placeholder="xAI"></image-slot>
+          <span class="row-name">xAI / X</span>
+          <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
+        </div>
+        <div class="row-desc" data-i18n="disc.xai">Reported a security issue affecting xAI / X assets.</div>
+      </div>
+      <div class="row-right"><span class="row-arrow">✓</span></div>
+    </div>
+    <div class="row-card rv d5">
+      <div class="row-info">
+        <div class="row-top">
+          <image-slot id="slot-usp" class="disc-logo" shape="rounded" radius="8" placeholder="USP"></image-slot>
           <span class="row-name">Universidade de São Paulo (USP)</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -524,9 +638,10 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-    <div class="row-card rv d3">
+    <div class="row-card rv d6">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-x" class="disc-logo" shape="rounded" radius="8" placeholder="X"></image-slot>
           <span class="row-name">X (Twitter)</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -534,9 +649,10 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-    <div class="row-card rv d4">
+    <div class="row-card rv d6">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-ybera" class="disc-logo" shape="rounded" radius="8" placeholder="Ybera"></image-slot>
           <span class="row-name">Ybera Paris</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -544,9 +660,10 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       </div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
-    <div class="row-card rv d5">
+    <div class="row-card rv d6">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-automattic2" class="disc-logo" shape="rounded" radius="8" placeholder="A8C"></image-slot>
           <span class="row-name">Automattic / WordPress.com</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -557,6 +674,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="row-card rv d6">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-parsely" class="disc-logo" shape="rounded" radius="8" placeholder="Parse.ly"></image-slot>
           <span class="row-name">Parse.ly</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -567,6 +685,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="row-card rv d6">
       <div class="row-info">
         <div class="row-top">
+          <image-slot id="slot-discord2" class="disc-logo" shape="rounded" radius="8" placeholder="Discord"></image-slot>
           <span class="row-name">Discord</span>
           <span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span>
         </div>
@@ -577,13 +696,12 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </div>
 
   <div class="note rv" data-i18n="research.note">
-    <b>Responsible disclosure —</b> Every finding above was investigated and reported under responsible-disclosure practices, prioritizing remediation and practical security impact. CVE-2026-28740 (Gitea) is an officially assigned identifier; the other entries reflect research and reporting activity through the appropriate channels.
+    <b>Responsible disclosure —</b> Every finding above was researched, validated, and reported solo, under responsible-disclosure practices, prioritizing remediation and practical security impact. CVE-2026-28740 (Gitea) and CVE-2026-54094 (GitHub CLI) are officially assigned identifiers; the other entries reflect research and reporting activity through the appropriate channels.
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="projects.label">04 — Tooling</span></div>
@@ -641,7 +759,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- REFERENCES -->
 <section id="references">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="refs.label">05 — External Validation</span></div>
@@ -688,7 +805,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- ENGINEERING -->
 <section id="engineering">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="eng.label">06 — Background</span></div>
@@ -736,7 +852,6 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- GAMES -->
 <section id="games">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="games.label">07 — Shipped Titles</span></div>
@@ -745,128 +860,93 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </div>
 
   <div class="rows">
-    <a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" rel="noopener" class="row-card rv d2">
+    <div class="row-card has-thumb rv d2">
+      <image-slot id="game-run" class="row-thumb" shape="rounded" radius="14" placeholder="Run For Brainrots thumbnail"></image-slot>
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Run For Brainrots</span>
+          <a class="row-name link" href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" rel="noopener">Run For Brainrots</a>
           <span class="tag" data-i18n="role.independent">Independent</span>
         </div>
         <div class="row-desc" data-i18n="game.run.desc">Fast-paced multiplayer runner. Engineered scalable state machines for round-based survival loops, high-performance movement replication, and dynamic asset loading to absorb viral player growth.</div>
         <div class="row-stats">
-          <div class="row-stat live">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">12k–60k</span> <span data-i18n="u.playing">playing</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">1.4B+</span> <span data-i18n="u.visits">visits</span>
-          </div>
+          <div class="row-stat live"><svg viewbox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg><span class="num">12k–60k</span> <span data-i18n="u.playing">playing</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="num">1.4B+</span> <span data-i18n="u.visits">visits</span></div>
         </div>
       </div>
-      <div class="row-right"><span class="row-arrow">→</span></div>
-    </a>
+      <div class="row-right"><a href="https://www.roblox.com/games/94702395375549/Run-For-Brainrots" target="_blank" rel="noopener" class="row-arrow">→</a></div>
+    </div>
 
-    <a href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" rel="noopener" class="row-card rv d3">
+    <div class="row-card has-thumb rv d3">
+      <image-slot id="game-vd" class="row-thumb" shape="rounded" radius="14" placeholder="Violence District thumbnail"></image-slot>
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Violence District</span>
+          <a class="row-name link" href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" rel="noopener">Violence District</a>
           <span class="tag">VIOLENCE DISTRICT</span>
         </div>
         <div class="row-desc" data-i18n="game.vd.desc">Asymmetric horror survival, 5 survivors vs a killer. Built scalable server infrastructure, real-time combat systems, and live-ops features powering one of Roblox's top-ranked horror titles.</div>
         <div class="row-stats">
-          <div class="row-stat live">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">10k–25k</span> <span data-i18n="u.playing">playing</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">705M+</span> <span data-i18n="u.visits">visits</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">346k</span> <span data-i18n="u.community">community</span>
-          </div>
+          <div class="row-stat live"><svg viewbox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg><span class="num">10k–25k</span> <span data-i18n="u.playing">playing</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="num">705M+</span> <span data-i18n="u.visits">visits</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">346k</span> <span data-i18n="u.community">community</span></div>
         </div>
       </div>
-      <div class="row-right"><span class="row-arrow">→</span></div>
-    </a>
+      <div class="row-right"><a href="https://www.roblox.com/games/93978595733734/Violence-District" target="_blank" rel="noopener" class="row-arrow">→</a></div>
+    </div>
 
-    <a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" rel="noopener" class="row-card rv d4">
+    <div class="row-card has-thumb rv d4">
+      <image-slot id="game-ll" class="row-thumb" shape="rounded" radius="14" placeholder="Last Letter thumbnail"></image-slot>
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Last Letter</span>
+          <a class="row-name link" href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" rel="noopener">Last Letter</a>
           <span class="tag">MmiiGames</span>
         </div>
         <div class="row-desc" data-i18n="game.ll.desc">Competitive word game where every last letter counts. Developed core gameplay systems, networking, data-persistence layers, and modular architecture for rapid iteration.</div>
         <div class="row-stats">
-          <div class="row-stat live">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">5k–7k</span> <span data-i18n="u.playing">playing</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">89M+</span> <span data-i18n="u.visits">visits</span>
-          </div>
+          <div class="row-stat live"><svg viewbox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg><span class="num">5k–7k</span> <span data-i18n="u.playing">playing</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="num">89M+</span> <span data-i18n="u.visits">visits</span></div>
         </div>
       </div>
-      <div class="row-right"><span class="row-arrow">→</span></div>
-    </a>
+      <div class="row-right"><a href="https://www.roblox.com/games/129866685202296/Last-Letter" target="_blank" rel="noopener" class="row-arrow">→</a></div>
+    </div>
 
-    <a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" rel="noopener" class="row-card rv d5">
+    <div class="row-card has-thumb rv d5">
+      <image-slot id="game-an" class="row-thumb" shape="rounded" radius="14" placeholder="Animatronic Nights thumbnail"></image-slot>
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Animatronic Nights</span>
+          <a class="row-name link" href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" rel="noopener">Animatronic Nights</a>
           <span class="tag">PlayBox!</span>
         </div>
         <div class="row-desc" data-i18n="game.an.desc">Horror survival: hunt or survive as animatronics. Contributing backend systems, scalable server infrastructure, real-time game systems, and live-ops features.</div>
         <div class="row-stats">
-          <div class="row-stat live">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">2k–4k</span> <span data-i18n="u.playing">playing</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">25M+</span> <span data-i18n="u.visits">visits</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">818k</span> <span data-i18n="u.community">community</span>
-          </div>
+          <div class="row-stat live"><svg viewbox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg><span class="num">2k–4k</span> <span data-i18n="u.playing">playing</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="num">25M+</span> <span data-i18n="u.visits">visits</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">818k</span> <span data-i18n="u.community">community</span></div>
         </div>
       </div>
-      <div class="row-right"><span class="row-arrow">→</span></div>
-    </a>
+      <div class="row-right"><a href="https://www.roblox.com/games/17559596992/Animatronic-Nights" target="_blank" rel="noopener" class="row-arrow">→</a></div>
+    </div>
 
-    <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener" class="row-card rv d6">
+    <div class="row-card has-thumb rv d6">
+      <image-slot id="game-mas" class="row-thumb" shape="rounded" radius="14" placeholder="Massacre thumbnail"></image-slot>
       <div class="row-info">
         <div class="row-top">
-          <span class="row-name">Massacre</span>
+          <a class="row-name link" href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener">Massacre</a>
           <span class="tag">Abysmal Covenant</span>
         </div>
         <div class="row-desc" data-i18n="game.mas.desc">Asymmetric horror hide-and-seek. Led the entire backend architecture: DataStore sharding, server-authoritative combat, anti-cheat, live-ops pipeline, and perk/ability systems.</div>
         <div class="row-stats">
-          <div class="row-stat live">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
-            <span class="num">1.2k–2.2k</span> <span data-i18n="u.playing">playing</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="num">2.5M+</span> <span data-i18n="u.visits">visits</span>
-          </div>
-          <div class="row-stat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span class="num">177k</span> <span data-i18n="u.community">community</span>
-          </div>
+          <div class="row-stat live"><svg viewbox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg><span class="num">1.2k–2.2k</span> <span data-i18n="u.playing">playing</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="num">2.5M+</span> <span data-i18n="u.visits">visits</span></div>
+          <div class="row-stat"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">177k</span> <span data-i18n="u.community">community</span></div>
         </div>
       </div>
-      <div class="row-right"><span class="row-arrow">→</span></div>
-    </a>
+      <div class="row-right"><a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener" class="row-arrow">→</a></div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- STUDIOS -->
 <section id="studios">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="studios.label">08 — Collaborations</span></div>
@@ -874,85 +954,72 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
   </div>
 
   <div class="groups">
-    <a href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" rel="noopener" class="group-card rv d2">
+    <div class="group-card rv d2">
+      <image-slot id="studio-playbox" class="studio-logo" shape="rounded" radius="12" placeholder="PlayBox! logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">PlayBox!</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/9363456/PlayBox" target="_blank" rel="noopener">PlayBox!</a>
         <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.playbox.desc">Verified Roblox studio. Contributing to Animatronic Nights and other titles under the PlayBox brand.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">818,424</span> <span data-i18n="u.members">members</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">818,424</span> <span data-i18n="u.members">members</span></div>
+    </div>
 
-    <a href="https://www.roblox.com/communities/1014009190/Abysmal-Covenant" target="_blank" rel="noopener" class="group-card rv d3">
+    <div class="group-card rv d3">
+      <image-slot id="studio-abysmal" class="studio-logo" shape="rounded" radius="12" placeholder="Abysmal Covenant logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">Abysmal Covenant</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/1014009190/Abysmal-Covenant" target="_blank" rel="noopener">Abysmal Covenant</a>
         <span class="tag" data-i18n="role.lead">Lead Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.abysmal.desc">Home of Massacre. Leading the entire backend infrastructure, game systems, and live-ops pipeline.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">177,173</span> <span data-i18n="u.members">members</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">177,173</span> <span data-i18n="u.members">members</span></div>
+    </div>
 
-    <a href="https://www.roblox.com/communities/5826271/Gothyc" target="_blank" rel="noopener" class="group-card rv d4">
+    <div class="group-card rv d4">
+      <image-slot id="studio-gothyc" class="studio-logo" shape="rounded" radius="12" placeholder="Gothyc! logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">Gothyc!</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/5826271/Gothyc" target="_blank" rel="noopener">Gothyc!</a>
         <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.gothyc.desc">UGC-verified community with 1.3M+ members. Built core backend systems and game infrastructure across multiple titles.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">1,324,293</span> <span data-i18n="u.members">members</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">1,324,293</span> <span data-i18n="u.members">members</span></div>
+    </div>
   </div>
 
   <div class="groups" style="margin-top:14px">
-    <a href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" rel="noopener" class="group-card rv d2">
+    <div class="group-card rv d2">
+      <image-slot id="studio-frontman" class="studio-logo" shape="rounded" radius="12" placeholder="Frontman Studios logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">Frontman Studios</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" rel="noopener">Frontman Studios</a>
         <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.frontman.desc">Studio behind Violence District, one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num" data-i18n="u.studio">Studio</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num" data-i18n="u.studio">Studio</span></div>
+    </div>
 
-    <a href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" rel="noopener" class="group-card rv d3">
+    <div class="group-card rv d3">
+      <image-slot id="studio-vd" class="studio-logo" shape="rounded" radius="12" placeholder="Violence District logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">VIOLENCE DISTRICT</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" rel="noopener">VIOLENCE DISTRICT</a>
         <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.vd.desc">Official community for Violence District, a 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num">345,880</span> <span data-i18n="u.members">members</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">345,880</span> <span data-i18n="u.members">members</span></div>
+    </div>
 
-    <a href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener" class="group-card rv d4">
+    <div class="group-card rv d4">
+      <image-slot id="studio-resenha" class="studio-logo" shape="rounded" radius="12" placeholder="Resenha e Games logo"></image-slot>
       <div class="group-top">
-        <span class="group-name">Resenha e Games</span>
+        <a class="group-name link" href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener">Resenha e Games</a>
         <span class="tag" data-i18n="role.backend">Backend Engineer</span>
       </div>
       <div class="group-desc" data-i18n="studio.resenha.desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div>
-      <div class="group-members">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span class="num" data-i18n="u.studio">Studio</span>
-      </div>
-    </a>
+      <div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num" data-i18n="u.studio">Studio</span></div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- GITHUB -->
 <section id="github">
   <div class="gh-head">
     <div class="sec-head">
@@ -960,7 +1027,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       <h2 class="sec-title rv d1" data-i18n="github.title">GitHub <span class="ghost">repositories</span></h2>
     </div>
     <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn-sm rv d2">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+      <svg viewbox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
       github.com/m2hcz
     </a>
   </div>
@@ -1003,7 +1070,26 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
+<section id="venture">
+  <div class="sec-head">
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="venture.label">— Venture</span></div>
+    <h2 class="sec-title rv d1" data-i18n="venture.title">wnk<span class="ghost">.sh</span></h2>
+    <p class="sec-intro rv d2" data-i18n="venture.intro">A separate, collaborative project I am building together with a partner — distinct from my solo security research above.</p>
+  </div>
+
+  <div class="feature rv d2">
+    <image-slot id="slot-wnk" class="feat-logo" shape="rounded" radius="12" placeholder="wnk.sh"></image-slot>
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="venture.eyebrow">Built together — not solo</span></div>
+    <div class="feature-title" data-i18n="venture.h">wnk.sh</div>
+    <div class="feature-desc" data-i18n="venture.desc">A collaborative project built hand in hand with a partner — a shared effort, not solo work. Unlike the disclosures above (which I researched and reported alone), <strong>wnk.sh is a joint build</strong>.</div>
+    <div class="feature-actions">
+      <a href="https://wnk.sh/" target="_blank" rel="noopener" class="btn-sm" data-i18n="venture.cta">Visit wnk.sh ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section id="contact">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="contact.label">10 — Contact</span></div>
@@ -1015,9 +1101,10 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
       Available for <strong>contract engagements and full-time roles</strong> in offensive security, application security, vulnerability research, and backend / systems engineering.
     </div>
     <div class="contact-links">
-      <a href="mailto:m2hczs@proton.me" class="btn main">m2hczs@proton.me</a>
+      <a href="/cdn-cgi/l/email-protection#80edb2e8e3faf3c0f0f2eff4efeeaeede5" class="btn main"><span class="__cf_email__" data-cfemail="7e134c161d040d3e0e0c110a111050131b">[email&#160;protected]</span></a>
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn">GitHub</a>
       <a href="https://x.com/inf0secc" target="_blank" rel="noopener" class="btn">Twitter / X</a>
+      <a href="https://wnk.sh/" target="_blank" rel="noopener" class="btn">wnk.sh</a>
     </div>
     <div class="contact-note" data-i18n="contact.pay">Payment options — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexible</span></div>
   </div>
@@ -1028,21 +1115,23 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
     <div class="footer-l" data-i18n="footer.l">© 2026 <span>m2hcz</span> — engineering since 2014</div>
     <div class="footer-r">
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:m2hczs@proton.me">Email</a>
+      <a href="/cdn-cgi/l/email-protection#ff92cd979c858cbf8f8d908b9091d1929a">Email</a>
       <a href="https://x.com/inf0secc" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://wnk.sh/" target="_blank" rel="noopener">wnk.sh</a>
     </div>
   </div>
 </footer>
 
-<script>
-/* ---------- i18n: PT dictionary (EN is the source, captured from DOM) ---------- */
-const PT = {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.PT = {
   'nav.about':'Sobre','nav.expertise':'Especialidades','nav.research':'Pesquisa','nav.projects':'Projetos','nav.experience':'Experiência','nav.games':'Jogos','nav.contact':'Contato',
 
   'hero.tag':'Engenheiro de Software Sênior · Pesquisador de Segurança Ofensiva',
-  'hero.sub':'Eu projeto e construo <strong>sistemas seguros e de larga escala</strong> — e os quebro através de <strong>pesquisa de vulnerabilidades</strong>, engenharia reversa e desenvolvimento de exploits. Trabalho de segurança fundamentado em mais de uma década de engenharia em produção.',
+  'hero.sub':'Eu projeto e construo <strong>sistemas seguros e de larga escala</strong> — e os quebro através de <strong>pesquisa de vulnerabilidades</strong>, engenharia reversa e desenvolvimento de exploits. <strong>Duas CVEs atribuídas</strong> e disclosures responsáveis para Google, NASA, Tesla, xAI e o ecossistema open-source.',
   'hero.cta1':'Ver Pesquisa','hero.cta2':'Entre em Contato',
-  'stat.exp':'Anos de Engenharia','stat.disc':'Disclosures Responsáveis','stat.visits':'Visitas em Jogos Publicados','scroll':'Rolar',
+  'stat.exp':'Anos de Engenharia','stat.cves':'CVEs Atribuídas','stat.visits':'Visitas em Jogos Publicados','scroll':'Rolar',
+
+  'logos.label':'Pesquisa de segurança reportada para',
 
   'about.label':'01 — Perfil','about.title':'Sobre <span class="ghost">mim</span>',
   'about.p1':'Sou um <strong>engenheiro de software sênior e pesquisador de segurança ofensiva</strong> com mais de uma década de experiência construindo e quebrando sistemas de larga escala. Meu trabalho vive na interseção entre engenharia segura e pesquisa adversarial: projetar arquitetura backend resiliente de um lado, e testá-la sob estresse através de pesquisa de vulnerabilidades, engenharia reversa e desenvolvimento de exploits do outro.',
@@ -1053,6 +1142,7 @@ const PT = {
   'detail.loc':'Localização','detail.loc.v':'Brasil (UTC-3) · Remoto',
   'detail.langs':'Idiomas','detail.langs.v':'Português · Inglês',
   'detail.email':'Email','detail.avail':'Disponibilidade',
+  'detail.collab':'Colaboração',
   'detail.avail.v':'<span class="status-dot"></span>Aberto a novas oportunidades',
 
   'expertise.label':'02 — Capacidades','expertise.title':'Principais <span class="ghost">especialidades</span>',
@@ -1071,25 +1161,34 @@ const PT = {
   'feat.cve.thanks':'Crédito ao time do Gitea pela triagem ágil e pela atribuição da CVE.',
   'feat.cve.fix':'Correção · PR #38006 ↗',
 
+  'feat.ghcli.eyebrow':'Disclosure em destaque · CVE',
+  'feat.ghcli.title':'GitHub CLI — Symlink Path Traversal / Injeção de Git Hook',
+  'feat.ghcli.fixedbadge':'Triada · HackerOne #3786623',
+  'feat.ghcli.desc':'Recebeu o identificador <strong>CVE-2026-54094</strong>. Symlink path traversal / Git hook injection em <code>gh run download</code>: a extração baseada no nome do artifact podia resolver através de um symlink controlado pelo repositório, permitindo escrita fora do limite esperado e o plantio de um <strong>Git hook executável</strong> — uma rota para execução de código ao operar em repositórios não confiáveis.',
+  'feat.ghcli.thanks':'Reportado via HackerOne (relatório #3786623) e validado pela equipe de segurança do GitHub.',
+
   'feat.fb.eyebrow':'Disclosure em destaque',
   'feat.fb.title':'File Browser — Bypass de Escopo de Diretório via Symlink',
   'feat.fb.fixedbadge':'Corrigido na v2.63.11',
-  'feat.fb.desc':'Reportado pelo processo privado de Security Advisory do GitHub, este achado envolveu a <strong>validação de escopo ao lidar com diretórios linkados e symlinks</strong>: certas operações podiam escapar do limite pretendido, permitindo que usuários escopados e public-share recipients lessem e escrevessem arquivos fora da área que a aplicação deveria garantir. Os mantenedores <strong>aceitaram o report, lançaram uma correção e publicaram a versão corrigida</strong>. O caso reforça o quão crítica é a validação estrita de caminho e escopo em qualquer aplicação que manipula arquivos, especialmente com compartilhamento público, symlinks e permissões por usuário em superfícies expostas à rede.',
+  'feat.fb.desc':'Reportado pelo processo privado de Security Advisory do GitHub, este achado envolveu a <strong>validação de escopo ao lidar com diretórios linkados e symlinks</strong>: certas operações podiam escapar do limite pretendido, permitindo que usuários escopados e public-share recipients lessem e escrevessem arquivos fora da área que a aplicação deveria garantir. Os mantenedores <strong>aceitaram o report, lançaram uma correção e publicaram a versão corrigida</strong>. O caso reforça o quão crítica é a validação estrita de caminho e escopo em qualquer aplicação que manipula arquivos.',
   'feat.fb.thanks':'Crédito aos mantenedores do File Browser pela triagem rápida, validação técnica e correção responsável.',
   'feat.fb.fix':'Versão corrigida · v2.63.11 ↗','feat.fb.patch':'Commit da correção ↗',
 
   'tech.cat':'Disclosures técnicas nomeadas',
   'disc.gemini':'Reportou três vulnerabilidades no Gemini CLI envolvendo fluxos de CI/CD e superfícies de tooling de IA para desenvolvedores, com foco em impacto prático, validação técnica e mitigação de risco em ambientes de engenharia.',
-  'disc.ghcli':'Symlink path traversal / Git hook injection em <code>gh run download</code>: a extração baseada no nome do artifact podia resolver através de um symlink controlado pelo repositório, permitindo escrita fora do limite esperado e o plantio de um Git hook executável.',
+  'disc.ghcli':'Symlink path traversal / Git hook injection em <code>gh run download</code> — ver disclosure em destaque acima (CVE-2026-54094).',
   'addl.cat':'Disclosures responsáveis adicionais',
   'tag.disclosed':'Divulgado responsavelmente',
+  'disc.nasa':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades (VDP) da NASA.',
+  'disc.tesla':'Reportou um problema de segurança através do programa de bug bounty da Tesla.',
+  'disc.xai':'Reportou um problema de segurança afetando ativos da xAI / X.',
   'disc.usp':'Identificou e reportou fraquezas de segurança afetando ativos web da universidade.',
   'disc.x':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do X (Twitter).',
   'disc.ybera':'Reportou vulnerabilidades afetando aplicações voltadas ao cliente da Ybera Paris.',
   'disc.automattic':'Reportou problemas de segurança afetando ativos relacionados à Automattic e ao WordPress.com.',
   'disc.parsely':'Reportou uma vulnerabilidade de segurança afetando ativos da Parse.ly.',
   'disc.discord':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do Discord.',
-  'research.note':'<b>Divulgação responsável —</b> Cada achado acima foi investigado e reportado sob práticas de divulgação responsável, priorizando a remediação e o impacto prático de segurança. CVE-2026-28740 (Gitea) é um identificador oficialmente atribuído; os demais itens refletem atividade de pesquisa e reporte pelos canais apropriados.',
+  'research.note':'<b>Divulgação responsável —</b> Cada achado acima foi pesquisado, validado e reportado de forma individual (solo), sob práticas de divulgação responsável, priorizando a remediação e o impacto prático de segurança. CVE-2026-28740 (Gitea) e CVE-2026-54094 (GitHub CLI) são identificadores oficialmente atribuídos; os demais itens refletem atividade de pesquisa e reporte pelos canais apropriados.',
 
   'projects.label':'04 — Ferramentas','projects.title':'Projetos em <span class="ghost">destaque</span>',
   'projects.intro':'Ferramentas de segurança open-source, scanners e bibliotecas defensivas, feitos para uso prático no dia a dia.',
@@ -1135,88 +1234,266 @@ const PT = {
   'gh.reroll.desc':'Sistema modular de jogo Roblox com arquitetura OOP para mecânicas de reroll de personagem.',
   'gh.oop.desc':'Framework de programação orientada a objetos para Luau com herança e encapsulamento.',
 
+  'venture.label':'— Projeto','venture.title':'wnk<span class="ghost">.sh</span>',
+  'venture.intro':'Um projeto colaborativo separado que estou construindo junto com um parceiro — distinto da minha pesquisa de segurança solo acima.',
+  'venture.eyebrow':'Construído em dupla — não solo',
+  'venture.h':'wnk.sh',
+  'venture.desc':'Um projeto colaborativo construído lado a lado com um parceiro — um esforço compartilhado, não um trabalho solo. Diferente das disclosures acima (que pesquisei e reportei sozinho), <strong>a wnk.sh é uma construção conjunta</strong>.',
+  'venture.cta':'Visitar wnk.sh ↗',
+
   'contact.label':'10 — Contato','contact.title':'Vamos trabalhar <span class="ghost">juntos</span>',
   'contact.text':'Disponível para <strong>trabalhos por contrato e posições full-time</strong> em segurança ofensiva, segurança de aplicações, pesquisa de vulnerabilidades e engenharia de backend / sistemas.',
   'contact.pay':'Formas de pagamento — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexível</span>',
   'footer.l':'© 2026 <span>m2hcz</span> — engenharia desde 2014'
 };
 
-/* Capture the English source from the DOM, then allow swapping. */
-const i18nEls = document.querySelectorAll('[data-i18n]');
-const EN = {};
-i18nEls.forEach(el=>{ EN[el.dataset.i18n] = el.innerHTML; });
+</script>
+<script>
+/* Auto-loads real logos / icons into the placeholder boxes by id.
+   Companies: high-res logo via Clearbit, falling back to the domain favicon,
+   then to a clean monogram tile. Roblox games/studios: official thumbnail API,
+   falling back to a monogram tile if the cross-origin request is blocked. */
+(function () {
+  const MAP = {
+    // company / org / project logos (by domain)
+    'slot-google':     { d: 'google.com',     n: 'Google' },
+    'slot-nasa':       { d: 'nasa.gov',       n: 'NASA' },
+    'slot-tesla':      { d: 'tesla.com',      n: 'Tesla' },
+    'slot-xai':        { d: 'x.ai',           n: 'xAI' },
+    'slot-discord':    { d: 'discord.com',    n: 'Discord' },
+    'slot-automattic': { d: 'automattic.com', n: 'Automattic' },
 
-function setLang(lang){
-  i18nEls.forEach(el=>{
-    const k = el.dataset.i18n;
-    el.innerHTML = (lang==='pt' && PT[k]!==undefined) ? PT[k] : EN[k];
-  });
-  document.documentElement.lang = lang;
-  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-}
-document.querySelectorAll('.lang-toggle button').forEach(b=>{
-  b.addEventListener('click',()=>setLang(b.dataset.lang));
+    'slot-gitea':       { d: 'gitea.com',       n: 'Gitea' },
+    'slot-ghcli':       { d: 'github.com',      n: 'GitHub' },
+    'slot-filebrowser': { d: 'filebrowser.org', n: 'File Browser' },
+
+    'slot-gemini':      { d: 'google.com',  n: 'Google' },
+    'slot-ghcli2':      { d: 'github.com',  n: 'GitHub' },
+    'slot-nasa2':       { d: 'nasa.gov',    n: 'NASA' },
+    'slot-tesla2':      { d: 'tesla.com',   n: 'Tesla' },
+    'slot-xai2':        { d: 'x.ai',        n: 'xAI' },
+    'slot-usp':         { d: 'usp.br',      n: 'USP' },
+    'slot-x':           { d: 'x.com',       n: 'X' },
+    'slot-ybera':       { d: 'yberaparis.com', n: 'Ybera' },
+    'slot-automattic2': { d: 'automattic.com', n: 'Automattic' },
+    'slot-parsely':     { d: 'parse.ly',    n: 'Parse.ly' },
+    'slot-discord2':    { d: 'discord.com', n: 'Discord' },
+
+    'slot-wnk':         { d: 'wnk.sh',      n: 'wnk.sh' },
+
+    // Roblox games (by placeId)
+    'game-run': { rbxGame: '94702395375549', n: 'Run For Brainrots' },
+    'game-vd':  { rbxGame: '93978595733734', n: 'Violence District' },
+    'game-ll':  { rbxGame: '129866685202296', n: 'Last Letter' },
+    'game-an':  { rbxGame: '17559596992',    n: 'Animatronic Nights' },
+    'game-mas': { rbxGame: '14386479662',    n: 'Massacre' },
+
+    // Roblox studios / communities (by groupId)
+    'studio-playbox':  { rbxGroup: '9363456',    n: 'PlayBox' },
+    'studio-abysmal':  { rbxGroup: '1014009190', n: 'Abysmal Covenant' },
+    'studio-gothyc':   { rbxGroup: '5826271',    n: 'Gothyc' },
+    'studio-frontman': { rbxGroup: '35461183',   n: 'Frontman Studios' },
+    'studio-vd':       { rbxGroup: '8818124',    n: 'Violence District' },
+    'studio-resenha':  { rbxGroup: '35641771',   n: 'Resenha e Games' }
+  };
+
+  function initials(n) {
+    return (n || '').replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/)
+      .map(w => w[0]).join('').slice(0, 2).toUpperCase() || '?';
+  }
+  function mono(box, n) {
+    box.innerHTML = '';
+    box.classList.add('logo-mono');
+    box.textContent = initials(n);
+  }
+  function imgEl(n, cover) {
+    const img = document.createElement('img');
+    img.alt = n;
+    img.loading = 'lazy';
+    img.referrerPolicy = 'no-referrer';
+    if (cover) { img.style.padding = '0'; img.style.objectFit = 'cover'; }
+    return img;
+  }
+  function loadDomain(box, domain, n) {
+    const srcs = [
+      'https://icons.duckduckgo.com/ip3/' + domain + '.ico',
+      'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128'
+    ];
+    let i = 0, done = false, timer = null;
+    const img = imgEl(n, false);
+    function arm() { timer = setTimeout(fail, 4000); }
+    function fail() {
+      if (done) return;
+      clearTimeout(timer);
+      i++;
+      if (i < srcs.length) { arm(); img.src = srcs[i]; }
+      else { done = true; mono(box, n); }
+    }
+    function ok() {
+      if (done) return;
+      if (img.naturalWidth < 6) { fail(); return; }
+      done = true; clearTimeout(timer);
+    }
+    img.onerror = fail;
+    img.onload = ok;
+    box.appendChild(img);
+    arm();
+    img.src = srcs[0];
+  }
+  function loadFromUrl(box, url, n) {
+    const img = imgEl(n, true);
+    img.onerror = () => mono(box, n);
+    box.appendChild(img);
+    img.src = url;
+  }
+  async function getJSON(urls) {
+    for (const url of urls) {
+      try { const r = await fetch(url); if (r.ok) return await r.json(); } catch (e) {}
+    }
+    return null;
+  }
+  async function loadRbxGame(box, placeId, n) {
+    const uni = await getJSON([
+      'https://apis.roproxy.com/universes/v1/places/' + placeId + '/universe',
+      'https://games.roproxy.com/v1/games/multiget-place-details?placeIds=' + placeId,
+      'https://apis.roblox.com/universes/v1/places/' + placeId + '/universe'
+    ]);
+    let uid = uni && (uni.universeId || (Array.isArray(uni) && uni[0] && uni[0].universeId));
+    if (!uid) { mono(box, n); return; }
+    const t = await getJSON([
+      'https://thumbnails.roproxy.com/v1/games/icons?universeIds=' + uid + '&size=512x512&format=Png&isCircular=false',
+      'https://thumbnails.roblox.com/v1/games/icons?universeIds=' + uid + '&size=512x512&format=Png&isCircular=false'
+    ]);
+    const url = t && t.data && t.data[0] && t.data[0].imageUrl;
+    if (url) loadFromUrl(box, url, n); else mono(box, n);
+  }
+  async function loadRbxGroup(box, groupId, n) {
+    const t = await getJSON([
+      'https://thumbnails.roproxy.com/v1/groups/icons?groupIds=' + groupId + '&size=420x420&format=Png&isCircular=false',
+      'https://thumbnails.roblox.com/v1/groups/icons?groupIds=' + groupId + '&size=420x420&format=Png&isCircular=false'
+    ]);
+    const url = t && t.data && t.data[0] && t.data[0].imageUrl;
+    if (url) loadFromUrl(box, url, n); else mono(box, n);
+  }
+
+  function mount() {
+    Object.keys(MAP).forEach(id => {
+      const orig = document.getElementById(id);
+      if (!orig || orig.dataset.logoDone) return;
+      const e = MAP[id];
+      const box = document.createElement('span');
+      box.className = (orig.className ? orig.className + ' ' : '') + 'logo-box';
+      box.id = id;
+      box.dataset.logoDone = '1';
+      const n = e.n || orig.getAttribute('placeholder') || '';
+      box.title = n;
+      orig.replaceWith(box);
+      if (e.d) loadDomain(box, e.d, n);
+      else if (e.rbxGame) loadRbxGame(box, e.rbxGame, n);
+      else if (e.rbxGroup) loadRbxGroup(box, e.rbxGroup, n);
+      else mono(box, n);
+    });
+  }
+
+  window.mountLogos = mount;
+  if (document.readyState !== 'loading') setTimeout(mount, 0);
+  document.addEventListener('DOMContentLoaded', mount);
+})();
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const PT = window.PT || {};
+    const i18nEls = document.querySelectorAll('[data-i18n]');
+    const EN = {};
+    i18nEls.forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+
+    const setLang = (lang) => {
+      i18nEls.forEach(el => {
+        const k = el.dataset.i18n;
+        el.innerHTML = (lang === 'pt' && PT[k] !== undefined) ? PT[k] : EN[k];
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    };
+    document.querySelectorAll('.lang-toggle button').forEach(b => {
+      b.addEventListener('click', () => setLang(b.dataset.lang));
+    });
+
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e => {
+      if (!glow) return;
+      if (!glow.classList.contains('active')) glow.classList.add('active');
+      glow.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+    const nav = document.getElementById('nav');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 50); });
+    if (menuBtn) menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('active'); navLinks.classList.toggle('open'); });
+    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+      if (menuBtn) menuBtn.classList.remove('active');
+      if (navLinks) navLinks.classList.remove('open');
+    }));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const t = document.querySelector(href);
+        if (t) {
+          e.preventDefault();
+          window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 8, behavior: 'smooth' });
+        }
+      });
+    });
+
+    const links = [...document.querySelectorAll('.nav-link')];
+    const sections = [...document.querySelectorAll('section[id]')];
+    const spy = () => {
+      const mid = window.scrollY + innerHeight * .4;
+      let current = null;
+      for (const s of sections) { if (s.offsetTop <= mid) current = s.id; }
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+    };
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target, target = parseFloat(el.dataset.target), start = performance.now();
+        const isInt = Number.isInteger(target);
+        const ease = t => 1 - Math.pow(1 - t, 3);
+        const fmt = n => n >= 1000 ? Math.round(n).toLocaleString('en-US') : (isInt ? Math.round(n) : n.toFixed(1));
+        const tick = now => {
+          const p = Math.min((now - start) / 1800, 1);
+          el.innerText = fmt(ease(p) * target);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        cObs.unobserve(el);
+      });
+    }, { threshold: .5 });
+    document.querySelectorAll('.counter').forEach(c => cObs.observe(c));
+
+    if (window.mountLogos) window.mountLogos();
 });
-
-/* ---------- Cursor glow ---------- */
-const glow=document.getElementById('cursorGlow');
-document.addEventListener('mousemove',e=>{
-  if(!glow.classList.contains('active'))glow.classList.add('active');
-  glow.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
-});
-
-/* Card spotlight follows cursor */
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    card.style.setProperty('--mx',(e.clientX-r.left)+'px');
-    card.style.setProperty('--my',(e.clientY-r.top)+'px');
-  });
-});
-
-/* Scroll reveal */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-/* Nav */
-const nav=document.getElementById('nav');
-const menuBtn=document.getElementById('menuBtn');
-const navLinks=document.getElementById('navLinks');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
-menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('active');navLinks.classList.toggle('open')});
-document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{menuBtn.classList.remove('active');navLinks.classList.remove('open')}));
-
-/* Smooth anchor scroll */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
-});
-
-/* Scroll-spy: highlights the section closest to the viewport center */
-const links=[...document.querySelectorAll('.nav-link')];
-const sections=[...document.querySelectorAll('section[id]')];
-function spy(){
-  const mid=window.scrollY+innerHeight*.4;
-  let current=null;
-  for(const s of sections){if(s.offsetTop<=mid)current=s.id}
-  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+current));
-}
-window.addEventListener('scroll',spy,{passive:true});
-spy();
-
-/* Animated counters with thousands formatting */
-const cObs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    const el=entry.target,target=parseInt(el.dataset.target),start=performance.now();
-    const ease=t=>1-Math.pow(1-t,3);
-    const fmt=n=>n>=1000?Math.round(n).toLocaleString('en-US'):Math.round(n);
-    function tick(now){const p=Math.min((now-start)/1800,1);el.innerText=fmt(ease(p)*target);if(p<1)requestAnimationFrame(tick)}
-    requestAnimationFrame(tick);cObs.unobserve(el);
-  });
-},{threshold:.5});
-document.querySelectorAll('.counter').forEach(c=>cObs.observe(c));
 </script>
 </body>
 </html>
