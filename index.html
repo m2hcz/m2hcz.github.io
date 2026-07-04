@@ -27,6 +27,7 @@
   --ac-dim2:rgba(255,255,255,.08);
   --ac-dim3:rgba(255,255,255,.14);
   --red:#ff2f3d;
+  --red-dim:rgba(255,47,61,.12);
   --live:#4ade80;
   --mono:'Geist Mono',monospace;
   --body:'DM Sans',sans-serif;
@@ -55,8 +56,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--t1);overflow-x:hid
 @media(prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
-  .logo-track{animation:none;transform:none}
-  .logo-marquee{overflow-x:auto;mask-image:none;-webkit-mask-image:none}
+  .tw-track{animation:none!important}
+  .tw-viewport{overflow-x:auto!important}
 }
 
 nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:background .4s,border-color .4s,padding .4s}
@@ -64,8 +65,8 @@ nav.scrolled{background:rgba(5,5,5,.85);backdrop-filter:blur(20px);border-bottom
 .nav-logo{font-family:var(--heading);font-weight:800;font-size:1.15rem;color:#fff;text-decoration:none;letter-spacing:-.04em}
 .nav-logo span{font-weight:400;color:var(--red)}
 .nav-right{display:flex;align-items:center;gap:10px}
-.nav-links{display:flex;gap:6px;list-style:none}
-.nav-links a{position:relative;font-family:var(--mono);font-size:.68rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s,background .3s;padding:8px 14px;border-radius:20px}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{position:relative;font-family:var(--mono);font-size:.66rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.09em;text-transform:uppercase;transition:color .3s,background .3s;padding:8px 12px;border-radius:20px;white-space:nowrap}
 .nav-links a:hover{color:#fff}
 .nav-links a.active{color:#fff;background:var(--ac-dim2)}
 
@@ -134,7 +135,7 @@ section{padding:130px 48px;position:relative}
 .row-card:hover .row-name{color:#fff}
 .row-card:hover .row-arrow{transform:translateX(6px);opacity:1;color:var(--red)}
 .row-info{display:flex;flex-direction:column;gap:11px;min-width:0}
-.row-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.row-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .row-name{font-family:var(--heading);font-size:1.3rem;font-weight:700;color:var(--t1);transition:color .3s;letter-spacing:-.03em}
 .tag{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--b2);border-radius:20px;white-space:nowrap}
 .tag.ok{color:var(--live);border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.05)}
@@ -182,7 +183,7 @@ section{padding:130px 48px;position:relative}
 
 .feature{max-width:var(--max);position:relative;padding:36px 40px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
 .feature::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--red),var(--t4))}
-.feature-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.feature-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--t1);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;padding-right:76px}
 .feature-eyebrow .star{color:var(--red)}
 .feature-title{font-family:var(--heading);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15;max-width:760px}
 .feature-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
@@ -205,6 +206,8 @@ section{padding:130px 48px;position:relative}
 
 .note{max-width:var(--max);font-family:var(--mono);font-size:.68rem;color:var(--t3);line-height:1.75;margin-top:24px;padding:16px 20px;border:1px dashed var(--b2);border-radius:var(--r);background:var(--bg2)}
 .note b{color:var(--t2);font-weight:600}
+.flag-note{max-width:var(--max);font-family:var(--mono);font-size:.66rem;color:var(--t3);line-height:1.7;margin-top:16px;padding:14px 18px;border-left:2px solid var(--red);background:var(--red-dim)}
+.flag-note b{color:#fff;font-weight:600}
 
 .btn{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--t1);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--b2);border-radius:var(--r);transition:all .3s;display:inline-flex;align-items:center;gap:10px;background:var(--bg2)}
 .btn:hover{border-color:var(--red);color:#fff;transform:translateY(-2px)}
@@ -215,42 +218,44 @@ section{padding:130px 48px;position:relative}
 .btn-sm:hover{border-color:var(--red);color:#fff;transform:translateY(-2px)}
 .btn-sm svg{width:15px;height:15px}
 
+/* ===== Org mark — self-contained monogram badge, no network/image dependency ===== */
+.org-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border-radius:8px;background:var(--bg3);border:1px solid var(--b2);font-family:var(--heading);font-weight:700;font-size:.58rem;letter-spacing:0;color:var(--t2);transition:color .3s,border-color .3s,background .3s;position:relative}
+.org-mark::after{content:'';position:absolute;left:6px;right:6px;bottom:3px;height:1px;background:var(--red);opacity:.55}
+.row-card:hover .org-mark{color:#fff;border-color:var(--b3)}
+.org-mark.lg{position:absolute;top:30px;right:30px;width:52px;height:52px;border-radius:12px;font-size:.92rem;background:var(--bg2)}
+.org-mark.lg::after{left:10px;right:10px;bottom:6px}
+.org-mark.md{width:38px;height:38px;border-radius:10px;font-size:.66rem}
+
+/* ===== Trust wall v2 — static wordmark marquee, zero external requests, zero JS timing ===== */
 .logos-band{padding:80px 0;position:relative;background:linear-gradient(180deg,#050505 0%,#080809 50%,#050505 100%);overflow:hidden}
 .logos-inner{width:100%;margin:0 auto;text-align:center}
 .logos-label{font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--t3);letter-spacing:.3em;text-transform:uppercase;margin:0 auto 48px;padding:0 48px;display:flex;align-items:center;justify-content:center;gap:16px}
 .logos-label .dash{width:30px;height:1px;background:var(--red)}
-.logo-marquee{width:100%;overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
-.logo-track{display:flex;width:max-content;gap:16px;will-change:transform}
-.logo-track.ready{animation:trustMarquee 38s linear infinite}
-.logo-wall{display:flex;gap:16px;align-items:stretch;width:max-content;flex:none}
-.logo-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:164px;min-height:132px;padding:26px 18px;background:#09090b;border:1px solid #121214;border-radius:12px;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;flex:none}
-.logos-band:hover .logo-track.ready{animation-play-state:paused}
-@keyframes trustMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 8px),0,0)}}
-@media(prefers-reduced-motion:reduce){.logo-track.ready{animation:none}.logo-marquee{overflow-x:auto;mask-image:none;-webkit-mask-image:none}}
-.logo-cell::after{content:'';position:absolute;inset:0;border-radius:12px;border:1px solid transparent;background:linear-gradient(135deg,rgba(255,47,61,.1),transparent) border-box;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;pointer-events:none;opacity:0;transition:opacity .4s}
-.logo-cell:hover{border-color:#1e1e21;background:#0e0e11;transform:translateY(-4px)}
-.logo-cell:hover::after{opacity:1}
-.logo-cell .nm{font-family:var(--heading);font-weight:700;font-size:.85rem;color:var(--t2);letter-spacing:-.02em;text-align:center;transition:color .3s}
-.logo-cell:hover .nm{color:#fff}
+.tw-viewport{width:100%;overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.tw-track{display:flex;width:max-content;gap:14px;animation:twScroll 36s linear infinite}
+.logos-band:hover .tw-track{animation-play-state:paused}
+@keyframes twScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7px))}}
+.tw-item{flex:none;width:172px;min-height:110px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;gap:10px;background:#09090b;border:1px solid #121214;border-radius:12px;position:relative;overflow:hidden;transition:border-color .35s,background .35s,transform .35s}
+.tw-item::before{content:'';position:absolute;top:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,var(--red),transparent 70%);opacity:.7}
+.tw-item:hover{border-color:#1e1e21;background:#0e0e11;transform:translateY(-4px)}
+.tw-name{font-family:var(--heading);font-weight:800;font-size:1.05rem;color:var(--t2);letter-spacing:-.02em;transition:color .3s;line-height:1.15}
+.tw-item:hover .tw-name{color:#fff}
+.tw-kind{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
 
-image-slot{display:block;background:var(--bg3);border:1px solid var(--b2)}
-image-slot:hover{border-color:var(--b3)}
+.row-thumb.logo-box{border-radius:14px;font-size:1.6rem}
+.studio-logo.logo-box{border-radius:12px;font-size:1.05rem}
+.logo-box{display:flex;align-items:center;justify-content:center;background:#0d0d0f;border:1px solid #1a1a1d;overflow:hidden;border-radius:10px;flex:none}
+.logo-box img{width:100%;height:100%;object-fit:contain;padding:18%;filter:grayscale(1) brightness(0.9);transition:all .3s}
+.logo-box:hover img{filter:grayscale(0) brightness(1)}
+.logo-box.logo-mono{font-family:var(--heading);font-weight:800;color:var(--t2);letter-spacing:-.02em;background:linear-gradient(135deg,var(--bg3),var(--bg2))}
+.row-thumb.logo-box img{padding:0;object-fit:cover;filter:none}
 .row-card.has-thumb{grid-template-columns:auto 1fr auto}
 .row-thumb{width:108px;height:108px;flex:none;align-self:flex-start}
 .row-name.link{text-decoration:none;color:var(--t1);transition:color .3s}
 .row-name.link:hover{color:var(--red)}
 a.row-arrow:hover{color:#fff}
-.disc-logo{width:30px;height:30px;flex:none}
-.feat-logo{position:absolute;top:30px;right:30px;width:58px;height:58px}
-.studio-logo{width:54px;height:54px;margin-bottom:16px}
 .group-name.link{text-decoration:none}
 .group-name.link:hover{color:var(--red)}
-.collab{max-width:var(--max);display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r);margin-top:24px}
-.collab image-slot{width:46px;height:46px;flex:none}
-.collab-text{font-size:.86rem;color:var(--t2);line-height:1.6}
-.collab-text strong{color:#fff;font-weight:600}
-.collab-text a{color:#fff;text-decoration:none;border-bottom:1px solid var(--b3);transition:border-color .3s}
-.collab-text a:hover{border-color:var(--t2)}
 
 .cve-reference-set{max-width:var(--max);margin-bottom:36px}
 .cve-reference-set .cve-box{margin-bottom:14px}
@@ -261,6 +266,8 @@ a.row-arrow:hover{color:#fff}
 .cve-source-arrow{font-family:var(--mono);font-size:.8rem;color:var(--t4);transition:color .3s,transform .3s}
 .cve-source:hover .cve-source-arrow{color:var(--red);transform:translate(2px,-2px)}
 .cve-source-meta{display:block;font-family:var(--mono);font-size:.55rem;font-weight:500;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.subhead{max-width:var(--max);font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--t2);letter-spacing:.16em;text-transform:uppercase;margin:34px 0 18px;display:flex;align-items:center;gap:16px}
+.subhead::after{content:'';flex:1;height:1px;background:var(--b1);max-width:300px}
 
 .gh-head{max-width:var(--max);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
 .gh-head .sec-head{margin-bottom:0}
@@ -278,20 +285,7 @@ footer{padding:40px 48px;border-top:1px solid var(--b1)}
 .footer-r a{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--t4);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
 .footer-r a:hover{color:#fff}
 
-.logo-box{display:flex;align-items:center;justify-content:center;background:#0d0d0f;border:1px solid #1a1a1d;overflow:hidden;border-radius:10px;flex:none}
-.logo-box img{width:100%;height:100%;object-fit:contain;padding:18%;filter:grayscale(1) brightness(0.9);transition:all .3s}
-.logo-cell:hover .logo-box img{filter:grayscale(0) brightness(1)}
-.logo-box.logo-mono{font-family:var(--heading);font-weight:800;color:var(--t2);letter-spacing:-.02em;background:linear-gradient(135deg,#141416,var(--bg2))}
-.logo-cell .logo-box{width:58px;height:58px;border-radius:12px;font-size:1.1rem}
-.feat-logo.logo-box{border-radius:12px}
-.disc-logo.logo-box{border-radius:8px;font-size:.62rem}
-.disc-logo.logo-box img{padding:14%}
-.studio-logo.logo-box{border-radius:12px;font-size:1.05rem}
-.row-thumb.logo-box{border-radius:14px;font-size:1.6rem}
-.row-thumb.logo-box img{padding:0;object-fit:cover;filter:none}
-image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
-
-@media(max-width:1080px){.logo-cell{width:150px}}
+@media(max-width:1080px){.tw-item{width:156px}}
 @media(max-width:768px){
   nav,nav.scrolled{padding:14px 22px}
   .menu-btn{display:flex}
@@ -301,8 +295,8 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
   .hero,section{padding:90px 22px}
   .logos-band{padding:60px 0}
   .logos-label{padding:0 22px;margin-bottom:34px;letter-spacing:.18em}
-  .logo-cell{width:138px;min-height:116px;padding:22px 14px}
-  .logo-track{animation-duration:30s}
+  .tw-item{width:140px;min-height:100px;padding:20px 16px}
+  .tw-track{animation-duration:30s}
   .hero-name{font-size:3.4rem}
   .hero-stats{flex-direction:column;gap:28px}
   .stat{padding-left:0;padding-top:12px}
@@ -312,7 +306,8 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
   .row-card{grid-template-columns:1fr;padding:24px}
   .row-card.has-thumb{grid-template-columns:auto 1fr}
   .row-right{display:none}
-  .feat-logo{position:static;margin-bottom:16px}
+  .org-mark.lg{position:static;margin-bottom:16px}
+  .feature-eyebrow{padding-right:0}
   .groups{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
   .feature{padding:24px}
@@ -320,7 +315,6 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
   .contact-links{flex-direction:column}
   .btn{justify-content:center}
   .footer-in{flex-direction:column;gap:16px;text-align:center}
-  .collab{flex-direction:column;text-align:center}
 }
 </style>
 <template id="__bundler_thumbnail" data-bg-color="#050505">
@@ -343,6 +337,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
       <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
       <li><a href="#engineering" class="nav-link" data-i18n="nav.experience">Experience</a></li>
       <li><a href="#games" class="nav-link" data-i18n="nav.games">Games</a></li>
+      <li><a href="#studios" class="nav-link" data-i18n="nav.studios">Studios</a></li>
       <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -373,20 +368,28 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 <div class="logos-band">
   <div class="logos-inner">
     <div class="logos-label rv"><span class="dash"></span><span data-i18n="logos.label">Security research reported to &amp; validated findings in</span><span class="dash"></span></div>
-    <div class="logo-marquee" aria-label="Organizations and platforms">
-      <div class="logo-track" id="logoTrack">
-        <div class="logo-wall" id="logoWallPrimary">
-          <div class="logo-cell rv d1"><image-slot id="slot-x-main" shape="rounded" radius="12" placeholder="X logo"></image-slot><span class="nm">X / xAI</span></div>
-          <div class="logo-cell rv d2"><image-slot id="slot-slack" shape="rounded" radius="12" placeholder="Slack logo"></image-slot><span class="nm">Slack</span></div>
-          <div class="logo-cell rv d3"><image-slot id="slot-nasa" shape="rounded" radius="12" placeholder="NASA logo"></image-slot><span class="nm">NASA</span></div>
-          <div class="logo-cell rv d4"><image-slot id="slot-google" shape="rounded" radius="12" placeholder="Google logo"></image-slot><span class="nm">Google</span></div>
-          <div class="logo-cell rv d5"><image-slot id="slot-tesla" shape="rounded" radius="12" placeholder="Tesla logo"></image-slot><span class="nm">Tesla</span></div>
-          <div class="logo-cell rv d6"><image-slot id="slot-discord" shape="rounded" radius="12" placeholder="Discord logo"></image-slot><span class="nm">Discord</span></div>
-          <div class="logo-cell rv d7"><image-slot id="slot-automattic" shape="rounded" radius="12" placeholder="Automattic logo"></image-slot><span class="nm">Automattic</span></div>
-          <div class="logo-cell rv d1"><image-slot id="slot-cacawshow-main" shape="rounded" radius="12" placeholder="CacawShow logo"></image-slot><span class="nm">CacawShow</span></div>
-          <div class="logo-cell rv d2"><image-slot id="slot-govbr-main" shape="rounded" radius="12" placeholder="Gov.br logo"></image-slot><span class="nm">Gov.br</span></div>
-          <div class="logo-cell rv d3"><image-slot id="slot-roblox-main" shape="rounded" radius="12" placeholder="Roblox logo"></image-slot><span class="nm">Roblox</span></div>
-        </div>
+    <div class="tw-viewport" aria-label="Organizations security research has been reported to">
+      <div class="tw-track" id="twTrack">
+        <div class="tw-item"><span class="tw-name">X / xAI</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">Slack</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">NASA</span><span class="tw-kind" data-i18n="tw.kind.vdp">VDP</span></div>
+        <div class="tw-item"><span class="tw-name">Google</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">Tesla</span><span class="tw-kind" data-i18n="tw.kind.bounty">Bug Bounty</span></div>
+        <div class="tw-item"><span class="tw-name">Discord</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">Automattic</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">CacawShow</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">Gov.br</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item"><span class="tw-name">Roblox</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">X / xAI</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Slack</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">NASA</span><span class="tw-kind" data-i18n="tw.kind.vdp">VDP</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Google</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Tesla</span><span class="tw-kind" data-i18n="tw.kind.bounty">Bug Bounty</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Discord</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Automattic</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">CacawShow</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Gov.br</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
+        <div class="tw-item" aria-hidden="true"><span class="tw-name">Roblox</span><span class="tw-kind" data-i18n="tw.kind.disclosure">Disclosure</span></div>
       </div>
     </div>
   </div>
@@ -434,15 +437,45 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 </section>
 
 <div class="divider"></div>
+
 <section id="research">
   <div class="sec-head">
     <div class="sec-label rv"><span class="dash"></span><span data-i18n="research.label">03 — Security Research</span></div>
     <h2 class="sec-title rv d1" data-i18n="research.title">Vulnerability <span class="ghost">research</span></h2>
-    <p class="sec-intro rv d2" data-i18n="research.intro">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure.</p>
+    <p class="sec-intro rv d2" data-i18n="research.intro">Security weaknesses identified and reported in <strong>real-world platforms and organizations</strong>, always under responsible disclosure — ordered below by severity, with the public record for each.</p>
   </div>
 
   <div class="feature rv d2">
-    <image-slot id="slot-gitea" class="feat-logo" shape="rounded" radius="12" placeholder="Gitea logo"></image-slot>
+    <span class="org-mark lg">WP</span>
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.wc.eyebrow">Featured research · Public PoC</span></div>
+    <div class="feature-title" data-i18n="feat.wc.title">WooCommerce Designer Pro — Unrestricted File Upload to RCE</div>
+    <div class="feature-badges"><span class="badge-cve">CVE-2025-6440</span><span class="badge-crit">Critical</span><span class="badge-meta">CVSS 9.8 · CWE-434</span></div>
+    <div class="feature-desc" data-i18n="feat.wc.desc">An unauthenticated arbitrary file upload flaw in the WooCommerce Designer Pro plugin for WordPress, in the <code>wcdp_save_canvas_design_ajax</code> handler: missing file-type validation lets an attacker upload a PHP payload and achieve full <strong>remote code execution</strong> on the underlying server. I published a working proof of concept; the finding, tracked as <strong>CVE-2025-6440</strong>, has since been indexed across exploit-tracking and vulnerability-intelligence platforms.</div>
+    <div class="feature-thanks" data-i18n="feat.wc.thanks">Published independently as research on a known plugin vulnerability, not a coordinated vendor disclosure — see the note at the end of this section.</div>
+    <div class="feature-actions">
+      <a href="https://github.com/m2hcz/CVE-2025-6440-Poc-Exploit" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.wc.poc">Proof of concept ↗</a>
+      <a href="https://www.cve.org/CVERecord?id=CVE-2025-6440" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.wc.cve">CVE record ↗</a>
+    </div>
+    <div class="pills"><span class="pill sm">AppSec</span><span class="pill sm">Unrestricted Upload</span><span class="pill sm">RCE</span><span class="pill sm">WordPress</span><span class="pill sm">PHP</span></div>
+  </div>
+
+  <div class="feature rv d2">
+    <span class="org-mark lg">FB</span>
+    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.fb.eyebrow">Featured disclosure · CVE</span></div>
+    <div class="feature-title" data-i18n="feat.fb.title">File Browser — Symlink Directory Scope Bypass</div>
+    <div class="feature-badges"><span class="badge-cve">CVE-2026-54094</span><span class="badge-high">High</span><span class="badge-meta">CVSS 7.5 · CWE-22 / CWE-59</span><span class="badge-fixed" data-i18n="feat.fb.fixedbadge">Fixed · v2.63.14</span></div>
+    <div class="feature-desc" data-i18n="feat.fb.desc">Assigned <strong>CVE-2026-54094</strong> through GitHub's Security Advisory process. File Browser's per-user scope is enforced against lexical <code>../</code> traversal, but its HTTP handlers followed symbolic links before opening, serving, writing, or sharing a file. That let scoped users — and in some cases unauthenticated public-share recipients — read, overwrite, and share files <strong>outside the area the application was meant to enforce</strong>. The maintainers accepted the report, shipped a fix, and published the patched release.</div>
+    <div class="feature-thanks" data-i18n="feat.fb.thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
+    <div class="feature-actions">
+      <a href="https://github.com/filebrowser/filebrowser/security/advisories/GHSA-239w-m3h6-ch8v" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.advisory">GitHub Advisory ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.14" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.fix">Fixed release · v2.63.14 ↗</a>
+      <a href="https://github.com/filebrowser/filebrowser/commit/7c2c0a11b31b2bb214d741005a0b02b1764208b3" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.patch">Patch commit ↗</a>
+    </div>
+    <div class="pills"><span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path &amp; Scope Validation</span><span class="pill sm">Go</span></div>
+  </div>
+
+  <div class="feature rv d3">
+    <span class="org-mark lg">GT</span>
     <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.cve.eyebrow">Featured disclosure · CVE</span></div>
     <div class="feature-title" data-i18n="feat.cve.title">Gitea — Git LFS Cross-Repository Authorization Bypass</div>
     <div class="feature-badges"><span class="badge-cve">CVE-2026-28740</span><span class="badge-high">High</span><span class="badge-meta">CVSS 7.1 · CWE-639 / CWE-863</span><span class="badge-fixed" data-i18n="feat.cve.fixedbadge">Fixed · PR #38006</span></div>
@@ -453,7 +486,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
   </div>
 
   <div class="feature rv d3">
-    <image-slot id="slot-ghcli" class="feat-logo" shape="rounded" radius="12" placeholder="GitHub logo"></image-slot>
+    <span class="org-mark lg">GH</span>
     <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.ghcli.eyebrow">Featured disclosure</span></div>
     <div class="feature-title" data-i18n="feat.ghcli.title">GitHub CLI — Symlink Path Traversal / Git Hook Injection</div>
     <div class="feature-badges"><span class="badge-high">High</span><span class="badge-meta">CWE-22 / CWE-59</span><span class="badge-fixed" data-i18n="feat.ghcli.fixedbadge">Triaged · HackerOne #3786623</span></div>
@@ -462,96 +495,35 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
     <div class="pills"><span class="pill sm">AppSec</span><span class="pill sm">Path Traversal</span><span class="pill sm">Git Hook Injection</span><span class="pill sm">CI/CD Security</span><span class="pill sm">Go</span></div>
   </div>
 
-  <div class="feature rv d3">
-    <image-slot id="slot-filebrowser" class="feat-logo" shape="rounded" radius="12" placeholder="File Browser logo"></image-slot>
-    <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="feat.fb.eyebrow">Featured disclosure · CVE</span></div>
-    <div class="feature-title" data-i18n="feat.fb.title">File Browser — Symlink Directory Scope Bypass</div>
-    <div class="feature-badges"><span class="badge-cve">CVE-2026-54094</span><span class="badge-high">High</span><span class="badge-meta">CVSS 7.5 · CWE-22 / CWE-59</span><span class="badge-fixed" data-i18n="feat.fb.fixedbadge">Fixed in v2.63.14</span></div>
-    <div class="feature-desc" data-i18n="feat.fb.desc">Assigned <strong>CVE-2026-54094</strong> through GitHub's Security Advisory process. This finding involved <strong>scope validation when handling linked directories and symlinks</strong>: certain operations could escape the intended boundary, allowing scoped users and public-share recipients to read and write files outside the area the application was meant to enforce. The maintainers <strong>accepted the report, shipped a fix, and published the patched release</strong>. The case underlines how critical strict path and scope validation is for any file-handling application.</div>
-    <div class="feature-thanks" data-i18n="feat.fb.thanks">Credit to the File Browser maintainers for the fast triage, technical validation, and responsible fix.</div>
-    <div class="feature-actions">
-      <a href="https://github.com/filebrowser/filebrowser/security/advisories/GHSA-239w-m3h6-ch8v" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.advisory">GitHub Advisory ↗</a>
-      <a href="https://github.com/filebrowser/filebrowser/releases/tag/v2.63.14" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.fix">Fixed release · v2.63.14 ↗</a>
-      <a href="https://github.com/filebrowser/filebrowser/commit/7c2c0a11b31b2bb214d741005a0b02b1764208b3" target="_blank" rel="noopener" class="btn-sm" data-i18n="feat.fb.patch">Patch commit ↗</a>
-    </div>
-    <div class="pills"><span class="pill sm">AppSec</span><span class="pill sm">Vulnerability Research</span><span class="pill sm">Open Source Security</span><span class="pill sm">Path &amp; Scope Validation</span><span class="pill sm">Go</span></div>
-  </div>
-
-  <div class="stack-cat rv" style="margin:34px 0 18px"><span data-i18n="tech.cat">Named technical disclosures</span></div>
+  <div class="subhead rv"><span data-i18n="tech.cat">Named technical disclosures</span></div>
   <div class="rows">
     <div class="row-card rv d2">
-      <div class="row-info"><div class="row-top"><image-slot id="slot-gemini" class="disc-logo" shape="rounded" radius="8" placeholder="Google"></image-slot><span class="row-name">Gemini CLI</span><span class="tag">Google</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.gemini">Reported three vulnerabilities in the Gemini CLI involving CI/CD flows and AI developer-tooling surfaces.</div></div>
-      <div class="row-right"><span class="row-arrow">✓</span></div>
-    </div>
-    <div class="row-card rv d3">
-      <div class="row-info"><div class="row-top"><image-slot id="slot-ghcli2" class="disc-logo" shape="rounded" radius="8" placeholder="GH"></image-slot><span class="row-name">GitHub CLI</span><span class="tag">HackerOne #3786623</span></div><div class="row-desc" data-i18n="disc.ghcli">Symlink path traversal / Git hook injection in <code>gh run download</code> — see the featured disclosure above.</div></div>
+      <div class="row-info"><div class="row-top"><span class="org-mark">GO</span><span class="row-name">Gemini CLI</span><span class="tag">Google</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.gemini">Reported three vulnerabilities in the Gemini CLI involving CI/CD flows and AI developer-tooling surfaces.</div></div>
       <div class="row-right"><span class="row-arrow">✓</span></div>
     </div>
   </div>
 
-  <div class="stack-cat rv" style="margin:34px 0 18px"><span data-i18n="addl.cat">Additional responsible disclosures</span></div>
+  <div class="subhead rv"><span data-i18n="addl.cat">Additional responsible disclosures</span></div>
   <div class="rows">
-    <div class="row-card rv d2"><div class="row-info"><div class="row-top"><image-slot id="slot-nasa2" class="disc-logo" shape="rounded" radius="8" placeholder="NASA"></image-slot><span class="row-name">NASA</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.nasa">Reported a security issue through NASA's Vulnerability Disclosure Program (VDP).</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d3"><div class="row-info"><div class="row-top"><image-slot id="slot-tesla2" class="disc-logo" shape="rounded" radius="8" placeholder="Tesla"></image-slot><span class="row-name">Tesla</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.tesla">Reported a security issue through Tesla's bug bounty program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d4"><div class="row-info"><div class="row-top"><image-slot id="slot-xai2" class="disc-logo" shape="rounded" radius="8" placeholder="xAI"></image-slot><span class="row-name">xAI / X</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.xai">Reported a security issue affecting xAI / X assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d5"><div class="row-info"><div class="row-top"><image-slot id="slot-usp" class="disc-logo" shape="rounded" radius="8" placeholder="USP"></image-slot><span class="row-name">Universidade de São Paulo (USP)</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.usp">Identified and reported security weaknesses affecting university web assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><image-slot id="slot-x" class="disc-logo" shape="rounded" radius="8" placeholder="X"></image-slot><span class="row-name">X (Twitter)</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.x">Reported a security issue through X's (Twitter) vulnerability disclosure program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><image-slot id="slot-ybera" class="disc-logo" shape="rounded" radius="8" placeholder="Ybera"></image-slot><span class="row-name">Ybera Paris</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.ybera">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><image-slot id="slot-automattic2" class="disc-logo" shape="rounded" radius="8" placeholder="A8C"></image-slot><span class="row-name">Automattic / WordPress.com</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.automattic">Reported security issues affecting Automattic and WordPress.com-related assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><image-slot id="slot-parsely" class="disc-logo" shape="rounded" radius="8" placeholder="Parse.ly"></image-slot><span class="row-name">Parse.ly</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.parsely">Reported a security vulnerability affecting Parse.ly assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><image-slot id="slot-discord2" class="disc-logo" shape="rounded" radius="8" placeholder="Discord"></image-slot><span class="row-name">Discord</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.discord">Reported a security issue through Discord's vulnerability disclosure program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d2"><div class="row-info"><div class="row-top"><image-slot id="slot-cacawshow" class="disc-logo" shape="rounded" radius="8" placeholder="CacawShow"></image-slot><span class="row-name">CacawShow</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.cacawshow">Identified and responsibly reported vulnerabilities affecting CacawShow web assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d3"><div class="row-info"><div class="row-top"><image-slot id="slot-govbr" class="disc-logo" shape="rounded" radius="8" placeholder="Gov.br"></image-slot><span class="row-name">Gov.br</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.govbr">Identified and responsibly reported vulnerabilities affecting authorized Gov.br web assets through the appropriate channels.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
-    <div class="row-card rv d4"><div class="row-info"><div class="row-top"><image-slot id="slot-roblox" class="disc-logo" shape="rounded" radius="8" placeholder="Roblox"></image-slot><span class="row-name">Roblox</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.roblox">Identified and responsibly reported vulnerabilities affecting Roblox-related assets and platform surfaces through the appropriate channels.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d2"><div class="row-info"><div class="row-top"><span class="org-mark">NASA</span><span class="row-name">NASA</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.nasa">Reported a security issue through NASA's Vulnerability Disclosure Program (VDP).</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d3"><div class="row-info"><div class="row-top"><span class="org-mark">TS</span><span class="row-name">Tesla</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.tesla">Reported a security issue through Tesla's bug bounty program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d4"><div class="row-info"><div class="row-top"><span class="org-mark">X</span><span class="row-name">xAI / X</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.xai">Reported a security issue affecting xAI / X assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d5"><div class="row-info"><div class="row-top"><span class="org-mark">USP</span><span class="row-name">Universidade de São Paulo (USP)</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.usp">Identified and reported security weaknesses affecting university web assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><span class="org-mark">X</span><span class="row-name">X (Twitter)</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.x">Reported a security issue through X's (Twitter) vulnerability disclosure program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><span class="org-mark">YP</span><span class="row-name">Ybera Paris</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.ybera">Reported vulnerabilities affecting customer-facing Ybera Paris applications.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><span class="org-mark">A8C</span><span class="row-name">Automattic / WordPress.com</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.automattic">Reported security issues affecting Automattic and WordPress.com-related assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><span class="org-mark">PY</span><span class="row-name">Parse.ly</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.parsely">Reported a security vulnerability affecting Parse.ly assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d6"><div class="row-info"><div class="row-top"><span class="org-mark">DC</span><span class="row-name">Discord</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.discord">Reported a security issue through Discord's vulnerability disclosure program.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d2"><div class="row-info"><div class="row-top"><span class="org-mark">CS</span><span class="row-name">CacawShow</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.cacawshow">Identified and responsibly reported vulnerabilities affecting CacawShow web assets.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d3"><div class="row-info"><div class="row-top"><span class="org-mark">GOV</span><span class="row-name">Gov.br</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.govbr">Identified and responsibly reported vulnerabilities affecting authorized Gov.br web assets through the appropriate channels.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
+    <div class="row-card rv d4"><div class="row-info"><div class="row-top"><span class="org-mark">RX</span><span class="row-name">Roblox</span><span class="tag ok" data-i18n="tag.disclosed">Responsibly disclosed</span></div><div class="row-desc" data-i18n="disc.roblox">Identified and responsibly reported vulnerabilities affecting Roblox-related assets and platform surfaces through the appropriate channels.</div></div><div class="row-right"><span class="row-arrow">✓</span></div></div>
   </div>
 
-  <div class="note rv" data-i18n="research.note"><b>Responsible disclosure —</b> Every finding above was researched, validated, and reported solo, under responsible-disclosure practices, prioritizing remediation and practical security impact. CVE-2026-28740 (Gitea) and CVE-2026-54094 (File Browser) are officially assigned identifiers; the other entries reflect research and reporting activity through the appropriate channels.</div>
-</section>
-
-<div class="divider"></div>
-
-<section id="projects">
-  <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="projects.label">04 — Tooling</span></div>
-    <h2 class="sec-title rv d1" data-i18n="projects.title">Featured <span class="ghost">projects</span></h2>
-    <p class="sec-intro rv d2" data-i18n="projects.intro">Open-source security tooling, scanners, and defensive libraries, built for practical day-to-day use.</p>
-  </div>
-  <div class="cards">
-    <a href="https://github.com/m2hcz/pathward" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">pathward</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.pathward.desc">Defensive Python library against path traversal, symlink escape, Zip Slip, and TOCTOU.</div><div class="pills"><span class="pill sm">Defensive Security</span><span class="pill sm">Path Safety</span><span class="pill sm">Library</span></div></a>
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">ReconMapper v2</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.recon.desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, and service fingerprinting in a single repeatable pipeline.</div><div class="pills"><span class="pill sm">Offensive Security</span><span class="pill sm">Recon</span><span class="pill sm">Automation</span></div></a>
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">SQLi Scanner</span><span class="tag">TypeScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.sqli.desc">Automated SQL injection detection with payload generation, surfacing injection points across web targets.</div><div class="pills"><span class="pill sm">Web Security</span><span class="pill sm">Scanner</span><span class="pill sm">AppSec</span></div></a>
-    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Next.js Middleware PoC</span><span class="tag">JavaScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.next.desc">Proof of concept demonstrating a Next.js middleware authorization-bypass technique; research into framework-level security boundaries.</div><div class="pills"><span class="pill sm">PoC</span><span class="pill sm">Exploit Development</span><span class="pill sm">Web Security</span></div></a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="references">
-  <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="refs.label">05 — External Validation</span></div>
-    <h2 class="sec-title rv d1" data-i18n="refs.title">Public <span class="ghost">references</span></h2>
-    <p class="sec-intro rv d2" data-i18n="refs.intro">My assigned CVEs and public security research are referenced across <strong>official CVE records, vendor advisories, vulnerability databases, and security-intelligence platforms</strong>.</p>
-  </div>
+  <div class="subhead rv"><span data-i18n="refs.cat">Public record &amp; validation</span></div>
   <div class="cve-reference-set rv d2">
     <div class="cve-box">
-      <div class="cve-head"><span class="cve-id">CVE-2026-28740</span><span class="badge-high">High</span><span class="badge-meta">Gitea · CVSS 7.1</span></div>
-      <div class="cve-desc"><strong>Gitea — Git LFS cross-repository authorization bypass.</strong> Public records and security-intelligence references for the assigned CVE and its remediation.</div>
-    </div>
-    <div class="cve-source-grid">
-      <a class="cve-source" href="https://www.cve.org/CVERecord?id=CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">CVE.org</span><span class="cve-source-meta">Official CVE record</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://nvd.nist.gov/vuln/detail/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">NIST NVD</span><span class="cve-source-meta">National database</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://github.com/go-gitea/gitea/pull/38006" target="_blank" rel="noopener"><span><span class="cve-source-name">Gitea / GitHub</span><span class="cve-source-meta">Fix · PR #38006</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://blog.gitea.com/release-of-1.26.3-and-1.26.4/" target="_blank" rel="noopener"><span><span class="cve-source-name">Gitea Release</span><span class="cve-source-meta">Security release</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://vulners.com/cve/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">Vulners</span><span class="cve-source-meta">Vulnerability intelligence</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://www.tenable.com/cve/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">Tenable</span><span class="cve-source-meta">Exposure intelligence</span></span><span class="cve-source-arrow">↗</span></a>
-      <a class="cve-source" href="https://hivesecurity.gitlab.io/blog/gitea-forgejo-nine-cves-1263-security-release-2026/" target="_blank" rel="noopener"><span><span class="cve-source-name">Hive Security</span><span class="cve-source-meta">Technical overview</span></span><span class="cve-source-arrow">↗</span></a>
-    </div>
-  </div>
-
-  <div class="cve-reference-set rv d3">
-    <div class="cve-box">
       <div class="cve-head"><span class="cve-id">CVE-2026-54094</span><span class="badge-high">High</span><span class="badge-meta">File Browser · CVSS 7.5</span></div>
-      <div class="cve-desc"><strong>File Browser — symlink scope bypass.</strong> Official advisory, patched release, ecosystem advisories, and vulnerability-intelligence records.</div>
+      <div class="cve-desc" data-i18n="refs.54094.desc"><strong>File Browser — symlink scope bypass.</strong> Official advisory, patched release, ecosystem advisories, and vulnerability-intelligence records.</div>
     </div>
     <div class="cve-source-grid">
       <a class="cve-source" href="https://github.com/filebrowser/filebrowser/security/advisories/GHSA-239w-m3h6-ch8v" target="_blank" rel="noopener"><span><span class="cve-source-name">GitHub Advisory</span><span class="cve-source-meta">Authoritative advisory</span></span><span class="cve-source-arrow">↗</span></a>
@@ -567,24 +539,73 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
     </div>
   </div>
 
-  <div class="cve-box rv d2">
-    <div class="cve-head"><span class="cve-id">CVE-2025-6440</span><span class="badge-crit">Critical</span><span class="badge-meta">CVSS 9.8 · CWE-434</span></div>
-    <div class="cve-desc" data-i18n="cve.6440.desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload leading to potential remote code execution. The public proof of concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
+  <div class="cve-reference-set rv d3">
+    <div class="cve-box">
+      <div class="cve-head"><span class="cve-id">CVE-2026-28740</span><span class="badge-high">High</span><span class="badge-meta">Gitea · CVSS 7.1</span></div>
+      <div class="cve-desc" data-i18n="refs.28740.desc"><strong>Gitea — Git LFS cross-repository authorization bypass.</strong> Public records and security-intelligence references for the assigned CVE and its remediation.</div>
+    </div>
+    <div class="cve-source-grid">
+      <a class="cve-source" href="https://www.cve.org/CVERecord?id=CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">CVE.org</span><span class="cve-source-meta">Official CVE record</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://nvd.nist.gov/vuln/detail/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">NIST NVD</span><span class="cve-source-meta">National database</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://github.com/go-gitea/gitea/pull/38006" target="_blank" rel="noopener"><span><span class="cve-source-name">Gitea / GitHub</span><span class="cve-source-meta">Fix · PR #38006</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://blog.gitea.com/release-of-1.26.3-and-1.26.4/" target="_blank" rel="noopener"><span><span class="cve-source-name">Gitea Release</span><span class="cve-source-meta">Security release</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://vulners.com/cve/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">Vulners</span><span class="cve-source-meta">Vulnerability intelligence</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://www.tenable.com/cve/CVE-2026-28740" target="_blank" rel="noopener"><span><span class="cve-source-name">Tenable</span><span class="cve-source-meta">Exposure intelligence</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://hivesecurity.gitlab.io/blog/gitea-forgejo-nine-cves-1263-security-release-2026/" target="_blank" rel="noopener"><span><span class="cve-source-name">Hive Security</span><span class="cve-source-meta">Technical overview</span></span><span class="cve-source-arrow">↗</span></a>
+    </div>
   </div>
-  <div class="cards">
-    <a href="https://feedly.com/cve/CVE-2025-6440" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Feedly</span><span class="card-arrow">↗</span></div><div class="card-meta">CVE-2025-6440 · Exploits &amp; severity</div></a>
-    <a href="https://cve.imfht.com/detail/CVE-2025-6440" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">cve.imfht</span><span class="card-arrow">↗</span></div><div class="card-meta">CVE-2025-6440 · Detail page</div></a>
-    <a href="https://cve.imfht.com/poc_detail/5017fb2c4a7ce0762028468b896cb95056c16c05" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">cve.imfht</span><span class="card-arrow">↗</span></div><div class="card-meta">PoC detail · CVE-2025-6440</div></a>
-    <a href="https://sploitus.com/exploit?id=93509C82-B3B5-511B-88DD-5E37F231D631" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Sploitus</span><span class="card-arrow">↗</span></div><div class="card-meta">Exploit listing · CVE-2025-6440</div></a>
-    <a href="https://shellcodex.com/tool/poc-in-github" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">ShellCodeX</span><span class="card-arrow">↗</span></div><div class="card-meta">PoC-in-GitHub listing</div></a>
+
+  <div class="cve-reference-set rv d2">
+    <div class="cve-box">
+      <div class="cve-head"><span class="cve-id">CVE-2025-6440</span><span class="badge-crit">Critical</span><span class="badge-meta">CVSS 9.8 · CWE-434</span></div>
+      <div class="cve-desc" data-i18n="cve.6440.desc"><strong>WooCommerce Designer Pro (WordPress)</strong> — unrestricted file upload leading to remote code execution. The public proof of concept published on my GitHub has been <strong>indexed by exploit-tracking and vulnerability-intelligence platforms</strong>, surfacing the research across multiple feeds.</div>
+    </div>
+    <div class="cve-source-grid">
+      <a class="cve-source" href="https://github.com/m2hcz/CVE-2025-6440-Poc-Exploit" target="_blank" rel="noopener"><span><span class="cve-source-name">GitHub</span><span class="cve-source-meta">Proof of concept</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://www.cve.org/CVERecord?id=CVE-2025-6440" target="_blank" rel="noopener"><span><span class="cve-source-name">CVE.org</span><span class="cve-source-meta">Official CVE record</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://feedly.com/cve/CVE-2025-6440" target="_blank" rel="noopener"><span><span class="cve-source-name">Feedly</span><span class="cve-source-meta">Exploits &amp; severity</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://cve.imfht.com/detail/CVE-2025-6440" target="_blank" rel="noopener"><span><span class="cve-source-name">cve.imfht</span><span class="cve-source-meta">Detail page</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://cve.imfht.com/poc_detail/5017fb2c4a7ce0762028468b896cb95056c16c05" target="_blank" rel="noopener"><span><span class="cve-source-name">cve.imfht</span><span class="cve-source-meta">PoC detail</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://sploitus.com/exploit?id=93509C82-B3B5-511B-88DD-5E37F231D631" target="_blank" rel="noopener"><span><span class="cve-source-name">Sploitus</span><span class="cve-source-meta">Exploit listing</span></span><span class="cve-source-arrow">↗</span></a>
+      <a class="cve-source" href="https://shellcodex.com/tool/poc-in-github" target="_blank" rel="noopener"><span><span class="cve-source-name">ShellCodeX</span><span class="cve-source-meta">PoC-in-GitHub listing</span></span><span class="cve-source-arrow">↗</span></a>
+    </div>
   </div>
-  <div class="note rv" data-i18n="refs.note"><b>Context —</b> These platforms automatically aggregate and index public security research from GitHub. The references above reflect external indexing of my published work; they are not a claim of official CVE authorship or assignment.</div>
+
+  <div class="note rv" data-i18n="research.note"><b>Responsible disclosure —</b> Every finding above was researched, validated, and reported solo, prioritizing remediation and practical security impact. CVE-2026-28740 (Gitea) and CVE-2026-54094 (File Browser) are officially assigned identifiers credited to this research. CVE-2025-6440 (WooCommerce Designer Pro) reflects a published proof of concept later indexed by third-party security-intelligence platforms — not a claim of coordinated-disclosure credit. The remaining entries reflect research and reporting activity through the appropriate channels; the reference links above are external, automated indexing of that public work, not a claim of official CVE authorship where none is stated.</div>
+  <div class="flag-note rv" data-i18n="research.flag"><b>To double-check —</b> Slack appears in the trust wall above but doesn't have its own row in "Additional responsible disclosures" below. Add one if there's a specific finding behind it, or drop it from the wall if it was there by mistake — I kept it as-is since I can't verify which is correct.</div>
 </section>
 
 <div class="divider"></div>
+
+<section id="projects">
+  <div class="gh-head">
+    <div class="sec-head">
+      <div class="sec-label rv"><span class="dash"></span><span data-i18n="projects.label">04 — Open Source &amp; Tooling</span></div>
+      <h2 class="sec-title rv d1" data-i18n="projects.title">Projects &amp; <span class="ghost">repositories</span></h2>
+      <p class="sec-intro rv d2" data-i18n="projects.intro">Open-source security tooling, scanners, and defensive libraries — everything in one place, no repeats.</p>
+    </div>
+    <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn-sm rv d2">
+      <svg viewbox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+      github.com/m2hcz
+    </a>
+  </div>
+  <div class="cards">
+    <a href="https://github.com/m2hcz/pathward" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">pathward</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.pathward.desc">Defensive Python library against path traversal, symlink escape, Zip Slip, and TOCTOU. 54 tests, CI on Python 3.9–3.13.</div></a>
+    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">ReconMapper v2</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.recon.desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, and service fingerprinting in a single repeatable pipeline.</div></a>
+    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">SQLi Scanner</span><span class="tag">TypeScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.sqli.desc">Automated SQL injection detection with payload generation, surfacing injection points across web targets.</div></a>
+    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Next.js Middleware PoC</span><span class="tag">JavaScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="proj.next.desc">Proof of concept demonstrating a Next.js middleware authorization-bypass technique; research into framework-level security boundaries.</div></a>
+    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">NetSentinel</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.net.desc">Network security monitoring and threat-detection framework with real-time traffic analysis.</div></a>
+    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">PhantomNet</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.phantom.desc">Optimized networking library for high-performance client-server communication with delta compression.</div></a>
+    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Race-Family-Reroll</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.reroll.desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div></a>
+    <a href="https://github.com/m2hcz/OOPModule" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">OOPModule</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.oop.desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div></a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section id="engineering">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="eng.label">06 — Background</span></div>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="eng.label">05 — Background</span></div>
     <h2 class="sec-title rv d1" data-i18n="eng.title">Engineering <span class="ghost">experience</span></h2>
     <p class="sec-intro rv d2" data-i18n="eng.intro">Over a decade shipping production backend systems and distributed infrastructure: data persistence, real-time networking, anti-cheat, and live-ops pipelines serving thousands of concurrent users. That engineering depth is what makes my security work practical — I understand systems well enough to know exactly where and how they fail.</p>
   </div>
@@ -600,7 +621,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 
 <section id="games">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="games.label">07 — Shipped Titles</span></div>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="games.label">06 — Shipped Titles</span></div>
     <h2 class="sec-title rv d1" data-i18n="games.title">Game <span class="ghost">development</span></h2>
     <p class="sec-intro rv d2" data-i18n="games.intro">Backend engineering behind titles with a combined <strong>2.2B+ visits</strong>. Architecture, networking, persistence, and live operations at viral scale.</p>
   </div>
@@ -641,7 +662,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 
 <section id="studios">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="studios.label">08 — Collaborations</span></div>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="studios.label">07 — Collaborations</span></div>
     <h2 class="sec-title rv d1" data-i18n="studios.title">Studios <span class="ghost">&amp; communities</span></h2>
   </div>
   <div class="groups">
@@ -652,31 +673,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
   <div class="groups" style="margin-top:14px">
     <div class="group-card rv d2"><image-slot id="studio-frontman" class="studio-logo" shape="rounded" radius="12" placeholder="Frontman Studios logo"></image-slot><div class="group-top"><a class="group-name link" href="https://www.roblox.com/communities/35461183/Frontman-Studios#!/about" target="_blank" rel="noopener">Frontman Studios</a><span class="tag" data-i18n="role.backend">Backend Engineer</span></div><div class="group-desc" data-i18n="studio.frontman.desc">Studio behind Violence District, one of Roblox's top-ranked asymmetric horror titles. Contributing to backend architecture, combat systems, and live-ops.</div><div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num" data-i18n="u.studio">Studio</span></div></div>
     <div class="group-card rv d3"><image-slot id="studio-vd" class="studio-logo" shape="rounded" radius="12" placeholder="Violence District logo"></image-slot><div class="group-top"><a class="group-name link" href="https://www.roblox.com/communities/8818124/VIOLENCE-DISTRICT#!/about" target="_blank" rel="noopener">VIOLENCE DISTRICT</a><span class="tag" data-i18n="role.backend">Backend Engineer</span></div><div class="group-desc" data-i18n="studio.vd.desc">Official community for Violence District, a 705M+ visit horror title. Part of the core team building and maintaining the game's backend infrastructure.</div><div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num">345,880</span> <span data-i18n="u.members">members</span></div></div>
-    <div class="group-card rv d4"><image-slot id="studio-resenha" class="studio-logo" shape="rounded" radius="12" placeholder="Resenha e Games logo"></image-slot><div class="group-top"><a class="group-name link" href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener">Resenha e Games</a><span class="tag" data-i18n="role.backend">Backend Engineer</span></div><div class="group-desc" data-i18n="studio.resenha.desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div><div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num" data-i18n="u.studio">Studio</span></div></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-<section id="github">
-  <div class="gh-head">
-    <div class="sec-head">
-      <div class="sec-label rv"><span class="dash"></span><span data-i18n="github.label">09 — Open Source</span></div>
-      <h2 class="sec-title rv d1" data-i18n="github.title">GitHub <span class="ghost">repositories</span></h2>
-    </div>
-    <a href="https://github.com/m2hcz" target="_blank" rel="noopener" class="btn-sm rv d2">
-      <svg viewbox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-      github.com/m2hcz
-    </a>
-  </div>
-  <div class="cards">
-    <a href="https://github.com/m2hcz/pathward" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">pathward</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.pathward.desc">Defensive library against path traversal, symlink escape, Zip Slip, and TOCTOU. 54 tests, CI on Python 3.9–3.13.</div></a>
-    <a href="https://github.com/m2hcz/NetSentinel-1.0" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">NetSentinel</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.net.desc">Network security monitoring and threat-detection framework with real-time traffic analysis.</div></a>
-    <a href="https://github.com/m2hcz/reconmapper-v2.0" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">ReconMapper v2</span><span class="tag">Python</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.recon.desc">Automated reconnaissance and attack-surface mapping: subdomain enumeration, port scanning, fingerprinting.</div></a>
-    <a href="https://github.com/m2hcz/Sqli-Automaticly-Scanner" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">SQLi Scanner</span><span class="tag">TypeScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.sqli.desc">Automated SQL injection detection and vulnerability scanning with payload generation.</div></a>
-    <a href="https://github.com/m2hcz/PoC-for-Next.js-Middleware" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Next.js Middleware PoC</span><span class="tag">JavaScript</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.next.desc">Proof of concept for a Next.js middleware authorization-bypass technique.</div></a>
-    <a href="https://github.com/m2hcz/PhantomNet" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">PhantomNet</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.phantom.desc">Optimized networking library for high-performance client-server communication with delta compression.</div></a>
-    <a href="https://github.com/m2hcz/Race-Family-Reroll-System" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">Race-Family-Reroll</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.reroll.desc">Modular Roblox game system with OOP architecture for character reroll mechanics.</div></a>
-    <a href="https://github.com/m2hcz/OOPModule" target="_blank" rel="noopener" class="card rv"><div class="card-top"><span class="card-name">OOPModule</span><span class="tag">Luau</span><span class="card-arrow">↗</span></div><div class="card-desc" data-i18n="gh.oop.desc">Object-oriented programming framework for Luau with inheritance and encapsulation.</div></a>
+    <div class="group-card rv d4"><image-slot id="studio-resenha" class="studio-logo" shape="rounded" radius="12" placeholder="Resenha e Games logo"></image-slot><div class="group-top"><a class="group-name link" href="https://www.roblox.com/communities/35641771/Resenha-e-Games#!/about" target="_blank" rel="noopener">Resenha e Games</a><span class="tag" data-i18n="role.backend">Backend Engineer</span></div><div class="group-desc" data-i18n="studio.resenha.desc">Brazilian Roblox community and studio. Collaborating on game infrastructure and backend systems for titles in the Portuguese-speaking market.</div><div class="group-members"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 1-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="num" data-i18n="u.studio">Studio</span></div></div>
   </div>
 </section>
 
@@ -689,7 +686,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
     <p class="sec-intro rv d2" data-i18n="venture.intro">A separate, collaborative project I am building together with a partner — distinct from my solo security research above.</p>
   </div>
   <div class="feature rv d2">
-    <image-slot id="slot-wnk" class="feat-logo" shape="rounded" radius="12" placeholder="wnk.sh"></image-slot>
+    <span class="org-mark lg">WK</span>
     <div class="feature-eyebrow"><span class="star">★</span><span data-i18n="venture.eyebrow">Built together — not solo</span></div>
     <div class="feature-title" data-i18n="venture.h">wnk.sh</div>
     <div class="feature-desc" data-i18n="venture.desc">A collaborative project built hand in hand with a partner — a shared effort, not solo work. Unlike the disclosures above (which I researched and reported alone), <strong>wnk.sh is a joint build</strong>.</div>
@@ -701,7 +698,7 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 
 <section id="contact">
   <div class="sec-head">
-    <div class="sec-label rv"><span class="dash"></span><span data-i18n="contact.label">10 — Contact</span></div>
+    <div class="sec-label rv"><span class="dash"></span><span data-i18n="contact.label">08 — Contact</span></div>
     <h2 class="sec-title rv d1" data-i18n="contact.title">Let's work <span class="ghost">together</span></h2>
   </div>
   <div class="contact-inner rv d2">
@@ -730,64 +727,43 @@ image-slot{display:block;background:#0e0e10;border:1px solid #1f1f22}
 
 <script>
 window.PT = {
-  'nav.about':'Sobre','nav.expertise':'Especialidades','nav.research':'Pesquisa','nav.projects':'Projetos','nav.experience':'Experiência','nav.games':'Jogos','nav.contact':'Contato',
+  'nav.about':'Sobre','nav.expertise':'Especialidades','nav.research':'Pesquisa','nav.projects':'Projetos','nav.experience':'Experiência','nav.games':'Jogos','nav.studios':'Estúdios','nav.contact':'Contato',
   'hero.tag':'Engenheiro de Software Sênior · Pesquisador de Segurança Ofensiva',
-  'hero.sub':'Eu projeto e construo <strong>sistemas seguros e de larga escala</strong> — e os quebro através de <strong>pesquisa de vulnerabilidades</strong>. <strong>Duas CVEs atribuídas</strong> e disclosures para Google, NASA, Tesla, xAI e o ecossistema open-source.',
+  'hero.sub':'Eu projeto e construo <strong>sistemas seguros e de larga escala</strong> — e os quebro através de <strong>pesquisa de vulnerabilidades</strong>, engenharia reversa e desenvolvimento de exploits. <strong>Duas CVEs atribuídas</strong> e disclosures responsáveis para Google, NASA, Tesla, xAI e o ecossistema open-source.',
   'hero.cta1':'Ver Pesquisa','hero.cta2':'Entre em Contato',
   'stat.exp':'Anos de Engenharia','stat.cves':'CVEs Atribuídas','stat.visits':'Visitas em Jogos Publicados','scroll':'Rolar',
   'logos.label':'Pesquisa de segurança reportada e vulnerabilidades validadas em',
+  'tw.kind.disclosure':'Disclosure','tw.kind.vdp':'VDP','tw.kind.bounty':'Bug Bounty',
   'about.label':'01 — Perfil','about.title':'Sobre <span class="ghost">mim</span>',
-  'about.p1':'Sou um <strong>engenheiro de software sênior e pesquisador de segurança ofensiva</strong> com mais de uma década de experiência construindo e quebrando sistemas de larga escala.',
+  'about.p1':'Sou um <strong>engenheiro de software sênior e pesquisador de segurança ofensiva</strong> com mais de uma década de experiência construindo e quebrando sistemas de larga escala. Meu trabalho vive na interseção entre engenharia segura e pesquisa adversarial: de um lado, projetar arquitetura de backend resiliente; do outro, testá-la sob estresse através de pesquisa de vulnerabilidades, engenharia reversa e desenvolvimento de exploits.',
   'about.p2':'Cada trabalho segue a mesma disciplina: <strong>mapear a superfície de ataque, validar o impacto com uma prova de conceito funcional e reportar com clareza</strong>. Traduzo riscos técnicos complexos em orientações acionáveis para times de engenharia, donos de produto e stakeholders executivos.',
   'about.p3':'Tenho desempenho confiável em <strong>ambientes dinâmicos e de alto risco</strong>, atuando de forma independente ou integrado a um time, incluindo <strong>contextos de nível fintech</strong> onde correção, confidencialidade e disponibilidade são inegociáveis. O objetivo nunca muda: impacto prático de segurança apoiado em engenharia rigorosa.',
   'detail.role':'Cargo','detail.role.v':'Engenheiro Sênior · Segurança Ofensiva','detail.focus':'Foco','detail.focus.v':'AppSec · Pesquisa de Vulnerabilidades · Backend','detail.loc':'Localização','detail.loc.v':'Brasil (UTC-3) · Remoto','detail.langs':'Idiomas','detail.langs.v':'Português · Inglês','detail.email':'Email','detail.avail':'Disponibilidade','detail.avail.v':'<span class="status-dot"></span>Aberto a novas oportunidades',
   'expertise.label':'02 — Capacidades','expertise.title':'Principais <span class="ghost">especialidades</span>','expertise.intro':'Um conjunto de habilidades full-spectrum cobrindo pesquisa ofensiva, segurança de aplicações e engenharia de software em produção.','exp.c1.name':'Segurança Ofensiva &amp; Pesquisa','exp.c1.desc':'Encontrar e provar fraquezas do mundo real antes dos atacantes.','exp.c2.name':'Segurança de Aplicações &amp; Produto','exp.c2.desc':'Proteger o ciclo de entrega de software de ponta a ponta.','exp.c3.name':'Engenharia de Software','exp.c3.desc':'Sistemas backend de nível produção, feitos para escalar e resistir a abuso.',
-  'research.label':'03 — Pesquisa de Segurança','research.title':'Pesquisa de <span class="ghost">vulnerabilidades</span>','research.intro':'Fraquezas de segurança identificadas e reportadas em <strong>plataformas e organizações do mundo real</strong>, sempre sob divulgação responsável.',
+  'research.label':'03 — Pesquisa de Segurança','research.title':'Pesquisa de <span class="ghost">vulnerabilidades</span>','research.intro':'Fraquezas de segurança identificadas e reportadas em <strong>plataformas e organizações do mundo real</strong>, sempre sob divulgação responsável — ordenadas abaixo por severidade, com o registro público de cada uma.',
+  'feat.wc.eyebrow':'Pesquisa em destaque · PoC pública','feat.wc.title':'WooCommerce Designer Pro — Upload Irrestrito de Arquivo para RCE','feat.wc.desc':'Uma falha de upload de arquivo não autenticado no plugin WooCommerce Designer Pro para WordPress, no handler <code>wcdp_save_canvas_design_ajax</code>: a ausência de validação de tipo de arquivo permite que um atacante envie um payload PHP e obtenha <strong>execução remota de código</strong> completa no servidor. Publiquei uma prova de conceito funcional; o achado, rastreado como <strong>CVE-2025-6440</strong>, já foi indexado em plataformas de rastreamento de exploits e inteligência de vulnerabilidades.','feat.wc.thanks':'Publicado de forma independente como pesquisa sobre uma vulnerabilidade de plugin conhecida, não uma divulgação coordenada com o fornecedor — ver a nota ao final desta seção.','feat.wc.poc':'Prova de conceito ↗','feat.wc.cve':'Registro da CVE ↗',
   'feat.cve.eyebrow':'Disclosure em destaque · CVE','feat.cve.title':'Gitea — Bypass de Autorização Cross-Repository no Git LFS','feat.cve.fixedbadge':'Corrigido · PR #38006','feat.cve.desc':'Reportado pelo processo de Security Advisory do GitHub e recebeu o identificador <strong>CVE-2026-28740</strong>. Uma falha de autorização no fluxo cross-repository de Git LFS do Gitea permitia que um usuário com acesso non-Code autorizasse e recuperasse indevidamente <strong>objetos LFS privados</strong> pertencentes aos repositórios de origem.','feat.cve.thanks':'Crédito ao time do Gitea pela triagem ágil e pela atribuição da CVE.','feat.cve.fix':'Correção · PR #38006 ↗',
   'feat.ghcli.eyebrow':'Disclosure em destaque','feat.ghcli.title':'GitHub CLI — Symlink Path Traversal / Injeção de Git Hook','feat.ghcli.fixedbadge':'Triada · HackerOne #3786623','feat.ghcli.desc':'Symlink path traversal / Git hook injection em <code>gh run download</code> permite escrita fora do limite esperado e o plantio de um <strong>Git hook executável</strong>.','feat.ghcli.thanks':'Reportado via HackerOne e validado pela equipe de segurança do GitHub.',
-  'feat.fb.eyebrow':'Disclosure em destaque · CVE','feat.fb.title':'File Browser — Bypass de Escopo de Diretório via Symlink','feat.fb.fixedbadge':'Corrigido na v2.63.14','feat.fb.desc':'Recebeu o identificador <strong>CVE-2026-54094</strong> pelo processo de Security Advisory do GitHub. Este achado envolveu a <strong>validação de escopo ao lidar com diretórios linkados e symlinks</strong>: certas operações podiam escapar do limite pretendido, permitindo que usuários escopados e destinatários de compartilhamentos públicos lessem e escrevessem arquivos fora da área que a aplicação deveria garantir. Os mantenedores <strong>aceitaram o report, lançaram uma correção e publicaram a versão corrigida</strong>.','feat.fb.thanks':'Crédito aos mantenedores do File Browser pela triagem rápida, validação técnica e correção responsável.','feat.fb.advisory':'GitHub Advisory ↗','feat.fb.fix':'Versão corrigida · v2.63.14 ↗','feat.fb.patch':'Commit da correção ↗',
-  'tech.cat':'Disclosures técnicas nomeadas','disc.gemini':'Reportou três vulnerabilidades no Gemini CLI envolvendo fluxos de CI/CD e superfícies de tooling de IA para desenvolvedores.','disc.ghcli':'Symlink path traversal / Git hook injection em <code>gh run download</code> — ver disclosure em destaque acima.','addl.cat':'Disclosures responsáveis adicionais','tag.disclosed':'Divulgado responsavelmente','disc.nasa':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades (VDP) da NASA.','disc.tesla':'Reportou um problema de segurança através do programa de bug bounty da Tesla.','disc.xai':'Reportou um problema de segurança afetando ativos da xAI / X.','disc.usp':'Identificou e reportou fraquezas de segurança afetando ativos web da universidade.','disc.x':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do X (Twitter).','disc.ybera':'Reportou vulnerabilidades afetando aplicações voltadas ao cliente da Ybera Paris.','disc.automattic':'Reportou problemas de segurança afetando ativos relacionados à Automattic e ao WordPress.com.','disc.parsely':'Reportou uma vulnerabilidade de segurança afetando ativos da Parse.ly.','disc.discord':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do Discord.','disc.cacawshow':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos web da CacawShow.','disc.govbr':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos web autorizados do Gov.br pelos canais apropriados.','disc.roblox':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos e superfícies da plataforma Roblox pelos canais apropriados.','research.note':'<b>Divulgação responsável —</b> Cada achado acima foi pesquisado, validado e reportado de forma individual (solo), sob práticas de divulgação responsável, priorizando a remediação e o impacto prático de segurança. CVE-2026-28740 (Gitea) e CVE-2026-54094 (File Browser) são identificadores oficialmente atribuídos; os demais itens refletem atividade de pesquisa e reporte pelos canais apropriados.',
-  'projects.label':'04 — Ferramentas','projects.title':'Projetos em <span class="ghost">destaque</span>','projects.intro':'Ferramentas de segurança open-source, scanners e bibliotecas defensivas, feitos para uso prático no dia a dia.','proj.pathward.desc':'Biblioteca Python defensiva contra path traversal, symlink escape, Zip Slip e TOCTOU.','proj.recon.desc':'Reconhecimento automatizado e mapeamento de superfície de ataque: enumeração de subdomínios, port scanning e fingerprinting de serviços em um único pipeline repetível.','proj.sqli.desc':'Detecção automatizada de SQL injection com geração de payloads, identificando pontos de injeção em alvos web.','proj.next.desc':'Prova de conceito demonstrando uma técnica de bypass de autorização em middleware do Next.js; pesquisa sobre limites de segurança a nível de framework.',
-  'refs.label':'05 — Validação Externa','refs.title':'Referências <span class="ghost">públicas</span>','refs.intro':'Minhas CVEs atribuídas e minha pesquisa pública de segurança são referenciadas em <strong>registros oficiais, advisories de fornecedores, bancos de vulnerabilidades e plataformas de inteligência de segurança</strong>.','cve.6440.desc':'<strong>WooCommerce Designer Pro (WordPress)</strong> — upload irrestrito de arquivos levando a potencial execução remota de código. A prova de conceito pública publicada no meu GitHub foi <strong>indexada por plataformas de rastreamento de exploits e inteligência de vulnerabilidades</strong>, espalhando a pesquisa por múltiplos feeds.','refs.note':'<b>Contexto —</b> Essas plataformas agregam e indexam automaticamente pesquisa pública de segurança do GitHub. As referências acima refletem a indexação externa do meu trabalho publicado; não constituem uma alegação de autoria ou atribuição oficial de CVE.',
-  'eng.label':'06 — Histórico','eng.title':'Experiência em <span class="ghost">engenharia</span>','eng.intro':'Mais de uma década entregando sistemas backend em produção e infraestrutura distribuída: persistência de dados, networking em tempo real, anti-cheat e pipelines de live-ops servindo milhares de usuários simultâneos. Essa profundidade de engenharia é o que torna meu trabalho de segurança prático — entendo os sistemas bem o suficiente para saber exatamente onde e como eles falham.','stack.langs':'Linguagens','stack.infra':'Infraestrutura','stack.sec':'Ferramentas de Segurança','stack.spec':'Especializações',
-  'games.label':'07 — Títulos Publicados','games.title':'Desenvolvimento de <span class="ghost">jogos</span>','games.intro':'Engenharia backend por trás de títulos com mais de <strong>2.2B de visitas</strong> combinadas. Arquitetura, networking, persistência e operações ao vivo em escala viral.','game.run.desc':'Runner multiplayer acelerado, absorvendo crescimento viral de jogadores.','game.vd.desc':'Survival horror assimétrico, 5 sobreviventes vs um killer. Construí infraestrutura de servidor escalável, sistemas de combate em tempo real e recursos de live-ops.','game.ll.desc':'Jogo de palavras competitivo onde cada última letra conta. Desenvolvi sistemas centrais de gameplay, networking, camadas de persistência de dados e arquitetura modular.','game.an.desc':'Survival horror: caçe ou sobreviva como animatronics. Contribuindo com sistemas de backend, infraestrutura de servidor escalável, sistemas de jogo em tempo real e recursos de live-ops.','game.mas.desc':'Esconde-esconde de horror assimétrico. Liderei toda a arquitetura backend: sharding de DataStore, combate server-authoritative, anti-cheat, pipeline de live-ops e sistemas de perks/habilidades.','role.independent':'Independente','u.playing':'jogando','u.visits':'visitas','u.community':'comunidade',
-  'studios.label':'08 — Colaborações','studios.title':'Estúdios <span class="ghost">&amp; comunidades</span>','studio.playbox.desc':'Estúdio verificado do Roblox. Contribuindo para Animatronic Nights e outros títulos sob a marca PlayBox.','studio.abysmal.desc':'Casa de Massacre. Liderando toda a infraestrutura backend, sistemas de jogo e pipeline de live-ops.','studio.gothyc.desc':'Comunidade verificada por UGC com mais de 1.3M de membros. Construí sistemas centrais de backend e infraestrutura de jogo em múltiplos títulos.','studio.frontman.desc':'Estúdio por trás de Violence District, um dos títulos de horror assimétrico mais bem ranqueados do Roblox. Contribuindo com arquitetura backend, sistemas de combate e live-ops.','studio.vd.desc':'Comunidade oficial de Violence District, um título de horror com mais de 705M de visitas. Parte do time central que constrói e mantém a infraestrutura backend do jogo.','studio.resenha.desc':'Comunidade e estúdio brasileiro de Roblox. Colaborando em infraestrutura de jogo e sistemas backend para títulos do mercado lusófono.','role.backend':'Engenheiro Backend','role.lead':'Engenheiro Líder','u.members':'membros','u.studio':'Estúdio',
-  'github.label':'09 — Open Source','github.title':'Repositórios <span class="ghost">no GitHub</span>','gh.pathward.desc':'Biblioteca defensiva contra path traversal, symlink escape, Zip Slip e TOCTOU. 54 testes, CI em Python 3.9–3.13.','gh.net.desc':'Framework de monitoramento de segurança de rede e detecção de ameaças com análise de tráfego em tempo real.','gh.recon.desc':'Reconhecimento automatizado e mapeamento de superfície de ataque: enumeração de subdomínios, port scanning, fingerprinting.','gh.sqli.desc':'Detecção automatizada de SQL injection e varredura de vulnerabilidades com geração de payloads.','gh.next.desc':'Prova de conceito para uma técnica de bypass de autorização em middleware do Next.js.','gh.phantom.desc':'Biblioteca de networking otimizada para comunicação client-server de alta performance com compressão delta.','gh.reroll.desc':'Sistema modular de jogo Roblox com arquitetura OOP para mecânicas de reroll de personagem.','gh.oop.desc':'Framework de programação orientada a objetos para Luau com herança e encapsulamento.',
+  'feat.fb.eyebrow':'Disclosure em destaque · CVE','feat.fb.title':'File Browser — Bypass de Escopo de Diretório via Symlink','feat.fb.fixedbadge':'Corrigido · v2.63.14','feat.fb.desc':'Recebeu o identificador <strong>CVE-2026-54094</strong> pelo processo de Security Advisory do GitHub. O escopo por usuário do File Browser bloqueia travessia lexical via <code>../</code>, mas seus handlers HTTP seguiam links simbólicos antes de abrir, servir, escrever ou compartilhar um arquivo. Isso permitia que usuários escopados — e em alguns casos destinatários de compartilhamentos públicos não autenticados — lessem, sobrescrevessem e compartilhassem arquivos <strong>fora da área que a aplicação deveria garantir</strong>. Os mantenedores aceitaram o report, lançaram uma correção e publicaram a versão corrigida.','feat.fb.thanks':'Crédito aos mantenedores do File Browser pela triagem rápida, validação técnica e correção responsável.','feat.fb.advisory':'GitHub Advisory ↗','feat.fb.fix':'Versão corrigida · v2.63.14 ↗','feat.fb.patch':'Commit da correção ↗',
+  'tech.cat':'Disclosures técnicas nomeadas','disc.gemini':'Reportou três vulnerabilidades no Gemini CLI envolvendo fluxos de CI/CD e superfícies de tooling de IA para desenvolvedores.','addl.cat':'Disclosures responsáveis adicionais','tag.disclosed':'Divulgado responsavelmente','disc.nasa':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades (VDP) da NASA.','disc.tesla':'Reportou um problema de segurança através do programa de bug bounty da Tesla.','disc.xai':'Reportou um problema de segurança afetando ativos da xAI / X.','disc.usp':'Identificou e reportou fraquezas de segurança afetando ativos web da universidade.','disc.x':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do X (Twitter).','disc.ybera':'Reportou vulnerabilidades afetando aplicações voltadas ao cliente da Ybera Paris.','disc.automattic':'Reportou problemas de segurança afetando ativos relacionados à Automattic e ao WordPress.com.','disc.parsely':'Reportou uma vulnerabilidade de segurança afetando ativos da Parse.ly.','disc.discord':'Reportou um problema de segurança através do programa de divulgação de vulnerabilidades do Discord.','disc.cacawshow':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos web da CacawShow.','disc.govbr':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos web autorizados do Gov.br pelos canais apropriados.','disc.roblox':'Identificou e reportou responsavelmente vulnerabilidades afetando ativos e superfícies da plataforma Roblox pelos canais apropriados.',
+  'refs.cat':'Registro público &amp; validação','refs.54094.desc':'<strong>File Browser — bypass de escopo via symlink.</strong> Advisory oficial, versão corrigida, advisories do ecossistema e registros de inteligência de vulnerabilidades.','refs.28740.desc':'<strong>Gitea — bypass de autorização cross-repository no Git LFS.</strong> Registros públicos e referências de inteligência de segurança para a CVE atribuída e sua correção.',
+  'cve.6440.desc':'<strong>WooCommerce Designer Pro (WordPress)</strong> — upload irrestrito de arquivos levando a execução remota de código. A prova de conceito pública publicada no meu GitHub foi <strong>indexada por plataformas de rastreamento de exploits e inteligência de vulnerabilidades</strong>, espalhando a pesquisa por múltiplos feeds.',
+  'research.note':'<b>Divulgação responsável —</b> Cada achado acima foi pesquisado, validado e reportado de forma individual (solo), priorizando a remediação e o impacto prático de segurança. CVE-2026-28740 (Gitea) e CVE-2026-54094 (File Browser) são identificadores oficialmente atribuídos e creditados a esta pesquisa. CVE-2025-6440 (WooCommerce Designer Pro) reflete uma prova de conceito publicada e posteriormente indexada por plataformas de inteligência de segurança de terceiros — não uma alegação de crédito em divulgação coordenada. Os demais itens refletem atividade de pesquisa e reporte pelos canais apropriados; os links de referência acima são indexação externa e automática desse trabalho público, não uma alegação de autoria oficial de CVE onde isso não é afirmado.',
+  'research.flag':'<b>Para conferir —</b> Slack aparece no mural de confiança acima, mas não tem uma linha própria em "Disclosures responsáveis adicionais" abaixo. Adicione uma se houver um achado específico por trás disso, ou remova do mural se foi um engano — mantive como estava porque não consigo verificar qual das duas opções é a correta.',
+  'projects.label':'04 — Open Source &amp; Ferramentas','projects.title':'Projetos &amp; <span class="ghost">repositórios</span>','projects.intro':'Ferramentas de segurança open-source, scanners e bibliotecas defensivas — tudo em um só lugar, sem repetição.','proj.pathward.desc':'Biblioteca Python defensiva contra path traversal, symlink escape, Zip Slip e TOCTOU.','proj.recon.desc':'Reconhecimento automatizado e mapeamento de superfície de ataque: enumeração de subdomínios, port scanning e fingerprinting de serviços em um único pipeline repetível.','proj.sqli.desc':'Detecção automatizada de SQL injection com geração de payloads, identificando pontos de injeção em alvos web.','proj.next.desc':'Prova de conceito demonstrando uma técnica de bypass de autorização em middleware do Next.js; pesquisa sobre limites de segurança a nível de framework.','gh.net.desc':'Framework de monitoramento de segurança de rede e detecção de ameaças com análise de tráfego em tempo real.','gh.phantom.desc':'Biblioteca de networking otimizada para comunicação client-server de alta performance com compressão delta.','gh.reroll.desc':'Sistema modular de jogo Roblox com arquitetura OOP para mecânicas de reroll de personagem.','gh.oop.desc':'Framework de programação orientada a objetos para Luau com herança e encapsulamento.',
+  'eng.label':'05 — Histórico','eng.title':'Experiência em <span class="ghost">engenharia</span>','eng.intro':'Mais de uma década entregando sistemas backend em produção e infraestrutura distribuída: persistência de dados, networking em tempo real, anti-cheat e pipelines de live-ops servindo milhares de usuários simultâneos. Essa profundidade de engenharia é o que torna meu trabalho de segurança prático — entendo os sistemas bem o suficiente para saber exatamente onde e como eles falham.','stack.langs':'Linguagens','stack.infra':'Infraestrutura','stack.sec':'Ferramentas de Segurança','stack.spec':'Especializações',
+  'games.label':'06 — Títulos Publicados','games.title':'Desenvolvimento de <span class="ghost">jogos</span>','games.intro':'Engenharia backend por trás de títulos com mais de <strong>2.2B de visitas</strong> combinadas. Arquitetura, networking, persistência e operações ao vivo em escala viral.','game.run.desc':'Runner multiplayer acelerado, absorvendo crescimento viral de jogadores.','game.vd.desc':'Survival horror assimétrico, 5 sobreviventes vs um killer. Construí infraestrutura de servidor escalável, sistemas de combate em tempo real e recursos de live-ops.','game.ll.desc':'Jogo de palavras competitivo onde cada última letra conta. Desenvolvi sistemas centrais de gameplay, networking, camadas de persistência de dados e arquitetura modular.','game.an.desc':'Survival horror: caçe ou sobreviva como animatronics. Contribuindo com sistemas de backend, infraestrutura de servidor escalável, sistemas de jogo em tempo real e recursos de live-ops.','game.mas.desc':'Esconde-esconde de horror assimétrico. Liderei toda a arquitetura backend: sharding de DataStore, combate server-authoritative, anti-cheat, pipeline de live-ops e sistemas de perks/habilidades.','role.independent':'Independente','u.playing':'jogando','u.visits':'visitas','u.community':'comunidade',
+  'studios.label':'07 — Colaborações','studios.title':'Estúdios <span class="ghost">&amp; comunidades</span>','studio.playbox.desc':'Estúdio verificado do Roblox. Contribuindo para Animatronic Nights e outros títulos sob a marca PlayBox.','studio.abysmal.desc':'Casa de Massacre. Liderando toda a infraestrutura backend, sistemas de jogo e pipeline de live-ops.','studio.gothyc.desc':'Comunidade verificada por UGC com mais de 1.3M de membros. Construí sistemas centrais de backend e infraestrutura de jogo em múltiplos títulos.','studio.frontman.desc':'Estúdio por trás de Violence District, um dos títulos de horror assimétrico mais bem ranqueados do Roblox. Contribuindo com arquitetura backend, sistemas de combate e live-ops.','studio.vd.desc':'Comunidade oficial de Violence District, um título de horror com mais de 705M de visitas. Parte do time central que constrói e mantém a infraestrutura backend do jogo.','studio.resenha.desc':'Comunidade e estúdio brasileiro de Roblox. Colaborando em infraestrutura de jogo e sistemas backend para títulos do mercado lusófono.','role.backend':'Engenheiro Backend','role.lead':'Engenheiro Líder','u.members':'membros','u.studio':'Estúdio',
   'venture.label':'— Projeto','venture.title':'wnk<span class="ghost">.sh</span>','venture.intro':'Um projeto colaborativo separado que estou construindo junto com um parceiro — distinto da minha pesquisa de segurança solo acima.','venture.eyebrow':'Construído em dupla — não solo','venture.h':'wnk.sh','venture.desc':'Um projeto colaborativo construído lado a lado com um parceiro — um esforço compartilhado, não um trabalho solo. Diferente das disclosures acima, <strong>a wnk.sh é uma construção conjunta</strong>.','venture.cta':'Visitar wnk.sh ↗',
-  'contact.label':'10 — Contato','contact.title':'Vamos trabalhar <span class="ghost">juntos</span>','contact.text':'Disponível para <strong>trabalhos por contrato e posições full-time</strong> em segurança ofensiva e segurança de aplicações.','contact.pay':'Formas de pagamento — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexível</span>','footer.l':'© 2026 <span>m2hcz</span> — engenharia desde 2014'
+  'contact.label':'08 — Contato','contact.title':'Vamos trabalhar <span class="ghost">juntos</span>','contact.text':'Disponível para <strong>trabalhos por contrato e posições full-time</strong> em segurança ofensiva e segurança de aplicações.','contact.pay':'Formas de pagamento — <span>BTC (Lightning / On-chain) · Mercado Pago · Flexível</span>','footer.l':'© 2026 <span>m2hcz</span> — engenharia desde 2014'
 };
 </script>
 <script>
 (function () {
+  // Only real product screenshots (Roblox games/studios) load dynamically.
+  // Organization references use static, self-contained org-mark badges (see HTML) —
+  // no favicon services, no CORS-dependent fetches, no loading race.
   const MAP = {
-    'slot-x-main':      { d: 'x.com',           n: 'X / xAI' },
-    'slot-slack':       { d: 'slack.com',       n: 'Slack' },
-    'slot-nasa':        { d: 'nasa.gov',        n: 'NASA' },
-    'slot-google':      { d: 'google.com',      n: 'Google' },
-    'slot-tesla':       { d: 'tesla.com',       n: 'Tesla' },
-    'slot-discord':     { d: 'discord.com',     n: 'Discord' },
-    'slot-automattic':  { d: 'automattic.com',  n: 'Automattic' },
-    'slot-cacawshow-main': { d: 'cacawshow.com.br', n: 'CacawShow' },
-    'slot-govbr-main':     { d: 'gov.br',           n: 'Gov.br' },
-    'slot-roblox-main':    { d: 'roblox.com',       n: 'Roblox' },
-    'slot-gitea':       { d: 'gitea.com',       n: 'Gitea' },
-    'slot-ghcli':       { d: 'github.com',      n: 'GitHub' },
-    'slot-filebrowser': { d: 'filebrowser.org', n: 'File Browser' },
-    'slot-gemini':      { d: 'google.com',      n: 'Google' },
-    'slot-ghcli2':      { d: 'github.com',      n: 'GitHub' },
-    'slot-nasa2':       { d: 'nasa.gov',        n: 'NASA' },
-    'slot-tesla2':      { d: 'tesla.com',       n: 'Tesla' },
-    'slot-xai2':        { d: 'x.ai',            n: 'xAI' },
-    'slot-usp':         { d: 'usp.br',          n: 'USP' },
-    'slot-x':           { d: 'x.com',           n: 'X' },
-    'slot-ybera':       { d: 'yberaparis.com',  n: 'Ybera' },
-    'slot-automattic2': { d: 'automattic.com',  n: 'Automattic' },
-    'slot-parsely':     { d: 'parse.ly',        n: 'Parse.ly' },
-    'slot-discord2':    { d: 'discord.com',     n: 'Discord' },
-    'slot-cacawshow':   { d: 'cacawshow.com.br', n: 'CacawShow' },
-    'slot-govbr':       { d: 'gov.br',           n: 'Gov.br' },
-    'slot-roblox':      { d: 'roblox.com',       n: 'Roblox' },
-    'slot-wnk':         { d: 'wnk.sh',          n: 'wnk.sh' },
     'game-run':         { rbxGame: '94702395375549',  n: 'Run For Brainrots' },
     'game-vd':          { rbxGame: '93978595733734',  n: 'Violence District' },
     'game-ll':          { rbxGame: '129866685202296', n: 'Last Letter' },
@@ -824,46 +800,6 @@ window.PT = {
     return img;
   }
 
-  function loadDomain(box, domain, n) {
-    const srcs = [
-      'https://icons.duckduckgo.com/ip3/' + domain + '.ico',
-      'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128'
-    ];
-    let i = 0;
-    let done = false;
-    let timer = null;
-    const img = imgEl(n, false);
-
-    function arm() { timer = setTimeout(fail, 4000); }
-    function fail() {
-      if (done) return;
-      clearTimeout(timer);
-      i++;
-      if (i < srcs.length) {
-        arm();
-        img.src = srcs[i];
-      } else {
-        done = true;
-        mono(box, n);
-      }
-    }
-    function ok() {
-      if (done) return;
-      if (img.naturalWidth < 6) {
-        fail();
-        return;
-      }
-      done = true;
-      clearTimeout(timer);
-    }
-
-    img.onerror = fail;
-    img.onload = ok;
-    box.appendChild(img);
-    arm();
-    img.src = srcs[0];
-  }
-
   function loadFromUrl(box, url, n) {
     const img = imgEl(n, true);
     img.onerror = () => mono(box, n);
@@ -874,7 +810,10 @@ window.PT = {
   async function getJSON(urls) {
     for (const url of urls) {
       try {
-        const response = await fetch(url);
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 6000);
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timer);
         if (response.ok) return await response.json();
       } catch (error) {}
     }
@@ -884,21 +823,16 @@ window.PT = {
   async function loadRbxGame(box, placeId, n) {
     const universe = await getJSON([
       'https://apis.roproxy.com/universes/v1/places/' + placeId + '/universe',
-      'https://games.roproxy.com/v1/games/multiget-place-details?placeIds=' + placeId,
       'https://apis.roblox.com/universes/v1/places/' + placeId + '/universe'
     ]);
-    const universeId = universe && (universe.universeId || (Array.isArray(universe) && universe[0] && universe[0].universeId));
-    if (!universeId) {
-      mono(box, n);
-      return;
-    }
+    const universeId = universe && universe.universeId;
+    if (!universeId) { mono(box, n); return; }
     const thumbnail = await getJSON([
       'https://thumbnails.roproxy.com/v1/games/icons?universeIds=' + universeId + '&size=512x512&format=Png&isCircular=false',
       'https://thumbnails.roblox.com/v1/games/icons?universeIds=' + universeId + '&size=512x512&format=Png&isCircular=false'
     ]);
     const url = thumbnail && thumbnail.data && thumbnail.data[0] && thumbnail.data[0].imageUrl;
-    if (url) loadFromUrl(box, url, n);
-    else mono(box, n);
+    if (url) loadFromUrl(box, url, n); else mono(box, n);
   }
 
   async function loadRbxGroup(box, groupId, n) {
@@ -907,8 +841,7 @@ window.PT = {
       'https://thumbnails.roblox.com/v1/groups/icons?groupIds=' + groupId + '&size=420x420&format=Png&isCircular=false'
     ]);
     const url = thumbnail && thumbnail.data && thumbnail.data[0] && thumbnail.data[0].imageUrl;
-    if (url) loadFromUrl(box, url, n);
-    else mono(box, n);
+    if (url) loadFromUrl(box, url, n); else mono(box, n);
   }
 
   function mount() {
@@ -923,8 +856,7 @@ window.PT = {
       const name = entry.n || original.getAttribute('placeholder') || '';
       box.title = name;
       original.replaceWith(box);
-      if (entry.d) loadDomain(box, entry.d, name);
-      else if (entry.rbxGame) loadRbxGame(box, entry.rbxGame, name);
+      if (entry.rbxGame) loadRbxGame(box, entry.rbxGame, name);
       else if (entry.rbxGroup) loadRbxGroup(box, entry.rbxGroup, name);
       else mono(box, name);
     });
@@ -1017,13 +949,15 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const links = [...document.querySelectorAll('.nav-link')];
-  const sections = [...document.querySelectorAll('section[id]')];
+  const sections = links
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
   const updateActiveLink = () => {
     const position = window.scrollY + innerHeight * .4;
     let current = null;
-    for (const section of sections) {
+    sections.forEach(section => {
       if (section.offsetTop <= position) current = section.id;
-    }
+    });
     links.forEach(link => {
       link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
@@ -1052,22 +986,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
 
   if (window.mountLogos) window.mountLogos();
-
-  const primaryWall = document.getElementById('logoWallPrimary');
-  const logoTrack = document.getElementById('logoTrack');
-  const buildLogoCopy = () => {
-    if (!primaryWall || !logoTrack || logoTrack.querySelector('.logo-wall-copy')) return;
-    const copy = primaryWall.cloneNode(true);
-    copy.id = '';
-    copy.classList.add('logo-wall-copy');
-    copy.setAttribute('aria-hidden', 'true');
-    copy.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-    copy.querySelectorAll('.rv').forEach(el => el.classList.add('vis'));
-    logoTrack.appendChild(copy);
-    logoTrack.classList.add('ready');
-  };
-  setTimeout(buildLogoCopy, 4300);
 });
 </script>
 </body>
-  </html>
+</html>
