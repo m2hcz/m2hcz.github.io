@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>m2hcz — offensive security &amp; software engineering</title>
-<meta name="description" content="Senior software engineer and offensive security researcher. Vulnerability research, application security and secure backend engineering, backed by assigned CVEs, accepted disclosures and systems shipped at scale.">
+<meta name="description" content="CTO, senior software engineer and offensive security researcher. Leads dev teams that keep a portfolio of live games updated and scaling in parallel, backed by assigned CVEs, accepted disclosures and systems shipped at scale.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="m2hcz — offensive security &amp; software engineering">
-<meta property="og:description" content="I read software like an attacker and build it like production depends on it.">
+<meta property="og:description" content="I read software like an attacker and build it like production depends on it. One team, ten games, all of them live.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +58,7 @@ a{color:inherit;text-decoration:none}
   text-shadow:0 0 28px #000,0 0 10px #000}
 .hero-ov .side{font-family:var(--mono);font-size:12px;color:var(--mid);text-align:right;line-height:1.7;white-space:nowrap;text-shadow:0 0 12px #000}
 .hero-ov .side b{color:var(--hi);font-weight:500}
+.hero-ov .side .hl{color:var(--hi)}
 .cue{display:inline-block;margin-top:10px;color:var(--hi)}
 @media (max-width:720px){.hero-ov{flex-direction:column;align-items:flex-start}.hero-ov .side{text-align:left}}
 
@@ -120,6 +121,20 @@ a.game:hover .n,a.game:focus-visible .n{transform:translateX(14px)}
 .recs a{border:1px solid #2a2a2a;padding:6px 12px;color:var(--mid)}
 .recs a:hover,.recs a:focus-visible{background:var(--hi);color:#000;border-color:var(--hi);outline:0}
 
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--rule);margin-top:clamp(50px,8vh,90px)}
+.stats>div{padding:28px 28px 8px 0}
+.stats>div+div{padding-left:28px;border-left:1px solid var(--rule)}
+.stats b{display:block;color:var(--hi);font-weight:800;font-variation-settings:"wdth" 62;font-size:clamp(3.4rem,1.2rem + 6.4vw,9rem);line-height:.86;letter-spacing:-.03em}
+.stats span{display:block;margin-top:14px;font-family:var(--mono);font-size:12.5px;color:var(--mid)}
+@media (max-width:760px){.stats{grid-template-columns:1fr}.stats>div+div{padding-left:0;border-left:0;border-top:1px solid var(--rule)}}
+.roster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(28px,5vw,80px);border-top:1px solid var(--rule)}
+.roster>*{display:flex;align-items:baseline;gap:18px;padding:20px 0;border-bottom:1px solid var(--rule)}
+.roster i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--low);min-width:3ch}
+.roster b{color:var(--hi);font-weight:780;font-variation-settings:"wdth" 66;font-size:clamp(1.6rem,1rem + 2vw,3rem);line-height:1;letter-spacing:-.02em;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.roster a:hover b,.roster a:focus-visible b{transform:translateX(12px)}
+.roster .more span{font-family:var(--mono);font-size:13px;color:var(--mid)}
+@media (max-width:760px){.roster{grid-template-columns:1fr}}
+
 .jobs{margin-top:clamp(50px,8vh,90px);border-top:1px solid var(--rule)}
 .job{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:12px clamp(24px,5vw,80px);padding:clamp(26px,4vh,40px) 0;border-bottom:1px solid var(--rule)}
 .job .co{margin:0;color:var(--hi);font-weight:780;font-variation-settings:"wdth" 64;font-size:clamp(2rem,1rem + 3.4vw,4.6rem);line-height:.92;letter-spacing:-.025em}
@@ -172,7 +187,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
 
 <nav class="nav" aria-label="primary">
   <a class="brand" href="#top">m2hcz</a>
-  <span class="chap" id="chap" aria-live="off"><b>00</b> / 07 <span id="chapname">opening</span></span>
+  <span class="chap" id="chap" aria-live="off"><b>00</b> / 08 <span id="chapname">opening</span></span>
   <div class="rt">
     <span class="clk" id="clk">--:-- brt</span>
     <div class="lang" role="group" aria-label="language"><button data-lang="en" aria-pressed="true">en</button><button data-lang="pt" aria-pressed="false">pt</button></div>
@@ -187,6 +202,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
       <h1 data-i18n="hero.h">I read software like an attacker and build it like production depends on it.</h1>
       <div class="side">
         <b>m2hcz</b><br>
+        <span class="hl" data-i18n="hero.r0">cto, one team, ten live games</span><br>
         <span data-i18n="hero.r1">offensive security researcher</span><br>
         <span data-i18n="hero.r2">senior software engineer</span><br>
         <span>20.67&deg;S 40.50&deg;W</span><br>
@@ -209,7 +225,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
         <div><h3 data-i18n="f3.t">Secure engineering</h3><p data-i18n="f3.d">Production backend architecture, distributed systems, server authority and abuse resistance.</p><span class="k">distributed systems / anti-abuse</span></div>
       </div>
       <dl class="who">
-        <div><dt data-i18n="w.role">role</dt><dd data-i18n="w.rolev">senior engineer, cto, offensive security</dd></div>
+        <div><dt data-i18n="w.role">role</dt><dd data-i18n="w.rolev">cto, team lead, senior engineer, offensive security</dd></div>
         <div><dt data-i18n="w.exp">experience</dt><dd data-i18n="w.expv">12+ years, since 2014</dd></div>
         <div><dt data-i18n="w.base">base</dt><dd data-i18n="w.basev">brazil, remote, utc-3</dd></div>
         <div><dt data-i18n="w.status">status</dt><dd data-i18n="w.statusv">open to select engagements</dd></div>
@@ -266,11 +282,37 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
     </div>
   </section>
 
-  <section class="ch" id="work" data-ch="04" data-cn="c4">
-    <div class="cl"><b>04</b><span data-i18n="c4">work</span></div>
+  <section class="ch" id="leadership" data-ch="04" data-cn="cL">
+    <div class="cl"><b>04</b><span data-i18n="cL">leadership</span></div>
+    <h2 class="giant" data-i18n="ld.h" style="text-wrap:balance">Ten&nbsp;games. One&nbsp;team. All&nbsp;of&nbsp;them&nbsp;live.</h2>
+    <p class="lead" data-i18n="ld.lead">I run the dev team behind a whole portfolio of games and keep every one of them updated and scaling at the same time. Architecture, code review, hiring, release planning and live operations, without one title stalling the rest.</p>
+    <div class="stats">
+      <div><b>10</b><span data-i18n="ld.s1">games updated in parallel</span></div>
+      <div><b>1</b><span data-i18n="ld.s2">dev team, one engineering standard</span></div>
+      <div><b>12+</b><span data-i18n="ld.s3">years shipping production systems</span></div>
+    </div>
+    <div class="facts">
+      <div><h3 data-i18n="l1.t">Team leadership</h3><p data-i18n="l1.d">Hiring, onboarding, code review and clear ownership. Every developer knows what they own, what done means and who unblocks them.</p><span class="k">hiring / reviews / standards / mentoring</span></div>
+      <div><h3 data-i18n="l2.t">Parallel delivery</h3><p data-i18n="l2.d">Shared systems and one release process across every title, so an update to one game never holds the others back.</p><span class="k">shared core / release planning / versioning</span></div>
+      <div><h3 data-i18n="l3.t">Scale on every title</h3><p data-i18n="l3.d">Performance budgets, server authority, anti-abuse and incident response applied to each game as its player count grows.</p><span class="k">liveops / performance / anti-abuse</span></div>
+    </div>
+    <div class="cl" style="margin:clamp(50px,8vh,90px) 0 18px"><span data-i18n="ld.port">portfolio</span></div>
+    <div class="roster">
+      <div><i>01</i><b>Murder Mansion</b></div>
+      <a href="https://www.roblox.com/games/14386479662/Massacre" target="_blank" rel="noopener"><i>02</i><b>Massacre</b></a>
+      <div><i>03</i><b>Rio RP</b></div>
+      <a href="https://www.roblox.com/games/115224559183176/Metropoles-RP" target="_blank" rel="noopener"><i>04</i><b>Metr&oacute;poles RP</b></a>
+      <div><i>05</i><b>Pack an Order</b></div>
+      <div><i>06</i><b>Rodograu</b></div>
+      <div class="more"><i>+</i><span data-i18n="ld.more">more titles, released and in development</span></div>
+    </div>
+  </section>
+
+  <section class="ch" id="work" data-ch="05" data-cn="c4">
+    <div class="cl"><b>05</b><span data-i18n="c4">work</span></div>
     <h2 class="big" data-i18n="e.h">Live products. Real scale.</h2>
     <div class="jobs">
-      <div class="job"><h3 class="co">Atlantic Interactive</h3><div><div class="ro"><span data-i18n="e1.r">Chief Technology Officer</span><span class="st now" data-i18n="st.now">now</span></div><p class="de" data-i18n="e1.d">Technology direction, architecture, engineering standards, hiring, security, performance and LiveOps delivery.</p></div></div>
+      <div class="job"><h3 class="co">Atlantic Interactive</h3><div><div class="ro"><span data-i18n="e1.r">Chief Technology Officer</span><span class="st now" data-i18n="st.now">now</span></div><p class="de" data-i18n="e1.d">Leading the dev team across a portfolio of concurrent titles. Technology direction, architecture, engineering standards, hiring, security, performance and LiveOps delivery.</p></div></div>
       <div class="job"><h3 class="co">Spong</h3><div><div class="ro"><span data-i18n="e2.r">Senior LiveOps Developer</span><span class="st now" data-i18n="st.now">now</span></div><p class="de" data-i18n="e2.d">Production updates, systems optimization, abuse prevention and continuous evolution of live experiences.</p></div></div>
       <div class="job"><h3 class="co">Wendigo Studios</h3><div><div class="ro"><span data-i18n="e3.r">Senior Software Engineer</span><span class="st now" data-i18n="st.now">now</span></div><p class="de" data-i18n="e3.d">Gameplay and backend systems built around server authority and maintainable delivery.</p></div></div>
       <div class="job"><h3 class="co">Chabungus LLC</h3><div><div class="ro"><span data-i18n="e4.r">Developer</span><span class="st now" data-i18n="st.now">now</span></div><p class="de" data-i18n="e4.d">Software and game systems for production projects and scalable delivery.</p></div></div>
@@ -279,8 +321,8 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
     </div>
   </section>
 
-  <section class="ch" id="tools" data-ch="05" data-cn="c5">
-    <div class="cl"><b>05</b><span data-i18n="c5">tools</span></div>
+  <section class="ch" id="tools" data-ch="06" data-cn="c5">
+    <div class="cl"><b>06</b><span data-i18n="c5">tools</span></div>
     <h2 class="big" data-i18n="t.h">Built in the open. Built for production.</h2>
     <div class="tools">
       <div>
@@ -298,8 +340,8 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
     </div>
   </section>
 
-  <section class="ch" id="practice" data-ch="06" data-cn="c6">
-    <div class="cl"><b>06</b><span data-i18n="c6">practice</span></div>
+  <section class="ch" id="practice" data-ch="07" data-cn="c6">
+    <div class="cl"><b>07</b><span data-i18n="c6">practice</span></div>
     <div class="prac">
       <div>
         <h2 class="giant">A.S.I.A</h2>
@@ -317,10 +359,10 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
     </div>
   </section>
 
-  <section class="ch contact" id="contact" data-ch="07" data-cn="c7">
-    <div class="cl"><b>07</b><span data-i18n="c7">contact</span></div>
+  <section class="ch contact" id="contact" data-ch="08" data-cn="c7">
+    <div class="cl"><b>08</b><span data-i18n="c7">contact</span></div>
     <h2 class="big" data-i18n="ct.h">Serious systems. Serious security.</h2>
-    <p class="lead" data-i18n="ct.lead">Available for senior engineering, offensive security, AppSec and focused research engagements.</p>
+    <p class="lead" data-i18n="ct.lead">Available for engineering leadership, senior engineering, offensive security, AppSec and focused research engagements.</p>
     <a class="mail" href="mailto:m2hczs@proton.me">m2hczs@proton.me</a>
     <div class="links">
       <a href="https://github.com/m2hcz" target="_blank" rel="noopener">github/m2hcz</a>
@@ -615,14 +657,14 @@ var io2=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isInte
 [].forEach.call(d.querySelectorAll(".cve"),function(c){io2.observe(c);});
 
 var PT={
-"nav.hire":"contato","c0":"abertura","c1":"manifesto","c2":"pesquisa","c3":"escala","c4":"trabalho","c5":"ferramentas","c6":"prática","c7":"contato",
+"nav.hire":"contato","c0":"abertura","c1":"manifesto","c2":"pesquisa","c3":"escala","cL":"liderança","c4":"trabalho","c5":"ferramentas","c6":"prática","c7":"contato",
 "hero.h":"Leio software como um atacante e construo como se a produção dependesse disso.",
-"hero.r1":"pesquisador de segurança ofensiva","hero.r2":"engenheiro de software sênior","hero.cue":"role para começar",
+"hero.r0":"cto, um time, dez jogos no ar","hero.r1":"pesquisador de segurança ofensiva","hero.r2":"engenheiro de software sênior","hero.cue":"role para começar",
 "m.s":"Segurança não é checklist. É a distância entre o que um sistema promete e o que suas fronteiras de fato impõem.",
 "f1.t":"Segurança ofensiva","f1.d":"Análise manual, exploração controlada, validação de cadeias de ataque e engenharia reversa.",
 "f2.t":"Segurança de aplicações","f2.d":"Code review seguro, threat modeling, análise de autorização, hardening e suporte à correção.",
 "f3.t":"Engenharia segura","f3.d":"Arquitetura de backend em produção, sistemas distribuídos, autoridade de servidor e resistência a abuso.",
-"w.role":"cargo","w.rolev":"engenheiro sênior, cto, segurança ofensiva","w.exp":"experiência","w.expv":"12+ anos, desde 2014","w.base":"base","w.basev":"brasil, remoto, utc-3","w.status":"status","w.statusv":"aberto a engajamentos selecionados",
+"w.role":"cargo","w.rolev":"cto, líder de time, engenheiro sênior, segurança ofensiva","w.exp":"experiência","w.expv":"12+ anos, desde 2014","w.base":"base","w.basev":"brasil, remoto, utc-3","w.status":"status","w.statusv":"aberto a engajamentos selecionados",
 "r.h":"Evidência antes de afirmação.","r.lead":"CVEs atribuídas, relatórios aceitos e provas de conceito independentes. Cada entrada leva ao registro público.",
 "r1.t":"File Browser, bypass de escopo via symlink","r1.d":"Usuários com escopo, e alguns destinatários de compartilhamento sem autenticação, podiam escapar do limite de diretório via symlink.",
 "r2.t":"Gitea, bypass de autorização no Git LFS","r2.d":"Uma falha entre repositórios permitia que usuários sem permissão no repositório de origem baixassem objetos LFS privados.",
@@ -631,8 +673,15 @@ var PT={
 "r.adv":"ler advisory","r.rec":"ler registro","r.poc":"ver prova de conceito","r.ack":"reconhecido por","r.note":"Os nomes identificam o programa ou ecossistema afetado. Não implicam vínculo, endosso ou parceria.",
 "s.h":"Sistemas na frente de milhões.","s.cap":"visitas em jogos onde construí backend e sistemas ao vivo","s.touch":"passe sobre o número",
 "g2":"sistemas centrais","g3":"backend líder","g4":"backend, sistemas","g5":"gameplay, backend",
+"ld.h":"Dez\u00a0jogos. Um\u00a0time. Todos\u00a0no\u00a0ar.",
+"ld.lead":"Comando o time de devs por trás de um portfólio inteiro de jogos e mantenho cada um deles atualizado e escalando ao mesmo tempo. Arquitetura, code review, contratação, planejamento de releases e operação ao vivo, sem que um título trave os outros.",
+"ld.s1":"jogos atualizados em paralelo","ld.s2":"time de devs, um padrão de engenharia","ld.s3":"anos entregando sistemas em produção",
+"l1.t":"Liderança de time","l1.d":"Contratação, onboarding, code review e responsabilidades claras. Cada dev sabe o que é seu, o que significa pronto e quem o desbloqueia.",
+"l2.t":"Entrega em paralelo","l2.d":"Sistemas compartilhados e um único processo de release para todos os títulos, para que a atualização de um jogo nunca segure os outros.",
+"l3.t":"Escala em cada título","l3.d":"Orçamentos de performance, autoridade de servidor, anti-abuso e resposta a incidentes aplicados a cada jogo conforme a base de jogadores cresce.",
+"ld.port":"portfólio","ld.more":"mais títulos, lançados e em desenvolvimento",
 "e.h":"Produtos ao vivo. Escala real.","st.now":"atual","st.prev":"anterior",
-"e1.d":"Direção técnica, arquitetura, padrões de engenharia, contratação, segurança, performance e entrega de LiveOps.",
+"e1.d":"Liderança do time de devs em um portfólio de títulos simultâneos. Direção técnica, arquitetura, padrões de engenharia, contratação, segurança, performance e entrega de LiveOps.",
 "e2.r":"Desenvolvedor LiveOps Sênior","e2.d":"Atualizações em produção, otimização de sistemas, prevenção de abuso e evolução contínua das experiências.",
 "e3.r":"Engenheiro de Software Sênior","e3.d":"Gameplay e backend construídos em torno de autoridade de servidor e entrega sustentável.",
 "e4.r":"Desenvolvedor","e4.d":"Software e sistemas de jogo para projetos em produção e entrega escalável.",
@@ -643,9 +692,9 @@ var PT={
 "k.lang":"linguagens","k.infra":"infraestrutura","k.sec":"segurança","k.spec":"especialização","k.specv":"Arquitetura de backend, sistemas distribuídos, autoridade de servidor, anti-cheat, engenharia reversa",
 "a.d":"Minha prática independente de segurança. Avaliações com escopo, evidência reproduzível e correções que seus engenheiros conseguem aplicar. Segurança sem teatro.","a.b":"visitar a.s.i.a",
 "k.t":"Construído junto, mantido à parte.","k.d":"Um projeto colaborativo com um parceiro, apresentado separado da minha pesquisa solo, da A.S.I.A e do trabalho de engenharia.","k.b":"visitar wnk.sh",
-"ct.h":"Sistemas sérios. Segurança séria.","ct.lead":"Disponível para engenharia sênior, segurança ofensiva, AppSec e pesquisa focada.","ft":"engenharia desde 2014, brasil"
+"ct.h":"Sistemas sérios. Segurança séria.","ct.lead":"Disponível para liderança de engenharia, engenharia sênior, segurança ofensiva, AppSec e pesquisa focada.","ft":"engenharia desde 2014, brasil"
 };
-var EN={"c0":"opening","c1":"manifesto","c2":"research","c3":"scale","c4":"work","c5":"tools","c6":"practice","c7":"contact"};
+var EN={"c0":"opening","c1":"manifesto","c2":"research","c3":"scale","cL":"leadership","c4":"work","c5":"tools","c6":"practice","c7":"contact"};
 var lang="en";
 function T(k){return (lang==="pt"&&PT[k])||EN[k]||k;}
 var els=[].slice.call(d.querySelectorAll("[data-i18n]"));
